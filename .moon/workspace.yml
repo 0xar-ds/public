@@ -1,0 +1,26 @@
+# https://moonrepo.dev/docs/config/workspace
+$schema: 'https://moonrepo.dev/schemas/workspace.json'
+
+telemetry: false
+
+projects:
+  - 'apps/**/moon.yml'
+  - 'libs/**/moon.yml'
+
+pipeline:
+  logRunningCommand: true
+
+constraints:
+  enforceProjectTypeRelationships: true
+
+docker:
+  scaffold:
+    include:
+      - './types/**/*'
+
+generator:
+  templates:
+    - 'templates/**'
+
+notifier:
+  terminalNotifications: 'always'

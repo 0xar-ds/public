@@ -1,0 +1,12 @@
+node:
+  packageManager: 'pnpm'
+  syncProjectWorkspaceDependencies: true
+  pnpm:
+    installArgs:
+      - '--force'
+
+typescript:
+  includeSharedTypes: true
+  syncProjectReferences: true
+  # syncProjectReferencesToPaths: true
+  # includeProjectReferenceSources: true

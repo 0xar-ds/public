@@ -1,0 +1,23 @@
+{
+	"extends": "{{ workspace_root | path_relative(from = dest_dir) }}/tsconfig.options.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": ".",
+		"target": "ESNext",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"allowJs": false,
+		"checkJs": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
+	},
+	"include": ["{{ workspace_root | path_relative(from = dest_dir) }}/types/**/*"],
+	"references": [
+		{
+			"path": "./tsconfig.build.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		}
+	]
+}

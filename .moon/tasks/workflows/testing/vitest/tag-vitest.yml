@@ -1,0 +1,20 @@
+implicitDeps:
+  - '^:build'
+
+tasks:
+  test:
+    type: test
+    description: 'Runs vitest. Assumes project has Vitest configured.'
+    command: 'vitest --run'
+    env: { NODE_ENV: 'testing' }
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(tests)'
+  test/watch:
+    type: test
+    preset: watcher
+    description: 'Runs vitest with the --watch flag. Assumes project has Vitest configured.'
+    local: true
+    command: 'vitest watch'
+    env: { NODE_ENV: 'testing' }

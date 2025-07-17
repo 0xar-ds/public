@@ -1,0 +1,31 @@
+tasks:
+  dev:
+    type: run
+    preset: watcher
+    description: 'Runs nest build with the --watch flag.'
+    command: 'nest start --watch --path ./tsconfig.build.json'
+    local: true
+    env: { NODE_ENV: 'development' }
+    deps:
+      - '^:build'
+  build:
+    type: build
+    description: 'Runs nest build'
+    command: 'nest build --path ./tsconfig.build.json'
+    env: { NODE_ENV: 'production' }
+    deps:
+      - '^:build'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'
+  run:
+    type: run
+    preset: watcher
+    description: 'Runs production'
+    command: 'node dist/src/main'
+    local: true
+    env: { NODE_ENV: 'production' }
+    deps:
+      - '~:build'

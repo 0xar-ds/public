@@ -4,16 +4,7 @@
 	"include": [],
 	"references": [
 		{
-			"path": "apps/https-api"
-		},
-		{
-			"path": "apps/https-front"
-		},
-		{
-			"path": "apps/sentry-bot"
-		},
-		{
-			"path": "apps/tickets-bot"
+			"path": "apps/example-application"
 		},
 		{
 			"path": "libs/server/config/schemas"
@@ -22,19 +13,7 @@
 			"path": "libs/server/core/api"
 		},
 		{
-			"path": "libs/server/discord/bridged-logging"
-		},
-		{
 			"path": "libs/server/discord/core"
-		},
-		{
-			"path": "libs/server/discord/lookaheads"
-		},
-		{
-			"path": "libs/server/discord/modules/bridged-logging"
-		},
-		{
-			"path": "libs/server/discord/modules/lookaheads"
 		},
 		{
 			"path": "libs/shared/discord.js/channels"

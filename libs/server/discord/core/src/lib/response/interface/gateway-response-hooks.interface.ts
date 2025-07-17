@@ -1,5 +1,5 @@
 import { catchError } from 'rxjs';
 
 export interface DiscordResponseHooks {
-	onError?: typeof catchError;
+	onError?: Parameters<typeof catchError>[0];
 }

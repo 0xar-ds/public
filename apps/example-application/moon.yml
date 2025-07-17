@@ -1,0 +1,15 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+id: example-application
+type: application
+language: typescript
+stack: backend
+tags:
+  - 'nest'
+  - 'eslint'
+  - 'prettier'
+  - 'code-quality'
+
+project:
+  name: 'Example Discord Application'
+  description: 'In-discord example bot application.'

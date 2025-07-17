@@ -23,7 +23,24 @@ git clone <this>
 proto install
 ```
 
-5. run the project through the now installed `moon` binary monorepo!
+5. config the example application
+
+```bash
+echo -e "[context]
+name = \"example-application\"
+environment = \"development\"
+log_enable = true
+log_level = \"ALL\"
+
+[application]
+token = \"!! YOUR TOKEN HERE !!\"
+guild = \"!! YOUR GUILD ID HERE !!\"
+
+[ui]
+default_profile_picture_representation = \"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg\"" > ./apps/example-application/.env.development.toml
+```
+
+6. run the project through the now also installed `moon` binary monorepo!
 
 ```bash
 moon run application:dev

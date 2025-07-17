@@ -1,0 +1,13 @@
+id: 'server.core-api'
+type: library
+language: typescript
+stack: unknown
+tags:
+  - 'tsc'
+  - 'eslint'
+  - 'prettier'
+  - 'code-quality'
+
+project:
+  name: 'libs/server/core/core-api'
+  description: 'Core API functionalities and types.'

@@ -1,0 +1,13 @@
+id: 'server.discord-core'
+type: library
+language: typescript
+stack: unknown
+tags:
+  - 'tsc'
+  - 'eslint'
+  - 'prettier'
+  - 'code-quality'
+
+project:
+  name: 'Discord Server Core'
+  description: 'Discord core API functionalities and types'

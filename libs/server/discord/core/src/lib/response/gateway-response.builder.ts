@@ -109,7 +109,14 @@ export class GatewayResponseBuilder<
 					'The payload field (or its body and options) of this builder must be set prior to building it.',
 			});
 
-		if (!this._hooks) this.hooks({ onError: this._onError } as HooksOf<T>);
+		this.hooks({ onError: this._onError } as HooksOf<T>);
+
+		if (!this._hooks)
+			throw new Exception({
+				code: AppStatus.PRECONDITION_REQUIRED,
+				message:
+					'The hooks field of this builder must be set prior to building it.',
+			});
 
 		if (!this._timestamp)
 			throw new Exception({

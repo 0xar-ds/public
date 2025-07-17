@@ -43,7 +43,7 @@ default_profile_picture_representation = \"https://upload.wikimedia.org/wikipedi
 6. run the project through the now also installed `moon` binary monorepo!
 
 ```bash
-moon run application:dev
+moon run example-application:dev
 ```
 
 # roadmap/future stuff i plan to do

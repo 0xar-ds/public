@@ -1,0 +1,27 @@
+implicitDeps:
+  - '^:build'
+
+tasks:
+  test:
+    type: test
+    description: 'Runs jest. Assumes project has Jest configured.'
+    command:
+      - 'jest'
+      - '--coverage'
+      - '--passWithNoTests'
+    env: { NODE_ENV: 'testing' }
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(tests)'
+  test/watch:
+    type: test
+    preset: watcher
+    description: 'Runs jest with the --watch flag. Assumes project has Jest configured.'
+    local: true
+    command:
+      - 'jest'
+      - '--coverage'
+      - '--passWithNoTests'
+      - '--watch'
+    env: { NODE_ENV: 'testing' }

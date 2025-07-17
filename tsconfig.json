@@ -1,0 +1,55 @@
+{
+	"extends": "./tsconfig.options.json",
+	"files": [],
+	"include": [],
+	"references": [
+		{
+			"path": "apps/https-api"
+		},
+		{
+			"path": "apps/https-front"
+		},
+		{
+			"path": "apps/sentry-bot"
+		},
+		{
+			"path": "apps/tickets-bot"
+		},
+		{
+			"path": "libs/server/config/schemas"
+		},
+		{
+			"path": "libs/server/core/api"
+		},
+		{
+			"path": "libs/server/discord/bridged-logging"
+		},
+		{
+			"path": "libs/server/discord/core"
+		},
+		{
+			"path": "libs/server/discord/lookaheads"
+		},
+		{
+			"path": "libs/server/discord/modules/bridged-logging"
+		},
+		{
+			"path": "libs/server/discord/modules/lookaheads"
+		},
+		{
+			"path": "libs/shared/discord.js/channels"
+		},
+		{
+			"path": "libs/shared/discord.js/events"
+		},
+		{
+			"path": "libs/shared/exceptions"
+		},
+		{
+			"path": "libs/shared/rxjs/observables/shared-replay"
+		},
+		{
+			"path": "libs/shared/status"
+		}
+	]
+}

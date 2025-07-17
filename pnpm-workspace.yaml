@@ -1,0 +1,16 @@
+packages:
+  - 'apps/**'
+  - 'libs/**'
+
+catalogs:
+  nest:
+    "@nestjs/common": 11.1.3
+    "@nestjs/core": 11.1.3
+    "@nestjs/testing": 11.1.3
+    "@nestjs/cli": 11.0.7
+    "@nestjs/schematics": 11.0.5
+
+  discord:
+    "necord": 6.8.14
+    "discord.js": 14.19.3
+    "discord-api-types": 0.38.5

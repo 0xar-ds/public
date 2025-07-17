@@ -37,10 +37,11 @@ import {
 export class DeferInteractionGuard implements CanActivate {
 	private readonly logger = new Logger(this.constructor.name);
 
-	constructor(private readonly reflector: Reflector) {}
-
 	async canActivate(context: ExecutionContext): Promise<boolean> {
-		const opts = this.reflector.getAllAndOverride<DeferInteractionOpts>(
+		// not injecting as for some reason it was not being provided by the context/modules
+		const reflector = new Reflector();
+
+		const opts = reflector.getAllAndOverride<DeferInteractionOpts>(
 			DEFER_INTERACTION_METADATA_KEY,
 			[context.getHandler(), context.getClass()],
 		);

@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/shared/rxjs/observables/shared-replay'
+  name: 'Shared Replay Observable'
   description: 'Utility to manage an Rxjs Observable that buffers in a shared replay operator.'

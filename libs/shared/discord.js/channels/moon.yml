@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/shared/discord.js/channels'
+  name: 'Utilities for Discord.js channels classes'
   description: 'Utilities around Discord.js structs of channels'

@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/shared/exceptions'
+  name: 'Domain-exception representation'
   description: 'Shared exceptions structs through kind of systems.'

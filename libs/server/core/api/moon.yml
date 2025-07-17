@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/server/core/core-api'
+  name: 'Server Core'
   description: 'Core API functionalities and types.'

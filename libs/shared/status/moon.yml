@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/shared/status'
+  name: 'Domain-state representation'
   description: 'Status enumeration for consumption in application-or-library outcome representation.'

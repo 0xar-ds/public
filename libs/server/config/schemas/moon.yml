@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/server/config/schemas'
+  name: 'Server Config schemas'
   description: 'Schemas abstraction for Server Config Modules'

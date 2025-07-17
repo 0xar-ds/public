@@ -9,5 +9,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'libs/shared/discord.js/events'
+  name: 'Utilities for Discord.js client events'
   description: 'Utilities around Discord.js struct of events'

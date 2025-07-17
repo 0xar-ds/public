@@ -4,5 +4,5 @@ language: javascript
 stack: systems
 
 project:
-  name: 'libs/meta/config/eslint'
+  name: 'Meta Eslint config'
   description: 'Hosts eslint configuration for generic projects.'

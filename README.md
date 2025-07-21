@@ -31,7 +31,7 @@ token = \"!! YOUR TOKEN HERE !!\"
 guild = \"!! YOUR GUILD ID HERE !!\"
 
 [ui]
-default_profile_picture_representation = \"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg\"" > ./apps/example-application/.env.development.toml
+default_profile_picture_representation = \"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg\"" > ./.env.development.toml
 ```
 
 5. run the project

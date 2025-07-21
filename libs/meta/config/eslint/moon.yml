@@ -1,8 +1,0 @@
-id: 'meta-config-eslint'
-type: configuration
-language: javascript
-stack: systems
-
-project:
-  name: 'Meta Eslint config'
-  description: 'Hosts eslint configuration for generic projects.'

@@ -1,3 +1,0 @@
-const hello = '{{ name }}' as const;
-
-export { hello };

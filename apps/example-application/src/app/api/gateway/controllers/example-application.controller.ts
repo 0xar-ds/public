@@ -41,8 +41,7 @@ export class ExampleApplicationController {
 	@UseInterceptors(DiscordResponseInterceptor)
 	public listMembers(@Context() [_interaction]: [ChatInputCommandInteraction]) {
 		const fetching$ = of(
-			new GatewayResponseBuilder<GatewayResponseType.InteractionEditReply>()
-				.type(GatewayResponseType.InteractionEditReply)
+			new GatewayResponseBuilder(GatewayResponseType.InteractionEditReply)
 				.status(Status.SUCCESS)
 				.options({})
 				.body({ content: 'Loading...' })
@@ -50,8 +49,7 @@ export class ExampleApplicationController {
 		);
 
 		const finished$ = of(
-			new GatewayResponseBuilder<GatewayResponseType.InteractionEditReply>()
-				.type(GatewayResponseType.InteractionEditReply)
+			new GatewayResponseBuilder(GatewayResponseType.InteractionEditReply)
 				.status(Status.SUCCESS)
 				.options({})
 				.body({ content: 'Displayed every member there was.' })
@@ -74,8 +72,7 @@ export class ExampleApplicationController {
 			concatMap((member) =>
 				concat(
 					of(
-						new GatewayResponseBuilder<GatewayResponseType.InteractionEditReply>()
-							.type(GatewayResponseType.InteractionEditReply)
+						new GatewayResponseBuilder(GatewayResponseType.InteractionEditReply)
 							.status(Status.SUCCESS)
 							.options({})
 							.body({
@@ -84,8 +81,8 @@ export class ExampleApplicationController {
 							.build(),
 					),
 					of(
-						new GatewayResponseBuilder<GatewayResponseType.InteractionFollowUp>()
-							.type(GatewayResponseType.InteractionFollowUp)
+						new GatewayResponseBuilder(GatewayResponseType.InteractionFollowUp)
+
 							.status(Status.SUCCESS)
 							.options({})
 							.body({

@@ -4,11 +4,62 @@ packages:
 
 catalogs:
   nest:
-    "@nestjs/common": 11.1.3
-    "@nestjs/core": 11.1.3
-    "@nestjs/testing": 11.1.3
+    "@nestjs/common": 11.1.4
+    "@nestjs/core": 11.1.4
+    "@nestjs/testing": 11.1.4
+
+    "@nestjs/platform-express": 11.1.4
+    
     "@nestjs/cli": 11.0.7
     "@nestjs/schematics": 11.0.5
+
+  nest-libs:
+    "nest-typed-config": 2.9.4
+
+    "@ogma/common": 1.2.0
+    "@ogma/nestjs-module": 5.5.0
+    "@ogma/styler": 1.1.0
+
+  swc:
+    "@swc/cli": 0.7.8
+    "@swc/core": 1.13.1
+
+  environment:
+    "@types/express": 5.0.3
+    "@types/node": 24.0.15
+
+  code-quality:
+    "eslint": 9.31.0
+    "prettier": 3.6.2
+
+    "@eslint/compat": 1.3.1
+    "@eslint/js": 9.31.0
+
+    "typescript-eslint": 8.37.0
+    "@typescript-eslint/parser": 8.37.0
+    "eslint-import-resolver-typescript": 4.4.4
+
+    "eslint-config-prettier": 10.1.8
+    
+    "eslint-plugin-import-x": 4.16.1
+    "eslint-plugin-svelte": 3.11.0
+    
+    "globals": 16.3.0
+
+  libraries:
+    "rxjs": 7.8.2
+    "class-transformer": 0.5.1
+    "class-validator": 0.14.2
+
+  utilities:
+    "tsconfig-paths": 4.2.0
+    "reflect-metadata": 0.2.2
+    "source-map-support": 0.5.21
+
+  build-tooling:
+    "typescript": 5.8.3
+    "ts-loader": 9.5.2
+    "ts-node": 10.9.2
 
   discord:
     "necord": 6.8.14

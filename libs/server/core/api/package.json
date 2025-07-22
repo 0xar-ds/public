@@ -3,14 +3,14 @@
 	"version": "0.0.1",
 	"type": "module",
 	"devDependencies": {
-		"@types/express": "^5.0.1",
-		"@types/node": "^22.14.1",
+		"@types/express": "catalog:environment",
+		"@types/node": "catalog:environment",
 		"@~meta/eslint": "workspace:^",
-		"globals": "^16.0.0",
-		"source-map-support": "^0.5.21",
-		"ts-loader": "^9.5.2",
-		"ts-node": "^10.9.2",
-		"tsconfig-paths": "^4.2.0"
+		"globals": "catalog:code-quality",
+		"source-map-support": "catalog:utilities",
+		"ts-loader": "catalog:build-tooling",
+		"ts-node": "catalog:build-tooling",
+		"tsconfig-paths": "catalog:utilities"
 	},
 	"exports": {
 		".": {
@@ -24,7 +24,7 @@
 	},
 	"dependencies": {
 		"@~shared/status": "workspace:^",
-		"@nestjs/common": "^11.1.1",
-		"reflect-metadata": "^0.2.2"
+		"@nestjs/common": "catalog:nest",
+		"reflect-metadata": "catalog:utilities"
 	}
 }

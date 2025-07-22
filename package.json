@@ -4,9 +4,9 @@
 	"private": true,
 	"version": "1.0.0",
 	"devDependencies": {
-		"eslint": "^9.27.0",
-		"prettier": "^3.5.3",
-		"typescript": "^5.8.3"
+		"eslint": "catalog:code-quality",
+		"prettier": "catalog:code-quality",
+		"typescript": "catalog:build-tooling"
 	},
 	"packageManager": "pnpm@10.12.1",
 	"engines": {

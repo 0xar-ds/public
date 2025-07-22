@@ -22,7 +22,6 @@ export class GatewayResponseBuilder<
 	T extends GatewayResponseType,
 	U extends PayloadOf<T> = PayloadOf<T>,
 > {
-	private _type: Nullable<T> = null;
 	private _status: Nullable<StatusDescription> = null;
 	private _options: Nullable<OptionsOf<U>> = null;
 	private _body: Nullable<BodyOf<T>> = null;
@@ -30,6 +29,8 @@ export class GatewayResponseBuilder<
 	private _hooks: Nullable<HooksOf<T>> = null;
 	private _onError: Maybe<HooksOf<T>['onError']> = undefined;
 	private _timestamp: number = Date.now();
+
+	constructor(private _type: T) {}
 
 	public type(type: T): this {
 		this._type = type;
@@ -80,13 +81,6 @@ export class GatewayResponseBuilder<
 	}
 
 	build(): GatewayResponse {
-		if (!this._type)
-			throw new Exception({
-				code: AppStatus.PRECONDITION_REQUIRED,
-				message:
-					'The type field of this builder must be set prior to building it.',
-			});
-
 		if (!this._status)
 			throw new Exception({
 				code: AppStatus.PRECONDITION_REQUIRED,

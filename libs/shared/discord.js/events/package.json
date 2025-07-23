@@ -23,6 +23,7 @@
 		}
 	},
 	"dependencies": {
+		"@~discord.js/channels": "workspace:^",
 		"discord.js": "catalog:discord",
 		"reflect-metadata": "catalog:utilities"
 	}

@@ -1,6 +1,9 @@
 import { ClientEvents } from 'discord.js';
 
 import {
+	messageCreate,
+	messageDelete,
+	messageUpdate,
 	threadCreate,
 	threadDelete,
 	threadMembersUpdate,
@@ -16,4 +19,7 @@ export const CallpointMap: {
 	threadDelete,
 	threadUpdate,
 	threadMembersUpdate,
+	messageCreate,
+	messageDelete,
+	messageUpdate,
 };

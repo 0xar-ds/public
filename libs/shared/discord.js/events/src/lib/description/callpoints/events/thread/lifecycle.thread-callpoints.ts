@@ -9,31 +9,31 @@ type ThreadId = Snowflake & {};
 declare global {
 	interface EventCallpointMap {
 		threadCreate:
-			| `/${GuildId} ${ThreadId}`
-			| `/${GuildId}/${ChannelId} ${ThreadId}`;
+			| `/guilds/${GuildId} ${ThreadId}`
+			| `/guilds/${GuildId}/${ChannelId} ${ThreadId}`;
 		threadUpdate:
-			| `/${GuildId} ${ThreadId}`
-			| `/${GuildId}/${ChannelId} ${ThreadId}`;
+			| `/guilds/${GuildId} ${ThreadId}`
+			| `/guilds/${GuildId}/${ChannelId} ${ThreadId}`;
 		threadDelete:
-			| `/${GuildId} ${ThreadId}`
-			| `/${GuildId}/${ChannelId} ${ThreadId}`;
+			| `/guilds/${GuildId} ${ThreadId}`
+			| `/guilds/${GuildId}/${ChannelId} ${ThreadId}`;
 	}
 }
 
 export const threadCreate: EventCallpointMapper<'threadCreate'> = (thread) =>
 	thread.parent !== null
-		? `/${thread.guildId}/${thread.parent.id} ${thread.id}`
-		: `/${thread.guildId} ${thread.id}`;
+		? `/guilds/${thread.guildId}/${thread.parent.id} ${thread.id}`
+		: `/guilds/${thread.guildId} ${thread.id}`;
 
 export const threadUpdate: EventCallpointMapper<'threadUpdate'> = (
 	_,
 	thread,
 ) =>
 	thread.parent !== null
-		? `/${thread.guildId}/${thread.parent.id} ${thread.id}`
-		: `/${thread.guildId} ${thread.id}`;
+		? `/guilds/${thread.guildId}/${thread.parent.id} ${thread.id}`
+		: `/guilds/${thread.guildId} ${thread.id}`;
 
 export const threadDelete: EventCallpointMapper<'threadDelete'> = (thread) =>
 	thread.parent !== null
-		? `/${thread.guildId}/${thread.parent.id} ${thread.id}`
-		: `/${thread.guildId} ${thread.id}`;
+		? `/guilds/${thread.guildId}/${thread.parent.id} ${thread.id}`
+		: `/guilds/${thread.guildId} ${thread.id}`;

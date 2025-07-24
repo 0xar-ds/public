@@ -31,7 +31,7 @@ export const messageCreate: EventCallpointMapper<'messageCreate'> = (
 	message.channel.isDMBased()
 		? `/users/${message.channel.recipientId}/${message.channel.id} ${message.id}`
 		: message.channel.isThread()
-			? `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.id}/${message.channel.parent?.id ?? 'unknown'} ${message.id}`
+			? `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.parent?.id ?? 'unknown'}/${message.channel.id} ${message.id}`
 			: `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.id} ${message.id}`;
 
 export const messageUpdate: EventCallpointMapper<'messageUpdate'> = (
@@ -40,7 +40,7 @@ export const messageUpdate: EventCallpointMapper<'messageUpdate'> = (
 	message.channel.isDMBased()
 		? `/users/${message.channel.recipientId}/${message.channel.id} ${message.id}`
 		: message.channel.isThread()
-			? `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.id}/${message.channel.parent?.id ?? 'unknown'} ${message.id}`
+			? `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.parent?.id ?? 'unknown'}/${message.channel.id} ${message.id}`
 			: `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.id} ${message.id}`;
 
 export const messageDelete: EventCallpointMapper<'messageDelete'> = (
@@ -49,5 +49,5 @@ export const messageDelete: EventCallpointMapper<'messageDelete'> = (
 	message.channel.isDMBased()
 		? `/users/${message.channel.recipientId}/${message.channel.id} ${message.id}`
 		: message.channel.isThread()
-			? `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.id}/${message.channel.parent?.id ?? 'unknown'} ${message.id}`
+			? `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.parent?.id ?? 'unknown'}/${message.channel.id} ${message.id}`
 			: `/guilds/${message.guild?.id ?? 'unknown'}/${message.channel.id} ${message.id}`;

@@ -23,6 +23,8 @@ import {
 	threadMembersUpdate,
 	threadUpdate,
 	typingStart,
+	voiceChannelEffectSend,
+	voiceStateUpdate,
 	webhooksUpdate,
 	webhookUpdate,
 } from './events/index.js';
@@ -56,4 +58,6 @@ export const CallpointMap: {
 	stageInstanceCreate,
 	stageInstanceDelete,
 	stageInstanceUpdate,
+	voiceStateUpdate,
+	voiceChannelEffectSend,
 };

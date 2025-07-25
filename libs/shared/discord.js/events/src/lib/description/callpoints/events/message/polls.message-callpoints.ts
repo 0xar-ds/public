@@ -1,15 +1,9 @@
 import {
 	ChannelType,
-	ClientEvents,
 	DMChannel,
 	PartialDMChannel,
 	Snowflake,
 } from 'discord.js';
-
-export type PollsMessageScopeEvents = Pick<
-	ClientEvents,
-	'messagePollVoteAdd' | 'messagePollVoteRemove'
->;
 
 import { isChannelOfType } from '@~discord.js/channels';
 

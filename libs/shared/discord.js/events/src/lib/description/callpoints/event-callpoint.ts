@@ -1,8 +1,10 @@
 import { ClientEvents } from 'discord.js';
 
 import {
+	channelPinsUpdate,
 	messageCreate,
 	messageDelete,
+	messageDeleteBulk,
 	messagePollVoteAdd,
 	messagePollVoteRemove,
 	messageReactionAdd,
@@ -14,6 +16,7 @@ import {
 	threadDelete,
 	threadMembersUpdate,
 	threadUpdate,
+	typingStart,
 } from './events/index.js';
 
 export const CallpointMap: {
@@ -34,4 +37,7 @@ export const CallpointMap: {
 	messageReactionRemove,
 	messageReactionRemoveAll,
 	messageReactionRemoveEmoji,
+	typingStart,
+	channelPinsUpdate,
+	messageDeleteBulk,
 };

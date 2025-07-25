@@ -15,6 +15,9 @@ import {
 	messageReactionRemoveAll,
 	messageReactionRemoveEmoji,
 	messageUpdate,
+	stageInstanceCreate,
+	stageInstanceDelete,
+	stageInstanceUpdate,
 	threadCreate,
 	threadDelete,
 	threadMembersUpdate,
@@ -50,4 +53,7 @@ export const CallpointMap: {
 	channelUpdate,
 	webhooksUpdate,
 	webhookUpdate,
+	stageInstanceCreate,
+	stageInstanceDelete,
+	stageInstanceUpdate,
 };

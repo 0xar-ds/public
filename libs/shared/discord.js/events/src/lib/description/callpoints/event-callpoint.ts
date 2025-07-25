@@ -20,6 +20,8 @@ import {
 	threadMembersUpdate,
 	threadUpdate,
 	typingStart,
+	webhooksUpdate,
+	webhookUpdate,
 } from './events/index.js';
 
 export const CallpointMap: {
@@ -46,4 +48,6 @@ export const CallpointMap: {
 	channelCreate,
 	channelDelete,
 	channelUpdate,
+	webhooksUpdate,
+	webhookUpdate,
 };

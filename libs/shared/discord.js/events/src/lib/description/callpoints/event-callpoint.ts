@@ -34,6 +34,8 @@ import {
 	guildUnavailable,
 	guildUpdate,
 	interactionCreate,
+	inviteCreate,
+	inviteDelete,
 	messageCreate,
 	messageDelete,
 	messageDeleteBulk,
@@ -144,4 +146,6 @@ export const CallpointMap: {
 	guildScheduledEventUpdate,
 	guildScheduledEventUserAdd,
 	guildScheduledEventUserRemove,
+	inviteCreate,
+	inviteDelete,
 };

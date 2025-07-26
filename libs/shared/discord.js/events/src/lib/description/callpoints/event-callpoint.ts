@@ -1,6 +1,11 @@
 import { ClientEvents } from 'discord.js';
 
 import {
+	applicationCommandPermissionsUpdate,
+	autoModerationActionExecution,
+	autoModerationRuleCreate,
+	autoModerationRuleDelete,
+	autoModerationRuleUpdate,
 	channelCreate,
 	channelDelete,
 	channelPinsUpdate,
@@ -13,9 +18,11 @@ import {
 	guildAvailable,
 	guildCreate,
 	guildDelete,
+	guildIntegrationsUpdate,
 	guildMemberAvailable,
 	guildMembersChunk,
 	guildUnavailable,
+	guildUpdate,
 	interactionCreate,
 	messageCreate,
 	messageDelete,
@@ -110,4 +117,11 @@ export const CallpointMap: {
 	subscriptionCreate,
 	subscriptionDelete,
 	subscriptionUpdate,
+	applicationCommandPermissionsUpdate,
+	autoModerationActionExecution,
+	autoModerationRuleCreate,
+	autoModerationRuleDelete,
+	autoModerationRuleUpdate,
+	guildIntegrationsUpdate,
+	guildUpdate,
 };

@@ -12,10 +12,18 @@ declare global {
 	interface EventCallpointMap {
 		guildAvailable: `/client/guilds ${GuildId}`;
 		guildUnavailable: `/client/guilds ${GuildId}`;
+
 		guildMemberAvailable: `/client/guilds/${GuildId}/members ${MemberId}`;
 		guildMembersChunk: `/client/guilds/${GuildId}/members ${Nonce}`;
+
 		threadMemberUpdate: `/client/guilds/${GuildId}/${ParentId}/${ThreadId}`;
+
 		threadListSync: `/client/guilds/${GuildId}/threads`;
+		soundboardSounds: `/client/guilds/${GuildId}/sounds`;
+
+		cacheSweep: `/client/cache`;
+
+		invalidated: `/client/state`;
 	}
 }
 
@@ -46,3 +54,14 @@ export const threadListSync: EventCallpointMapper<'threadListSync'> = (
 	_,
 	guild,
 ) => `/client/guilds/${guild.id}/threads`;
+
+export const soundboardSounds: EventCallpointMapper<'soundboardSounds'> = (
+	_,
+	guild,
+) => `/client/guilds/${guild.id}/sounds`;
+
+export const cacheSweep: EventCallpointMapper<'cacheSweep'> = () =>
+	`/client/cache`;
+
+export const invalidated: EventCallpointMapper<'invalidated'> = () =>
+	`/client/state`;

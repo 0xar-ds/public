@@ -1,3 +1,3 @@
-export * from './client.application-scope-events.js';
-export * from './gateway.application-scope-events.js';
-export * from './installations.application-scope-events.js';
+export * from './client.application-scope-callpoints.js';
+export * from './gateway.application-scope-callpoints.js';
+export * from './installations.application-scope-callpoints.js';

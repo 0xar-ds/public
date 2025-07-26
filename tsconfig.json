@@ -22,6 +22,9 @@
 			"path": "libs/shared/discord.js/events"
 		},
 		{
+			"path": "libs/shared/discord.js/interactions"
+		},
+		{
 			"path": "libs/shared/exceptions"
 		},
 		{

@@ -49,6 +49,9 @@ import {
 	messageUpdate,
 	presenceUpdate,
 	ready,
+	roleCreate,
+	roleDelete,
+	roleUpdate,
 	shardDisconnect,
 	shardError,
 	shardReady,
@@ -150,4 +153,7 @@ export const CallpointMap: {
 	inviteCreate,
 	inviteDelete,
 	guildAuditLogEntryCreate,
+	roleCreate,
+	roleDelete,
+	roleUpdate,
 };

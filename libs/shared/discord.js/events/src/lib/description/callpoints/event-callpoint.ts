@@ -15,6 +15,7 @@ import {
 	entitlementDelete,
 	entitlementUpdate,
 	error,
+	guildAuditLogEntryCreate,
 	guildAvailable,
 	guildBanAdd,
 	guildBanRemove,
@@ -148,4 +149,5 @@ export const CallpointMap: {
 	guildScheduledEventUserRemove,
 	inviteCreate,
 	inviteDelete,
+	guildAuditLogEntryCreate,
 };

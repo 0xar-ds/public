@@ -82,6 +82,7 @@ import {
 	threadMemberUpdate,
 	threadUpdate,
 	typingStart,
+	userUpdate,
 	voiceChannelEffectSend,
 	voiceStateUpdate,
 	warn,
@@ -180,4 +181,5 @@ export const CallpointMap: {
 	soundboardSounds,
 	cacheSweep,
 	invalidated,
+	userUpdate,
 };

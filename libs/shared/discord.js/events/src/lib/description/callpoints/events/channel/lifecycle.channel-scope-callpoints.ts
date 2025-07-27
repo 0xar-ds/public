@@ -9,11 +9,15 @@ type RecipientId = Snowflake & {};
 
 declare global {
 	interface EventCallpointMap {
-		channelCreate: `/guilds/${GuildId}/${CategoryId} ${ChannelId}`;
+		channelCreate:
+			| `/guilds/${GuildId} ${ChannelId}`
+			| `/guilds/${GuildId}/${CategoryId} ${ChannelId}`;
 		channelUpdate:
+			| `/guilds/${GuildId} ${ChannelId}`
 			| `/guilds/${GuildId}/${CategoryId} ${ChannelId}`
 			| `/users/${RecipientId} ${ChannelId}`;
 		channelDelete:
+			| `/guilds/${GuildId} ${ChannelId}`
 			| `/guilds/${GuildId}/${CategoryId} ${ChannelId}`
 			| `/users/${RecipientId} ${ChannelId}`;
 	}
@@ -28,11 +32,15 @@ export const channelUpdate: EventCallpointMapper<'channelUpdate'> = (
 ) =>
 	channel.isDMBased()
 		? `/users/${channel.recipientId} ${channel.id}`
-		: `/guilds/${channel.guildId}/${channel.parentId ?? 'UNKNOWN_CATEGORY'} ${channel.id}`;
+		: channel.parentId !== null
+			? `/guilds/${channel.guildId}/${channel.parentId} ${channel.id}`
+			: `/guilds/${channel.guildId} ${channel.id}`;
 
 export const channelDelete: EventCallpointMapper<'channelDelete'> = (
 	channel,
 ) =>
 	channel.isDMBased()
 		? `/users/${channel.recipientId} ${channel.id}`
-		: `/guilds/${channel.guildId}/${channel.parentId ?? 'UNKNOWN_CATEGORY'} ${channel.id}`;
+		: channel.parentId !== null
+			? `/guilds/${channel.guildId}/${channel.parentId} ${channel.id}`
+			: `/guilds/${channel.guildId} ${channel.id}`;

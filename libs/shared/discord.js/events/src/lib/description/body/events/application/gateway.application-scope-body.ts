@@ -9,6 +9,7 @@ declare global {
 			users: Nullable<number>;
 			readyAt: number;
 		};
+
 		error: { name: string; message: string };
 		warn: { message: string };
 		debug: { message: string };
@@ -35,6 +36,7 @@ declare global {
 				now: User['accentColor'],
 			];
 		};
+
 		interactionCreate: {
 			type: Interaction['type'];
 			context: Interaction['context'];
@@ -42,6 +44,7 @@ declare global {
 			id: Interaction['id'];
 			customId: Nullable<string>;
 		};
+
 		presenceUpdate:
 			| { status: Presence['status']; activities: Presence['activities'] }
 			| object;

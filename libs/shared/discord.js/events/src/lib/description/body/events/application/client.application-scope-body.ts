@@ -115,8 +115,8 @@ export const soundboardSounds: EventBodyMapper<'soundboardSounds'> = (
 	guild,
 ) => ({ size: sounds.size, shard: guild.shardId });
 
-export const cacheSweep: EventBodyMapper<'cacheSweep'> = (v) => ({
-	message: v,
+export const cacheSweep: EventBodyMapper<'cacheSweep'> = (message) => ({
+	message,
 });
 
 export const invalidated: EventBodyMapper<'invalidated'> = () => ({});

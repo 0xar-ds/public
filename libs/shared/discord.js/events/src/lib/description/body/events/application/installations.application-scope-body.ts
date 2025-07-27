@@ -30,7 +30,6 @@ declare global {
 
 		entitlementCreate: {
 			type: Entitlement['type'];
-			userId: Entitlement['userId'];
 			guildId: Entitlement['guildId'];
 			startsAt: Entitlement['startsTimestamp'];
 			endsAt: Entitlement['endsTimestamp'];
@@ -51,7 +50,6 @@ declare global {
 
 		entitlementDelete: {
 			type: Entitlement['type'];
-			userId: Entitlement['userId'];
 			guildId: Entitlement['guildId'];
 			startsAt: Entitlement['startsTimestamp'];
 			endsAt: Entitlement['endsTimestamp'];
@@ -59,7 +57,6 @@ declare global {
 
 		subscriptionCreate: {
 			status: Subscription['status'];
-			userId: Subscription['userId'];
 			country: Subscription['country'];
 			period: [
 				startsAt: Subscription['currentPeriodStartTimestamp'],
@@ -90,7 +87,6 @@ declare global {
 
 		subscriptionDelete: {
 			status: Subscription['status'];
-			userId: Subscription['userId'];
 			country: Subscription['country'];
 			period: [
 				startsAt: Subscription['currentPeriodStartTimestamp'],
@@ -128,7 +124,6 @@ export const entitlementCreate: EventBodyMapper<'entitlementCreate'> = (
 	entitlement,
 ) => ({
 	type: entitlement.type,
-	userId: entitlement.userId,
 	guildId: entitlement.guildId,
 	startsAt: entitlement.startsTimestamp,
 	endsAt: entitlement.endsTimestamp,
@@ -148,7 +143,6 @@ export const entitlementDelete: EventBodyMapper<'entitlementDelete'> = (
 	entitlement,
 ) => ({
 	type: entitlement.type,
-	userId: entitlement.userId,
 	guildId: entitlement.guildId,
 	startsAt: entitlement.startsTimestamp,
 	endsAt: entitlement.endsTimestamp,
@@ -158,7 +152,6 @@ export const subscriptionCreate: EventBodyMapper<'subscriptionCreate'> = (
 	subscription,
 ) => ({
 	status: subscription.status,
-	userId: subscription.userId,
 	country: subscription.country,
 	period: [
 		subscription.currentPeriodStartTimestamp,
@@ -185,7 +178,6 @@ export const subscriptionDelete: EventBodyMapper<'subscriptionDelete'> = (
 	subscription,
 ) => ({
 	status: subscription.status,
-	userId: subscription.userId,
 	country: subscription.country,
 	period: [
 		subscription.currentPeriodStartTimestamp,

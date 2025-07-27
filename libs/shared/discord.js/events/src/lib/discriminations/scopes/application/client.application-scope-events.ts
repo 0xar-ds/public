@@ -15,15 +15,12 @@ export type ThreadClientScopeEvents = Pick<
 
 export type SoundsClientScopeEvents = Pick<ClientEvents, 'soundboardSounds'>;
 
-export type UserClientScopeEvents = Pick<ClientEvents, 'userUpdate'>;
-
 export type CacheClientScopeEvents = Pick<
 	ClientEvents,
 	'invalidated' | 'cacheSweep'
 >;
 
 export type ClientApplicationScopeEvents = (GuildClientScopeEvents &
-	UserClientScopeEvents &
 	ThreadClientScopeEvents &
 	SoundsClientScopeEvents) &
 	CacheClientScopeEvents;

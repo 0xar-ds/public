@@ -66,16 +66,16 @@ TODO: consider all events within guilds to be /guilds/$GuildId/scope rather than
 
 ## lifecycle scope
 
-| Event         |                                         Description                                          |                Callpoint                |
-| :------------ | :------------------------------------------------------------------------------------------: | :-------------------------------------: |
-| channelCreate |                         Emitted whenever a guild channel is created.                         |       /guilds/$GuildId $ChannelId       |
-| channelCreate |                                                                                              | /guilds/$GuildId/$CategoryId $ChannelId |
-| channelUpdate | Emitted whenever a channel is updated - e.g. name change, topic change, channel type change. |       /guilds/$GuildId $ChannelId       |
-| channelUpdate |                                                                                              | /guilds/$GuildId/$CategoryId $ChannelId |
-| channelUpdate |                                                                                              |     /users/$RecipientId $ChannelId      |
-| channelDelete |                            Emitted whenever a channel is deleted.                            |       /guilds/$GuildId $ChannelId       |
-| channelDelete |                                                                                              | /guilds/$GuildId/$CategoryId $ChannelId |
-| channelDelete |                                                                                              |     /users/$RecipientId $ChannelId      |
+| Event         |                                         Description                                          |                    Callpoint                     |
+| :------------ | :------------------------------------------------------------------------------------------: | :----------------------------------------------: |
+| channelCreate |                         Emitted whenever a guild channel is created.                         |       /guilds/$GuildId/channels $ChannelId       |
+| channelCreate |                                                                                              | /guilds/$GuildId/$CategoryId/channels $ChannelId |
+| channelUpdate | Emitted whenever a channel is updated - e.g. name change, topic change, channel type change. |       /guilds/$GuildId/channels $ChannelId       |
+| channelUpdate |                                                                                              | /guilds/$GuildId/$CategoryId/channels $ChannelId |
+| channelUpdate |                                                                                              |          /users/$RecipientId $ChannelId          |
+| channelDelete |                            Emitted whenever a channel is deleted.                            |       /guilds/$GuildId/channels $ChannelId       |
+| channelDelete |                                                                                              | /guilds/$GuildId/$CategoryId/channels $ChannelId |
+| channelDelete |                                                                                              |          /users/$RecipientId $ChannelId          |
 
 ## stage scope
 

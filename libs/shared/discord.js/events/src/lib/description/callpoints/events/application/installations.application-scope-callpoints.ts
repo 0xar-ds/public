@@ -3,7 +3,7 @@ import { Snowflake } from 'discord.js';
 import { EventCallpointMapper } from '../../event-callpoint.interface.js';
 
 type GuildId = Snowflake & {};
-type UserId = Snowflake & {};
+type SkuId = Snowflake & {};
 type EntitlementId = Snowflake & {};
 type SubscriptionId = Snowflake & {};
 
@@ -12,14 +12,13 @@ declare global {
 		guildCreate: `/application/guilds ${GuildId}`;
 		guildDelete: `/application/guilds ${GuildId}`;
 
-		// TODO: consider having callpoints for guilds & users here
-		entitlementCreate: `/application/entitlements ${EntitlementId}`;
-		entitlementUpdate: `/application/entitlements ${EntitlementId}`;
-		entitlementDelete: `/application/entitlements ${EntitlementId}`;
+		entitlementCreate: `/application/monetization/${SkuId}/entitlements ${EntitlementId}`;
+		entitlementUpdate: `/application/monetization/${SkuId}/entitlements ${EntitlementId}`;
+		entitlementDelete: `/application/monetization/${SkuId}/entitlements ${EntitlementId}`;
 
-		subscriptionCreate: `/application/subscriptions/${UserId} ${SubscriptionId}`;
-		subscriptionUpdate: `/application/subscriptions/${UserId} ${SubscriptionId}`;
-		subscriptionDelete: `/application/subscriptions/${UserId} ${SubscriptionId}`;
+		subscriptionCreate: `/application/monetization/subscriptions ${SubscriptionId}`;
+		subscriptionUpdate: `/application/monetization/subscriptions ${SubscriptionId}`;
+		subscriptionDelete: `/application/monetization/subscriptions ${SubscriptionId}`;
 	}
 }
 
@@ -31,26 +30,29 @@ export const guildDelete: EventCallpointMapper<'guildDelete'> = (guild) =>
 
 export const entitlementCreate: EventCallpointMapper<'entitlementCreate'> = (
 	entitlement,
-) => `/application/entitlements ${entitlement.id}`;
+) =>
+	`/application/monetization/${entitlement.skuId}/entitlements ${entitlement.id}`;
 
 export const entitlementUpdate: EventCallpointMapper<'entitlementUpdate'> = (
 	_,
 	entitlement,
-) => `/application/entitlements ${entitlement.id}`;
+) =>
+	`/application/monetization/${entitlement.skuId}/entitlements ${entitlement.id}`;
 
 export const entitlementDelete: EventCallpointMapper<'entitlementDelete'> = (
 	entitlement,
-) => `/application/entitlements ${entitlement.id}`;
+) =>
+	`/application/monetization/${entitlement.skuId}/entitlements ${entitlement.id}`;
 
 export const subscriptionCreate: EventCallpointMapper<'subscriptionCreate'> = (
 	subscription,
-) => `/application/subscriptions/${subscription.userId} ${subscription.id}`;
+) => `/application/monetization/subscriptions ${subscription.id}`;
 
 export const subscriptionUpdate: EventCallpointMapper<'subscriptionUpdate'> = (
 	_,
 	subscription,
-) => `/application/subscriptions/${subscription.userId} ${subscription.id}`;
+) => `/application/monetization/subscriptions ${subscription.id}`;
 
 export const subscriptionDelete: EventCallpointMapper<'subscriptionDelete'> = (
 	subscription,
-) => `/application/subscriptions/${subscription.userId} ${subscription.id}`;
+) => `/application/monetization/subscriptions ${subscription.id}`;

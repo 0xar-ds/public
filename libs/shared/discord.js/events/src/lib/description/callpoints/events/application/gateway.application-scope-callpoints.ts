@@ -24,6 +24,7 @@ declare global {
 		shardDisconnect: `/gateway/client/shards ${ShardId}`;
 		shardReconnecting: `/gateway/client/shards ${ShardId}`;
 
+		userUpdate: `/gateway/users ${UserId}`;
 		interactionCreate: `/gateway/interactions/${InteractionTypeKey} ${InteractionId}`;
 		presenceUpdate: `/gateway/presences ${UserId}`;
 	}
@@ -54,6 +55,9 @@ export const shardDisconnect: EventCallpointMapper<'shardDisconnect'> = (
 export const shardReconnecting: EventCallpointMapper<'shardReconnecting'> = (
 	shard,
 ) => `/gateway/client/shards ${shard}`;
+
+export const userUpdate: EventCallpointMapper<'userUpdate'> = (_, user) =>
+	`/gateway/users ${user.id}`;
 
 export const interactionCreate: EventCallpointMapper<'interactionCreate'> = (
 	interaction,

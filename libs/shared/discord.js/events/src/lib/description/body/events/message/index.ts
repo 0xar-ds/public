@@ -1,2 +1,3 @@
-// TODO: implement all events on this scope & properly set this barrel file
-export {};
+export * from './lifecycle.message-body.js';
+export * from './polls.message-body.js';
+export * from './reactions.message-body.js';

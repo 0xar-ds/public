@@ -1,4 +1,4 @@
-import { StageInstance } from 'discord.js';
+import { StageInstancePrivacyLevel } from 'discord.js';
 
 import { EventBodyMapper } from '../../event-body.interface.js';
 
@@ -6,20 +6,20 @@ declare global {
 	interface EventBodyMap {
 		stageInstanceCreate: {
 			topic: string;
-			privacy: StageInstance['privacyLevel'];
+			privacy: StageInstancePrivacyLevel;
 			hasEvent: boolean;
 		};
 		stageInstanceUpdate: {
 			topic: [before: Nullable<string>, now: string];
 			privacy: [
-				before: Nullable<StageInstance['privacyLevel']>,
-				now: StageInstance['privacyLevel'],
+				before: Nullable<StageInstancePrivacyLevel>,
+				now: StageInstancePrivacyLevel,
 			];
 			hasEvent: [before: boolean, now: boolean];
 		};
 		stageInstanceDelete: {
 			topic: string;
-			privacy: StageInstance['privacyLevel'];
+			privacy: StageInstancePrivacyLevel;
 			hasEvent: boolean;
 		};
 	}

@@ -1,4 +1,9 @@
-import { Entitlement, Guild, Snowflake, Subscription } from 'discord.js';
+import {
+	EntitlementType,
+	Locale,
+	Snowflake,
+	SubscriptionStatus,
+} from 'discord.js';
 
 import { EventBodyMapper } from '../../event-body.interface.js';
 
@@ -6,9 +11,9 @@ declare global {
 	interface EventBodyMap {
 		guildCreate: {
 			name: string;
-			vanity: Guild['vanityURLCode'];
+			vanity: Nullable<string>;
 			ownerId: Snowflake;
-			locale: Guild['preferredLocale'];
+			locale: Locale;
 			large: boolean;
 			verified: boolean;
 			partnered: boolean;
@@ -18,9 +23,9 @@ declare global {
 
 		guildDelete: {
 			name: string;
-			vanity: Guild['vanityURLCode'];
+			vanity: Nullable<string>;
 			ownerId: Snowflake;
-			locale: Guild['preferredLocale'];
+			locale: Locale;
 			large: boolean;
 			verified: boolean;
 			partnered: boolean;
@@ -29,69 +34,45 @@ declare global {
 		};
 
 		entitlementCreate: {
-			type: Entitlement['type'];
-			guildId: Entitlement['guildId'];
-			startsAt: Entitlement['startsTimestamp'];
-			endsAt: Entitlement['endsTimestamp'];
+			type: EntitlementType;
+			guildId: Nullable<Snowflake>;
+			startsAt: Nullable<number>;
+			endsAt: Nullable<number>;
 		};
 
 		entitlementUpdate: {
 			consumed: [before: Nullable<boolean>, now: boolean];
 			deleted: [before: Nullable<boolean>, now: boolean];
-			startsAt: [
-				before: Entitlement['startsTimestamp'],
-				now: Entitlement['startsTimestamp'],
-			];
-			endsAt: [
-				before: Entitlement['endsTimestamp'],
-				now: Entitlement['endsTimestamp'],
-			];
+			startsAt: [before: Nullable<number>, now: Nullable<number>];
+			endsAt: [before: Nullable<number>, now: Nullable<number>];
 		};
 
 		entitlementDelete: {
-			type: Entitlement['type'];
-			guildId: Entitlement['guildId'];
-			startsAt: Entitlement['startsTimestamp'];
-			endsAt: Entitlement['endsTimestamp'];
+			type: EntitlementType;
+			guildId: Nullable<Snowflake>;
+			startsAt: Nullable<number>;
+			endsAt: Nullable<number>;
 		};
 
 		subscriptionCreate: {
-			status: Subscription['status'];
-			country: Subscription['country'];
-			period: [
-				startsAt: Subscription['currentPeriodStartTimestamp'],
-				endsAt: Subscription['currentPeriodEndTimestamp'],
-			];
+			status: SubscriptionStatus;
+			country: Nullable<string>;
+			period: [startsAt: number, endsAt: number];
 		};
 
 		subscriptionUpdate: {
-			status: [
-				before: Nullable<Subscription['status']>,
-				now: Subscription['status'],
-			];
-			country: [
-				before: Nullable<Subscription['country']>,
-				now: Subscription['country'],
-			];
+			status: [before: Nullable<SubscriptionStatus>, now: SubscriptionStatus];
+			country: [before: Nullable<string>, now: Nullable<string>];
 			period: [
-				before: [
-					startsAt: Nullable<Subscription['currentPeriodStartTimestamp']>,
-					endsAt: Nullable<Subscription['currentPeriodEndTimestamp']>,
-				],
-				now: [
-					startsAt: Subscription['currentPeriodStartTimestamp'],
-					endsAt: Subscription['currentPeriodEndTimestamp'],
-				],
+				before: [startsAt: Nullable<number>, endsAt: Nullable<number>],
+				now: [startsAt: number, endsAt: number],
 			];
 		};
 
 		subscriptionDelete: {
-			status: Subscription['status'];
-			country: Subscription['country'];
-			period: [
-				startsAt: Subscription['currentPeriodStartTimestamp'],
-				endsAt: Subscription['currentPeriodEndTimestamp'],
-			];
+			status: SubscriptionStatus;
+			country: Nullable<string>;
+			period: [startsAt: number, endsAt: number];
 		};
 	}
 }

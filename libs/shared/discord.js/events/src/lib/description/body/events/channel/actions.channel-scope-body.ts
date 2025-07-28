@@ -1,10 +1,8 @@
-import { Typing } from 'discord.js';
-
 import { EventBodyMapper } from '../../event-body.interface.js';
 
 declare global {
 	interface EventBodyMap {
-		typingStart: { startedAt: Typing['startedTimestamp'] };
+		typingStart: { startedAt: number };
 		messageDeleteBulk: { size: number };
 		channelPinsUpdate: object;
 	}

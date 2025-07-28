@@ -1,4 +1,4 @@
-import { Guild, GuildMember, Snowflake } from 'discord.js';
+import { Locale, Snowflake } from 'discord.js';
 
 import { EventBodyMapper } from '../../event-body.interface.js';
 
@@ -6,9 +6,9 @@ declare global {
 	interface EventBodyMap {
 		guildAvailable: {
 			name: string;
-			vanity: Guild['vanityURLCode'];
+			vanity: Nullable<string>;
 			ownerId: Snowflake;
-			locale: Guild['preferredLocale'];
+			locale: Locale;
 			large: boolean;
 			verified: boolean;
 			partnered: boolean;
@@ -18,9 +18,9 @@ declare global {
 
 		guildUnavailable: {
 			name: string;
-			vanity: Guild['vanityURLCode'];
+			vanity: Nullable<string>;
 			ownerId: Snowflake;
-			locale: Guild['preferredLocale'];
+			locale: Locale;
 			large: boolean;
 			verified: boolean;
 			partnered: boolean;
@@ -31,7 +31,7 @@ declare global {
 		guildMemberAvailable: {
 			name: string;
 			userId: Snowflake;
-			joinedAt: GuildMember['joinedTimestamp'];
+			joinedAt: Nullable<number>;
 			permissions: bigint;
 			premium: boolean;
 		};

@@ -21,16 +21,10 @@ declare global {
 			];
 		} & (
 			| {
-					lastPinAt: [
-						before: DMChannel['lastPinTimestamp'],
-						now: DMChannel['lastPinTimestamp'],
-					];
+					lastPinAt: [before: Nullable<number>, now: Nullable<number>];
 			  }
 			| {
-					name: [
-						before: NonThreadGuildBasedChannel['name'],
-						now: NonThreadGuildBasedChannel['name'],
-					];
+					name: [before: string, now: string];
 					overwrites: [before: number, now: number];
 					manageable: [before: boolean, now: boolean];
 					viewable: [before: boolean, now: boolean];
@@ -46,7 +40,7 @@ declare global {
 			type: (DMChannel | NonThreadGuildBasedChannel)['type'];
 		} & (
 			| {
-					lastPinAt: DMChannel['lastPinTimestamp'];
+					lastPinAt: Nullable<number>;
 			  }
 			| {
 					name: string;

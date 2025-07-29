@@ -1,6 +1,11 @@
 import { ClientEvents } from 'discord.js';
 
 import {
+	applicationCommandPermissionsUpdate,
+	autoModerationActionExecution,
+	autoModerationRuleCreate,
+	autoModerationRuleDelete,
+	autoModerationRuleUpdate,
 	cacheSweep,
 	channelCreate,
 	channelDelete,
@@ -14,9 +19,11 @@ import {
 	guildAvailable,
 	guildCreate,
 	guildDelete,
+	guildIntegrationsUpdate,
 	guildMemberAvailable,
 	guildMembersChunk,
 	guildUnavailable,
+	guildUpdate,
 	interactionCreate,
 	invalidated,
 	messageCreate,
@@ -118,4 +125,11 @@ export const BodyMap: {
 	threadDelete,
 	threadMembersUpdate,
 	threadUpdate,
+	applicationCommandPermissionsUpdate,
+	autoModerationActionExecution,
+	autoModerationRuleCreate,
+	autoModerationRuleDelete,
+	autoModerationRuleUpdate,
+	guildIntegrationsUpdate,
+	guildUpdate,
 };

@@ -1,2 +1,4 @@
-// TODO: implement all events on this scope & properly set this barrel file
-export {};
+export * from './configuration.guild-scope-body.js';
+// export * from './members.guild-scope-body.js';
+
+// export * from './resources/index.js';

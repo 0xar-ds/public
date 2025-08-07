@@ -32,6 +32,8 @@ import {
 	guildUpdate,
 	interactionCreate,
 	invalidated,
+	inviteCreate,
+	inviteDelete,
 	messageCreate,
 	messageDelete,
 	messageDeleteBulk,
@@ -144,4 +146,6 @@ export const BodyMap: {
 	guildMemberRemove,
 	guildMemberUpdate,
 	guildAuditLogEntryCreate,
+	inviteCreate,
+	inviteDelete,
 };

@@ -16,6 +16,22 @@ declare global {
 	type Nullable<T> = T | null;
 
 	type MaybePromise<T> = Promise<T> | T;
+
+	type MaybeArray<T> = Array<T> | T;
+
+	type TypeofReturn =
+		| 'string'
+		| 'number'
+		| 'bigint'
+		| 'boolean'
+		| 'symbol'
+		| 'undefined'
+		| 'object'
+		| 'function';
+
+	type PrimitiveKeys<T> = {
+		[K in keyof T]: T[K] extends Function | object | symbol ? never : K;
+	}[keyof T];
 }
 
 export {};

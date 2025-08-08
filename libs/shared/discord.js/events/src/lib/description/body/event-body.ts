@@ -46,6 +46,9 @@ import {
 	messageUpdate,
 	presenceUpdate,
 	ready,
+	roleCreate,
+	roleDelete,
+	roleUpdate,
 	shardDisconnect,
 	shardError,
 	shardReady,
@@ -148,4 +151,7 @@ export const BodyMap: {
 	guildAuditLogEntryCreate,
 	inviteCreate,
 	inviteDelete,
+	roleCreate,
+	roleDelete,
+	roleUpdate,
 };

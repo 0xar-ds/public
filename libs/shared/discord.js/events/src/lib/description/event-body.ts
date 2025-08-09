@@ -1,94 +1,147 @@
 import { ClientEvents } from 'discord.js';
 
 import {
-	applicationCommandPermissionsUpdate,
-	autoModerationActionExecution,
-	autoModerationRuleCreate,
-	autoModerationRuleDelete,
-	autoModerationRuleUpdate,
 	cacheSweep,
-	channelCreate,
-	channelDelete,
-	channelPinsUpdate,
-	channelUpdate,
-	debug,
-	emojiCreate,
-	emojiDelete,
-	emojiUpdate,
-	entitlementCreate,
-	entitlementDelete,
-	entitlementUpdate,
-	error,
-	guildAuditLogEntryCreate,
 	guildAvailable,
-	guildBanAdd,
-	guildBanRemove,
-	guildCreate,
-	guildDelete,
-	guildIntegrationsUpdate,
-	guildMemberAdd,
 	guildMemberAvailable,
-	guildMemberRemove,
 	guildMembersChunk,
-	guildMemberUpdate,
-	guildScheduledEventCreate,
-	guildScheduledEventDelete,
-	guildScheduledEventUpdate,
-	guildScheduledEventUserAdd,
-	guildScheduledEventUserRemove,
-	guildSoundboardSoundCreate,
-	guildSoundboardSoundDelete,
-	guildSoundboardSoundUpdate,
 	guildUnavailable,
-	guildUpdate,
-	interactionCreate,
 	invalidated,
-	inviteCreate,
-	inviteDelete,
-	messageCreate,
-	messageDelete,
-	messageDeleteBulk,
-	messagePollVoteAdd,
-	messagePollVoteRemove,
-	messageReactionAdd,
-	messageReactionRemove,
-	messageReactionRemoveAll,
-	messageReactionRemoveEmoji,
-	messageUpdate,
+	soundboardSounds,
+	threadListSync,
+	threadMemberUpdate,
+} from './events/application/client.application-scope-body.js';
+
+import {
+	debug,
+	error,
+	interactionCreate,
 	presenceUpdate,
 	ready,
-	roleCreate,
-	roleDelete,
-	roleUpdate,
 	shardDisconnect,
 	shardError,
 	shardReady,
 	shardReconnecting,
 	shardResume,
-	soundboardSounds,
-	stageInstanceCreate,
-	stageInstanceDelete,
-	stageInstanceUpdate,
-	stickerCreate,
-	stickerDelete,
-	stickerUpdate,
+	userUpdate,
+	warn,
+} from './events/application/gateway.application-scope-body.js';
+
+import {
+	entitlementCreate,
+	entitlementDelete,
+	entitlementUpdate,
+	guildCreate,
+	guildDelete,
 	subscriptionCreate,
 	subscriptionDelete,
 	subscriptionUpdate,
-	threadCreate,
-	threadDelete,
-	threadListSync,
-	threadMembersUpdate,
-	threadMemberUpdate,
-	threadUpdate,
+} from './events/application/installations.application-scope-body.js';
+
+import {
+	channelPinsUpdate,
+	messageDeleteBulk,
 	typingStart,
-	userUpdate,
+} from './events/channel/actions.channel-scope-body.js';
+
+import {
+	channelCreate,
+	channelDelete,
+	channelUpdate,
+} from './events/channel/lifecycle.channel-scope-body.js';
+
+import {
+	stageInstanceCreate,
+	stageInstanceDelete,
+	stageInstanceUpdate,
+} from './events/channel/stage.channel-scope-body.js';
+
+import {
 	voiceChannelEffectSend,
 	voiceStateUpdate,
-	warn,
+} from './events/channel/voice.channel-scope-body.js';
+
+import {
 	webhooksUpdate,
 	webhookUpdate,
-} from './events/index.js';
+} from './events/channel/webhook.channel-scope-body.js';
+
+import {
+	applicationCommandPermissionsUpdate,
+	autoModerationActionExecution,
+	autoModerationRuleCreate,
+	autoModerationRuleDelete,
+	autoModerationRuleUpdate,
+	guildIntegrationsUpdate,
+	guildUpdate,
+} from './events/guild/configuration.guild-scope-body.js';
+
+import {
+	guildBanAdd,
+	guildBanRemove,
+	guildMemberAdd,
+	guildMemberRemove,
+	guildMemberUpdate,
+} from './events/guild/members.guild-scope-body.js';
+
+import {
+	guildScheduledEventCreate,
+	guildScheduledEventDelete,
+	guildScheduledEventUpdate,
+	guildScheduledEventUserAdd,
+	guildScheduledEventUserRemove,
+} from './events/guild/resources/events.guild-scope-body.js';
+
+import {
+	emojiCreate,
+	emojiDelete,
+	emojiUpdate,
+	guildSoundboardSoundCreate,
+	guildSoundboardSoundDelete,
+	guildSoundboardSoundUpdate,
+	stickerCreate,
+	stickerDelete,
+	stickerUpdate,
+} from './events/guild/resources/expressions.guild-scope-body.js';
+
+import {
+	inviteCreate,
+	inviteDelete,
+} from './events/guild/resources/invites.guild-scope-body.js';
+
+import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-body.js';
+
+import {
+	roleCreate,
+	roleDelete,
+	roleUpdate,
+} from './events/guild/resources/roles.guild-scope-body.js';
+
+import {
+	messageCreate,
+	messageDelete,
+	messageUpdate,
+} from './events/message/lifecycle.message-body.js';
+
+import {
+	messagePollVoteAdd,
+	messagePollVoteRemove,
+} from './events/message/polls.message-body.js';
+
+import {
+	messageReactionAdd,
+	messageReactionRemove,
+	messageReactionRemoveAll,
+	messageReactionRemoveEmoji,
+} from './events/message/reactions.message-body.js';
+
+import {
+	threadCreate,
+	threadDelete,
+	threadUpdate,
+} from './events/thread/lifecycle.thread-body.js';
+
+import { threadMembersUpdate } from './events/thread/members.thread-body.js';
 
 export const BodyMap: {
 	[Event in keyof EventBodyMap]: (

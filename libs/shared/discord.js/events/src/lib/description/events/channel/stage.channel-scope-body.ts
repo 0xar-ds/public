@@ -1,6 +1,6 @@
 import { StageInstancePrivacyLevel } from 'discord.js';
 
-import { EventBodyMapper } from '../../event-body.interface.js';
+import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
 declare global {
 	interface EventBodyMap {

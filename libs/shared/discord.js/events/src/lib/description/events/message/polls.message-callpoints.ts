@@ -7,7 +7,7 @@ import {
 
 import { isChannelOfType } from '@~discord.js/channels';
 
-import { EventCallpointMapper } from '../../event-callpoint.interface.js';
+import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
 
 type GuildId = Snowflake & {};
 type ChannelId = Snowflake & {};

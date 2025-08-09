@@ -10,9 +10,9 @@ import {
 import {
 	ComputedUpdate,
 	computeUpdates,
-} from '../../../../utils/record-update.js';
+} from '../../../utils/record-update.js';
 
-import { EventBodyMapper } from '../../event-body.interface.js';
+import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
 declare global {
 	interface EventBodyMap {

@@ -1,6 +1,6 @@
 import { Snowflake } from 'discord.js';
 
-import { EventCallpointMapper } from '../../../event-callpoint.interface.js';
+import { EventCallpointMapper } from '../../../interface/event-callpoint.interface.js';
 
 type GuildId = Snowflake & {};
 type ChannelId = Snowflake & {};

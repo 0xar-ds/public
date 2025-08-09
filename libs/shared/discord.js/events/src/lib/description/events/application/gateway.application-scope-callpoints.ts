@@ -5,7 +5,7 @@ import {
 	InteractionTypeKey,
 } from '@~discord.js/interactions';
 
-import { EventCallpointMapper } from '../../event-callpoint.interface.js';
+import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
 
 type ShardId = number & {};
 type InteractionId = string & {};

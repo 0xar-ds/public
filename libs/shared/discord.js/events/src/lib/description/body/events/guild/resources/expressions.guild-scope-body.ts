@@ -62,9 +62,7 @@ export const guildSoundboardSoundCreate: EventBodyMapper<
 export const guildSoundboardSoundUpdate: EventBodyMapper<
 	'guildSoundboardSoundUpdate'
 > = (previous, current) => ({
-	...(previous !== null && {
-		...computeUpdates(previous, current),
-	}),
+	...(previous !== null && computeUpdates(previous, current)),
 });
 
 export const guildSoundboardSoundDelete: EventBodyMapper<

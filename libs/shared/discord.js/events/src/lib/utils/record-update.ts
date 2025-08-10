@@ -16,7 +16,7 @@ export function computeUpdates<
 	M extends Record<string, keyof T & keyof U> = {},
 	O extends ComputeUpdateOpts = {},
 >(
-	previous: T,
+	previous: Nullable<T>,
 	current: U,
 	mappings: M = {} as M,
 	options: ComputeUpdateOpts = {},
@@ -47,7 +47,7 @@ export function computeUpdates<
 
 	if (!options.excludeDefaults) {
 		for (const value of new Set([
-			...Object.keys(previous),
+			...Object.keys(previous ?? {}),
 			...Object.keys(current),
 		]) as Set<keyof T & keyof U>) {
 			if (!defined.has(value)) source[value as string] = value;
@@ -65,6 +65,8 @@ export function computeUpdates<
 				),
 		)
 		.filter((value) => {
+			if (!previous) return true;
+
 			const field = value[1];
 
 			if (!Object.hasOwn(current, field) && !Object.hasOwn(previous, field)) {

@@ -27,6 +27,7 @@ export function computeUpdates<
 					| ((...args: unknown[]) => unknown)
 					| object
 					| symbol
+					| unknown[]
 					? never
 					: U[M[K]];
 			}
@@ -35,6 +36,7 @@ export function computeUpdates<
 					| ((...args: unknown[]) => unknown)
 					| object
 					| symbol
+					| unknown[]
 					? never
 					: U[M[K]];
 			} & Pick<U & T, Exclude<PrimitiveKeys<U & T>, M[keyof M]>>
@@ -57,8 +59,10 @@ export function computeUpdates<
 	const updates = iterator
 		.filter(
 			(value) =>
-				(typeof current[value[1]]) in
-				(['function', 'symbol', 'object'] as TypeofReturn[]),
+				!(
+					(typeof current[value[1]]) in
+					(['function', 'symbol', 'object'] as TypeofReturn[])
+				),
 		)
 		.filter((value) => {
 			const field = value[1];

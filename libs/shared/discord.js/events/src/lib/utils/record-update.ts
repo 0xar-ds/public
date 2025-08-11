@@ -3,6 +3,42 @@ export interface ComputeUpdateOpts {
 	excludeDefaults?: boolean;
 }
 
+type UpdateValue<T> = T extends readonly unknown[]
+	? number
+	: T extends ((...args: unknown[]) => unknown) | object | symbol
+		? never
+		: T;
+
+type UpdateKeys<T> = {
+	[K in keyof T]: UpdateValue<T[K]> extends never ? never : K;
+}[keyof T];
+
+type MappedProps<
+	T extends object,
+	U extends T,
+	M extends Record<string, keyof T & keyof U>,
+> = {
+	[K in keyof M]: UpdateValue<U[M[K]]>;
+};
+
+type UnmappedProps<
+	T extends object,
+	U extends T,
+	M extends Record<string, keyof T & keyof U>,
+> = {
+	[K in Exclude<UpdateKeys<U & T>, M[keyof M]>]: UpdateValue<(U & T)[K]>;
+};
+
+type ComputeUpdatesReturn<
+	T extends object,
+	U extends T,
+	M extends Record<string, keyof T & keyof U>,
+	O extends ComputeUpdateOpts,
+> = O extends { excludeDefaults: true }
+	? Partial<MappedProps<T, U, M>>
+	: Partial<MappedProps<T, U, M> & UnmappedProps<T, U, M>>;
+
+// TODO: deprecate & export ComputeUpdatesReturn
 export type ComputedUpdate<
 	T extends object,
 	U extends T,
@@ -20,27 +56,7 @@ export function computeUpdates<
 	current: U,
 	mappings: M = {} as M,
 	options: ComputeUpdateOpts = {},
-): Partial<
-	O extends { excludeDefaults: true }
-		? {
-				[K in keyof M]: U[M[K]] extends
-					| ((...args: unknown[]) => unknown)
-					| object
-					| symbol
-					| unknown[]
-					? never
-					: U[M[K]];
-			}
-		: {
-				[K in keyof M]: U[M[K]] extends
-					| ((...args: unknown[]) => unknown)
-					| object
-					| symbol
-					| unknown[]
-					? never
-					: U[M[K]];
-			} & Pick<U & T, Exclude<PrimitiveKeys<U & T>, M[keyof M]>>
-> {
+): ComputeUpdatesReturn<T, U, M, O> {
 	const defined = new Set(Object.values(mappings)) as Set<keyof T & keyof U>;
 
 	const source: Record<string, keyof T & keyof U> = { ...mappings };
@@ -57,17 +73,23 @@ export function computeUpdates<
 	const iterator = Iterator.from(Object.entries(source));
 
 	const updates = iterator
-		.filter(
-			(value) =>
-				!(
-					(typeof current[value[1]]) in
-					(['function', 'symbol', 'object'] as TypeofReturn[])
-				),
-		)
+		.filter((value) => {
+			const type = typeof current[value[1]];
+
+			return (
+				'function' !== type &&
+				'symbol' !== type &&
+				!(type === 'object' && !Array.isArray(current[value[1]]))
+			);
+		})
 		.filter((value) => {
 			if (!previous) return true;
 
 			const field = value[1];
+
+			if (Array.isArray(previous[field]) && Array.isArray(current[field])) {
+				return current[field].length !== previous[field].length;
+			}
 
 			if (!Object.hasOwn(current, field) && !Object.hasOwn(previous, field)) {
 				return false;
@@ -79,7 +101,14 @@ export function computeUpdates<
 
 			return current[field] !== previous[field];
 		})
-		.map((value) => [value[0], current[value[1]]]);
+		.map((entry) => {
+			const index = entry[0],
+				field = entry[1];
+
+			return Array.isArray(current[field])
+				? [index, current[field].length]
+				: [index, current[field]];
+		});
 
 	return Object.fromEntries(updates);
 }

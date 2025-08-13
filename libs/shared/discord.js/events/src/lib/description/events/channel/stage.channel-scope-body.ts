@@ -1,4 +1,9 @@
-import { StageInstancePrivacyLevel } from 'discord.js';
+import { StageInstance, StageInstancePrivacyLevel } from 'discord.js';
+
+import {
+	ComputedUpdate,
+	computeUpdates,
+} from '../../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
@@ -7,20 +12,11 @@ declare global {
 		stageInstanceCreate: {
 			topic: string;
 			privacy: StageInstancePrivacyLevel;
-			hasEvent: boolean;
 		};
-		stageInstanceUpdate: {
-			topic: [before: Nullable<string>, now: string];
-			privacy: [
-				before: Nullable<StageInstancePrivacyLevel>,
-				now: StageInstancePrivacyLevel,
-			];
-			hasEvent: [before: boolean, now: boolean];
-		};
+		stageInstanceUpdate: ComputedUpdate<StageInstance>;
 		stageInstanceDelete: {
 			topic: string;
 			privacy: StageInstancePrivacyLevel;
-			hasEvent: boolean;
 		};
 	}
 }
@@ -30,25 +26,16 @@ export const stageInstanceCreate: EventBodyMapper<'stageInstanceCreate'> = (
 ) => ({
 	topic: instance.topic,
 	privacy: instance.privacyLevel,
-	hasEvent: 'string' === typeof instance.guildScheduledEventId,
 });
 
 export const stageInstanceUpdate: EventBodyMapper<'stageInstanceUpdate'> = (
 	previous,
 	current,
-) => ({
-	topic: [previous?.topic ?? null, current.topic],
-	privacy: [previous?.privacyLevel ?? null, current.privacyLevel],
-	hasEvent: [
-		'string' === typeof previous?.guildScheduledEventId,
-		'string' === typeof current.guildScheduledEventId,
-	],
-});
+) => computeUpdates(previous, current);
 
 export const stageInstanceDelete: EventBodyMapper<'stageInstanceDelete'> = (
 	instance,
 ) => ({
 	topic: instance.topic,
 	privacy: instance.privacyLevel,
-	hasEvent: 'string' === typeof instance.guildScheduledEventId,
 });

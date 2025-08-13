@@ -42,14 +42,12 @@ declare global {
 		stickerCreate: {
 			name: string;
 			format: StickerFormatType;
-			description: Nullable<string>;
 			createdAt: number;
 		};
 		stickerUpdate: ComputedUpdate<Sticker, Sticker>;
 		stickerDelete: {
 			name: string;
 			format: StickerFormatType;
-			description: Nullable<string>;
 			createdAt: number;
 		};
 	}
@@ -89,7 +87,6 @@ export const emojiDelete: EventBodyMapper<'emojiDelete'> = (emoji) => ({
 export const stickerCreate: EventBodyMapper<'stickerCreate'> = (sticker) => ({
 	name: sticker.name,
 	format: sticker.format,
-	description: sticker.description,
 	createdAt: sticker.createdTimestamp,
 });
 
@@ -101,6 +98,5 @@ export const stickerUpdate: EventBodyMapper<'stickerUpdate'> = (
 export const stickerDelete: EventBodyMapper<'stickerDelete'> = (sticker) => ({
 	name: sticker.name,
 	format: sticker.format,
-	description: sticker.description,
 	createdAt: sticker.createdTimestamp,
 });

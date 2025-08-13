@@ -2,7 +2,7 @@
 export interface ComputeUpdateOpts {
 	excludeDefaults?: boolean;
 }
-
+// todo: convert collections onto their size as well
 type UpdateValue<T> = T extends readonly unknown[]
 	? number
 	: T extends ((...args: unknown[]) => unknown) | object | symbol
@@ -41,7 +41,7 @@ type ComputeUpdatesReturn<
 // TODO: deprecate & export ComputeUpdatesReturn
 export type ComputedUpdate<
 	T extends object,
-	U extends T,
+	U extends T = T,
 	M extends Record<string, keyof T & keyof U> = {},
 	O extends ComputeUpdateOpts = {},
 > = ReturnType<typeof computeUpdates<T, U, M, O>>;

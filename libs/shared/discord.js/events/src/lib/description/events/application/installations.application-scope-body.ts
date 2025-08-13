@@ -1,9 +1,16 @@
 import {
+	Entitlement,
 	EntitlementType,
 	Locale,
 	Snowflake,
+	Subscription,
 	SubscriptionStatus,
 } from 'discord.js';
+
+import {
+	ComputedUpdate,
+	computeUpdates,
+} from '../../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
@@ -40,12 +47,7 @@ declare global {
 			endsAt: Nullable<number>;
 		};
 
-		entitlementUpdate: {
-			consumed: [before: Nullable<boolean>, now: boolean];
-			deleted: [before: Nullable<boolean>, now: boolean];
-			startsAt: [before: Nullable<number>, now: Nullable<number>];
-			endsAt: [before: Nullable<number>, now: Nullable<number>];
-		};
+		entitlementUpdate: ComputedUpdate<Entitlement>;
 
 		entitlementDelete: {
 			type: EntitlementType;
@@ -60,14 +62,7 @@ declare global {
 			period: [startsAt: number, endsAt: number];
 		};
 
-		subscriptionUpdate: {
-			status: [before: Nullable<SubscriptionStatus>, now: SubscriptionStatus];
-			country: [before: Nullable<string>, now: Nullable<string>];
-			period: [
-				before: [startsAt: Nullable<number>, endsAt: Nullable<number>],
-				now: [startsAt: number, endsAt: number],
-			];
-		};
+		subscriptionUpdate: ComputedUpdate<Subscription>;
 
 		subscriptionDelete: {
 			status: SubscriptionStatus;
@@ -78,7 +73,7 @@ declare global {
 }
 
 export const guildCreate: EventBodyMapper<'guildCreate'> = (guild) => ({
-	name: guild.name.substring(0, 7),
+	name: guild.name,
 	vanity: guild.vanityURLCode,
 	ownerId: guild.ownerId,
 	locale: guild.preferredLocale,
@@ -90,7 +85,7 @@ export const guildCreate: EventBodyMapper<'guildCreate'> = (guild) => ({
 });
 
 export const guildDelete: EventBodyMapper<'guildDelete'> = (guild) => ({
-	name: guild.name.substring(0, 7),
+	name: guild.name,
 	vanity: guild.vanityURLCode,
 	ownerId: guild.ownerId,
 	locale: guild.preferredLocale,
@@ -113,12 +108,7 @@ export const entitlementCreate: EventBodyMapper<'entitlementCreate'> = (
 export const entitlementUpdate: EventBodyMapper<'entitlementUpdate'> = (
 	previous,
 	current,
-) => ({
-	consumed: [previous?.consumed ?? null, current.consumed],
-	deleted: [previous?.consumed ?? null, current.deleted],
-	startsAt: [previous?.startsTimestamp ?? null, current.startsTimestamp],
-	endsAt: [previous?.endsTimestamp ?? null, current.endsTimestamp],
-});
+) => computeUpdates(previous, current);
 
 export const entitlementDelete: EventBodyMapper<'entitlementDelete'> = (
 	entitlement,
@@ -143,17 +133,7 @@ export const subscriptionCreate: EventBodyMapper<'subscriptionCreate'> = (
 export const subscriptionUpdate: EventBodyMapper<'subscriptionUpdate'> = (
 	previous,
 	current,
-) => ({
-	status: [previous?.status ?? null, current.status],
-	country: [previous?.country ?? null, current.country],
-	period: [
-		[
-			previous?.currentPeriodStartTimestamp ?? null,
-			previous?.currentPeriodEndTimestamp ?? null,
-		],
-		[current.currentPeriodStartTimestamp, current.currentPeriodEndTimestamp],
-	],
-});
+) => computeUpdates(previous, current);
 
 export const subscriptionDelete: EventBodyMapper<'subscriptionDelete'> = (
 	subscription,

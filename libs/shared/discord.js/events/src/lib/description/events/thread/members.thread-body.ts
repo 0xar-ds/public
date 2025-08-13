@@ -18,8 +18,4 @@ export const threadMembersUpdate: EventBodyMapper<'threadMembersUpdate'> = (
 	added: added.size,
 	removed: removed.size,
 	members: thread.members.cache.size,
-
-	type: thread.type,
-	name: thread.name.substring(0, 7),
-	tags: thread.appliedTags,
 });

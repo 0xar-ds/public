@@ -1,17 +1,12 @@
-import { AuditLogEvent, GuildAuditLogsEntry, Snowflake } from 'discord.js';
+import { AuditLogEvent, GuildAuditLogsEntry } from 'discord.js';
 
 import { EventBodyMapper } from '../../../interface/event-body.interface.js';
 
 declare global {
 	interface EventBodyMap {
 		guildAuditLogEntryCreate: {
-			action: AuditLogEvent;
-			actionType: GuildAuditLogsEntry['actionType'];
-			targetId: Nullable<Snowflake>;
-			targetType: GuildAuditLogsEntry['targetType'];
-			executorId: Nullable<Snowflake>;
-			changes: number;
-			reason: Nullable<string>;
+			event: AuditLogEvent;
+			action: GuildAuditLogsEntry['actionType'];
 			createdAt: number;
 		};
 	}
@@ -20,12 +15,7 @@ declare global {
 export const guildAuditLogEntryCreate: EventBodyMapper<
 	'guildAuditLogEntryCreate'
 > = (entry, _guild) => ({
-	action: entry.action,
-	actionType: entry.actionType,
-	targetId: entry.targetId,
-	targetType: entry.targetType,
-	executorId: entry.executorId,
-	changes: entry.changes.length,
-	reason: entry.reason,
+	event: entry.action,
+	action: entry.actionType,
 	createdAt: entry.createdTimestamp,
 });

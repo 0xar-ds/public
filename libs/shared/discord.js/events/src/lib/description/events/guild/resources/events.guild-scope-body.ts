@@ -10,8 +10,8 @@ import { EventBodyMapper } from '../../../interface/event-body.interface.js';
 declare global {
 	interface EventBodyMap {
 		guildScheduledEventCreate: {
-			name: Nullable<string>;
 			type: Nullable<GuildScheduledEventEntityType>;
+			name: Nullable<string>;
 			createdAt: number;
 		};
 		guildScheduledEventUpdate: ComputedUpdate<
@@ -19,8 +19,8 @@ declare global {
 			GuildScheduledEvent
 		>;
 		guildScheduledEventDelete: {
-			name: Nullable<string>;
 			type: Nullable<GuildScheduledEventEntityType>;
+			name: Nullable<string>;
 			createdAt: number;
 		};
 
@@ -38,8 +38,8 @@ declare global {
 export const guildScheduledEventCreate: EventBodyMapper<
 	'guildScheduledEventCreate'
 > = (event) => ({
-	name: event.name,
 	type: event.entityType,
+	name: event.name,
 	createdAt: event.createdTimestamp,
 });
 
@@ -52,8 +52,8 @@ export const guildScheduledEventUpdate: EventBodyMapper<
 export const guildScheduledEventDelete: EventBodyMapper<
 	'guildScheduledEventDelete'
 > = (event) => ({
-	name: event.name,
 	type: event.entityType,
+	name: event.name,
 	createdAt: event.createdTimestamp,
 });
 

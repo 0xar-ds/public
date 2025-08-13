@@ -1,4 +1,9 @@
-import { Interaction, PartialUser, Presence, User } from 'discord.js';
+import { Interaction, Presence, User } from 'discord.js';
+
+import {
+	ComputedUpdate,
+	computeUpdates,
+} from '../../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
@@ -10,32 +15,17 @@ declare global {
 			readyAt: number;
 		};
 
-		error: { name: string; message: string };
+		error: { error: string; message: string };
 		warn: { message: string };
 		debug: { message: string };
 
 		shardReady: { shard: number };
-		shardError: { name: string; message: string; shard: number };
+		shardError: { error: string; message: string; shard: number };
 		shardResume: { shard: number; replayed: number };
 		shardDisconnect: { shard: number; code: number };
 		shardReconnecting: { shard: number };
 
-		userUpdate: {
-			name: [
-				before: (User | PartialUser)['displayName'],
-				now: User['displayName'],
-			];
-			username: [
-				before: (User | PartialUser)['username'],
-				now: User['username'],
-			];
-			avatar: [before: (User | PartialUser)['avatar'], now: User['avatar']];
-			banner: [before: (User | PartialUser)['banner'], now: User['banner']];
-			color: [
-				before: (User | PartialUser)['accentColor'],
-				now: User['accentColor'],
-			];
-		};
+		userUpdate: ComputedUpdate<User>;
 
 		interactionCreate: {
 			type: Interaction['type'];
@@ -58,7 +48,7 @@ export const ready: EventBodyMapper<'ready'> = (client) => ({
 });
 
 export const error: EventBodyMapper<'error'> = (error) => ({
-	name: error.name,
+	error: error.name,
 	message: error.message,
 });
 
@@ -66,12 +56,15 @@ export const warn: EventBodyMapper<'warn'> = (message) => ({ message });
 
 export const debug: EventBodyMapper<'debug'> = (message) => ({ message });
 
-export const shardReady: EventBodyMapper<'shardReady'> = (shard, _) => ({
+export const shardReady: EventBodyMapper<'shardReady'> = (
+	shard,
+	_unavailableGuilds,
+) => ({
 	shard,
 });
 
 export const shardError: EventBodyMapper<'shardError'> = (error, shard) => ({
-	name: error.name,
+	error: error.name,
 	message: error.message,
 	shard,
 });
@@ -90,19 +83,8 @@ export const shardReconnecting: EventBodyMapper<'shardReconnecting'> = (
 	shard,
 ) => ({ shard });
 
-export const userUpdate: EventBodyMapper<'userUpdate'> = (
-	previous,
-	current,
-) => ({
-	name: [
-		previous.displayName.substring(0, 7),
-		current.displayName.substring(0, 7),
-	],
-	username: [previous.username, current.username],
-	avatar: [previous.avatar, current.avatar],
-	banner: [previous.banner, current.banner],
-	color: [previous.accentColor, current.accentColor],
-});
+export const userUpdate: EventBodyMapper<'userUpdate'> = (previous, current) =>
+	computeUpdates(previous, current);
 
 export const interactionCreate: EventBodyMapper<'interactionCreate'> = (
 	interaction,

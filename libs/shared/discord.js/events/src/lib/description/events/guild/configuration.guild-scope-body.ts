@@ -1,10 +1,18 @@
 import {
 	ApplicationCommandPermissionsUpdateData,
+	AutoModerationActionType,
+	AutoModerationRule,
 	AutoModerationRuleEventType,
 	AutoModerationRuleTriggerType,
-	Locale,
+	AutoModerationTriggerMetadata,
+	Guild,
 	Snowflake,
 } from 'discord.js';
+
+import {
+	ComputedUpdate,
+	computeUpdates,
+} from '../../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
@@ -16,50 +24,30 @@ declare global {
 			permissions: ApplicationCommandPermissionsUpdateData['permissions'];
 		};
 
-		guildUpdate: {
-			name: [before: string, now: string];
-			vanity: [before: Nullable<string>, now: Nullable<string>];
-			ownerId: [before: Snowflake, now: Snowflake];
-			locale: [before: Locale, now: Locale];
-			large: [before: boolean, now: boolean];
-			verified: [before: boolean, now: boolean];
-			partnered: [before: boolean, now: boolean];
-			shard: [before: number, now: number];
-		};
+		guildUpdate: ComputedUpdate<Guild, Guild>;
 
 		autoModerationRuleCreate: {
 			name: string;
-			target: AutoModerationRuleEventType;
+			event: AutoModerationRuleEventType;
 			trigger: AutoModerationRuleTriggerType;
-			actions: number;
-			blocks: number;
-			exemptions: number;
-			creatorId: Snowflake;
 		};
 
-		autoModerationRuleUpdate: {
-			name: [before: Nullable<string>, now: string];
-			target: [
-				before: Nullable<AutoModerationRuleEventType>,
-				now: AutoModerationRuleEventType,
-			];
-			trigger: [
-				before: Nullable<AutoModerationRuleTriggerType>,
-				now: AutoModerationRuleTriggerType,
-			];
-			actions: [before: Nullable<number>, now: number];
-			blocks: [before: Nullable<number>, now: number];
-			exemptions: [before: Nullable<number>, now: number];
-		};
+		autoModerationRuleUpdate: ComputedUpdate<AutoModerationRule> &
+			ComputedUpdate<AutoModerationTriggerMetadata> &
+			ComputedUpdate<{ exemptChannels: number; exemptRoles: number }>;
 
 		autoModerationRuleDelete: {
 			name: string;
-			target: AutoModerationRuleEventType;
+			event: AutoModerationRuleEventType;
 			trigger: AutoModerationRuleTriggerType;
-			creatorId: Snowflake;
 		};
 
-		autoModerationActionExecution: object;
+		autoModerationActionExecution: {
+			match: string;
+			action: AutoModerationActionType;
+			trigger: AutoModerationRuleTriggerType;
+			userId: Snowflake;
+		};
 	}
 }
 
@@ -74,74 +62,49 @@ export const applicationCommandPermissionsUpdate: EventBodyMapper<
 	permissions: command.permissions,
 });
 
-// TODO: consider a proper code block to return a former description of the update
-// propertys should only exist in body if they're a update to its **previous value**
-// ^ should implement the same for all *Update events
 export const guildUpdate: EventBodyMapper<'guildUpdate'> = (
 	previous,
 	current,
-) => ({
-	name: [previous.name.substring(0, 7), current.name.substring(0, 7)],
-	vanity: [previous.vanityURLCode, current.vanityURLCode],
-	ownerId: [previous.ownerId, current.ownerId],
-	locale: [previous.preferredLocale, current.preferredLocale],
-	large: [previous.large, current.large],
-	verified: [previous.verified, current.verified],
-	partnered: [previous.partnered, current.partnered],
-	shard: [previous.shard.id, current.shard.id],
-});
+) => computeUpdates(previous, current);
 
 export const autoModerationRuleCreate: EventBodyMapper<
 	'autoModerationRuleCreate'
 > = (rule) => ({
 	name: rule.name,
-	target: rule.eventType,
+	event: rule.eventType,
 	trigger: rule.triggerType,
-	actions: rule.actions.length,
-	blocks:
-		rule.triggerMetadata.regexPatterns.length +
-		rule.triggerMetadata.presets.length +
-		rule.triggerMetadata.keywordFilter.length,
-	exemptions: rule.exemptChannels.size + rule.exemptRoles.size,
-	creatorId: rule.creatorId,
 });
 
 export const autoModerationRuleUpdate: EventBodyMapper<
 	'autoModerationRuleUpdate'
 > = (previous, current) => ({
-	name: [previous?.name ?? null, current.name],
-	target: [previous?.eventType ?? null, current.eventType],
-	trigger: [previous?.triggerType ?? null, current.triggerType],
-	actions: [previous?.actions.length ?? null, current.actions.length],
-	blocks: [
-		(previous?.triggerMetadata.regexPatterns.length || 0) +
-			(previous?.triggerMetadata.presets.length || 0) +
-			(previous?.triggerMetadata.keywordFilter.length || 0) || null,
-		current.triggerMetadata.regexPatterns.length +
-			current.triggerMetadata.presets.length +
-			current.triggerMetadata.keywordFilter.length,
-	],
-	exemptions: [
-		(previous?.exemptChannels.size || 0) + (previous?.exemptRoles.size || 0) ||
-			null,
-		current.exemptChannels.size + current.exemptRoles.size,
-	],
+	...computeUpdates(previous, current),
+	...computeUpdates(previous?.triggerMetadata ?? null, current.triggerMetadata),
+	...computeUpdates(
+		{
+			exemptChannels: previous?.exemptChannels.size ?? 0,
+			exemptRoles: previous?.exemptRoles.size ?? 0,
+		},
+		{
+			exemptChannels: current.exemptChannels.size ?? 0,
+			exemptRoles: current.exemptRoles.size ?? 0,
+		},
+	),
 });
 
 export const autoModerationRuleDelete: EventBodyMapper<
 	'autoModerationRuleDelete'
 > = (rule) => ({
 	name: rule.name,
-	target: rule.eventType,
+	event: rule.eventType,
 	trigger: rule.triggerType,
-	creatorId: rule.creatorId,
 });
 
 export const autoModerationActionExecution: EventBodyMapper<
 	'autoModerationActionExecution'
 > = (execution) => ({
 	match: execution.content,
-	trigger: execution.ruleTriggerType,
 	action: execution.action.type,
+	trigger: execution.ruleTriggerType,
 	userId: execution.userId,
 });

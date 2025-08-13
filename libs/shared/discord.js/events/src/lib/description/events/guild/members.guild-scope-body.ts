@@ -62,26 +62,16 @@ export const guildMemberUpdate: EventBodyMapper<'guildMemberUpdate'> = (
 ) => ({
 	...computeUpdates(previous, current),
 	...computeUpdates(
-		previous.permissions,
-		current.permissions,
 		{
-			permissions: 'bitfield',
+			permissions: previous.permissions.bitfield,
+			flags: previous.flags.bitfield,
+			roles: previous.roles.cache.size,
 		},
-		{ excludeDefaults: true },
-	),
-	...computeUpdates(
-		previous.flags,
-		current.flags,
-		{ flags: 'bitfield' },
-		{ excludeDefaults: true },
-	),
-	...computeUpdates(
-		previous.roles.cache,
-		current.roles.cache,
 		{
-			roles: 'size',
+			permissions: current.permissions.bitfield,
+			flags: current.flags.bitfield,
+			roles: current.roles.cache.size,
 		},
-		{ excludeDefaults: true },
 	),
 });
 

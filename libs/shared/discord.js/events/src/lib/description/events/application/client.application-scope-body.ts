@@ -1,4 +1,9 @@
-import { Locale, Snowflake } from 'discord.js';
+import { Locale, Snowflake, ThreadMember } from 'discord.js';
+
+import {
+	ComputedUpdate,
+	computeUpdates,
+} from '../../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
@@ -38,10 +43,7 @@ declare global {
 
 		guildMembersChunk: { size: number; shard: number };
 
-		threadMemberUpdate: {
-			permissions: [before: Nullable<bigint>, now: Nullable<bigint>];
-			manageable: [before: boolean, now: boolean];
-		};
+		threadMemberUpdate: ComputedUpdate<ThreadMember>;
 
 		threadListSync: { size: number; shard: number };
 		soundboardSounds: { size: number; shard: number };
@@ -97,13 +99,7 @@ export const guildMembersChunk: EventBodyMapper<'guildMembersChunk'> = (
 export const threadMemberUpdate: EventBodyMapper<'threadMemberUpdate'> = (
 	previous,
 	current,
-) => ({
-	permissions: [
-		previous.thread.permissionsFor(previous)?.bitfield ?? null,
-		current.thread.permissionsFor(current)?.bitfield ?? null,
-	],
-	manageable: [previous.thread.manageable, current.thread.manageable],
-});
+) => computeUpdates(previous, current);
 
 export const threadListSync: EventBodyMapper<'threadListSync'> = (
 	threads,

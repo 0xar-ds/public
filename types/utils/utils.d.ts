@@ -29,8 +29,18 @@ declare global {
 		| 'object'
 		| 'function';
 
+	type PrimitiveValue<T> = T extends
+		| ((...args: unknown[]) => unknown)
+		| object
+		| symbol
+		| unknown[]
+		? never
+		: T;
+
 	type PrimitiveKeys<T> = {
-		[K in keyof T]: T[K] extends Function | object | symbol ? never : K;
+		[K in keyof T]: T[K] extends Function | object | symbol | unknown[]
+			? never
+			: K;
 	}[keyof T];
 }
 

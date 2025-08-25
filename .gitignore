@@ -4,6 +4,7 @@
 # moon
 .moon/cache
 .moon/docker
+.moon/hooks
 
 # Ignore files for PNPM
 pnpm-lock.yaml

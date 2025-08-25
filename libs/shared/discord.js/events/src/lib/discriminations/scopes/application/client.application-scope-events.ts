@@ -13,7 +13,7 @@ export type ThreadClientScopeEvents = Pick<
 	'threadMemberUpdate' | 'threadListSync'
 >;
 
-export type UserClientScopeEvents = Pick<ClientEvents, 'userUpdate'>;
+export type SoundsClientScopeEvents = Pick<ClientEvents, 'soundboardSounds'>;
 
 export type CacheClientScopeEvents = Pick<
 	ClientEvents,
@@ -21,6 +21,6 @@ export type CacheClientScopeEvents = Pick<
 >;
 
 export type ClientApplicationScopeEvents = (GuildClientScopeEvents &
-	UserClientScopeEvents &
-	ThreadClientScopeEvents) &
+	ThreadClientScopeEvents &
+	SoundsClientScopeEvents) &
 	CacheClientScopeEvents;

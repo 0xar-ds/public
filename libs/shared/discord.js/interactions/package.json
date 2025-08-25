@@ -1,5 +1,5 @@
 {
-	"name": "@~discord.js/events",
+	"name": "@~discord.js/interactions",
 	"version": "0.0.1",
 	"type": "module",
 	"devDependencies": {
@@ -7,10 +7,10 @@
 		"@types/express": "catalog:environment",
 		"@types/node": "catalog:environment",
 		"globals": "catalog:code-quality",
+		"tsconfig-paths": "catalog:utilities",
 		"source-map-support": "catalog:utilities",
 		"ts-loader": "catalog:build-tooling",
-		"ts-node": "catalog:build-tooling",
-		"tsconfig-paths": "catalog:utilities"
+		"ts-node": "catalog:build-tooling"
 	},
 	"exports": {
 		".": {
@@ -23,8 +23,6 @@
 		}
 	},
 	"dependencies": {
-		"@~discord.js/channels": "workspace:^",
-		"@~discord.js/interactions": "workspace:^",
 		"discord.js": "catalog:discord",
 		"reflect-metadata": "catalog:utilities"
 	}

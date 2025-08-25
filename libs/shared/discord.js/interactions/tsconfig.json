@@ -15,12 +15,6 @@
 	"references": [
 		{
 			"path": "./tsconfig.build.json"
-		},
-		{
-			"path": "../channels"
-		},
-		{
-			"path": "../interactions"
 		}
 	]
 }

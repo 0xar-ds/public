@@ -7,6 +7,11 @@ projects:
   - 'apps/**/moon.yml'
   - 'libs/**/moon.yml'
 
+vcs:
+  hooks:
+    pre-commit:
+      - 'moon run :lint :format --affected --status=staged'
+
 pipeline:
   logRunningCommand: true
 

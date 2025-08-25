@@ -121,27 +121,27 @@ import {
 	messageCreate,
 	messageDelete,
 	messageUpdate,
-} from './events/message/lifecycle.message-callpoints.js';
+} from './events/message/lifecycle.message-scope-callpoints.js';
 
 import {
 	messagePollVoteAdd,
 	messagePollVoteRemove,
-} from './events/message/polls.message-callpoints.js';
+} from './events/message/polls.message-scope-callpoints.js';
 
 import {
 	messageReactionAdd,
 	messageReactionRemove,
 	messageReactionRemoveAll,
 	messageReactionRemoveEmoji,
-} from './events/message/reactions.message-callpoints.js';
+} from './events/message/reactions.message-scope-callpoints.js';
 
 import {
 	threadCreate,
 	threadDelete,
 	threadUpdate,
-} from './events/thread/lifecycle.thread-callpoints.js';
+} from './events/thread/lifecycle.thread-scope-callpoints.js';
 
-import { threadMembersUpdate } from './events/thread/members.thread-callpoints.js';
+import { threadMembersUpdate } from './events/thread/members.thread-scope-callpoints.js';
 
 export const CallpointMap: {
 	[Event in keyof EventCallpointMap]: (

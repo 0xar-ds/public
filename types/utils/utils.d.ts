@@ -30,15 +30,21 @@ declare global {
 		| 'function';
 
 	type PrimitiveValue<T> = T extends
-		| ((...args: unknown[]) => unknown)
+		| Function
 		| object
 		| symbol
 		| unknown[]
+		| readonly unknown[]
 		? never
 		: T;
 
 	type PrimitiveKeys<T> = {
-		[K in keyof T]: T[K] extends Function | object | symbol | unknown[]
+		[K in keyof T]: T[K] extends
+			| Function
+			| object
+			| symbol
+			| unknown[]
+			| readonly unknown[]
 			? never
 			: K;
 	}[keyof T];

@@ -17,7 +17,7 @@ declare global {
 
 export const threadMembersUpdate: EventCallpointMapper<
 	'threadMembersUpdate'
-> = (_, __, thread) =>
+> = (_added, _removed, thread) =>
 	thread.parent !== null
 		? `/guilds/${thread.guildId}/${thread.parent.parentId ?? 'UNKNOWN_CATEGORY'}/${thread.parent.id}/${thread.id}/members`
 		: `/guilds/${thread.guildId}/${thread.id}/members`;

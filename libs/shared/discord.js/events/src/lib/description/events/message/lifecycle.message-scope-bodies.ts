@@ -21,14 +21,12 @@ declare global {
 			nonce: Nullable<string | number>;
 			userId: Snowflake;
 		};
-
 		messageUpdate: ComputedUpdate<OmitPartialGroupDMChannel<Message<boolean>>> &
 			ComputedUpdate<MessageMentions> &
 			ComputedUpdate<{
 				reactions: number;
 				attachments: number;
 			}>;
-
 		messageDelete: {
 			content: Nullable<string>;
 			type: Nullable<MessageType>;

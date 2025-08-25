@@ -13,13 +13,10 @@ import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
 declare global {
 	interface EventBodyMap {
-		voiceStateUpdate: {
-			userId: Nullable<Snowflake>;
-		} & ComputedUpdate<VoiceState>;
+		voiceStateUpdate: ComputedUpdate<VoiceState>;
 
 		voiceChannelEffectSend: {
 			type: Nullable<VoiceChannelEffectSendAnimationType>;
-			userId: Snowflake;
 			soundId: Nullable<Snowflake>;
 		};
 	}
@@ -28,15 +25,11 @@ declare global {
 export const voiceStateUpdate: EventBodyMapper<'voiceStateUpdate'> = (
 	previous,
 	current,
-) => ({
-	...computeUpdates(previous, current),
-	userId: current.member?.user.id ?? null,
-});
+) => computeUpdates(previous, current);
 
 export const voiceChannelEffectSend: EventBodyMapper<
 	'voiceChannelEffectSend'
 > = (effect) => ({
 	type: effect.animationType,
-	userId: effect.userId,
 	soundId: effect.soundboardSound?.soundId ?? null,
 });

@@ -10,7 +10,7 @@ import {
 	soundboardSounds,
 	threadListSync,
 	threadMemberUpdate,
-} from './events/application/client.application-scope-body.js';
+} from './events/application/client.application-scope-bodies.js';
 
 import {
 	debug,
@@ -25,7 +25,7 @@ import {
 	shardResume,
 	userUpdate,
 	warn,
-} from './events/application/gateway.application-scope-body.js';
+} from './events/application/gateway.application-scope-bodies.js';
 
 import {
 	entitlementCreate,
@@ -36,35 +36,35 @@ import {
 	subscriptionCreate,
 	subscriptionDelete,
 	subscriptionUpdate,
-} from './events/application/installations.application-scope-body.js';
+} from './events/application/installations.application-scope-bodies.js';
 
 import {
 	channelPinsUpdate,
 	messageDeleteBulk,
 	typingStart,
-} from './events/channel/actions.channel-scope-body.js';
+} from './events/channel/actions.channel-scope-bodies.js';
 
 import {
 	channelCreate,
 	channelDelete,
 	channelUpdate,
-} from './events/channel/lifecycle.channel-scope-body.js';
+} from './events/channel/lifecycle.channel-scope-bodies.js';
 
 import {
 	stageInstanceCreate,
 	stageInstanceDelete,
 	stageInstanceUpdate,
-} from './events/channel/stage.channel-scope-body.js';
+} from './events/channel/stage.channel-scope-bodies.js';
 
 import {
 	voiceChannelEffectSend,
 	voiceStateUpdate,
-} from './events/channel/voice.channel-scope-body.js';
+} from './events/channel/voice.channel-scope-bodies.js';
 
 import {
 	webhooksUpdate,
 	webhookUpdate,
-} from './events/channel/webhook.channel-scope-body.js';
+} from './events/channel/webhook.channel-scope-bodies.js';
 
 import {
 	applicationCommandPermissionsUpdate,
@@ -74,7 +74,7 @@ import {
 	autoModerationRuleUpdate,
 	guildIntegrationsUpdate,
 	guildUpdate,
-} from './events/guild/configuration.guild-scope-body.js';
+} from './events/guild/configuration.guild-scope-bodies.js';
 
 import {
 	guildBanAdd,
@@ -82,7 +82,7 @@ import {
 	guildMemberAdd,
 	guildMemberRemove,
 	guildMemberUpdate,
-} from './events/guild/members.guild-scope-body.js';
+} from './events/guild/members.guild-scope-bodies.js';
 
 import {
 	guildScheduledEventCreate,
@@ -90,7 +90,7 @@ import {
 	guildScheduledEventUpdate,
 	guildScheduledEventUserAdd,
 	guildScheduledEventUserRemove,
-} from './events/guild/resources/events.guild-scope-body.js';
+} from './events/guild/resources/events.guild-scope-bodies.js';
 
 import {
 	emojiCreate,
@@ -102,46 +102,46 @@ import {
 	stickerCreate,
 	stickerDelete,
 	stickerUpdate,
-} from './events/guild/resources/expressions.guild-scope-body.js';
+} from './events/guild/resources/expressions.guild-scope-bodies.js';
 
 import {
 	inviteCreate,
 	inviteDelete,
-} from './events/guild/resources/invites.guild-scope-body.js';
+} from './events/guild/resources/invites.guild-scope-bodies.js';
 
-import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-body.js';
+import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-bodies.js';
 
 import {
 	roleCreate,
 	roleDelete,
 	roleUpdate,
-} from './events/guild/resources/roles.guild-scope-body.js';
+} from './events/guild/resources/roles.guild-scope-bodies.js';
 
 import {
 	messageCreate,
 	messageDelete,
 	messageUpdate,
-} from './events/message/lifecycle.message-body.js';
+} from './events/message/lifecycle.message-scope-bodies.js';
 
 import {
 	messagePollVoteAdd,
 	messagePollVoteRemove,
-} from './events/message/polls.message-body.js';
+} from './events/message/polls.message-scope-bodies.js';
 
 import {
 	messageReactionAdd,
 	messageReactionRemove,
 	messageReactionRemoveAll,
 	messageReactionRemoveEmoji,
-} from './events/message/reactions.message-body.js';
+} from './events/message/reactions.message-scope-bodies.js';
 
 import {
 	threadCreate,
 	threadDelete,
 	threadUpdate,
-} from './events/thread/lifecycle.thread-body.js';
+} from './events/thread/lifecycle.thread-scope-bodies.js';
 
-import { threadMembersUpdate } from './events/thread/members.thread-body.js';
+import { threadMembersUpdate } from './events/thread/members.thread-scope-bodies.js';
 
 export const BodyMap: {
 	[Event in keyof EventBodyMap]: (

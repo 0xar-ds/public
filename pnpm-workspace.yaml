@@ -1,6 +1,7 @@
 packages:
   - 'apps/**'
   - 'libs/**'
+  - 'packages/**'
 
 catalogs:
   nest:
@@ -27,6 +28,7 @@ catalogs:
   environment:
     "@types/express": 5.0.3
     "@types/node": 24.0.15
+    "@types/jest": 29.5.14
 
   code-quality:
     "eslint": 9.31.0
@@ -60,6 +62,15 @@ catalogs:
     "typescript": 5.8.3
     "ts-loader": 9.5.2
     "ts-node": 10.9.2
+    "release-it": 19.0.4
+    "release-it-pnpm": 4.6.6
+    "packemon": 4.1.2
+
+  jest:
+    "jest": 29.7.0
+
+  test-tooling:
+    "ts-jest": 29.3.2
 
   discord:
     "necord": 6.8.14

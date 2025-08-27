@@ -1,0 +1,15 @@
+tasks:
+  prepare:
+    type: build
+    description: 'Pulls the project to build an artifact'
+    # deps:
+    #   - 'build'
+    options:
+      internal: true
+
+  publish:
+    type: run
+    description: 'Publishes the artifact to configured mediums'
+    command: 'release-it --ci'
+    deps:
+      - '~:prepare'

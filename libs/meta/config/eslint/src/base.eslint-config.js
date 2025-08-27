@@ -31,7 +31,10 @@ export default ts.config(
 		rules: {
 			'no-undef': 'off',
 			'import-x/order': ['error', makeImportXOrderRuleDefinition()],
-      '@typescript-eslint/no-unused-vars': ['error', { "argsIgnorePattern": "^_" }]
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{ argsIgnorePattern: '^_' },
+			],
 		},
 		settings: {
 			'import-x/resolver-next': [
@@ -59,7 +62,7 @@ function makeImportXOrderRuleDefinition() {
 			'index',
 			'type',
 		],
-    
+
 		'pathGroups': [
 			{
 				pattern: '#**/**',

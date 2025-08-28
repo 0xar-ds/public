@@ -1,13 +1,13 @@
 {
 	"version": "0.0.0",
 	"name": "{{ package_name }}",
-  "author": "0xar-ds <sadden-rope-sleek@duck.com>",
-  "license": "GPL-3.0-only",
+	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
+	"license": "GPL-3.0-only",
 	"type": "module",
-  "engines": {
+	"engines": {
 		"node": ">=20.10.0"
 	},
-  "homepage": "https://github.com/0xar-ds/public",
+	"homepage": "https://github.com/0xar-ds/public",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/0xar-ds/public"
@@ -19,11 +19,11 @@
 	"contributors": [
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
-  "dependencies": {
+	"dependencies": {
 		"reflect-metadata": "^0.2.2"
 	},
 	"devDependencies": {
-		"@~meta/eslint": "workspace:^",
+		"@argentina-community/eslint-config": "workspace:^",
 		"@types/express": "catalog:environment",
 		"@types/jest": "catalog:environment",
 		"@types/node": "catalog:environment",
@@ -35,7 +35,7 @@
 		"ts-loader": "catalog:build-tooling",
 		"ts-node": "catalog:build-tooling"
 	},
-  "main": "./dist/src/index.js",
+	"main": "./dist/src/index.js",
 	"types": "./dist/src/index.d.ts",
 	"exports": {
 		".": {
@@ -46,10 +46,13 @@
 			"types": "./dist/src/*.d.ts",
 			"default": "./dist/src/*.js"
 		},
-    "./package.json": "./package.json"
+		"./package.json": "./package.json"
 	},
-  "files": [
-    "src/**/*"
-  ],
-  "keywords": []
+	"publishConfig": {
+		"access": "restricted"
+	},
+	"files": [
+		"src/**/*"
+	],
+	"keywords": []
 }

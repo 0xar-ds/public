@@ -1,4 +1,4 @@
-on: 
+on:
   push:
     branches:
       - master
@@ -6,7 +6,7 @@ on:
 jobs:
   ci:
     name: CI
-    runs-on: "ubuntu-latest"
+    runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -16,8 +16,9 @@ jobs:
       - uses: moonrepo/setup-toolchain@v0
         with:
           auto-install: true
-      - run: "moon ci --color"
-      
+          proto-version: 0.51.3
+      - run: 'moon ci --color'
+
       # https://github.com/appthrust/moon-ci-retrospect
       - uses: appthrust/moon-ci-retrospect@v1
         if: success() || failure()

@@ -3,7 +3,8 @@ type: library
 language: typescript
 stack: unknown
 tags:
-  - 'tsc'
+  - 'tsdown'
+  - 'releasable'
   - 'eslint'
   - 'prettier'
   - 'code-quality'

@@ -11,13 +11,18 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true
 	},
-	"include": ["../../../../types/**/*"],
+	"include": [
+		"../../../../types/**/*"
+	],
 	"references": [
 		{
 			"path": "./tsconfig.build.json"
 		},
 		{
 			"path": "../channels"
+		},
+		{
+			"path": "../channels-utils"
 		},
 		{
 			"path": "../interactions"

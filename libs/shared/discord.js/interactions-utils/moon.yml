@@ -1,4 +1,4 @@
-id: 'shared.discord.js-interactions'
+id: 'discord.js-interactions-utils'
 type: library
 language: typescript
 stack: unknown

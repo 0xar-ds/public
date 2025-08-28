@@ -1,4 +1,4 @@
-id: 'shared.discord.js-channels'
+id: 'discord.js-channels-utils'
 type: library
 language: typescript
 stack: unknown

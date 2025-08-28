@@ -4,7 +4,7 @@
 	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
 	"license": "GPL-3.0-only",
 	"type": "module",
-  "engines": {
+	"engines": {
 		"node": ">=20.10.0"
 	},
 	"homepage": "https://github.com/0xar-ds/public",
@@ -29,39 +29,39 @@
 		"ts-node": "catalog:build-tooling",
 		"tsconfig-paths": "catalog:utilities"
 	},
-  "dependencies": {
+	"dependencies": {
 		"discord.js-channels-utils": "workspace:^",
 		"discord.js-interactions-utils": "workspace:^",
 		"discord.js": "catalog:discord",
 		"reflect-metadata": "catalog:utilities"
 	},
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs",
 			"default": "./dist/index.js"
 		},
 		"./*": {
 			"types": "./dist/*.d.ts",
-      "import": "./dist/*.js",
-      "require": "./dist/*.cjs",
+			"import": "./dist/*.js",
+			"require": "./dist/*.cjs",
 			"default": "./dist/*.js"
 		},
-    "./package.json": "./package.json"
+		"./package.json": "./package.json"
 	},
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "keywords": [
-    "discord.js",
-    "typescript",
-    "utilities"
-  ]
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist/**/*"
+	],
+	"keywords": [
+		"discord.js",
+		"typescript",
+		"utilities"
+	]
 }

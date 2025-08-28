@@ -13,6 +13,7 @@ fileGroups:
     - 'package.json'
   outputs:
     - 'src/**/*'
+    - 'dist/**/*'
     - 'mts/**/*'
     - 'cjs/**/*'
 # tasks:

@@ -23,11 +23,10 @@
 		"@semantic-release/commit-analyzer": "catalog:build-tooling",
 		"@semantic-release/release-notes-generator": "catalog:build-tooling",
 		"eslint": "catalog:code-quality",
-		"packemon": "catalog:build-tooling",
 		"prettier": "catalog:code-quality",
 		"semantic-release": "catalog:build-tooling",
 		"semantic-release-monorepo": "catalog:build-tooling",
-		"tsdown": "^0.14.2",
+		"tsdown": "catalog:build-tooling",
 		"typescript": "catalog:build-tooling"
 	},
 	"engines": {

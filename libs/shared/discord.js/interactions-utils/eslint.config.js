@@ -4,7 +4,10 @@ import { fileURLToPath } from 'node:url';
 
 import config from '@argentina-community/eslint-config';
 
-import { includeIgnoreFile, makeTsConfig } from '@argentina-community/eslint-config/utils';
+import {
+	includeIgnoreFile,
+	makeTsConfig,
+} from '@argentina-community/eslint-config/utils';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
@@ -24,8 +27,8 @@ export default makeTsConfig(
 			sourceType: 'module',
 			parserOptions: {
 				projectService: {
-          allowDefaultProject: ["tsdown.config.ts"]
-        },
+					allowDefaultProject: ['tsdown.config.ts'],
+				},
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},

@@ -5,6 +5,9 @@ node:
     installArgs:
       - '--force'
 
+proto:
+  version: '0.51.3'
+
 typescript:
   includeSharedTypes: true
   syncProjectReferences: true

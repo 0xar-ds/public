@@ -30,12 +30,12 @@ export class Status {
 		message: 'Forbidden.',
 	};
 
-	public static SERVICE_UNAVAILABLE = {
+	public static SERVICE_UNAVAILABLE: StatusDescription = {
 		code: HttpStatus.SERVICE_UNAVAILABLE,
 		message: 'Service accessed or depended-on is not available.',
 	};
 
-	public static UNPROCESSABLE_ENTITY = {
+	public static UNPROCESSABLE_ENTITY: StatusDescription = {
 		code: HttpStatus.UNPROCESSABLE_ENTITY,
 		message:
 			'Entity accessed or specified is not within the schemas of the application.',
@@ -51,13 +51,13 @@ export class Status {
 		message: 'Not found.',
 	};
 
-	public static PRECONDITION_REQUIRED = {
+	public static PRECONDITION_REQUIRED: StatusDescription = {
 		code: AppStatus.PRECONDITION_REQUIRED,
 		message:
 			'Prior action through this service is required for this call point.',
 	};
 
-	public static LOCKED = {
+	public static LOCKED: StatusDescription = {
 		code: AppStatus.LOCKED,
 		message: 'This call point is locked.',
 	};

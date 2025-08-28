@@ -1,6 +1,5 @@
 import { ChannelType } from 'discord.js';
-
-import { isChannelOfType } from '@~discord.js/channels';
+import { isChannelOfType } from 'discord.js-channels-utils';
 
 import { EventOriginMapper } from '../../interface/event-origin.interface.js';
 

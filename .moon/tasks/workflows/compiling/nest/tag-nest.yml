@@ -4,7 +4,6 @@ tasks:
     preset: watcher
     description: 'Runs nest build with the --watch flag.'
     command: 'nest start --watch --path ./tsconfig.build.json'
-    local: true
     env: { NODE_ENV: 'development' }
     deps:
       - '^:build'
@@ -22,10 +21,9 @@ tasks:
       - '@group(outputs)'
   run:
     type: run
-    preset: watcher
+    preset: server
     description: 'Runs production'
     command: 'node dist/src/main'
-    local: true
     env: { NODE_ENV: 'production' }
     deps:
       - '~:build'

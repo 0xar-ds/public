@@ -1,20 +1,42 @@
 {
+	"version": "0.0.0",
 	"name": "{{ package_name }}",
-	"version": "0.0.1",
+	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
+	"license": "GPL-3.0-only",
 	"type": "module",
-	"devDependencies": {
-		"@~meta/eslint": "workspace:^",
-		"@types/express": "^5.0.1",
-		"@types/jest": "^29.5.14",
-		"@types/node": "^22.14.1",
-		"globals": "^16.0.0",
-		"jest": "^29.7.0",
-		"tsconfig-paths": "^4.2.0",
-		"source-map-support": "^0.5.21",
-		"ts-jest": "^29.3.2",
-		"ts-loader": "^9.5.2",
-		"ts-node": "^10.9.2"
+	"engines": {
+		"node": ">=20.10.0"
 	},
+	"homepage": "https://github.com/0xar-ds/public",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0xar-ds/public"
+	},
+	"bugs": {
+		"url": "https://github.com/0xar-ds/public/issues",
+		"email": "sadden-rope-sleek@duck.com"
+	},
+	"contributors": [
+		"0xar-ds <sadden-rope-sleek@duck.com>"
+	],
+	"dependencies": {
+		"reflect-metadata": "^0.2.2"
+	},
+	"devDependencies": {
+		"@argentina-community/eslint-config": "workspace:^",
+		"@types/express": "catalog:environment",
+		"@types/jest": "catalog:environment",
+		"@types/node": "catalog:environment",
+		"globals": "catalog:code-quality",
+		"jest": "catalog:jest",
+		"tsconfig-paths": "catalog:utilities",
+		"source-map-support": "catalog:utilities",
+		"ts-jest": "catalog:test-tooling",
+		"ts-loader": "catalog:build-tooling",
+		"ts-node": "catalog:build-tooling"
+	},
+	"main": "./dist/src/index.js",
+	"types": "./dist/src/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/src/index.d.ts",
@@ -23,9 +45,14 @@
 		"./*": {
 			"types": "./dist/src/*.d.ts",
 			"default": "./dist/src/*.js"
-		}
+		},
+		"./package.json": "./package.json"
 	},
-	"dependencies": {
-		"reflect-metadata": "^0.2.2"
-	}
+	"publishConfig": {
+		"access": "restricted"
+	},
+	"files": [
+		"src/**/*"
+	],
+	"keywords": []
 }

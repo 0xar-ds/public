@@ -1,0 +1,1 @@
+definitions & runtime implementations of descriptions/signatures common among other execution contexts, but not present in discord.js nor discord as a layer. features: event origin/actor information, callpoint indexing & a body representing the essential of the event

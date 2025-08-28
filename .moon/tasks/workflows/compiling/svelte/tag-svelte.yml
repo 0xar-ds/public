@@ -5,7 +5,7 @@ tasks:
     preset: watcher
     description: 'Runs vite dev'
     command: 'vite dev'
-    local: true
+    env: { NODE_ENV: 'development' }
     deps:
       - '^:build'
 
@@ -14,6 +14,7 @@ tasks:
     type: build
     description: 'Runs vite build'
     command: 'vite build'
+    env: { NODE_ENV: 'production' }
     deps:
       - '^:build'
     inputs:
@@ -36,7 +37,7 @@ tasks:
     command: 'svelte-check --tsconfig ./tsconfig.json'
     local: true
     deps:
-      - 'sync'
+      - '~:sync'
     inputs:
       - '@group(configs)'
       - '@group(sources)'
@@ -48,6 +49,5 @@ tasks:
     preset: watcher
     description: 'Builds and previews the project'
     command: 'vite preview'
-    local: true
     deps:
-      - 'build'
+      - '~:build'

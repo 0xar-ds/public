@@ -1,18 +1,26 @@
 {
+	"version": "0.0.0",
 	"name": "@~apps/example-application",
-	"version": "1.0.0",
-	"private": true,
-	"license": "UNLICENSED",
+  "private": true,
+	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
+	"license": "GPL-3.0-only",
 	"type": "module",
-	"scripts": {
-		"start": "nest start --path ./tsconfig.build.json",
-		"dev": "nest start --watch --path ./tsconfig.build.json",
-		"debug": "nest start --debug --watch --path ./tsconfig.build.json",
-		"build": "nest build --path ./tsconfig.build.json",
-		"prod": "node dist/src/main",
-		"format": "prettier --write .",
-		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+  "engines": {
+		"node": ">=20.10.0"
 	},
+	"homepage": "https://github.com/0xar-ds/public",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0xar-ds/public"
+	},
+	"bugs": {
+		"url": "https://github.com/0xar-ds/public/issues",
+		"email": "sadden-rope-sleek@duck.com"
+	},
+	"contributors": [
+		"0xar-ds <sadden-rope-sleek@duck.com>"
+	],
+
 	"imports": {
 		"#root/*": {
 			"types": "./src/*",
@@ -47,12 +55,28 @@
 			"default": "./dist/src/app/api/gateway/exception-filters/*"
 		}
 	},
+  "devDependencies": {
+		"@argentina-community/eslint-config": "workspace:^",
+		"@nestjs/cli": "catalog:nest",
+		"@nestjs/schematics": "catalog:nest",
+		"@nestjs/testing": "catalog:nest",
+		"@swc/cli": "catalog:swc",
+		"@swc/core": "catalog:swc",
+		"@types/express": "catalog:environment",
+		"@types/node": "catalog:environment",
+		"nest-typed-config": "catalog:nest-libs",
+		"source-map-support": "catalog:utilities",
+		"ts-loader": "catalog:build-tooling",
+		"ts-node": "catalog:build-tooling",
+		"tsconfig-paths": "catalog:utilities",
+		"typescript": "catalog:build-tooling"
+	},
 	"dependencies": {
 		"@~shared/exceptions": "workspace:^",
 		"@~rxjs/shared-replay": "workspace:^",
 		"@~server/config-schemas": "workspace:^",
 		"@~discord/core": "workspace:^",
-		"@~discord.js/channels": "workspace:^",
+		"discord.js-channels-utils": "workspace:^",
 		"@~server/core-api": "workspace:^",
 		"discord.js": "catalog:discord",
 		"necord": "catalog:discord",
@@ -67,20 +91,12 @@
 		"reflect-metadata": "catalog:utilities",
 		"rxjs": "catalog:libraries"
 	},
-	"devDependencies": {
-		"@~meta/eslint": "workspace:^",
-		"@nestjs/cli": "catalog:nest",
-		"@nestjs/schematics": "catalog:nest",
-		"@nestjs/testing": "catalog:nest",
-		"@swc/cli": "catalog:swc",
-		"@swc/core": "catalog:swc",
-		"@types/express": "catalog:environment",
-		"@types/node": "catalog:environment",
-		"nest-typed-config": "catalog:nest-libs",
-		"source-map-support": "catalog:utilities",
-		"ts-loader": "catalog:build-tooling",
-		"ts-node": "catalog:build-tooling",
-		"tsconfig-paths": "catalog:utilities",
-		"typescript": "catalog:build-tooling"
-	}
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+  ]
 }

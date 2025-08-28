@@ -1,0 +1,65 @@
+{
+	"version": "0.0.0",
+	"name": "discord.js-channels-utils",
+	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
+	"license": "GPL-3.0-only",
+	"type": "module",
+	"engines": {
+		"node": ">=20.10.0"
+	},
+	"homepage": "https://github.com/0xar-ds/public",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0xar-ds/public"
+	},
+	"bugs": {
+		"url": "https://github.com/0xar-ds/public/issues",
+		"email": "sadden-rope-sleek@duck.com"
+	},
+	"contributors": [
+		"0xar-ds <sadden-rope-sleek@duck.com>"
+	],
+	"devDependencies": {
+		"@argentina-community/eslint-config": "workspace:^",
+		"@types/express": "catalog:environment",
+		"@types/node": "catalog:environment",
+		"globals": "catalog:code-quality",
+		"source-map-support": "catalog:utilities",
+		"ts-loader": "catalog:build-tooling",
+		"ts-node": "catalog:build-tooling",
+		"tsconfig-paths": "catalog:utilities"
+	},
+	"dependencies": {
+		"discord.js": "catalog:discord",
+		"reflect-metadata": "catalog:utilities"
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs",
+			"default": "./dist/index.js"
+		},
+		"./*": {
+			"types": "./dist/*.d.ts",
+			"import": "./dist/*.js",
+			"require": "./dist/*.cjs",
+			"default": "./dist/*.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist/**/*"
+	],
+	"keywords": [
+		"discord.js",
+		"typescript",
+		"utilities"
+	]
+}

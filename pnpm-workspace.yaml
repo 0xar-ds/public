@@ -27,6 +27,7 @@ catalogs:
   environment:
     "@types/express": 5.0.3
     "@types/node": 24.0.15
+    "@types/jest": 29.5.14
 
   code-quality:
     "eslint": 9.31.0
@@ -60,6 +61,19 @@ catalogs:
     "typescript": 5.8.3
     "ts-loader": 9.5.2
     "ts-node": 10.9.2
+    "semantic-release": 24.2.7
+    "semantic-release-monorepo": 8.0.2
+    "@anolilab/semantic-release-pnpm": 2.0.3
+    "@semantic-release/changelog": 6.0.3
+    "@semantic-release/commit-analyzer": 13.0.1
+    "@semantic-release/release-notes-generator": 14.0.3
+    "tsdown": 0.14.2
+
+  jest:
+    "jest": 29.7.0
+
+  test-tooling:
+    "ts-jest": 29.3.2
 
   discord:
     "necord": 6.8.14

@@ -3,6 +3,9 @@ type: configuration
 language: javascript
 stack: systems
 
+tags:
+  - 'releasable'
+
 project:
   name: 'Meta Eslint config'
   description: 'Hosts eslint configuration for generic projects.'

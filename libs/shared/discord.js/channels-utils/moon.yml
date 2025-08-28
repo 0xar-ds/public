@@ -1,0 +1,14 @@
+id: 'discord.js-channels-utils'
+type: library
+language: typescript
+stack: unknown
+tags:
+  - 'tsdown'
+  - 'releasable'
+  - 'eslint'
+  - 'prettier'
+  - 'code-quality'
+
+project:
+  name: 'Utilities for Discord.js channels classes'
+  description: 'Utilities around Discord.js structs of channels'

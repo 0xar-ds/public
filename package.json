@@ -1,15 +1,42 @@
 {
+	"version": "0.0.0",
 	"name": "argentina-community",
+	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
+	"license": "GPL-3.0-only",
 	"type": "module",
 	"private": true,
-	"version": "1.0.0",
+	"homepage": "https://github.com/0xar-ds/public",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0xar-ds/public"
+	},
+	"bugs": {
+		"url": "https://github.com/0xar-ds/public/issues",
+		"email": "sadden-rope-sleek@duck.com"
+	},
+	"contributors": [
+		"0xar-ds <sadden-rope-sleek@duck.com>"
+	],
 	"devDependencies": {
+		"@anolilab/semantic-release-pnpm": "catalog:build-tooling",
+		"@semantic-release/changelog": "catalog:build-tooling",
+		"@semantic-release/commit-analyzer": "catalog:build-tooling",
+		"@semantic-release/release-notes-generator": "catalog:build-tooling",
 		"eslint": "catalog:code-quality",
 		"prettier": "catalog:code-quality",
+		"semantic-release": "catalog:build-tooling",
+		"semantic-release-monorepo": "catalog:build-tooling",
+		"tsdown": "catalog:build-tooling",
 		"typescript": "catalog:build-tooling"
 	},
-	"packageManager": "pnpm@10.12.1",
 	"engines": {
 		"node": "23.0.0"
-	}
+	},
+	"keywords": [
+		"typescript",
+		"monorepo",
+		"moonrepo",
+		"proto"
+	],
+	"packageManager": "pnpm@10.12.1"
 }

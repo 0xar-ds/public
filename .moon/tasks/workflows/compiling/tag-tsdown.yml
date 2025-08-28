@@ -1,0 +1,36 @@
+fileGroups:
+  tsdown:
+    - 'tsdown.config.ts'
+    - 'tsconfig.*.json'
+    - '/tsdown.config.ts'
+    - '/tsconfig.*.json'
+
+tasks:
+  # Build for development
+  build:
+    type: build
+    description: 'Runs tsdown build'
+    command: 'tsdown'
+    env: { NODE_ENV: 'production' }
+    deps:
+      - '^:build'
+    inputs:
+      - '@group(tsdown)'
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'
+
+  # Build for production
+  # pack:
+  #   type: build
+  #   description: 'Runs packemon pack'
+  #   command: 'packemon pack --addEngines --addExports --declaration'
+  #   deps:
+  #     - '^:build'
+  #   inputs:
+  #     - '@group(packemon)'
+  #     - '@group(sources)'
+  #     - '@group(configs)'
+  #   outputs:
+  #     - '@group(outputs)'

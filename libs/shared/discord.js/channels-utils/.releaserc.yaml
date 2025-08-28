@@ -1,0 +1,10 @@
+extends: 'semantic-release-monorepo'
+tagFormat: channels-utils-v${version}
+branches:
+  - master
+  - next
+plugins:
+  - '@semantic-release/commit-analyzer'
+  - '@semantic-release/release-notes-generator'
+  - '@anolilab/semantic-release-pnpm'
+  - '@semantic-release/changelog'

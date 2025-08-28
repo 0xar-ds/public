@@ -20,6 +20,9 @@ fileGroups:
     - 'tests/**/*.ts'
   outputs:
     - 'dist/**/*'
+    - 'mts/**/*'
+    - 'cjs/**/*'
+    - '*.tsbuildinfo'
 # tasks:
 # typecheck:
 # command:

@@ -1,7 +1,38 @@
 {
-	"name": "@~meta/eslint",
-	"version": "1.0.0",
+	"version": "0.0.0",
+	"name": "@argentina-community/eslint-config",
+	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
+	"license": "GPL-3.0-only",
 	"type": "module",
+	"engines": {
+		"node": ">=20.10.0"
+	},
+	"homepage": "https://github.com/0xar-ds/public",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0xar-ds/public"
+	},
+	"bugs": {
+		"url": "https://github.com/0xar-ds/public/issues",
+		"email": "sadden-rope-sleek@duck.com"
+	},
+	"contributors": [
+		"0xar-ds <sadden-rope-sleek@duck.com>"
+	],
+	"devDependencies": {
+		"@eslint/compat": "catalog:code-quality",
+		"@eslint/js": "catalog:code-quality",
+		"@typescript-eslint/parser": "catalog:code-quality",
+		"eslint": "catalog:code-quality",
+		"eslint-config-prettier": "catalog:code-quality",
+		"eslint-import-resolver-typescript": "catalog:code-quality",
+		"eslint-plugin-import-x": "catalog:code-quality",
+		"eslint-plugin-svelte": "catalog:code-quality",
+		"globals": "catalog:code-quality",
+		"typescript-eslint": "catalog:code-quality"
+	},
+	"main": "./src/base.eslint-config.js",
+	"types": "./src/base.eslint-config.d.ts",
 	"exports": {
 		".": {
 			"default": "./src/base.eslint-config.js",
@@ -14,18 +45,18 @@
 		"./utils": {
 			"default": "./src/utils/utils.js",
 			"types": "./src/utils/utils.d.ts"
-		}
+		},
+		"./package.json": "./package.json"
 	},
-	"devDependencies": {
-		"@eslint/compat": "catalog:code-quality",
-		"@eslint/js": "catalog:code-quality",
-		"@typescript-eslint/parser": "catalog:code-quality",
-		"eslint": "catalog:code-quality",
-		"eslint-config-prettier": "catalog:code-quality",
-		"eslint-import-resolver-typescript": "catalog:code-quality",
-		"eslint-plugin-import-x": "catalog:code-quality",
-		"eslint-plugin-svelte": "catalog:code-quality",
-		"globals": "catalog:code-quality",
-		"typescript-eslint": "catalog:code-quality"
-	}
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"src/**/*"
+	],
+	"keywords": [
+		"eslint",
+		"typescript",
+		"svelte"
+	]
 }

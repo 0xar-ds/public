@@ -1,0 +1,36 @@
+fileGroups:
+  semantic-release:
+    - '.releaserc.yaml'
+    - '.npmrc'
+  release:
+    - 'CHANGELOG.md'
+    - 'package.json'
+
+tasks:
+  prepare:
+    type: build
+    description: 'Pulls the project to build an artifact'
+    deps:
+      - target: '~:build'
+        optional: true
+    options:
+      runInCI: false
+      internal: true
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(semantic-release)'
+
+  publish:
+    type: run
+    description: 'Publishes the artifact to configured mediums'
+    command: 'semantic-release'
+    deps:
+      - '~:prepare'
+    options:
+      runInCI: false
+    inputs:
+      - '@group(outputs)'
+      - '@group(semantic-release)'
+    outputs:
+      - '@group(release)'

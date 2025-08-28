@@ -1,1 +1,1 @@
-Shared exceptions structs through kind of systems.
+Status enumeration for consumption in application-or-library outcome representation.

@@ -29,7 +29,6 @@ tasks:
       - '~:prepare'
     options:
       runInCI: false
-      internal: true
     inputs:
       - '@group(outputs)'
       - '@group(semantic-release)'

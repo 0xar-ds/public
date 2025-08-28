@@ -1,11 +1,11 @@
 {
 	"version": "0.0.0",
 	"name": "@~shared/exceptions",
-  "private": true,
+	"private": true,
 	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
 	"license": "GPL-3.0-only",
 	"type": "module",
-  "engines": {
+	"engines": {
 		"node": ">=20.10.0"
 	},
 	"homepage": "https://github.com/0xar-ds/public",
@@ -30,32 +30,31 @@
 		"ts-node": "catalog:build-tooling",
 		"tsconfig-paths": "catalog:utilities"
 	},
-  "dependencies": {
+	"dependencies": {
 		"reflect-metadata": "catalog:utilities",
 		"@~server/core-api": "workspace:^",
 		"@~shared/status": "workspace:^"
 	},
-  "module": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+	"module": "./dist/src/index.js",
+	"types": "./dist/src/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js",
+			"import": "./dist/src/index.js",
 			"default": "./dist/src/index.js"
 		},
 		"./*": {
 			"types": "./dist/src/*.d.ts",
-      "import": "./dist/src/*.js",
+			"import": "./dist/src/*.js",
 			"default": "./dist/src/*.js"
 		},
-    "./package.json": "./package.json"
+		"./package.json": "./package.json"
 	},
-  "publishConfig": {
-    "access": "restricted"
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "keywords": [
-  ]
+	"publishConfig": {
+		"access": "restricted"
+	},
+	"files": [
+		"dist/**/*"
+	],
+	"keywords": []
 }

@@ -22,9 +22,7 @@ export default makeTsConfig(
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 			parserOptions: {
-				projectService: {
-          allowDefaultProject: ["tsdown.config.ts"]
-        },
+				projectService: true,
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},

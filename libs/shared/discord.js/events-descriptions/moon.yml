@@ -10,5 +10,5 @@ tags:
   - 'code-quality'
 
 project:
-  name: 'Utilities for Discord.js client events'
-  description: 'Utilities around Discord.js struct of events'
+  name: 'Discord.js Client/Gateway events descriptions'
+  description: 'Definitions & implementation for building descriptions of discord.js events'

@@ -18,11 +18,16 @@
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
 	"devDependencies": {
+		"@anolilab/semantic-release-pnpm": "catalog:build-tooling",
+		"@semantic-release/changelog": "catalog:build-tooling",
+		"@semantic-release/commit-analyzer": "catalog:build-tooling",
+		"@semantic-release/release-notes-generator": "catalog:build-tooling",
 		"eslint": "catalog:code-quality",
 		"packemon": "catalog:build-tooling",
 		"prettier": "catalog:code-quality",
-		"release-it": "catalog:build-tooling",
-		"release-it-pnpm": "catalog:build-tooling",
+		"semantic-release": "catalog:build-tooling",
+		"semantic-release-monorepo": "catalog:build-tooling",
+		"tsdown": "^0.14.2",
 		"typescript": "catalog:build-tooling"
 	},
 	"engines": {
@@ -33,5 +38,6 @@
 		"monorepo",
 		"moonrepo",
 		"proto"
-	]
+	],
+	"packageManager": "pnpm@10.12.1"
 }

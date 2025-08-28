@@ -1,6 +1,6 @@
 node = "23.0.0"
 pnpm = "10.12.1"
-moon = "1.38.0"
+moon = "1.39.4"
 
 [settings]
 auto-clean = true

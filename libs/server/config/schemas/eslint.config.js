@@ -2,12 +2,12 @@ import globals from 'globals';
 
 import { fileURLToPath } from 'node:url';
 
-import config from '@argentina-community/eslint-config';
+import config from '0x-eslint-config';
 
 import {
 	includeIgnoreFile,
 	makeTsConfig,
-} from '@argentina-community/eslint-config/utils';
+} from '0x-eslint-config/utils';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 

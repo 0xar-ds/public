@@ -56,7 +56,7 @@
 		}
 	},
   "devDependencies": {
-		"@argentina-community/eslint-config": "workspace:^",
+		"0x-eslint-config": "workspace:^",
 		"@nestjs/cli": "catalog:nest",
 		"@nestjs/schematics": "catalog:nest",
 		"@nestjs/testing": "catalog:nest",

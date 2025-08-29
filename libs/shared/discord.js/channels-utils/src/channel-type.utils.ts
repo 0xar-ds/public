@@ -12,6 +12,11 @@ export function getChannelTypeKey(
 	return ChannelType[value] as keyof typeof ChannelType;
 }
 
+/**
+ * @param type the channel type to compare agaisnt
+ * @param channel the value to check
+ * @returns whether channel is of type provided
+ */
 export function isChannelOfType<T extends ChannelType>(
 	type: T,
 	channel: Channel,

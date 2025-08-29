@@ -16,7 +16,7 @@ import {
 	ChannelTypeMap,
 	getChannelTypeKey,
 	isChannelOfType,
-} from '0x-discord.js-channels-utils';
+} from '0xar-discord.js-channels-utils';
 
 import { SharedReplayRefresh } from '@~rxjs/shared-replay';
 import { Status } from '@~server/core-api';

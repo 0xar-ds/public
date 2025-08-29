@@ -55,7 +55,7 @@
 		}
 	},
 	"devDependencies": {
-		"0x-eslint-config": "workspace:^",
+		"0xar-eslint-config": "workspace:^",
 		"@nestjs/cli": "catalog:nest",
 		"@nestjs/schematics": "catalog:nest",
 		"@nestjs/testing": "catalog:nest",
@@ -75,7 +75,7 @@
 		"@~rxjs/shared-replay": "workspace:^",
 		"@~server/config-schemas": "workspace:^",
 		"@~discord/core": "workspace:^",
-		"0x-discord.js-channels-utils": "workspace:^",
+		"0xar-discord.js-channels-utils": "workspace:^",
 		"@~server/core-api": "workspace:^",
 		"discord.js": "catalog:discord",
 		"necord": "catalog:discord",

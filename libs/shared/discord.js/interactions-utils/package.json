@@ -1,6 +1,6 @@
 {
 	"version": "0.0.0",
-	"name": "0x-discord.js-interactions-utils",
+	"name": "0xar-discord.js-interactions-utils",
 	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
 	"license": "GPL-3.0-only",
 	"type": "module",
@@ -20,7 +20,7 @@
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
 	"devDependencies": {
-		"0x-eslint-config": "workspace:^",
+		"0xar-eslint-config": "workspace:^",
 		"@types/express": "catalog:environment",
 		"@types/node": "catalog:environment",
 		"globals": "catalog:code-quality",

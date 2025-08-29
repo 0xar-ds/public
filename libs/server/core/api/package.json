@@ -23,7 +23,7 @@
 	"devDependencies": {
 		"@types/express": "catalog:environment",
 		"@types/node": "catalog:environment",
-		"0x-eslint-config": "workspace:^",
+		"0xar-eslint-config": "workspace:^",
 		"globals": "catalog:code-quality",
 		"source-map-support": "catalog:utilities",
 		"ts-loader": "catalog:build-tooling",

@@ -2,8 +2,6 @@ fileGroups:
   tsdown:
     - 'tsdown.config.ts'
     - 'tsconfig.*.json'
-    - '/tsdown.config.ts'
-    - '/tsconfig.*.json'
 
 tasks:
   # Build for development

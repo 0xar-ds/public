@@ -1,5 +1,5 @@
 extends: 'semantic-release-monorepo'
-tagFormat: channels-utils-v${version}
+tagFormat: events-descriptions-v${version}
 branches:
   - master
   - next

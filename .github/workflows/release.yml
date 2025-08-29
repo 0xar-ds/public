@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: moon run :publish
+        run: moon run --no-bail :publish
         
       - name: Summarize release pipeline
         uses: appthrust/moon-ci-retrospect@v1

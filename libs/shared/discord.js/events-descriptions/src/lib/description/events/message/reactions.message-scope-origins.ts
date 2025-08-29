@@ -10,6 +10,7 @@ import {
 	groupNamespace,
 	GuildId,
 	guildNamespace,
+	MemberId,
 	memberNamespace,
 	OriginKind,
 	RecipientId,
@@ -23,11 +24,11 @@ import {
 declare global {
 	interface EventOriginMap {
 		messageReactionAdd:
-			| `::${ShardId} ${OriginKind.Actor} member/${Unknown}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 
 		messageReactionRemove:
-			| `::${ShardId} ${OriginKind.Actor} member/${Unknown}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 
 		messageReactionRemoveAll:
@@ -49,14 +50,14 @@ export const messageReactionAdd: EventOriginMapper<'messageReactionAdd'> = (
 ) =>
 	reaction.message.channel.isDMBased()
 		? `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(user.id)}`
-		: `::${reaction.message.channel.guild.shardId} ${OriginKind.Actor} ${memberNamespace(UNKNOWN)}:${user.id}`;
+		: `::${reaction.message.channel.guild.shardId} ${OriginKind.Actor} ${memberNamespace(user.id)}`;
 
 export const messageReactionRemove: EventOriginMapper<
 	'messageReactionRemove'
 > = (reaction, user, _details) =>
 	reaction.message.channel.isDMBased()
 		? `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(user.id)}`
-		: `::${reaction.message.channel.guild.shardId} ${OriginKind.Actor} ${memberNamespace(UNKNOWN)}:${user.id}`;
+		: `::${reaction.message.channel.guild.shardId} ${OriginKind.Actor} ${memberNamespace(user.id)}`;
 
 export const messageReactionRemoveAll: EventOriginMapper<
 	'messageReactionRemoveAll'

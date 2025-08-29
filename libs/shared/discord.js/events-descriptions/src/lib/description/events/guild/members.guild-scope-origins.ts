@@ -12,7 +12,7 @@ import {
 
 declare global {
 	interface EventOriginMap {
-		guildMemberAdd: `::${ShardId} ${OriginKind.Actor} member/${MemberId}:${UserId}`;
+		guildMemberAdd: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
 		guildMemberUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
 		guildMemberRemove: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
 
@@ -22,7 +22,7 @@ declare global {
 }
 
 export const guildMemberAdd: EventOriginMapper<'guildMemberAdd'> = (member) =>
-	`::${member.guild.shardId} ${OriginKind.Actor} ${memberNamespace(member.id)}:${member.user.id}`;
+	`::${member.guild.shardId} ${OriginKind.Actor} ${memberNamespace(member.id)}`;
 
 export const guildMemberUpdate: EventOriginMapper<'guildMemberUpdate'> = (
 	_previous,

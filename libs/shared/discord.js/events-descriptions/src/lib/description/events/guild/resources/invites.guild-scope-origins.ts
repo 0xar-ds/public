@@ -10,6 +10,7 @@ import {
 	guildNamespace,
 	MaybeUnknown,
 	maybeUnknown,
+	MemberId,
 	memberNamespace,
 	OriginKind,
 	ShardId,
@@ -21,7 +22,7 @@ import {
 declare global {
 	interface EventOriginMap {
 		inviteCreate:
-			| `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${Unknown}:${MaybeUnknown<UserId>}`
+			| `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`
 			| `::${Unknown} ${OriginKind.Actor} user/${MaybeUnknown<UserId>}`;
 		inviteDelete:
 			| `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}:${MaybeUnknown<ChannelId>}`
@@ -32,7 +33,7 @@ declare global {
 
 export const inviteCreate: EventOriginMapper<'inviteCreate'> = (invite) =>
 	invite.type === InviteType.Guild
-		? `::${maybeUnknown((invite?.guild as Guild)?.shardId)} ${OriginKind.Actor} ${memberNamespace(UNKNOWN)}:${maybeUnknown(invite.inviterId)}`
+		? `::${maybeUnknown((invite?.guild as Guild)?.shardId)} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(invite.inviterId))}`
 		: `::${UNKNOWN} ${OriginKind.Actor} user/${maybeUnknown(invite.inviterId)}`;
 
 export const inviteDelete: EventOriginMapper<'inviteDelete'> = (invite) =>

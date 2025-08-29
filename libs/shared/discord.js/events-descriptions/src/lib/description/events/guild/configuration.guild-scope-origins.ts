@@ -22,11 +22,11 @@ declare global {
 
 		guildUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
 
-		autoModerationRuleCreate: `::${ShardId} ${OriginKind.Actor} member/${Unknown}:${UserId}`;
+		autoModerationRuleCreate: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
 		autoModerationRuleUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
 		autoModerationRuleDelete: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
 
-		autoModerationActionExecution: `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`;
+		autoModerationActionExecution: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
 	}
 }
 
@@ -48,7 +48,7 @@ export const guildUpdate: EventOriginMapper<'guildUpdate'> = (
 export const autoModerationRuleCreate: EventOriginMapper<
 	'autoModerationRuleCreate'
 > = (rule) =>
-	`::${rule.guild.shardId} ${OriginKind.Actor} ${memberNamespace(UNKNOWN)}:${rule.creatorId}`;
+	`::${rule.guild.shardId} ${OriginKind.Actor} ${memberNamespace(rule.creatorId)}`;
 
 export const autoModerationRuleUpdate: EventOriginMapper<
 	'autoModerationRuleUpdate'
@@ -63,4 +63,4 @@ export const autoModerationRuleDelete: EventOriginMapper<
 export const autoModerationActionExecution: EventOriginMapper<
 	'autoModerationActionExecution'
 > = (execution) =>
-	`::${execution.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(execution.member?.id))}:${execution.userId}`;
+	`::${execution.guild.shardId} ${OriginKind.Actor} ${memberNamespace(execution.member?.id ?? execution.userId)}`;

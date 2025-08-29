@@ -32,11 +32,11 @@ declare global {
 		userUpdate: `::${Unknown} ${OriginKind.Gateway} user/${UserId}`;
 
 		interactionCreate:
-			| `::${MaybeUnknown<UserId>} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`
+			| `::${MaybeUnknown<UserId>} ${OriginKind.Actor} member/${MemberId}`
 			| `::${MaybeUnknown<UserId>} ${OriginKind.Actor} user/${UserId}`;
 
 		presenceUpdate: MaybeUnknown<
-			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`
 		>;
 	}
@@ -85,7 +85,7 @@ export const interactionCreate: EventOriginMapper<'interactionCreate'> = (
 	interaction,
 ) =>
 	interaction.inGuild()
-		? `::${maybeUnknown(interaction.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(maybeUnknown((interaction.member as GuildMember | PartialGuildMember)?.id))}:${interaction.user.id}`
+		? `::${maybeUnknown(interaction.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(interaction.user.id)}`
 		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(interaction.user.id)}`;
 
 export const presenceUpdate: EventOriginMapper<'presenceUpdate'> = (
@@ -93,6 +93,6 @@ export const presenceUpdate: EventOriginMapper<'presenceUpdate'> = (
 ) =>
 	presence !== null
 		? presence.member !== null
-			? `::${presence.member.guild.shardId} ${OriginKind.Actor} ${memberNamespace(presence.member.id)}:${presence.userId}`
+			? `::${presence.member.guild.shardId} ${OriginKind.Actor} ${memberNamespace(presence.member.id)}`
 			: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(presence.userId)}`
 		: UNKNOWN;

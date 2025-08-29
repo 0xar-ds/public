@@ -16,11 +16,11 @@ import {
 declare global {
 	interface EventOriginMap {
 		messagePollVoteAdd:
-			| `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 
 		messagePollVoteRemove:
-			| `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 	}
 }
@@ -30,12 +30,12 @@ export const messagePollVoteAdd: EventOriginMapper<'messagePollVoteAdd'> = (
 	userId,
 ) =>
 	answer.poll.message.inGuild()
-		? `::${answer.poll.message.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(answer.poll.message.member?.id))}:${userId}`
+		? `::${answer.poll.message.guild.shardId} ${OriginKind.Actor} ${memberNamespace(answer.poll.message.member?.id ?? userId)}`
 		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(userId)}`;
 
 export const messagePollVoteRemove: EventOriginMapper<
 	'messagePollVoteRemove'
 > = (answer, userId) =>
 	answer.poll.message.inGuild()
-		? `::${answer.poll.message.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(answer.poll.message.member?.id))}:${userId}`
+		? `::${answer.poll.message.guild.shardId} ${OriginKind.Actor} ${memberNamespace(answer.poll.message.member?.id ?? userId)}`
 		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(userId)}`;

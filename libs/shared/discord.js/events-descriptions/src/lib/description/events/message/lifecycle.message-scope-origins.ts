@@ -23,11 +23,11 @@ import {
 declare global {
 	interface EventOriginMap {
 		messageCreate:
-			| `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 
 		messageUpdate:
-			| `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 
 		messageDelete:
@@ -38,7 +38,7 @@ declare global {
 
 export const messageCreate: EventOriginMapper<'messageCreate'> = (message) =>
 	message.inGuild()
-		? `::${message.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(message.member?.id))}:${message.author.id}`
+		? `::${message.guild.shardId} ${OriginKind.Actor} ${memberNamespace(message.member?.id ?? message.author.id)}`
 		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(message.author.id)}`;
 
 export const messageUpdate: EventOriginMapper<'messageUpdate'> = (
@@ -46,7 +46,7 @@ export const messageUpdate: EventOriginMapper<'messageUpdate'> = (
 	current,
 ) =>
 	current.inGuild()
-		? `::${current.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(current.member?.id))}:${current.author.id}`
+		? `::${current.guild.shardId} ${OriginKind.Actor} ${memberNamespace(current.member?.id ?? current.author.id)}`
 		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(current.author.id)}`;
 
 export const messageDelete: EventOriginMapper<'messageDelete'> = (message) =>

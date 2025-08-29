@@ -25,7 +25,7 @@ import {
 declare global {
 	interface EventOriginMap {
 		typingStart:
-			| `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${UserId}`
+			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
 			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
 
 		messageDeleteBulk: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
@@ -39,7 +39,7 @@ declare global {
 
 export const typingStart: EventOriginMapper<'typingStart'> = (typing) =>
 	typing.inGuild()
-		? `::${typing.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(typing.member?.id))}:${typing.user.id}`
+		? `::${typing.guild.shardId} ${OriginKind.Actor} ${memberNamespace(typing.user.id)}`
 		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(typing.user.id)}`;
 
 export const messageDeleteBulk: EventOriginMapper<'messageDeleteBulk'> = (

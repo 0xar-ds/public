@@ -14,8 +14,8 @@ import {
 
 declare global {
 	interface EventOriginMap {
-		voiceStateUpdate: `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}:${MaybeUnknown<UserId>}`;
-		voiceChannelEffectSend: `::${ShardId} ${OriginKind.Actor} member/${Unknown}:${UserId}`;
+		voiceStateUpdate: `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`;
+		voiceChannelEffectSend: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
 	}
 }
 
@@ -23,9 +23,9 @@ export const voiceStateUpdate: EventOriginMapper<'voiceStateUpdate'> = (
 	_previous,
 	current,
 ) =>
-	`::${current.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(current.member?.id))}:${maybeUnknown(current.member?.user.id)}`;
+	`::${current.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(current.member?.id ?? current.member?.user.id))}`;
 
 export const voiceChannelEffectSend: EventOriginMapper<
 	'voiceChannelEffectSend'
 > = (effect) =>
-	`::${effect.guild.shardId} ${OriginKind.Actor} ${memberNamespace(UNKNOWN)}:${effect.userId}`;
+	`::${effect.guild.shardId} ${OriginKind.Actor} ${memberNamespace(effect.userId)}`;

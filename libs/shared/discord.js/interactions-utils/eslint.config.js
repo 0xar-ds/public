@@ -4,10 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 import config from '0x-eslint-config';
 
-import {
-	includeIgnoreFile,
-	makeTsConfig,
-} from '0x-eslint-config/utils';
+import { includeIgnoreFile, makeTsConfig } from '0x-eslint-config/utils';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 

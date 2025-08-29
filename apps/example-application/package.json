@@ -1,11 +1,11 @@
 {
 	"version": "0.0.0",
 	"name": "@~apps/example-application",
-  "private": true,
+	"private": true,
 	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
 	"license": "GPL-3.0-only",
 	"type": "module",
-  "engines": {
+	"engines": {
 		"node": ">=20.10.0"
 	},
 	"homepage": "https://github.com/0xar-ds/public",
@@ -20,7 +20,6 @@
 	"contributors": [
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
-
 	"imports": {
 		"#root/*": {
 			"types": "./src/*",
@@ -55,7 +54,7 @@
 			"default": "./dist/src/app/api/gateway/exception-filters/*"
 		}
 	},
-  "devDependencies": {
+	"devDependencies": {
 		"0x-eslint-config": "workspace:^",
 		"@nestjs/cli": "catalog:nest",
 		"@nestjs/schematics": "catalog:nest",
@@ -91,12 +90,11 @@
 		"reflect-metadata": "catalog:utilities",
 		"rxjs": "catalog:libraries"
 	},
-  "publishConfig": {
-    "access": "restricted"
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "keywords": [
-  ]
+	"publishConfig": {
+		"access": "restricted"
+	},
+	"files": [
+		"dist/**/*"
+	],
+	"keywords": []
 }

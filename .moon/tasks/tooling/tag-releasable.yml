@@ -1,7 +1,6 @@
 fileGroups:
   semantic-release:
     - '.releaserc.yaml'
-    - '.npmrc'
   release:
     - 'CHANGELOG.md'
     - 'package.json'
@@ -32,5 +31,3 @@ tasks:
     inputs:
       - '@group(outputs)'
       - '@group(semantic-release)'
-    outputs:
-      - '@group(release)'

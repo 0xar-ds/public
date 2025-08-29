@@ -3,7 +3,7 @@ import { Snowflake } from 'discord.js';
 import {
 	getInteractionTypeKey,
 	InteractionTypeKey,
-} from '@~discord.js/interactions';
+} from 'discord.js-interactions-utils';
 
 import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
 

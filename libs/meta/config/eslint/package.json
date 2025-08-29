@@ -38,6 +38,10 @@
 			"default": "./src/base.eslint-config.js",
 			"types": "./src/base.eslint-config.d.ts"
 		},
+    "./base": {
+      "default": "./src/base.eslint-config.js",
+			"types": "./src/base.eslint-config.d.ts"
+    },
 		"./svelte": {
 			"default": "./src/svelte.eslint-config.js",
 			"types": "./src/svelte.eslint-config.d.ts"

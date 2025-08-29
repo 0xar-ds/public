@@ -5,7 +5,7 @@ import {
 	Snowflake,
 } from 'discord.js';
 
-import { isChannelOfType } from 'discord.js-channels-utils';
+import { isChannelOfType } from '0x-discord.js-channels-utils';
 
 import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
 

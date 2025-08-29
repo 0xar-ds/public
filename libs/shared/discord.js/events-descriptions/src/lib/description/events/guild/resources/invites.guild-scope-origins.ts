@@ -1,44 +1,81 @@
-import { Guild, InviteType } from 'discord.js';
+import { InviteType } from 'discord.js';
 
-import { EventOriginMapper } from '../../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../../interface/event-origin.interface.js';
 
 import {
 	ChannelId,
-	directNamespace,
-	groupNamespace,
 	GuildId,
-	guildNamespace,
 	MaybeUnknown,
 	maybeUnknown,
 	MemberId,
-	memberNamespace,
-	OriginKind,
-	ShardId,
-	Unknown,
-	UNKNOWN,
+	OriginNamespace,
+	ProducerKind,
 	UserId,
 } from '../../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
 		inviteCreate:
-			| `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`
-			| `::${Unknown} ${OriginKind.Actor} user/${MaybeUnknown<UserId>}`;
+			| OriginObject<
+					ProducerKind.Actor,
+					OriginNamespace.Member,
+					MaybeUnknown<MemberId>
+			  >
+			| OriginObject<
+					ProducerKind.Actor,
+					OriginNamespace.User,
+					MaybeUnknown<UserId>
+			  >;
 		inviteDelete:
-			| `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}:${MaybeUnknown<ChannelId>}`
-			| `::${Unknown} ${OriginKind.Gateway} group/${MaybeUnknown<ChannelId>}`
-			| `::${Unknown} ${OriginKind.Gateway} direct/${MaybeUnknown<ChannelId>}`;
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Guild,
+					`${MaybeUnknown<GuildId>}:${MaybeUnknown<ChannelId>}`
+			  >
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Group,
+					MaybeUnknown<ChannelId>
+			  >
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Direct,
+					MaybeUnknown<ChannelId>
+			  >;
 	}
 }
 
 export const inviteCreate: EventOriginMapper<'inviteCreate'> = (invite) =>
 	invite.type === InviteType.Guild
-		? `::${maybeUnknown((invite?.guild as Guild)?.shardId)} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(invite.inviterId))}`
-		: `::${UNKNOWN} ${OriginKind.Actor} user/${maybeUnknown(invite.inviterId)}`;
+		? {
+				kind: ProducerKind.Actor,
+				namespace: OriginNamespace.Member,
+				value: maybeUnknown(invite.inviterId),
+			}
+		: {
+				kind: ProducerKind.Actor,
+				namespace: OriginNamespace.User,
+				value: maybeUnknown(invite.inviterId),
+			};
 
 export const inviteDelete: EventOriginMapper<'inviteDelete'> = (invite) =>
 	invite.type === InviteType.Guild
-		? `::${maybeUnknown((invite?.guild as Guild)?.shardId)} ${OriginKind.Gateway} ${guildNamespace(maybeUnknown(invite?.guild?.id))}:${maybeUnknown(invite.channelId)}`
+		? {
+				kind: ProducerKind.Gateway,
+				namespace: OriginNamespace.Guild,
+				value: `${maybeUnknown(invite.guild?.id)}:${maybeUnknown(invite.channelId)}`,
+			}
 		: invite.type === InviteType.GroupDM
-			? `::${UNKNOWN} ${OriginKind.Gateway} ${groupNamespace(maybeUnknown(invite.channelId))}`
-			: `::${UNKNOWN} ${OriginKind.Gateway} ${directNamespace(maybeUnknown(invite.channelId))}`;
+			? {
+					kind: ProducerKind.Gateway,
+					namespace: OriginNamespace.Group,
+					value: maybeUnknown(invite.channelId),
+				}
+			: {
+					kind: ProducerKind.Gateway,
+					namespace: OriginNamespace.Direct,
+					value: maybeUnknown(invite.channelId),
+				};

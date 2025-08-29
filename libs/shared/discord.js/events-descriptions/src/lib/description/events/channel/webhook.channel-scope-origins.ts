@@ -1,22 +1,40 @@
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	ChannelId,
 	GuildId,
-	guildNamespace,
-	OriginKind,
-	ShardId,
+	OriginNamespace,
+	ProducerKind,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		webhookUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
-		webhooksUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
+		webhookUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${ChannelId}`
+		>;
+		webhooksUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${ChannelId}`
+		>;
 	}
 }
 
-export const webhookUpdate: EventOriginMapper<'webhookUpdate'> = (channel) =>
-	`::${channel.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(channel.guildId)}:${channel.id}`;
+export const webhookUpdate: EventOriginMapper<'webhookUpdate'> = (channel) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${channel.guildId}:${channel.id}`,
+});
 
-export const webhooksUpdate: EventOriginMapper<'webhooksUpdate'> = (channel) =>
-	`::${channel.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(channel.guildId)}:${channel.id}`;
+export const webhooksUpdate: EventOriginMapper<'webhooksUpdate'> = (
+	channel,
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${channel.guildId}:${channel.id}`,
+});

@@ -1,29 +1,52 @@
-import { EventOriginMapper } from '../../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
-	OriginKind,
+	OriginNamespace,
+	ProducerKind,
 	RoleId,
-	ShardId,
 } from '../../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		roleCreate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${RoleId}`;
-		roleUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${RoleId}`;
-		roleDelete: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${RoleId}`;
+		roleCreate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${RoleId}`
+		>;
+		roleUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${RoleId}`
+		>;
+		roleDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${RoleId}`
+		>;
 	}
 }
 
-export const roleCreate: EventOriginMapper<'roleCreate'> = (role) =>
-	`::${role.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(role.guild.id)}:${role.id}`;
+export const roleCreate: EventOriginMapper<'roleCreate'> = (role) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${role.guild.id}:${role.id}`,
+});
 
 export const roleUpdate: EventOriginMapper<'roleUpdate'> = (
-	previous,
+	_previous,
 	current,
-) =>
-	`::${current.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(current.guild.id)}:${current.id}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${current.guild.id}:${current.id}`,
+});
 
-export const roleDelete: EventOriginMapper<'roleDelete'> = (role) =>
-	`::${role.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(role.guild.id)}:${role.id}`;
+export const roleDelete: EventOriginMapper<'roleDelete'> = (role) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${role.guild.id}:${role.id}`,
+});

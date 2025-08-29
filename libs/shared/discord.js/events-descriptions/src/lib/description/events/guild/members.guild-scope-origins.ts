@@ -1,42 +1,79 @@
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
 	MemberId,
-	memberNamespace,
-	OriginKind,
-	ShardId,
-	UserId,
+	OriginNamespace,
+	ProducerKind,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildMemberAdd: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
-		guildMemberUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
-		guildMemberRemove: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildMemberAdd: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MemberId
+		>;
+		guildMemberUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
+		guildMemberRemove: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		guildBanAdd: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
-		guildBanRemove: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildBanAdd: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
+		guildBanRemove: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 	}
 }
 
-export const guildMemberAdd: EventOriginMapper<'guildMemberAdd'> = (member) =>
-	`::${member.guild.shardId} ${OriginKind.Actor} ${memberNamespace(member.id)}`;
+export const guildMemberAdd: EventOriginMapper<'guildMemberAdd'> = (
+	member,
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: member.id,
+});
 
 export const guildMemberUpdate: EventOriginMapper<'guildMemberUpdate'> = (
 	_previous,
-	current,
-) =>
-	`::${current.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(current.guild.id)}`;
+	member,
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: member.guild.id,
+});
 
 export const guildMemberRemove: EventOriginMapper<'guildMemberRemove'> = (
 	member,
-) =>
-	`::${member.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(member.guild.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: member.guild.id,
+});
 
-export const guildBanAdd: EventOriginMapper<'guildBanAdd'> = (ban) =>
-	`::${ban.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(ban.guild.id)}`;
+export const guildBanAdd: EventOriginMapper<'guildBanAdd'> = (ban) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: ban.guild.id,
+});
 
-export const guildBanRemove: EventOriginMapper<'guildBanRemove'> = (ban) =>
-	`::${ban.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(ban.guild.id)}`;
+export const guildBanRemove: EventOriginMapper<'guildBanRemove'> = (ban) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: ban.guild.id,
+});

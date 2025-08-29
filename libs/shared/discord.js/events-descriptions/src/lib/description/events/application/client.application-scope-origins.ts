@@ -1,74 +1,140 @@
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
 	MaybeUnknown,
 	maybeUnknown,
 	MemberId,
-	OriginKind,
-	ShardId,
-	systemNamespace,
-	Unknown,
-	UNKNOWN,
+	OriginNamespace,
+	ProducerKind,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildAvailable: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
-		guildUnavailable: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildAvailable: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
+		guildUnavailable: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		guildMemberAvailable: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${MemberId}`;
-		guildMembersChunk: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildMemberAvailable: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${MemberId}`
+		>;
+		guildMembersChunk: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		threadMemberUpdate: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}:${MemberId}`;
+		threadMemberUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${MaybeUnknown<GuildId>}:${MemberId}`
+		>;
 
-		threadListSync: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		threadListSync: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		soundboardSounds: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		soundboardSounds: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		cacheSweep: `::${Unknown} ${OriginKind.Gateway} system/cache`;
+		cacheSweep: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'cache'
+		>;
 
-		invalidated: `::${Unknown} ${OriginKind.Gateway} system/cache`;
+		invalidated: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'cache'
+		>;
 	}
 }
 
-export const guildAvailable: EventOriginMapper<'guildAvailable'> = (guild) =>
-	`::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+export const guildAvailable: EventOriginMapper<'guildAvailable'> = (guild) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
 export const guildUnavailable: EventOriginMapper<'guildUnavailable'> = (
 	guild,
-) => `::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
 export const guildMemberAvailable: EventOriginMapper<'guildMemberAvailable'> = (
 	member,
-) =>
-	`::${member.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(member.guild.id)}:${member.id}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${member.guild.id}:${member.id}`,
+});
 
 export const guildMembersChunk: EventOriginMapper<'guildMembersChunk'> = (
 	_members,
 	guild,
 	_chunk,
-) => `::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
 export const threadMemberUpdate: EventOriginMapper<'threadMemberUpdate'> = (
 	_previous,
 	current,
-) =>
-	`::${maybeUnknown(current.guildMember?.guild.shardId)} ${OriginKind.Gateway} ${guildNamespace(maybeUnknown(current.guildMember?.guild.id))}:${current.id}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${maybeUnknown(current.guildMember?.guild.id)}:${current.id}`,
+});
 
 export const threadListSync: EventOriginMapper<'threadListSync'> = (
 	_threads,
 	guild,
-) => `::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
 export const soundboardSounds: EventOriginMapper<'soundboardSounds'> = (
 	_sounds,
 	guild,
-) => `::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
-export const cacheSweep: EventOriginMapper<'cacheSweep'> = (_message) =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${systemNamespace('cache')}`;
+export const cacheSweep: EventOriginMapper<'cacheSweep'> = (_message) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'cache',
+});
 
-export const invalidated: EventOriginMapper<'invalidated'> = () =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${systemNamespace('cache')}`;
+export const invalidated: EventOriginMapper<'invalidated'> = () => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'cache',
+});

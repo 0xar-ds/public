@@ -1,70 +1,131 @@
-import { EventOriginMapper } from '../../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
 	MaybeUnknown,
 	maybeUnknown,
 	MemberId,
-	memberNamespace,
-	OriginKind,
-	ShardId,
-	Unknown,
-	UNKNOWN,
-	UserId,
+	OriginNamespace,
+	ProducerKind,
 } from '../../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildSoundboardSoundCreate: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`;
-		guildSoundboardSoundUpdate: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}`;
-		guildSoundboardSoundDelete: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}`;
+		guildSoundboardSoundCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MaybeUnknown<MemberId>
+		>;
+		guildSoundboardSoundUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			MaybeUnknown<GuildId>
+		>;
+		guildSoundboardSoundDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			MaybeUnknown<GuildId>
+		>;
 
-		emojiCreate: `::${ShardId} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`;
-		emojiUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}`;
-		emojiDelete: `::${ShardId} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}`;
+		emojiCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MaybeUnknown<MemberId>
+		>;
+		emojiUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			MaybeUnknown<GuildId>
+		>;
+		emojiDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			MaybeUnknown<GuildId>
+		>;
 
-		stickerCreate: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`;
-		stickerUpdate: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}`;
-		stickerDelete: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${MaybeUnknown<GuildId>}`;
+		stickerCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MaybeUnknown<MemberId>
+		>;
+		stickerUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			MaybeUnknown<GuildId>
+		>;
+		stickerDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			MaybeUnknown<GuildId>
+		>;
 	}
 }
 
 export const guildSoundboardSoundCreate: EventOriginMapper<
 	'guildSoundboardSoundCreate'
-> = (sound) =>
-	`::${maybeUnknown(sound.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(sound.user?.id))}`;
+> = (sound) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: maybeUnknown(sound.user?.id),
+});
 
 export const guildSoundboardSoundUpdate: EventOriginMapper<
 	'guildSoundboardSoundUpdate'
-> = (_previous, current) =>
-	`::${maybeUnknown(current.guild?.shardId)} ${OriginKind.Gateway} ${guildNamespace(maybeUnknown(current.guildId))}`;
+> = (_previous, current) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: maybeUnknown(current.guildId),
+});
 
 export const guildSoundboardSoundDelete: EventOriginMapper<
 	'guildSoundboardSoundDelete'
-> = (sound) =>
-	`::${maybeUnknown(sound.guild?.shardId)} ${OriginKind.Gateway} ${guildNamespace(maybeUnknown(sound.guildId))}`;
+> = (sound) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: maybeUnknown(sound.guildId),
+});
 
-export const emojiCreate: EventOriginMapper<'emojiCreate'> = (emoji) =>
-	`::${emoji.guild.shardId} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(emoji.author?.id))}`;
+export const emojiCreate: EventOriginMapper<'emojiCreate'> = (emoji) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: maybeUnknown(emoji.author?.id),
+});
 
 export const emojiUpdate: EventOriginMapper<'emojiUpdate'> = (
 	_previous,
 	current,
-) =>
-	`::${current.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(current.guild.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: current.guild.id,
+});
 
-export const emojiDelete: EventOriginMapper<'emojiDelete'> = (emoji) =>
-	`::${emoji.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(emoji.guild.id)}`;
+export const emojiDelete: EventOriginMapper<'emojiDelete'> = (emoji) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: emoji.guild.id,
+});
 
-export const stickerCreate: EventOriginMapper<'stickerCreate'> = (sticker) =>
-	`::${maybeUnknown(sticker.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(sticker.user?.id))}`;
+export const stickerCreate: EventOriginMapper<'stickerCreate'> = (sticker) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: maybeUnknown(sticker.user?.id),
+});
 
 export const stickerUpdate: EventOriginMapper<'stickerUpdate'> = (
 	_previous,
 	current,
-) =>
-	`::${maybeUnknown(current.guild?.shardId)} ${OriginKind.Gateway} ${guildNamespace(maybeUnknown(current.guild?.id))}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: maybeUnknown(current.guildId),
+});
 
-export const stickerDelete: EventOriginMapper<'stickerDelete'> = (sticker) =>
-	`::${maybeUnknown(sticker.guild?.shardId)} ${OriginKind.Gateway} ${guildNamespace(maybeUnknown(sticker.guild?.id))}`;
+export const stickerDelete: EventOriginMapper<'stickerDelete'> = (sticker) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: maybeUnknown(sticker.guildId),
+});

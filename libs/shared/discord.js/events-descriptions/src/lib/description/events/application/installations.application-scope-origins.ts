@@ -1,64 +1,120 @@
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
-	MaybeUnknown,
-	maybeUnknown,
-	OriginKind,
-	ShardId,
-	UNKNOWN,
-	Unknown,
+	OriginNamespace,
+	ProducerKind,
 	UserId,
-	userNamespace,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildCreate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
-		guildDelete: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildCreate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
+		guildDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		entitlementCreate: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} user/${UserId}`;
-		entitlementUpdate: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} user/${UserId}`;
-		entitlementDelete: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} user/${UserId}`;
+		entitlementCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.User,
+			UserId
+		>;
+		entitlementUpdate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.User,
+			UserId
+		>;
+		entitlementDelete: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.User,
+			UserId
+		>;
 
-		subscriptionCreate: `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
-		subscriptionUpdate: `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
-		subscriptionDelete: `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
+		subscriptionCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.User,
+			UserId
+		>;
+		subscriptionUpdate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.User,
+			UserId
+		>;
+		subscriptionDelete: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.User,
+			UserId
+		>;
 	}
 }
 
-export const guildCreate: EventOriginMapper<'guildCreate'> = (guild) =>
-	`::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+export const guildCreate: EventOriginMapper<'guildCreate'> = (guild) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
-export const guildDelete: EventOriginMapper<'guildDelete'> = (guild) =>
-	`::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+export const guildDelete: EventOriginMapper<'guildDelete'> = (guild) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
 export const entitlementCreate: EventOriginMapper<'entitlementCreate'> = (
 	entitlement,
-) =>
-	`::${maybeUnknown(entitlement.guild?.shardId)} ${OriginKind.Actor} ${userNamespace(entitlement.userId)}`;
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.User,
+	value: entitlement.userId,
+});
 
 export const entitlementUpdate: EventOriginMapper<'entitlementUpdate'> = (
 	_previous,
 	current,
-) =>
-	`::${maybeUnknown(current.guild?.shardId)} ${OriginKind.Actor} ${userNamespace(current.userId)}`;
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.User,
+	value: current.userId,
+});
 
 export const entitlementDelete: EventOriginMapper<'entitlementDelete'> = (
 	entitlement,
-) =>
-	`::${maybeUnknown(entitlement.guild?.shardId)} ${OriginKind.Actor} ${userNamespace(entitlement.userId)}`;
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.User,
+	value: entitlement.userId,
+});
 
 export const subscriptionCreate: EventOriginMapper<'subscriptionCreate'> = (
 	subscription,
-) => `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(subscription.userId)}`;
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.User,
+	value: subscription.userId,
+});
 
 export const subscriptionUpdate: EventOriginMapper<'subscriptionUpdate'> = (
 	_previous,
 	current,
-) => `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(current.userId)}`;
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.User,
+	value: current.userId,
+});
 
 export const subscriptionDelete: EventOriginMapper<'subscriptionDelete'> = (
 	subscription,
-) => `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(subscription.userId)}`;
+) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.User,
+	value: subscription.userId,
+});

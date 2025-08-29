@@ -21,10 +21,19 @@ export function maybeUnknown<T extends string | number>(
 	return value ?? UNKNOWN;
 }
 
-export enum OriginKind {
+export enum ProducerKind {
 	Gateway = 'gateway',
 	Client = 'client',
 	Actor = 'actor',
+}
+
+export enum OriginNamespace {
+	System = 'system',
+	Guild = 'guild',
+	User = 'user',
+	Member = 'member',
+	Direct = 'direct',
+	Group = 'group',
 }
 
 export function systemNamespace<T extends string>(value: T): `system/${T}` {

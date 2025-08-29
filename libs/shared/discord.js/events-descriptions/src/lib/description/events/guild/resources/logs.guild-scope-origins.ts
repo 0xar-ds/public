@@ -1,19 +1,28 @@
-import { EventOriginMapper } from '../../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
-	OriginKind,
-	ShardId,
+	OriginNamespace,
+	ProducerKind,
 } from '../../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildAuditLogEntryCreate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildAuditLogEntryCreate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 	}
 }
 
 export const guildAuditLogEntryCreate: EventOriginMapper<
 	'guildAuditLogEntryCreate'
-> = (_entry, guild) =>
-	`::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+> = (_entry, guild) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});

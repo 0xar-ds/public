@@ -1,41 +1,79 @@
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	ChannelId,
-	directNamespace,
 	GuildId,
-	guildNamespace,
-	OriginKind,
+	OriginNamespace,
+	ProducerKind,
 	RecipientId,
-	ShardId,
-	Unknown,
-	UNKNOWN,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		channelCreate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
+		channelCreate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${ChannelId}`
+		>;
 		channelUpdate:
-			| `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`
-			| `::${Unknown} ${OriginKind.Gateway} direct/${RecipientId}:${ChannelId}`;
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Guild,
+					`${GuildId}:${ChannelId}`
+			  >
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Direct,
+					`${RecipientId}:${ChannelId}`
+			  >;
 		channelDelete:
-			| `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`
-			| `::${Unknown} ${OriginKind.Gateway} direct/${RecipientId}:${ChannelId}`;
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Guild,
+					`${GuildId}:${ChannelId}`
+			  >
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Direct,
+					`${RecipientId}:${ChannelId}`
+			  >;
 	}
 }
 
-export const channelCreate: EventOriginMapper<'channelCreate'> = (channel) =>
-	`::${channel.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(channel.guildId)}:${channel.id}`;
+export const channelCreate: EventOriginMapper<'channelCreate'> = (channel) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${channel.guildId}:${channel.id}`,
+});
 
 export const channelUpdate: EventOriginMapper<'channelUpdate'> = (
 	_previous,
 	current,
 ) =>
 	current.isDMBased()
-		? `::${UNKNOWN} ${OriginKind.Gateway} ${directNamespace(current.recipientId)}:${current.id}`
-		: `::${current.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(current.guildId)}:${current.id}`;
+		? {
+				kind: ProducerKind.Gateway,
+				namespace: OriginNamespace.Direct,
+				value: `${current.recipientId}:${current.id}`,
+			}
+		: {
+				kind: ProducerKind.Gateway,
+				namespace: OriginNamespace.Guild,
+				value: `${current.guildId}:${current.id}`,
+			};
 
 export const channelDelete: EventOriginMapper<'channelDelete'> = (channel) =>
 	channel.isDMBased()
-		? `::${UNKNOWN} ${OriginKind.Gateway} ${directNamespace(channel.recipientId)}:${channel.id}`
-		: `::${channel.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(channel.guildId)}:${channel.id}`;
+		? {
+				kind: ProducerKind.Gateway,
+				namespace: OriginNamespace.Direct,
+				value: `${channel.recipientId}:${channel.id}`,
+			}
+		: {
+				kind: ProducerKind.Gateway,
+				namespace: OriginNamespace.Guild,
+				value: `${channel.guildId}:${channel.id}`,
+			};

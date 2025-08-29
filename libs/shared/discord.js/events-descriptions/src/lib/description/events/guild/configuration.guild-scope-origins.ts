@@ -1,66 +1,112 @@
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	GuildId,
-	guildNamespace,
-	MaybeUnknown,
-	maybeUnknown,
 	MemberId,
-	memberNamespace,
-	OriginKind,
-	ShardId,
-	UNKNOWN,
-	Unknown,
-	UserId,
+	OriginNamespace,
+	ProducerKind,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildIntegrationsUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildIntegrationsUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		applicationCommandPermissionsUpdate: `::${Unknown} ${OriginKind.Gateway} guild/${GuildId}`;
+		applicationCommandPermissionsUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		guildUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		guildUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		autoModerationRuleCreate: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
-		autoModerationRuleUpdate: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
-		autoModerationRuleDelete: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}`;
+		autoModerationRuleCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MemberId
+		>;
+		autoModerationRuleUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
+		autoModerationRuleDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			GuildId
+		>;
 
-		autoModerationActionExecution: `::${ShardId} ${OriginKind.Actor} member/${MemberId}`;
+		autoModerationActionExecution: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MemberId
+		>;
 	}
 }
 
 export const guildIntegrationsUpdate: EventOriginMapper<
 	'guildIntegrationsUpdate'
-> = (guild) =>
-	`::${guild.shardId} ${OriginKind.Gateway} ${guildNamespace(guild.id)}`;
+> = (guild) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: guild.id,
+});
 
 export const applicationCommandPermissionsUpdate: EventOriginMapper<
 	'applicationCommandPermissionsUpdate'
-> = (command) =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${guildNamespace(command.guildId)}`;
+> = (command) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: command.guildId,
+});
 
 export const guildUpdate: EventOriginMapper<'guildUpdate'> = (
 	_previous,
 	current,
-) => `::${current.shardId} ${OriginKind.Gateway} ${guildNamespace(current.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: current.id,
+});
 
 export const autoModerationRuleCreate: EventOriginMapper<
 	'autoModerationRuleCreate'
-> = (rule) =>
-	`::${rule.guild.shardId} ${OriginKind.Actor} ${memberNamespace(rule.creatorId)}`;
+> = (rule) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: rule.creatorId,
+});
 
 export const autoModerationRuleUpdate: EventOriginMapper<
 	'autoModerationRuleUpdate'
-> = (_previous, current) =>
-	`::${current.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(current.guild.id)}`;
+> = (_previous, current) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: current.guild.id,
+});
 
 export const autoModerationRuleDelete: EventOriginMapper<
 	'autoModerationRuleDelete'
-> = (rule) =>
-	`::${rule.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(rule.guild.id)}`;
+> = (rule) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: rule.guild.id,
+});
 
 export const autoModerationActionExecution: EventOriginMapper<
 	'autoModerationActionExecution'
-> = (execution) =>
-	`::${execution.guild.shardId} ${OriginKind.Actor} ${memberNamespace(execution.member?.id ?? execution.userId)}`;
+> = (execution) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: execution.userId,
+});

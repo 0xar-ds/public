@@ -1,52 +1,85 @@
-import { EventOriginMapper } from '../../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../../interface/event-origin.interface.js';
 
 import {
 	ChannelId,
 	GuildId,
-	guildNamespace,
 	MaybeUnknown,
 	maybeUnknown,
 	MemberId,
-	memberNamespace,
-	OriginKind,
-	ShardId,
-	Unknown,
-	UNKNOWN,
-	UserId,
+	OriginNamespace,
+	ProducerKind,
 } from '../../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		guildScheduledEventCreate: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MaybeUnknown<MemberId>}`;
-		guildScheduledEventUpdate: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
-		guildScheduledEventDelete: `::${MaybeUnknown<ShardId>} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
+		guildScheduledEventCreate: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MaybeUnknown<MemberId>
+		>;
+		guildScheduledEventUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${ChannelId}`
+		>;
+		guildScheduledEventDelete: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${ChannelId}`
+		>;
 
-		guildScheduledEventUserAdd: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MemberId}`;
-		guildScheduledEventUserRemove: `::${MaybeUnknown<ShardId>} ${OriginKind.Actor} member/${MemberId}`;
+		guildScheduledEventUserAdd: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MemberId
+		>;
+		guildScheduledEventUserRemove: OriginObject<
+			ProducerKind.Actor,
+			OriginNamespace.Member,
+			MemberId
+		>;
 	}
 }
 
 export const guildScheduledEventCreate: EventOriginMapper<
 	'guildScheduledEventCreate'
-> = (event) =>
-	`::${maybeUnknown(event.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(maybeUnknown(event.creatorId))}`;
+> = (event) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: maybeUnknown(event.creatorId),
+});
 
 export const guildScheduledEventUpdate: EventOriginMapper<
 	'guildScheduledEventUpdate'
-> = (_previous, current) =>
-	`::${maybeUnknown(current.guild?.shardId)} ${OriginKind.Gateway} ${guildNamespace(current.guildId)}:${current.channelId}`;
+> = (_previous, current) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${current.guildId}:${current.channelId}`,
+});
 
 export const guildScheduledEventDelete: EventOriginMapper<
 	'guildScheduledEventDelete'
-> = (event) =>
-	`::${maybeUnknown(event.guild?.shardId)} ${OriginKind.Gateway} ${guildNamespace(event.guildId)}:${event.channelId}`;
+> = (event) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${event.guildId}:${event.channelId}`,
+});
 
 export const guildScheduledEventUserAdd: EventOriginMapper<
 	'guildScheduledEventUserAdd'
-> = (event, user) =>
-	`::${maybeUnknown(event.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(user.id)}`;
+> = (_event, user) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: user.id,
+});
 
 export const guildScheduledEventUserRemove: EventOriginMapper<
 	'guildScheduledEventUserRemove'
-> = (event, user) =>
-	`::${maybeUnknown(event.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(user.id)}`;
+> = (_event, user) => ({
+	kind: ProducerKind.Actor,
+	namespace: OriginNamespace.Member,
+	value: user.id,
+});

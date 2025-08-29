@@ -1,98 +1,170 @@
-import { GuildMember, PartialGuildMember } from 'discord.js';
-
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
-	maybeUnknown,
-	MaybeUnknown,
 	MemberId,
-	memberNamespace,
-	OriginKind,
-	ShardId,
-	systemNamespace,
-	Unknown,
-	UNKNOWN,
+	OriginNamespace,
+	ProducerKind,
 	UserId,
-	userNamespace,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
-		ready: `::${Unknown} ${OriginKind.Gateway} system/client`;
-		error: `::${Unknown} ${OriginKind.Gateway} system/client`;
-		warn: `::${Unknown} ${OriginKind.Gateway} system/client`;
-		debug: `::${Unknown} ${OriginKind.Gateway} system/client`;
+		ready: OriginObject<ProducerKind.Gateway, OriginNamespace.System, 'client'>;
+		error: OriginObject<ProducerKind.Gateway, OriginNamespace.System, 'client'>;
+		warn: OriginObject<ProducerKind.Gateway, OriginNamespace.System, 'client'>;
+		debug: OriginObject<ProducerKind.Gateway, OriginNamespace.System, 'client'>;
 
-		shardReady: `::${ShardId} ${OriginKind.Gateway} system/shard`;
-		shardError: `::${ShardId} ${OriginKind.Gateway} system/shard`;
-		shardResume: `::${ShardId} ${OriginKind.Gateway} system/shard`;
-		shardDisconnect: `::${ShardId} ${OriginKind.Gateway} system/shard`;
-		shardReconnecting: `::${ShardId} ${OriginKind.Gateway} system/shard`;
+		shardReady: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'shard'
+		>;
+		shardError: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'shard'
+		>;
+		shardResume: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'shard'
+		>;
+		shardDisconnect: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'shard'
+		>;
+		shardReconnecting: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.System,
+			'shard'
+		>;
 
-		userUpdate: `::${Unknown} ${OriginKind.Gateway} user/${UserId}`;
+		userUpdate: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.User,
+			UserId
+		>;
 
 		interactionCreate:
-			| `::${MaybeUnknown<UserId>} ${OriginKind.Actor} member/${MemberId}`
-			| `::${MaybeUnknown<UserId>} ${OriginKind.Actor} user/${UserId}`;
+			| OriginObject<ProducerKind.Actor, OriginNamespace.Member, MemberId>
+			| OriginObject<ProducerKind.Actor, OriginNamespace.User, UserId>;
 
-		presenceUpdate: MaybeUnknown<
-			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
-			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`
+		presenceUpdate: Nullable<
+			| OriginObject<ProducerKind.Actor, OriginNamespace.Member, MemberId>
+			| OriginObject<ProducerKind.Actor, OriginNamespace.User, UserId>
 		>;
 	}
 }
 
-export const ready: EventOriginMapper<'ready'> = (_client) =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${systemNamespace('client')}`;
+export const ready: EventOriginMapper<'ready'> = (_client) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'client',
+});
 
-export const error: EventOriginMapper<'error'> = (_error) =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${systemNamespace('client')}`;
+export const error: EventOriginMapper<'error'> = (_error) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'client',
+});
 
-export const warn: EventOriginMapper<'warn'> = (_message) =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${systemNamespace('client')}`;
+export const warn: EventOriginMapper<'warn'> = (_message) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'client',
+});
 
-export const debug: EventOriginMapper<'debug'> = (_message) =>
-	`::${UNKNOWN} ${OriginKind.Gateway} ${systemNamespace('client')}`;
+export const debug: EventOriginMapper<'debug'> = (_message) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'client',
+});
 
 export const shardReady: EventOriginMapper<'shardReady'> = (
-	shard,
+	_shard,
 	_unavailableGuilds,
-) => `::${shard} ${OriginKind.Gateway} ${systemNamespace('shard')}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'shard',
+});
 
-export const shardError: EventOriginMapper<'shardError'> = (_error, shard) =>
-	`::${shard} ${OriginKind.Gateway} ${systemNamespace('shard')}`;
+export const shardError: EventOriginMapper<'shardError'> = (
+	_error,
+	_shard,
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'shard',
+});
 
 export const shardResume: EventOriginMapper<'shardResume'> = (
-	shard,
+	_shard,
 	_replayedEvents,
-) => `::${shard} ${OriginKind.Gateway} ${systemNamespace('shard')}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'shard',
+});
 
 export const shardDisconnect: EventOriginMapper<'shardDisconnect'> = (
 	_closeEvent,
-	shard,
-) => `::${shard} ${OriginKind.Gateway} ${systemNamespace('shard')}`;
+	_shard,
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'shard',
+});
 
 export const shardReconnecting: EventOriginMapper<'shardReconnecting'> = (
-	shard,
-) => `::${shard} ${OriginKind.Gateway} ${systemNamespace('shard')}`;
+	_shard,
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.System,
+	value: 'shard',
+});
 
 export const userUpdate: EventOriginMapper<'userUpdate'> = (
 	_previous,
 	current,
-) => `::${UNKNOWN} ${OriginKind.Gateway} ${userNamespace(current.id)}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.User,
+	value: current.id,
+});
 
 export const interactionCreate: EventOriginMapper<'interactionCreate'> = (
 	interaction,
 ) =>
 	interaction.inGuild()
-		? `::${maybeUnknown(interaction.guild?.shardId)} ${OriginKind.Actor} ${memberNamespace(interaction.user.id)}`
-		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(interaction.user.id)}`;
+		? {
+				kind: ProducerKind.Actor,
+				namespace: OriginNamespace.Member,
+				value: interaction.user.id,
+			}
+		: {
+				kind: ProducerKind.Actor,
+				namespace: OriginNamespace.User,
+				value: interaction.user.id,
+			};
 
 export const presenceUpdate: EventOriginMapper<'presenceUpdate'> = (
 	presence,
 ) =>
 	presence !== null
 		? presence.member !== null
-			? `::${presence.member.guild.shardId} ${OriginKind.Actor} ${memberNamespace(presence.member.id)}`
-			: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(presence.userId)}`
-		: UNKNOWN;
+			? {
+					kind: ProducerKind.Actor,
+					namespace: OriginNamespace.Member,
+					value: presence.member.id,
+				}
+			: {
+					kind: ProducerKind.Actor,
+					namespace: OriginNamespace.User,
+					value: presence.userId,
+				}
+		: null;

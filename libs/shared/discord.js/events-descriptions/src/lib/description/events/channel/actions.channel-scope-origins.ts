@@ -1,52 +1,69 @@
-import { ChannelType } from 'discord.js';
 import { isChannelOfType } from '0xar-discord.js-channels-utils';
+import { ChannelType } from 'discord.js';
 
-import { EventOriginMapper } from '../../interface/event-origin.interface.js';
+import {
+	EventOriginMapper,
+	OriginObject,
+} from '../../interface/event-origin.interface.js';
 
 import {
 	ChannelId,
-	directNamespace,
-	groupNamespace,
 	GuildId,
-	guildNamespace,
-	maybeUnknown,
-	MaybeUnknown,
 	MemberId,
-	memberNamespace,
-	OriginKind,
+	OriginNamespace,
+	ProducerKind,
 	RecipientId,
-	ShardId,
-	Unknown,
-	UNKNOWN,
 	UserId,
-	userNamespace,
 } from '../../utils/components.js';
 
 declare global {
 	interface EventOriginMap {
 		typingStart:
-			| `::${ShardId} ${OriginKind.Actor} member/${MemberId}`
-			| `::${Unknown} ${OriginKind.Actor} user/${UserId}`;
+			| OriginObject<ProducerKind.Actor, OriginNamespace.Member, MemberId>
+			| OriginObject<ProducerKind.Actor, OriginNamespace.User, UserId>;
 
-		messageDeleteBulk: `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`;
+		messageDeleteBulk: OriginObject<
+			ProducerKind.Gateway,
+			OriginNamespace.Guild,
+			`${GuildId}:${ChannelId}`
+		>;
 
 		channelPinsUpdate:
-			| `::${ShardId} ${OriginKind.Gateway} guild/${GuildId}:${ChannelId}`
-			| `::${Unknown} ${OriginKind.Gateway} direct/${RecipientId}:${ChannelId}`
-			| `::${Unknown} ${OriginKind.Gateway} group/${ChannelId}`;
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Guild,
+					`${GuildId}:${ChannelId}`
+			  >
+			| OriginObject<
+					ProducerKind.Gateway,
+					OriginNamespace.Direct,
+					`${RecipientId}:${ChannelId}`
+			  >
+			| OriginObject<ProducerKind.Gateway, OriginNamespace.Group, ChannelId>;
 	}
 }
 
 export const typingStart: EventOriginMapper<'typingStart'> = (typing) =>
 	typing.inGuild()
-		? `::${typing.guild.shardId} ${OriginKind.Actor} ${memberNamespace(typing.user.id)}`
-		: `::${UNKNOWN} ${OriginKind.Actor} ${userNamespace(typing.user.id)}`;
+		? {
+				kind: ProducerKind.Actor,
+				namespace: OriginNamespace.Member,
+				value: typing.user.id,
+			}
+		: {
+				kind: ProducerKind.Actor,
+				namespace: OriginNamespace.User,
+				value: typing.user.id,
+			};
 
 export const messageDeleteBulk: EventOriginMapper<'messageDeleteBulk'> = (
 	_messages,
 	channel,
-) =>
-	`::${channel.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(channel.guildId)}:${channel.id}`;
+) => ({
+	kind: ProducerKind.Gateway,
+	namespace: OriginNamespace.Guild,
+	value: `${channel.guildId}:${channel.id}`,
+});
 
 export const channelPinsUpdate: EventOriginMapper<'channelPinsUpdate'> = (
 	channel,
@@ -54,6 +71,18 @@ export const channelPinsUpdate: EventOriginMapper<'channelPinsUpdate'> = (
 ) =>
 	channel.isDMBased()
 		? isChannelOfType(ChannelType.DM, channel)
-			? `::${UNKNOWN} ${OriginKind.Gateway} ${directNamespace(channel.recipientId)}:${channel.id}`
-			: `::${UNKNOWN} ${OriginKind.Gateway} ${groupNamespace(channel.id)}`
-		: `::${channel.guild.shardId} ${OriginKind.Gateway} ${guildNamespace(channel.guildId)}:${channel.id}`;
+			? {
+					kind: ProducerKind.Gateway,
+					namespace: OriginNamespace.Direct,
+					value: `${channel.recipientId}:${channel.id}`,
+				}
+			: {
+					kind: ProducerKind.Gateway,
+					namespace: OriginNamespace.Group,
+					value: channel.id,
+				}
+		: {
+				kind: ProducerKind.Gateway,
+				namespace: OriginNamespace.Guild,
+				value: `${channel.guildId}:${channel.id}`,
+			};

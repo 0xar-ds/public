@@ -16,6 +16,10 @@ jobs:
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       # https://moonrepo.dev/docs/guides/ci
       - uses: moonrepo/setup-toolchain@v0
         with:

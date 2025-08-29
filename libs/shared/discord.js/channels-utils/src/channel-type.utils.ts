@@ -2,6 +2,10 @@ import { Channel, ChannelType } from 'discord.js';
 
 import { ChannelTypeMap } from './channel-type.js';
 
+/**
+ * @param value Type to get the indexing key from
+ * @returns the indexing key on the type enum
+ */
 export function getChannelTypeKey(
 	value: ChannelType,
 ): keyof typeof ChannelType {

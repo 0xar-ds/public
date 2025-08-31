@@ -31,9 +31,10 @@
 	},
 	"dependencies": {
 		"@argentina-community/channels-utils": "workspace:^",
-		"@argentina-community/interactions-utils": "workspace:^",
-		"discord.js": "catalog:discord",
-		"reflect-metadata": "catalog:utilities"
+		"@argentina-community/interactions-utils": "workspace:^"
+	},
+	"peerDependencies": {
+		"discord.js": "catalog:discord"
 	},
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",

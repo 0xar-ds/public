@@ -29,9 +29,8 @@
 		"ts-node": "catalog:build-tooling",
 		"tsconfig-paths": "catalog:utilities"
 	},
-	"dependencies": {
-		"discord.js": "catalog:discord",
-		"reflect-metadata": "catalog:utilities"
+	"peerDependencies": {
+		"discord.js": "catalog:discord"
 	},
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",

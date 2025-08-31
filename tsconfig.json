@@ -16,6 +16,9 @@
 			"path": "libs/server/discord/core"
 		},
 		{
+			"path": "libs/server/discord/ogma-necord-platform"
+		},
+		{
 			"path": "libs/shared/discord.js/channels"
 		},
 		{

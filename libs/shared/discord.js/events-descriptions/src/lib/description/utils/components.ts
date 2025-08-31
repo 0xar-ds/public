@@ -3,27 +3,35 @@ import { Snowflake } from 'discord.js';
 import { Maybe, Nullable } from '../../../../../../../../types/utils/utils.js';
 
 export type UserId = Snowflake & {};
-export type RecipientId = Snowflake & {};
 export type MemberId = Snowflake & {};
+
+export type RecipientId = Snowflake & {};
+
 export type GuildId = Snowflake & {};
+
 export type RoleId = Snowflake & {};
-export type ChannelId = Snowflake & {};
-export type MessageId = Snowflake & {};
-export type ThreadId = Snowflake & {};
 export type EmojiId = Snowflake & {};
-export type ApplicationId = Snowflake & {};
-export type CommandId = Snowflake & {};
-export type RuleId = Snowflake & {};
-export type EventId = Snowflake & {};
-export type AnswerId = number & {};
-export type InviteCode = string & {};
-export type ShardId = number & {};
+export type SoundId = Snowflake & {};
 export type StickerId = Snowflake & {};
+
+export type ChannelId = Snowflake & {};
+export type ThreadId = Snowflake & {};
+
+export type ApplicationId = Snowflake & {};
 export type SkuId = Snowflake & {};
+export type CommandId = Snowflake & {};
 export type SubscriptionId = Snowflake & {};
 export type EntitlementId = Snowflake & {};
-export type SoundId = Snowflake & {};
+
+export type ShardId = number & {};
+
+export type AnswerId = number & {};
+export type EventId = Snowflake & {};
+export type RuleId = Snowflake & {};
 export type InteractionId = Snowflake & {};
+export type MessageId = Snowflake & {};
+
+export type InviteCode = string & {};
 
 export const UNKNOWN = '?' as const;
 

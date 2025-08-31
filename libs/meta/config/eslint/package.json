@@ -61,6 +61,7 @@
 	"keywords": [
 		"eslint",
 		"typescript",
-		"svelte"
+		"svelte",
+		"monorepo"
 	]
 }

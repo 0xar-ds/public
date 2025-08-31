@@ -1,0 +1,14 @@
+id: 'ogma-necord-platform'
+type: library
+language: typescript
+stack: unknown
+tags:
+  - 'tsdown'
+  - 'releasable'
+  - 'eslint'
+  - 'prettier'
+  - 'code-quality'
+
+project:
+  name: 'Ogma Custom Parser for the Necord Platform'
+  description: 'An Ogma Custom Parser interceptor service to provide logging functionalities to necord/discord.js applications'

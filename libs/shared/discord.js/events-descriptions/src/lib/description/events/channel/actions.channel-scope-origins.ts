@@ -1,4 +1,4 @@
-import { isChannelOfType } from '0xar-discord.js-channels-utils';
+import { isChannelOfType } from 'discord.js-channels-utils';
 import { ChannelType } from 'discord.js';
 
 import {

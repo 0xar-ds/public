@@ -8,7 +8,7 @@ import {
 	unorderedList,
 } from 'discord.js';
 
-import { Context, SlashCommand } from 'necord';
+import { Context, On, SlashCommand } from 'necord';
 import { concat, concatMap, delay, EMPTY, of, timeout } from 'rxjs';
 
 import {
@@ -32,6 +32,11 @@ export class ExampleApplicationController {
 
 		@Inject(UISchema) private readonly config: UISchema,
 	) {}
+
+	@On('channelDelete')
+	public channel() {
+		return true;
+	}
 
 	@SlashCommand({
 		name: 'display_members',

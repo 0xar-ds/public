@@ -1,54 +1,117 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type CommandId = Snowflake & {};
-type ApplicationId = Snowflake & {};
-type RuleId = Snowflake & {};
+import {
+	ApplicationId,
+	CommandId,
+	GuildId,
+	RuleId,
+	ShardId,
+	UNKNOWN,
+	Unknown,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		guildIntegrationsUpdate: `/guilds/${GuildId}/integrations`;
+		guildIntegrationsUpdate: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/integrations/${Unknown}`
+		>;
 
-		applicationCommandPermissionsUpdate: `/guilds/${GuildId}/integrations/${ApplicationId}/permissions ${CommandId}`;
+		applicationCommandPermissionsUpdate: CallpointObject<
+			Unknown,
+			`/guilds/${GuildId}/applications/${ApplicationId}/commands/${CommandId}/permissions`
+		>;
 
-		guildUpdate: `/guilds/${GuildId}`;
+		guildUpdate: CallpointObject<ShardId, `/guilds/${GuildId}`>;
 
-		autoModerationRuleCreate: `/guilds/${GuildId}/automod/rules ${RuleId}`;
-		autoModerationRuleUpdate: `/guilds/${GuildId}/automod/rules ${RuleId}`;
-		autoModerationRuleDelete: `/guilds/${GuildId}/automod/rules ${RuleId}`;
-
-		autoModerationActionExecution: `/guilds/${GuildId}/automod/rules ${RuleId}`;
+		autoModerationRuleCreate: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/auto-moderation/rules`
+		>;
+		autoModerationRuleUpdate: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/auto-moderation/rules/${RuleId}`
+		>;
+		autoModerationRuleDelete: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/auto-moderation/rules/${RuleId}`
+		>;
+		autoModerationActionExecution: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/auto-moderation/rules/${RuleId}`
+		>;
 	}
 }
 
+/**
+ * @remarks Cannot parse any integration-specific information without fetching
+ *
+ * @see https://discord.com/developers/docs/resources/guild#get-guild-integrations
+ */
 export const guildIntegrationsUpdate: EventCallpointMapper<
 	'guildIntegrationsUpdate'
-> = (guild) => `/guilds/${guild.id}/integrations`;
+> = (guild) => ({
+	shard: guild.shardId,
+	location: `/guilds/${guild.id}/integrations/${UNKNOWN}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/interactions/application-commands#edit-application-command-permissions
+ */
 export const applicationCommandPermissionsUpdate: EventCallpointMapper<
 	'applicationCommandPermissionsUpdate'
-> = (data) =>
-	`/guilds/${data.guildId}/integrations/${data.applicationId}/permissions ${data.id}`;
+> = (data) => ({
+	shard: UNKNOWN,
+	location: `/guilds/${data.guildId}/applications/${data.applicationId}/commands/${data.id}/permissions`,
+});
 
-export const guildUpdate: EventCallpointMapper<'guildUpdate'> = (_, guild) =>
-	`/guilds/${guild.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/guild#modify-guild
+ */
+export const guildUpdate: EventCallpointMapper<'guildUpdate'> = (
+	_previous,
+	current,
+) => ({ shard: current.shardId, location: `/guilds/${current.id}` });
 
+/**
+ * @see https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule
+ */
 export const autoModerationRuleCreate: EventCallpointMapper<
 	'autoModerationRuleCreate'
-> = (rule) => `/guilds/${rule.guild.id}/automod/rules ${rule.id}`;
+> = (rule) => ({
+	shard: rule.guild.shardId,
+	location: `/guilds/${rule.guild.id}/auto-moderation/rules`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule
+ */
 export const autoModerationRuleUpdate: EventCallpointMapper<
 	'autoModerationRuleUpdate'
-> = (rule) =>
-	`/guilds/${rule?.guild.id ?? 'unknown'}/automod/rules ${rule?.id ?? 'unknown'}`;
+> = (_previous, current) => ({
+	shard: current.guild.shardId,
+	location: `/guilds/${current.guild.id}/auto-moderation/rules/${current.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/auto-moderation#delete-auto-moderation-rule
+ */
 export const autoModerationRuleDelete: EventCallpointMapper<
 	'autoModerationRuleDelete'
-> = (rule) =>
-	`/guilds/${rule?.guild.id ?? 'unknown'}/automod/rules ${rule?.id ?? 'unknown'}`;
+> = (rule) => ({
+	shard: rule.guild.shardId,
+	location: `/guilds/${rule.guild.id}/auto-moderation/rules/${rule.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/auto-moderation#get-auto-moderation-rule
+ */
 export const autoModerationActionExecution: EventCallpointMapper<
 	'autoModerationActionExecution'
-> = (rule) => `/guilds/${rule.guild.id}/automod/rules ${rule.ruleId}`;
+> = (execution) => ({
+	shard: execution.guild.shardId,
+	location: `/guilds/${execution.guild.id}/auto-moderation/rules/${execution.ruleId}`,
+});

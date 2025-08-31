@@ -1,31 +1,58 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type InstanceId = Snowflake & {};
+import {
+	ChannelId,
+	maybeUnknown,
+	MaybeUnknown,
+	ShardId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		stageInstanceCreate: `/guilds/${GuildId}/${CategoryId}/${ChannelId}/events ${InstanceId}`;
-		stageInstanceUpdate: `/guilds/${GuildId}/${CategoryId}/${ChannelId}/events ${InstanceId}`;
-		stageInstanceDelete: `/guilds/${GuildId}/${CategoryId}/${ChannelId}/events ${InstanceId}`;
+		stageInstanceCreate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/stage-instances`
+		>;
+		stageInstanceUpdate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/stage-instances/${ChannelId}`
+		>;
+		stageInstanceDelete: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/stage-instances/${ChannelId}`
+		>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/stage-instance#create-stage-instance
+ */
 export const stageInstanceCreate: EventCallpointMapper<
 	'stageInstanceCreate'
-> = (instance) =>
-	`/guilds/${instance.guildId}/${instance.channel?.parentId ?? 'UNKNOWN_CATEGORY'}/${instance.channelId}/events ${instance.id}`;
+> = (instance) => ({
+	shard: maybeUnknown(instance.guild?.shardId),
+	location: `/stage-instances`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/stage-instance#modify-stage-instance
+ */
 export const stageInstanceUpdate: EventCallpointMapper<
 	'stageInstanceUpdate'
-> = (previous, instance) =>
-	`/guilds/${instance.guildId}/${instance.channel?.parentId ?? 'UNKNOWN_CATEGORY'}/${instance.channelId}/events ${instance.id}`;
+> = (_previous, current) => ({
+	shard: maybeUnknown(current.guild?.shardId),
+	location: `/stage-instances/${current.channelId}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/stage-instance#delete-stage-instance
+ */
 export const stageInstanceDelete: EventCallpointMapper<
 	'stageInstanceDelete'
-> = (instance) =>
-	`/guilds/${instance.guildId}/${instance.channel?.parentId ?? 'UNKNOWN_CATEGORY'}/${instance.channelId}/events ${instance.id}`;
+> = (instance) => ({
+	shard: maybeUnknown(instance.guild?.shardId),
+	location: `/stage-instances/${instance.channelId}`,
+});

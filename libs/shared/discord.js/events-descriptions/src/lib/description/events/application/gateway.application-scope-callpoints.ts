@@ -1,70 +1,132 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
 import {
-	getInteractionTypeKey,
-	InteractionTypeKey,
-} from '0xar-discord.js-interactions-utils';
-
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type ShardId = number & {};
-type InteractionId = string & {};
-type UserId = Snowflake & {};
+	maybeUnknown,
+	MaybeUnknown,
+	ShardId,
+	Unknown,
+	UNKNOWN,
+	UserId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		ready: `/gateway/client`;
-		error: `/gateway/client`;
-		warn: `/gateway/client`;
-		debug: `/gateway/client`;
+		ready: CallpointObject<Unknown, `/client`>;
+		error: CallpointObject<Unknown, `/client`>;
+		warn: CallpointObject<Unknown, `/client`>;
+		debug: CallpointObject<Unknown, `/client`>;
 
-		shardReady: `/gateway/client/shards ${ShardId}`;
-		shardError: `/gateway/client/shards ${ShardId}`;
-		shardResume: `/gateway/client/shards ${ShardId}`;
-		shardDisconnect: `/gateway/client/shards ${ShardId}`;
-		shardReconnecting: `/gateway/client/shards ${ShardId}`;
+		shardReady: CallpointObject<ShardId, `/client/shards`>;
+		shardError: CallpointObject<ShardId, `/client/shards`>;
+		shardResume: CallpointObject<ShardId, `/client/shards`>;
+		shardDisconnect: CallpointObject<ShardId, `/client/shards`>;
+		shardReconnecting: CallpointObject<ShardId, `/client/shards`>;
 
-		userUpdate: `/gateway/users ${UserId}`;
-		interactionCreate: `/gateway/interactions/${InteractionTypeKey} ${InteractionId}`;
-		presenceUpdate: `/gateway/presences ${UserId}`;
+		userUpdate: CallpointObject<Unknown, `/users/${UserId}`>;
+		interactionCreate: CallpointObject<MaybeUnknown<ShardId>, `/interactions`>;
+		presenceUpdate: CallpointObject<MaybeUnknown<ShardId>, `/presences`>;
 	}
 }
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const ready: EventCallpointMapper<'ready'> = (_client) => ({
+	shard: UNKNOWN,
+	location: '/client',
+});
 
-export const ready: EventCallpointMapper<'ready'> = (_) => `/gateway/client`;
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const error: EventCallpointMapper<'error'> = (_error) => ({
+	shard: UNKNOWN,
+	location: '/client',
+});
 
-export const error: EventCallpointMapper<'error'> = (_) => `/gateway/client`;
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const warn: EventCallpointMapper<'warn'> = (_message) => ({
+	shard: UNKNOWN,
+	location: '/client',
+});
 
-export const warn: EventCallpointMapper<'warn'> = (_) => `/gateway/client`;
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const debug: EventCallpointMapper<'debug'> = (_message) => ({
+	shard: UNKNOWN,
+	location: '/client',
+});
 
-export const debug: EventCallpointMapper<'debug'> = (_) => `/gateway/client`;
-
-export const shardReady: EventCallpointMapper<'shardReady'> = (shard, _) =>
-	`/gateway/client/shards ${shard}`;
-
-export const shardError: EventCallpointMapper<'shardError'> = (_, shard) =>
-	`/gateway/client/shards ${shard}`;
-
-export const shardResume: EventCallpointMapper<'shardResume'> = (shard, _) =>
-	`/gateway/client/shards ${shard}`;
-
-export const shardDisconnect: EventCallpointMapper<'shardDisconnect'> = (
-	_,
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const shardReady: EventCallpointMapper<'shardReady'> = (
 	shard,
-) => `/gateway/client/shards ${shard}`;
+	_unavailableGuilds,
+) => ({
+	shard: shard,
+	location: '/client/shards',
+});
 
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const shardError: EventCallpointMapper<'shardError'> = (
+	_error,
+	shard,
+) => ({ shard: shard, location: '/client/shards' });
+
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const shardResume: EventCallpointMapper<'shardResume'> = (
+	shard,
+	_replayuedEvents,
+) => ({ shard: shard, location: '/client/shards' });
+
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const shardDisconnect: EventCallpointMapper<'shardDisconnect'> = (
+	_closeEvent,
+	shard,
+) => ({ shard: shard, location: '/client/shards' });
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
 export const shardReconnecting: EventCallpointMapper<'shardReconnecting'> = (
 	shard,
-) => `/gateway/client/shards ${shard}`;
+) => ({ shard: shard, location: '/client/shards' });
 
-export const userUpdate: EventCallpointMapper<'userUpdate'> = (_, user) =>
-	`/gateway/users ${user.id}`;
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
+export const userUpdate: EventCallpointMapper<'userUpdate'> = (
+	_previous,
+	current,
+) => ({ shard: UNKNOWN, location: `/users/${current.id}` });
 
+/**
+ * @remarks No counterpart on the Discord REST api.
+ *
+ * @see https://discord.com/developers/docs/interactions/receiving-and-responding#create-interaction-response
+ */
 export const interactionCreate: EventCallpointMapper<'interactionCreate'> = (
 	interaction,
-) =>
-	`/gateway/interactions/${getInteractionTypeKey(interaction.type)} ${interaction.id}`;
+) => ({
+	shard: maybeUnknown(interaction.guild?.shardId),
+	location: `/interactions`,
+});
 
-// TODO: consider /gateway/presences GuildId/GuildMemberId/UserId
+/**
+ * @remarks No counterpart on the Discord REST api.
+ */
 export const presenceUpdate: EventCallpointMapper<'presenceUpdate'> = (
+	_previous,
 	presence,
-) => `/gateway/presences ${presence?.userId ?? 'unknown'}`;
+) => ({ shard: maybeUnknown(presence.guild?.shardId), location: '/presences' });

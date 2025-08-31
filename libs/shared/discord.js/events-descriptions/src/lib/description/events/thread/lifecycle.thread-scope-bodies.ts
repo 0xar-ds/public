@@ -25,7 +25,10 @@ declare global {
 	}
 }
 
-export const threadCreate: EventBodyMapper<'threadCreate'> = (thread) => ({
+export const threadCreate: EventBodyMapper<'threadCreate'> = (
+	thread,
+	_newlyCreated,
+) => ({
 	name: thread.name,
 	type: thread.type,
 	ownerId: thread.ownerId,

@@ -1,23 +1,27 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type ThreadId = Snowflake & {};
+import { ChannelId, ShardId } from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		threadMembersUpdate:
-			| `/guilds/${GuildId}/${ThreadId}/members`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/members`;
+		threadMembersUpdate: CallpointObject<
+			ShardId,
+			`/channels/${ChannelId}/thread-members`
+		>;
 	}
 }
 
+/**
+ * @remarks Possible to differentiate whether the event added or removed members, but this implementation does not.
+ *
+ * @see https://discord.com/developers/docs/resources/channel#list-thread-members
+ */
 export const threadMembersUpdate: EventCallpointMapper<
 	'threadMembersUpdate'
-> = (_added, _removed, thread) =>
-	thread.parent !== null
-		? `/guilds/${thread.guildId}/${thread.parent.parentId ?? 'UNKNOWN_CATEGORY'}/${thread.parent.id}/${thread.id}/members`
-		: `/guilds/${thread.guildId}/${thread.id}/members`;
+> = (_added, _removed, thread) => ({
+	shard: thread.guild.shardId,
+	location: `/channels/${thread.id}/thread-members`,
+});

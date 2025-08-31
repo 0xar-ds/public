@@ -33,7 +33,7 @@ declare global {
 
 export const threadCreate: EventOriginMapper<'threadCreate'> = (
 	thread,
-	_newly,
+	_newlyCreated,
 ) => ({
 	kind: ProducerKind.Actor,
 	namespace: OriginNamespace.Member,

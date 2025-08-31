@@ -1,28 +1,50 @@
-import { Snowflake } from 'discord.js';
+import { Guild } from 'discord.js';
 
-import { EventCallpointMapper } from '../../../interface/event-callpoint.interface.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../../interface/event-callpoint.interface.js';
 
-type GuildId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type InviteCode = string & {};
+import {
+	ChannelId,
+	GuildId,
+	InviteCode,
+	maybeUnknown,
+	MaybeUnknown,
+	ShardId,
+	UNKNOWN,
+	Unknown,
+} from '../../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
 		inviteCreate:
-			| `/guilds/${GuildId}/invites ${InviteCode}`
-			| `/groups/${ChannelId}/invites ${InviteCode}`;
+			| CallpointObject<MaybeUnknown<ShardId>, `/guilds/${GuildId}/invites`>
+			| CallpointObject<Unknown, `/groups/${MaybeUnknown<ChannelId>}/invites`>;
 		inviteDelete:
-			| `/guilds/${GuildId}/invites ${InviteCode}`
-			| `/groups/${ChannelId}/invites ${InviteCode}`;
+			| CallpointObject<MaybeUnknown<ShardId>, `/invites/${InviteCode}`>
+			| CallpointObject<Unknown, `/invites/${InviteCode}`>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#get-guild-invites
+ */
 export const inviteCreate: EventCallpointMapper<'inviteCreate'> = (invite) =>
 	invite.guild !== null
-		? `/guilds/${invite.guild.id}/invites ${invite.code}`
-		: `/groups/${invite.channelId ?? 'unknown'}/invites ${invite.code}`;
+		? {
+				shard: maybeUnknown((invite.guild as Guild)?.shardId),
+				location: `/guilds/${invite.guild.id}/invites`,
+			}
+		: {
+				shard: UNKNOWN,
+				location: `/groups/${maybeUnknown(invite.channelId)}/invites`,
+			};
 
-export const inviteDelete: EventCallpointMapper<'inviteDelete'> = (invite) =>
-	invite.guild !== null
-		? `/guilds/${invite.guild.id}/invites ${invite.code}`
-		: `/groups/${invite.channelId ?? 'unknown'}/invites ${invite.code}`;
+/**
+ * @see https://discord.com/developers/docs/resources/invite#delete-invite
+ */
+export const inviteDelete: EventCallpointMapper<'inviteDelete'> = (invite) => ({
+	shard: maybeUnknown((invite.guild as Guild)?.shardId),
+	location: `/invites/${invite.code}`,
+});

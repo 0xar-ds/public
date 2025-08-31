@@ -1,62 +1,62 @@
+import { GuildTextBasedChannel } from 'discord.js';
+
 import {
-	ChannelType,
-	DMChannel,
-	PartialDMChannel,
-	Snowflake,
-} from 'discord.js';
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { isChannelOfType } from '0xar-discord.js-channels-utils';
-
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type ThreadId = Snowflake & {};
-type RecipientId = Snowflake & {};
+import {
+	ChannelId,
+	maybeUnknown,
+	MaybeUnknown,
+	ShardId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		typingStart:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}`
-			| `/users/${RecipientId}/${ChannelId}`
-			| `/groups/${ChannelId}`;
-		messageDeleteBulk:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/messages`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/messages`;
-		channelPinsUpdate:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/pins`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/pins`
-			| `/users/${RecipientId}/${ChannelId}/pins`
-			| `/groups/${ChannelId}/pins`;
+		typingStart: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}/typing`
+		>;
+
+		messageDeleteBulk: CallpointObject<
+			ShardId,
+			`/channels/${ChannelId}/messages/bulk-delete`
+		>;
+
+		channelPinsUpdate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}/messages/pins`
+		>;
 	}
 }
 
-export const typingStart: EventCallpointMapper<'typingStart'> = (typing) =>
-	typing.channel.isDMBased()
-		? isChannelOfType(ChannelType.DM, typing.channel)
-			? `/users/${(typing.channel as PartialDMChannel | DMChannel).recipientId}/${(typing.channel as PartialDMChannel | DMChannel).id}`
-			: `/groups/${typing.channel.id}`
-		: typing.channel.isThread()
-			? `/guilds/${typing.channel.guildId}/${typing.channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${typing.channel.parentId ?? 'UNKNOWN_CHANNEL'}/${typing.channel.id}`
-			: `/guilds/${typing.channel.guildId}/${typing.channel.parentId ?? 'UNKNOWN_CATEGORY'}/${typing.channel.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/channel#trigger-typing-indicator
+ */
+export const typingStart: EventCallpointMapper<'typingStart'> = (typing) => ({
+	shard: maybeUnknown(typing.guild?.shardId),
+	location: `/channels/${typing.channel.id}/typing`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#bulk-delete-messages
+ */
 export const messageDeleteBulk: EventCallpointMapper<'messageDeleteBulk'> = (
-	_,
-	channel,
-) =>
-	channel.isThread()
-		? `/guilds/${channel.guildId}/${channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.parentId ?? 'UNKNOWN_CHANNEL'}/${channel.id}/messages`
-		: `/guilds/${channel.guildId}/${channel.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.id}/messages`;
+	_previous,
+	current,
+) => ({
+	shard: current.guild.shardId,
+	location: `/channels/${current.id}/messages/bulk-delete`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#get-channel-pins
+ */
 export const channelPinsUpdate: EventCallpointMapper<'channelPinsUpdate'> = (
 	channel,
-) =>
-	channel.isDMBased()
-		? isChannelOfType(ChannelType.DM, channel)
-			? `/users/${(channel as PartialDMChannel | DMChannel).recipientId}/${(channel as PartialDMChannel | DMChannel).id}/pins`
-			: `/groups/${channel.id}/pins`
-		: channel.isThread()
-			? `/guilds/${channel.guildId}/${channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.parentId ?? 'UNKNOWN_CHANNEL'}/${channel.id}/pins`
-			: `/guilds/${channel.guildId}/${channel.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.id}/pins`;
+	_date,
+) => ({
+	shard: maybeUnknown((channel as GuildTextBasedChannel)?.guild?.shardId),
+	location: `/channels/${channel.id}/messages/pins`,
+});

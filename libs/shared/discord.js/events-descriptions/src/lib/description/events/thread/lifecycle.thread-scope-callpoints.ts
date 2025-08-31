@@ -1,40 +1,60 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type ThreadId = Snowflake & {};
+import {
+	ChannelId,
+	maybeUnknown,
+	MaybeUnknown,
+	MessageId,
+	ShardId,
+	ThreadId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		threadCreate:
-			| `/guilds/${GuildId} ${ThreadId}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId} ${ThreadId}`;
-		threadUpdate:
-			| `/guilds/${GuildId} ${ThreadId}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId} ${ThreadId}`;
-		threadDelete:
-			| `/guilds/${GuildId} ${ThreadId}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId} ${ThreadId}`;
+		threadCreate: CallpointObject<
+			ShardId,
+			| `/channels/${MaybeUnknown<ChannelId>}/messages/${MessageId}/threads`
+			| `/channels/${MaybeUnknown<ChannelId>}/threads`
+		>;
+
+		threadUpdate: CallpointObject<ShardId, `/channels/${ThreadId}`>;
+
+		threadDelete: CallpointObject<ShardId, `/channels/${ThreadId}`>;
 	}
 }
 
-export const threadCreate: EventCallpointMapper<'threadCreate'> = (thread) =>
-	thread.parent !== null
-		? `/guilds/${thread.guildId}/${thread.parent.parentId ?? 'UNKNOWN_CATEGORY'}/${thread.parent.id} ${thread.id}`
-		: `/guilds/${thread.guildId} ${thread.id}`;
-
-export const threadUpdate: EventCallpointMapper<'threadUpdate'> = (
-	_,
+/**
+ * @remarks Implementation assumes it originated on a channel and not on some message, as it cannot be differentiated without fetching.
+ *
+ * @see https://discord.com/developers/docs/resources/channel#start-thread-from-message
+ * @see https://discord.com/developers/docs/resources/channel#start-thread-without-message
+ */
+export const threadCreate: EventCallpointMapper<'threadCreate'> = (
 	thread,
-) =>
-	thread.parent !== null
-		? `/guilds/${thread.guildId}/${thread.parent.parentId ?? 'UNKNOWN_CATEGORY'}/${thread.parent.id} ${thread.id}`
-		: `/guilds/${thread.guildId} ${thread.id}`;
+	_newlyCreated,
+) => ({
+	shard: thread.guild.shardId,
+	location: `/channels/${maybeUnknown(thread.parentId)}/threads`,
+});
 
-export const threadDelete: EventCallpointMapper<'threadDelete'> = (thread) =>
-	thread.parent !== null
-		? `/guilds/${thread.guildId}/${thread.parent.parentId ?? 'UNKNOWN_CATEGORY'}/${thread.parent.id} ${thread.id}`
-		: `/guilds/${thread.guildId} ${thread.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/channel#modify-channel
+ */
+export const threadUpdate: EventCallpointMapper<'threadUpdate'> = (
+	_previous,
+	current,
+) => ({
+	shard: current.guild.shardId,
+	location: `/channels/${maybeUnknown(current.id)}`,
+});
+
+/**
+ * @see https://discord.com/developers/docs/resources/channel#deleteclose-channel
+ */
+export const threadDelete: EventCallpointMapper<'threadDelete'> = (thread) => ({
+	shard: thread.guild.shardId,
+	location: `/channels/${maybeUnknown(thread.id)}`,
+});

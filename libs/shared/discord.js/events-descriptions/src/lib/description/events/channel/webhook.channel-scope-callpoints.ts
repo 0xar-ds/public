@@ -1,33 +1,33 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type ThreadId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type ChannelId = Snowflake & {};
+import { ChannelId, ShardId } from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		webhookUpdate:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/webhooks`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/webhooks`;
-		webhooksUpdate:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/webhooks`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/webhooks`;
+		webhookUpdate: CallpointObject<ShardId, `/channels/${ChannelId}/webhooks`>;
+		webhooksUpdate: CallpointObject<ShardId, `/channels/${ChannelId}/webhooks`>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/webhook#get-channel-webhooks
+ */
 export const webhookUpdate: EventCallpointMapper<'webhookUpdate'> = (
 	channel,
-) =>
-	channel.isThreadOnly()
-		? `/guilds/${channel.guildId}/${channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.parentId ?? 'UNKNOWN_CHANNEL'}/${channel.id}/webhooks`
-		: `/guilds/${channel.guildId}/${channel.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.id}/webhooks`;
+) => ({
+	shard: channel.guild.shardId,
+	location: `/channels/${channel.id}/webhooks`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/webhook#get-channel-webhooks
+ */
 export const webhooksUpdate: EventCallpointMapper<'webhooksUpdate'> = (
 	channel,
-) =>
-	channel.isThreadOnly()
-		? `/guilds/${channel.guildId}/${channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.parentId ?? 'UNKNOWN_CHANNEL'}/${channel.id}/webhooks`
-		: `/guilds/${channel.guildId}/${channel.parentId ?? 'UNKNOWN_CATEGORY'}/${channel.id}/webhooks`;
+) => ({
+	shard: channel.guild.shardId,
+	location: `/channels/${channel.id}/webhooks`,
+});

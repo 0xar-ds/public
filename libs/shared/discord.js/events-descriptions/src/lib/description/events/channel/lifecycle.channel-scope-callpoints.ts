@@ -1,50 +1,55 @@
-import { Snowflake } from 'discord.js';
+import { GuildTextBasedChannel } from 'discord.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-type GuildId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type RecipientId = Snowflake & {};
+import {
+	ChannelId,
+	maybeUnknown,
+	MaybeUnknown,
+	ShardId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		channelCreate:
-			| `/guilds/${GuildId}/channels ${ChannelId}`
-			| `/guilds/${GuildId}/${CategoryId}/channels ${ChannelId}`;
-		channelUpdate:
-			| `/guilds/${GuildId}/channels ${ChannelId}`
-			| `/guilds/${GuildId}/${CategoryId}/channels ${ChannelId}`
-			| `/users/${RecipientId} ${ChannelId}`;
-		channelDelete:
-			| `/guilds/${GuildId}/channels ${ChannelId}`
-			| `/guilds/${GuildId}/${CategoryId}/channels ${ChannelId}`
-			| `/users/${RecipientId} ${ChannelId}`;
+		channelCreate: CallpointObject<ShardId, `/channels`>;
+		channelUpdate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}`
+		>;
+		channelDelete: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}`
+		>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#get-channel-pins
+ */
 export const channelCreate: EventCallpointMapper<'channelCreate'> = (
 	channel,
-) =>
-	channel.parentId !== null
-		? `/guilds/${channel.guildId}/${channel.parentId}/channels ${channel.id}`
-		: `/guilds/${channel.guildId}/channels ${channel.id}`;
+) => ({ shard: channel.guild.shardId, location: '/channels' });
 
+/**
+ * @see https://discord.com/developers/docs/resources/channel#modify-channel
+ */
 export const channelUpdate: EventCallpointMapper<'channelUpdate'> = (
-	channel,
-	_,
-) =>
-	channel.isDMBased()
-		? `/users/${channel.recipientId} ${channel.id}`
-		: channel.parentId !== null
-			? `/guilds/${channel.guildId}/${channel.parentId}/channels ${channel.id}`
-			: `/guilds/${channel.guildId}/channels ${channel.id}`;
+	_previous,
+	current,
+) => ({
+	shard: maybeUnknown((current as GuildTextBasedChannel)?.guild.shardId),
+	location: `/channels/${current.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/channel#deleteclose-channel
+ */
 export const channelDelete: EventCallpointMapper<'channelDelete'> = (
 	channel,
-) =>
-	channel.isDMBased()
-		? `/users/${channel.recipientId} ${channel.id}`
-		: channel.parentId !== null
-			? `/guilds/${channel.guildId}/${channel.parentId}/channels ${channel.id}`
-			: `/guilds/${channel.guildId}/channels ${channel.id}`;
+) => ({
+	shard: maybeUnknown((channel as GuildTextBasedChannel)?.guild.shardId),
+	location: `/channels/${channel.id}`,
+});

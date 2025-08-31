@@ -1,39 +1,87 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type EventId = Snowflake & {};
-type UserId = Snowflake & {};
+import {
+	EventId,
+	GuildId,
+	MaybeUnknown,
+	maybeUnknown,
+	ShardId,
+} from '../../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		guildScheduledEventCreate: `/guilds/${GuildId}/events ${EventId}`;
-		guildScheduledEventUpdate: `/guilds/${GuildId}/events ${EventId}`;
-		guildScheduledEventDelete: `/guilds/${GuildId}/events ${EventId}`;
-		guildScheduledEventUserAdd: `/guilds/${GuildId}/events/${EventId}/attendees ${UserId}`;
-		guildScheduledEventUserRemove: `/guilds/${GuildId}/events/${EventId}/attendees ${UserId}`;
+		guildScheduledEventCreate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/guilds/${GuildId}/scheduled-events`
+		>;
+		guildScheduledEventUpdate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/guilds/${GuildId}/scheduled-events/${EventId}`
+		>;
+		guildScheduledEventDelete: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/guilds/${GuildId}/scheduled-events/${EventId}`
+		>;
+		guildScheduledEventUserAdd: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/guilds/${GuildId}/scheduled-events/${EventId}/users`
+		>;
+		guildScheduledEventUserRemove: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/guilds/${GuildId}/scheduled-events/${EventId}/users`
+		>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild-scheduled-event#create-guild-scheduled-event
+ */
 export const guildScheduledEventCreate: EventCallpointMapper<
 	'guildScheduledEventCreate'
-> = (event) => `/guilds/${event.guildId}/events ${event.id}`;
+> = (event) => ({
+	shard: maybeUnknown(event.guild?.shardId),
+	location: `/guilds/${event.guildId}/scheduled-events`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild-scheduled-event#modify-guild-scheduled-event
+ */
 export const guildScheduledEventUpdate: EventCallpointMapper<
 	'guildScheduledEventUpdate'
-> = (_, event) => `/guilds/${event.guildId}/events ${event.id}`;
+> = (_previous, current) => ({
+	shard: maybeUnknown(current.guild?.shardId),
+	location: `/guilds/${current.guildId}/scheduled-events/${current.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild-scheduled-event#delete-guild-scheduled-event
+ */
 export const guildScheduledEventDelete: EventCallpointMapper<
 	'guildScheduledEventDelete'
-> = (event) => `/guilds/${event.guildId}/events ${event.id}`;
+> = (event) => ({
+	shard: maybeUnknown(event.guild?.shardId),
+	location: `/guilds/${event.guildId}/scheduled-events/${event.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild-scheduled-event#get-guild-scheduled-event-users
+ */
 export const guildScheduledEventUserAdd: EventCallpointMapper<
 	'guildScheduledEventUserAdd'
-> = (event, user) =>
-	`/guilds/${event.guildId}/events/${event.id}/attendees ${user.id}`;
+> = (event, _user) => ({
+	shard: maybeUnknown(event.guild?.shardId),
+	location: `/guilds/${event.guildId}/scheduled-events/${event.id}/users`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild-scheduled-event#get-guild-scheduled-event-users
+ */
 export const guildScheduledEventUserRemove: EventCallpointMapper<
 	'guildScheduledEventUserRemove'
-> = (event, user) =>
-	`/guilds/${event.guildId}/events/${event.id}/attendees ${user.id}`;
+> = (event, _user) => ({
+	shard: maybeUnknown(event.guild?.shardId),
+	location: `/guilds/${event.guildId}/scheduled-events/${event.id}/users`,
+});

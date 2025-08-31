@@ -1,85 +1,85 @@
+import { GuildBasedChannel } from 'discord.js';
+
 import {
-	ChannelType,
-	DMChannel,
-	PartialDMChannel,
-	Snowflake,
-} from 'discord.js';
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { isChannelOfType } from '0xar-discord.js-channels-utils';
-
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type ChannelId = Snowflake & {};
-type ThreadId = Snowflake & {};
-type MessageId = Snowflake & {};
-type RecipientId = Snowflake & {};
-type Emoji = string & {};
+import {
+	ChannelId,
+	EmojiId,
+	maybeUnknown,
+	MaybeUnknown,
+	MessageId,
+	ShardId,
+	UserId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		messageReactionAdd:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${MessageId}/reactions ${Emoji}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/${MessageId}/reactions ${Emoji}`
-			| `/users/${RecipientId}/${ChannelId}/${MessageId}/reactions ${Emoji}`
-			| `/groups/${ChannelId}/${MessageId}/reactions ${Emoji}`;
-		messageReactionRemove:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${MessageId}/reactions ${Emoji}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/${MessageId}/reactions ${Emoji}`
-			| `/users/${RecipientId}/${ChannelId}/${MessageId}/reactions ${Emoji}`
-			| `/groups/${ChannelId}/${MessageId}/reactions ${Emoji}`;
-		messageReactionRemoveAll:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${MessageId}/reactions`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/${MessageId}/reactions`
-			| `/users/${RecipientId}/${ChannelId}/${MessageId}/reactions`
-			| `/groups/${ChannelId}/${MessageId}/reactions`;
-		messageReactionRemoveEmoji:
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${MessageId}/reactions ${Emoji}`
-			| `/guilds/${GuildId}/${CategoryId}/${ChannelId}/${ThreadId}/${MessageId}/reactions ${Emoji}`
-			| `/users/${RecipientId}/${ChannelId}/${MessageId}/reactions ${Emoji}`
-			| `/groups/${ChannelId}/${MessageId}/reactions ${Emoji}`;
+		messageReactionAdd: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}/messages/${MessageId}/reactions/${MaybeUnknown<EmojiId>}`
+		>;
+		messageReactionRemove: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}/messages/${MessageId}/reactions/${MaybeUnknown<EmojiId>}/${UserId}`
+		>;
+		messageReactionRemoveAll: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}/messages/${MessageId}/reactions`
+		>;
+		messageReactionRemoveEmoji: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ChannelId}/messages/${MessageId}/reactions/${EmojiId}`
+		>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#create-reaction
+ */
 export const messageReactionAdd: EventCallpointMapper<'messageReactionAdd'> = (
 	reaction,
-) =>
-	reaction.message.channel.isDMBased()
-		? isChannelOfType(ChannelType.DM, reaction.message.channel)
-			? `/users/${(reaction.message.channel as PartialDMChannel | DMChannel).recipientId}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-			: `/groups/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-		: reaction.message.channel.isThread()
-			? `/guilds/${reaction.message.channel.guildId}/${reaction.message.channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${reaction.message.channel.parentId ?? 'UNKNOWN_CHANNEL'}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-			: `/guilds/${reaction.message.channel.guildId}/${reaction.message.channel.parentId ?? 'UNKNOWN_CATEGORY'}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`;
+	_user,
+	_details,
+) => ({
+	shard: maybeUnknown(
+		(reaction.message.channel as GuildBasedChannel)?.guild?.shardId,
+	),
+	location: `/channels/${reaction.message.channelId}/messages/${reaction.message.id}/reactions/${maybeUnknown(reaction.emoji.id)}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#delete-user-reaction
+ */
 export const messageReactionRemove: EventCallpointMapper<
 	'messageReactionRemove'
-> = (reaction) =>
-	reaction.message.channel.isDMBased()
-		? isChannelOfType(ChannelType.DM, reaction.message.channel)
-			? `/users/${(reaction.message.channel as PartialDMChannel | DMChannel).recipientId}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-			: `/groups/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-		: reaction.message.channel.isThread()
-			? `/guilds/${reaction.message.channel.guildId}/${reaction.message.channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${reaction.message.channel.parentId ?? 'UNKNOWN_CHANNEL'}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-			: `/guilds/${reaction.message.channel.guildId}/${reaction.message.channel.parentId ?? 'UNKNOWN_CATEGORY'}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`;
+> = (reaction, user, _details) => ({
+	shard: maybeUnknown(
+		(reaction.message.channel as GuildBasedChannel)?.guild?.shardId,
+	),
+	location: `/channels/${reaction.message.channelId}/messages/${reaction.message.id}/reactions/${maybeUnknown(reaction.emoji.id)}/${user.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#delete-all-reactions
+ */
 export const messageReactionRemoveAll: EventCallpointMapper<
 	'messageReactionRemoveAll'
-> = (message) =>
-	message.channel.isDMBased()
-		? `/users/${(message.channel as PartialDMChannel | DMChannel).recipientId}/${message.channelId}/${message.id}/reactions`
-		: message.channel.isThread()
-			? `/guilds/${message.channel.guildId}/${message.channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${message.channel.parentId ?? 'UNKNOWN_CHANNEL'}/${message.channelId}/${message.id}/reactions`
-			: `/guilds/${message.channel.guildId}/${message.channel.parentId ?? 'UNKNOWN_CATEGORY'}/${message.channelId}/${message.id}/reactions`;
+> = (message, _reactions) => ({
+	shard: maybeUnknown((message.channel as GuildBasedChannel)?.guild?.shardId),
+	location: `/channels/${message.channelId}/messages/${message.id}/reactions`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/message#delete-all-reactions-for-emoji
+ */
 export const messageReactionRemoveEmoji: EventCallpointMapper<
 	'messageReactionRemoveEmoji'
-> = (reaction) =>
-	reaction.message.channel.isDMBased()
-		? isChannelOfType(ChannelType.DM, reaction.message.channel)
-			? `/users/${(reaction.message.channel as PartialDMChannel | DMChannel).recipientId}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-			: `/groups/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-		: reaction.message.channel.isThread()
-			? `/guilds/${reaction.message.channel.guildId}/${reaction.message.channel.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${reaction.message.channel.parentId ?? 'UNKNOWN_CHANNEL'}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`
-			: `/guilds/${reaction.message.channel.guildId}/${reaction.message.channel.parentId ?? 'UNKNOWN_CATEGORY'}/${reaction.message.channelId}/${reaction.message.id}/reactions ${reaction.emoji.toString()}`;
+> = (reaction) => ({
+	shard: maybeUnknown(
+		(reaction.message.channel as GuildBasedChannel)?.guild?.shardId,
+	),
+	location: `/channels/${reaction.message.channelId}/messages/${reaction.message.id}/reactions/${maybeUnknown(reaction.emoji.id)}`,
+});

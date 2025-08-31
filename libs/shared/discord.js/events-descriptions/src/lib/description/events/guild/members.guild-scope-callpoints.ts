@@ -1,37 +1,79 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type MemberId = Snowflake & {};
-type UserId = Snowflake & {};
+import { GuildId, ShardId, UserId } from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		guildMemberAdd: `/guilds/${GuildId}/members ${MemberId}`;
-		guildMemberUpdate: `/guilds/${GuildId}/members ${MemberId}`;
-		guildMemberRemove: `/guilds/${GuildId}/members ${MemberId}`;
+		guildMemberAdd: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/members/${UserId}`
+		>;
+		guildMemberUpdate: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/members/${UserId}`
+		>;
+		guildMemberRemove: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/members/${UserId}`
+		>;
 
-		guildBanAdd: `/guilds/${GuildId}/bans ${UserId}`;
-		guildBanRemove: `/guilds/${GuildId}/bans ${UserId}`;
+		guildBanAdd: CallpointObject<ShardId, `/guilds/${GuildId}/bans/${UserId}`>;
+		guildBanRemove: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/bans/${UserId}`
+		>;
 	}
 }
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#add-guild-member
+ */
 export const guildMemberAdd: EventCallpointMapper<'guildMemberAdd'> = (
 	member,
-) => `/guilds/${member.guild.id}/members ${member.id}`;
+) => ({
+	shard: member.guild.shardId,
+	location: `/guilds/${member.guild.id}/members/${member.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#modify-guild-member
+ */
 export const guildMemberUpdate: EventCallpointMapper<'guildMemberUpdate'> = (
-	_,
-	member,
-) => `/guilds/${member.guild.id}/members ${member.id}`;
+	_previous,
+	current,
+) => ({
+	shard: current.guild.shardId,
+	location: `/guilds/${current.guild.id}/members/${current.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#remove-guild-member
+ */
 export const guildMemberRemove: EventCallpointMapper<'guildMemberRemove'> = (
 	member,
-) => `/guilds/${member.guild.id}/members ${member.id}`;
+) => ({
+	shard: member.guild.shardId,
+	location: `/guilds/${member.guild.id}/members/${member.id}`,
+});
 
-export const guildBanAdd: EventCallpointMapper<'guildBanAdd'> = (ban) =>
-	`/guilds/${ban.guild.id}/bans ${ban.user.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/guild#create-guild-ban
 
-export const guildBanRemove: EventCallpointMapper<'guildBanRemove'> = (ban) =>
-	`/guilds/${ban.guild.id}/bans ${ban.user.id}`;
+ */
+export const guildBanAdd: EventCallpointMapper<'guildBanAdd'> = (ban) => ({
+	shard: ban.guild.shardId,
+	location: `/guilds/${ban.guild.id}/bans/${ban.user.id}`,
+});
+
+/**
+ * @see https://discord.com/developers/docs/resources/guild#remove-guild-ban
+ */
+export const guildBanRemove: EventCallpointMapper<'guildBanRemove'> = (
+	ban,
+) => ({
+	shard: ban.guild.shardId,
+	location: `/guilds/${ban.guild.id}/bans/${ban.user.id}`,
+});

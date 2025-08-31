@@ -1,68 +1,117 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type ParentId = Snowflake & {};
-type CategoryId = Snowflake & {};
-type MemberId = Snowflake & {};
-type ThreadId = Snowflake & {};
-type Nonce = Snowflake & {};
+import {
+	GuildId,
+	MaybeUnknown,
+	maybeUnknown,
+	MemberId,
+	ShardId,
+	ThreadId,
+	UNKNOWN,
+	Unknown,
+	UserId,
+} from '../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		guildAvailable: `/client/guilds ${GuildId}`;
-		guildUnavailable: `/client/guilds ${GuildId}`;
+		guildAvailable: CallpointObject<ShardId, `/guilds/${GuildId}`>;
+		guildUnavailable: CallpointObject<ShardId, `/guilds/${GuildId}`>;
 
-		guildMemberAvailable: `/client/guilds/${GuildId}/members ${MemberId}`;
-		guildMembersChunk: `/client/guilds/${GuildId}/members ${Nonce}`;
+		guildMemberAvailable: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/members/${MemberId}`
+		>;
+		guildMembersChunk: CallpointObject<ShardId, `/guilds/${GuildId}/members`>;
 
-		threadMemberUpdate: `/client/guilds/${GuildId}/${CategoryId}/${ParentId}/${ThreadId}`;
+		threadMemberUpdate: CallpointObject<
+			MaybeUnknown<ShardId>,
+			`/channels/${ThreadId}/thread-members/${UserId}`
+		>;
 
-		threadListSync: `/client/guilds/${GuildId}/threads`;
-		soundboardSounds: `/client/guilds/${GuildId}/sounds`;
+		threadListSync: CallpointObject<ShardId, `/guilds/${GuildId}/threads`>;
+		soundboardSounds: CallpointObject<
+			ShardId,
+			`/guilds/${GuildId}/soundboard-sounds`
+		>;
 
-		cacheSweep: `/client/cache`;
+		cacheSweep: CallpointObject<Unknown, `/client/cache`>;
 
-		invalidated: `/client/state`;
+		invalidated: CallpointObject<Unknown, `/client/state`>;
 	}
 }
 
-export const guildAvailable: EventCallpointMapper<'guildAvailable'> = (guild) =>
-	`/client/guilds ${guild.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/guild#get-guild
+ */
+export const guildAvailable: EventCallpointMapper<'guildAvailable'> = (
+	guild,
+) => ({ shard: guild.shardId, location: `/guilds/${guild.id}` });
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#get-guild
+ */
 export const guildUnavailable: EventCallpointMapper<'guildUnavailable'> = (
 	guild,
-) => `/client/guilds ${guild.id}`;
+) => ({ shard: guild.shardId, location: `/guilds/${guild.id}` });
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#get-guild-member
+ */
 export const guildMemberAvailable: EventCallpointMapper<
 	'guildMemberAvailable'
-> = (member) => `/client/guilds/${member.guild.id}/members ${member.id}`;
+> = (member) => ({
+	shard: member.guild.shardId,
+	location: `/guilds/${member.guild.id}/members/${member.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/resources/guild#list-guild-members
+ */
 export const guildMembersChunk: EventCallpointMapper<'guildMembersChunk'> = (
-	_,
+	_members,
 	guild,
-	chunk,
-) => `/client/guilds/${guild.id}/members ${chunk.nonce ?? 'unknown'}`;
+	_chunk,
+) => ({ shard: guild.shardId, location: `/guilds/${guild.id}/members` });
 
+/**
+ * @see https://discord.com/developers/docs/resources/channel#get-thread-member
+ */
 export const threadMemberUpdate: EventCallpointMapper<'threadMemberUpdate'> = (
-	_,
-	member,
-) =>
-	`/client/guilds/${member.thread.guildId}/${member.thread.parent?.parentId ?? 'UNKNOWN_CATEGORY'}/${member.thread.parentId ?? 'UNKNOWN_CHANNEL'}/${member.thread.id}`;
+	_previous,
+	current,
+) => ({
+	shard: maybeUnknown(current.guildMember?.guild.shardId),
+	location: `/channels/${current.thread.id}/thread-members/${current.id}`,
+});
 
+/**
+ * @see https://discord.com/developers/docs/topics/threads#enumerating-threads
+ */
 export const threadListSync: EventCallpointMapper<'threadListSync'> = (
-	_,
+	_threads,
 	guild,
-) => `/client/guilds/${guild.id}/threads`;
+) => ({ shard: guild.shardId, location: `/guilds/${guild.id}/threads` });
 
+/**
+ * @see https://discord.com/developers/docs/resources/soundboard#list-guild-soundboard-sounds
+ */
 export const soundboardSounds: EventCallpointMapper<'soundboardSounds'> = (
-	_,
+	_soundboardSounds,
 	guild,
-) => `/client/guilds/${guild.id}/sounds`;
+) => ({
+	shard: guild.shardId,
+	location: `/guilds/${guild.id}/soundboard-sounds`,
+});
 
-export const cacheSweep: EventCallpointMapper<'cacheSweep'> = () =>
-	`/client/cache`;
+export const cacheSweep: EventCallpointMapper<'cacheSweep'> = (_message) => ({
+	shard: UNKNOWN,
+	location: `/client/cache`,
+});
 
-export const invalidated: EventCallpointMapper<'invalidated'> = () =>
-	`/client/state`;
+export const invalidated: EventCallpointMapper<'invalidated'> = () => ({
+	shard: UNKNOWN,
+	location: `/client/state`,
+});

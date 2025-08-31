@@ -1,23 +1,41 @@
-import { Snowflake } from 'discord.js';
+import {
+	CallpointObject,
+	EventCallpointMapper,
+} from '../../../interface/event-callpoint.interface.js';
 
-import { EventCallpointMapper } from '../../../interface/event-callpoint.interface.js';
-
-type GuildId = Snowflake & {};
-type RoleId = Snowflake & {};
+import { GuildId, RoleId, ShardId } from '../../../utils/components.js';
 
 declare global {
 	interface EventCallpointMap {
-		roleCreate: `/guilds/${GuildId}/roles ${RoleId}`;
-		roleUpdate: `/guilds/${GuildId}/roles ${RoleId}`;
-		roleDelete: `/guilds/${GuildId}/roles ${RoleId}`;
+		roleCreate: CallpointObject<ShardId, `/guilds/${GuildId}/roles`>;
+		roleUpdate: CallpointObject<ShardId, `/guilds/${GuildId}/roles/${RoleId}`>;
+		roleDelete: CallpointObject<ShardId, `/guilds/${GuildId}/roles/${RoleId}`>;
 	}
 }
 
-export const roleCreate: EventCallpointMapper<'roleCreate'> = (role) =>
-	`/guilds/${role.guild.id}/roles ${role.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/guild#create-guild-role
+ */
+export const roleCreate: EventCallpointMapper<'roleCreate'> = (role) => ({
+	shard: role.guild.shardId,
+	location: `/guilds/${role.guild.id}/roles`,
+});
 
-export const roleUpdate: EventCallpointMapper<'roleUpdate'> = (_, role) =>
-	`/guilds/${role.guild.id}/roles ${role.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/guild#modify-guild-role
+ */
+export const roleUpdate: EventCallpointMapper<'roleUpdate'> = (
+	_previous,
+	current,
+) => ({
+	shard: current.guild.shardId,
+	location: `/guilds/${current.guild.id}/roles/${current.id}`,
+});
 
-export const roleDelete: EventCallpointMapper<'roleDelete'> = (role) =>
-	`/guilds/${role.guild.id}/roles ${role.id}`;
+/**
+ * @see https://discord.com/developers/docs/resources/guild#delete-guild-role
+ */
+export const roleDelete: EventCallpointMapper<'roleDelete'> = (role) => ({
+	shard: role.guild.shardId,
+	location: `/guilds/${role.guild.id}/roles/${role.id}`,
+});

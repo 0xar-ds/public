@@ -1,3 +1,5 @@
+import { Nullable } from '../../../../../../../types/utils/utils.js';
+
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 export interface ComputeUpdateOpts {
 	excludeDefaults?: boolean;

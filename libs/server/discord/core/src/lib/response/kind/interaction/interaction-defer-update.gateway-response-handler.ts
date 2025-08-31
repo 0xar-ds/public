@@ -45,7 +45,7 @@ export class InteractionDeferUpdateHandler
 
 	async handle(
 		response: GatewayResponse,
-		controller: NecordBaseDiscovery,
+		_controller: NecordBaseDiscovery,
 		context: ContextOf<keyof NecordEvents>,
 	): ReturnOf<GatewayResponseType.InteractionDeferUpdate> {
 		const [interaction] = context as

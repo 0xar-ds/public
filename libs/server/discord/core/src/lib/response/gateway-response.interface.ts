@@ -1,3 +1,4 @@
+import { Prettify } from '../../../../../../../types/utils/utils.js';
 import { GatewayResponseType } from './gateway-response.enum.js';
 
 export type GatewayResponseContext<

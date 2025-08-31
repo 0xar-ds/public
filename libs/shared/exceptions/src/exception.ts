@@ -1,4 +1,5 @@
 import { AppStatus, HttpStatus, StatusDescription } from '@~server/core-api';
+import { Nullable } from '../../../../types/utils/utils.js';
 
 export class Exception<T> extends Error {
 	public readonly code: HttpStatus | AppStatus;

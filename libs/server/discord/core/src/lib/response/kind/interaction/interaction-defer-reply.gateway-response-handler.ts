@@ -40,7 +40,7 @@ export class InteractionDeferReplyHandler
 
 	async handle(
 		response: GatewayResponse,
-		controller: NecordBaseDiscovery,
+		_controller: NecordBaseDiscovery,
 		context: ContextOf<keyof NecordEvents>,
 	): ReturnOf<GatewayResponseType.InteractionDeferReply> {
 		const [interaction] = context as SlashCommandContext;

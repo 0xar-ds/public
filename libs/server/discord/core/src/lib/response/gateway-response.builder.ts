@@ -11,6 +11,7 @@ import {
 } from './gateway-response.interface.js';
 
 import { GatewayResponse } from './gateway-response.js';
+import { Maybe, Nullable } from '../../../../../../../types/utils/utils.js';
 
 type OptionsOf<T extends GatewayResponsePayload> = {
 	[K in Exclude<keyof T, 'body' | 'type'>]: T[K];

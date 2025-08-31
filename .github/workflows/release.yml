@@ -1,8 +1,11 @@
-on:
-  push:
-    branches:
-      - master
+name: Release
 
+on:
+  workflow_run:
+    workflows: ["CI"]  # Replace with the actual name of the triggering workflow
+    types:
+      - completed
+      
 permissions:
   contents: read # for checkout
 

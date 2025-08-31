@@ -1,5 +1,5 @@
 extends: 'semantic-release-monorepo'
-tagFormat: channels-utils-v${version}
+tagFormat: 'libs.channels-utils-v${version}'
 branches:
   - master
   - next

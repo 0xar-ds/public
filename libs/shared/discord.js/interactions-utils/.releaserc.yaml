@@ -1,5 +1,5 @@
 extends: 'semantic-release-monorepo'
-tagFormat: interactions-utils-v${version}
+tagFormat: 'libs.interactions-utils-v${version}'
 branches:
   - master
   - next

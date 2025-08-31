@@ -1,5 +1,5 @@
 extends: 'semantic-release-monorepo'
-tagFormat: events-descriptions-v${version}
+tagFormat: 'libs.events-descriptions-v${version}'
 branches:
   - master
   - next

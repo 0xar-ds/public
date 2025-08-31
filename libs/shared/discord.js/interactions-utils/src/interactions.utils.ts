@@ -1,4 +1,4 @@
-import { InteractionType } from 'discord.js';
+import { InteractionContextType, InteractionType } from 'discord.js';
 
 export type InteractionTypeKey = keyof typeof InteractionType;
 
@@ -10,4 +10,12 @@ export function getInteractionTypeKey(
 	value: InteractionType,
 ): InteractionTypeKey {
 	return InteractionType[value] as InteractionTypeKey;
+}
+
+export type ContextTypeKey = keyof typeof InteractionContextType;
+
+export function getContextTypeKey(
+	value: InteractionContextType,
+): ContextTypeKey {
+	return InteractionContextType[value] as ContextTypeKey;
 }

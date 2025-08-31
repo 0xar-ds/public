@@ -133,7 +133,7 @@ export class NecordParser extends AbstractInterceptorService {
 		if (discovery.isListener()) {
 			const event = discovery.getEvent();
 
-			if (!(event in DISCORDJS_EVENTS)) {
+			if (!DISCORDJS_EVENTS.has(event as keyof ClientEvents)) {
 				throw new NecordParserError(
 					'To-parse event was of a Necord or consumer interface, which is not implemented by this library.',
 				);

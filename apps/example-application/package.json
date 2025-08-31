@@ -75,7 +75,7 @@
 		"@~rxjs/shared-replay": "workspace:^",
 		"@~server/config-schemas": "workspace:^",
 		"@~discord/core": "workspace:^",
-		"discord.js-channels-utils": "workspace:^",
+		"@argentina-community/channels-utils": "workspace:^",
 		"@~server/core-api": "workspace:^",
 		"discord.js": "catalog:discord",
 		"necord": "catalog:discord",

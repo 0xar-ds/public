@@ -31,8 +31,8 @@
 		"tsconfig-paths": "catalog:utilities"
 	},
 	"dependencies": {
-		"discord.js-channels-utils": "workspace:^",
-		"discord.js-interactions-utils": "workspace:^",
+		"@argentina-community/channels-utils": "workspace:^",
+		"@argentina-community/interactions-utils": "workspace:^",
 		"discord.js": "catalog:discord",
 		"reflect-metadata": "catalog:utilities"
 	},

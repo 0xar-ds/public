@@ -1,4 +1,4 @@
-import { isChannelOfType } from 'discord.js-channels-utils';
+import { isChannelOfType } from '@argentina-community/channels-utils';
 import { ChannelType } from 'discord.js';
 
 import {

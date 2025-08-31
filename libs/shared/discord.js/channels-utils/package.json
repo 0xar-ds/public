@@ -20,7 +20,7 @@
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
 	"devDependencies": {
-		"@argentina-community/eslint-config": "workspace:^",
+		"@argentina-community/config-eslint": "workspace:^",
 		"@types/express": "catalog:environment",
 		"@types/node": "catalog:environment",
 		"globals": "catalog:code-quality",

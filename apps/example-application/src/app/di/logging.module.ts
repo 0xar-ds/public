@@ -1,14 +1,15 @@
 import { Inject, Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+
 import {
 	OgmaInterceptor,
 	OgmaModule,
 	OgmaModuleOptions,
 } from '@ogma/nestjs-module';
 
-import { ServerConfigSchema } from '#config/server-config.schema.js';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { NecordParser } from 'ogma-necord-platform';
 
-// import { NecordParser } from '0xar-ogma-necord-platform';
+import { ServerConfigSchema } from '#config/server-config.schema.js';
 
 @Module({
 	imports: [
@@ -17,11 +18,11 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 		}),
 	],
 	providers: [
-		// {
-		// 	provide: APP_INTERCEPTOR,
-		// 	useClass: OgmaInterceptor,
-		// },
-		// NecordParser,
+		{
+			provide: APP_INTERCEPTOR,
+			useClass: OgmaInterceptor,
+		},
+		NecordParser,
 	],
 })
 export class ServerLoggingModule {

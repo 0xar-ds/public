@@ -4,7 +4,10 @@ import { fileURLToPath } from 'node:url';
 
 import config from '@argentina-community/config-eslint';
 
-import { includeIgnoreFile, makeTsConfig } from '@argentina-community/config-eslint/utils';
+import {
+	includeIgnoreFile,
+	makeTsConfig,
+} from '@argentina-community/config-eslint/utils';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 

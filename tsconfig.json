@@ -13,6 +13,9 @@
 			"path": "libs/server/core/api"
 		},
 		{
+			"path": "libs/server/discord/ogma-necord-platform"
+		},
+		{
 			"path": "libs/server/discord/core"
 		},
 		{

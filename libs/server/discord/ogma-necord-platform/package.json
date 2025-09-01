@@ -20,7 +20,7 @@
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
 	"devDependencies": {
-		"@argentina-community/config-eslint": "workspace:^",
+		"@argentina-community/config-eslint": "workspace:^1.0.0",
 		"@types/express": "catalog:environment",
 		"@types/node": "catalog:environment",
 		"globals": "catalog:code-quality",
@@ -30,7 +30,7 @@
 		"tsconfig-paths": "catalog:utilities"
 	},
 	"dependencies": {
-		"@argentina-community/events-descriptions": "workspace:^"
+		"@argentina-community/events-descriptions": "workspace:^1.0.0"
 	},
 	"peerDependencies": {
 		"@nestjs/common": "catalog:nest",

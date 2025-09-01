@@ -23,7 +23,7 @@
 		"reflect-metadata": "^0.2.2"
 	},
 	"devDependencies": {
-		"@argentina-community/eslint-config": "workspace:^",
+		"@argentina-community/config-eslint": "workspace:^",
 		"@types/express": "catalog:environment",
 		"@types/jest": "catalog:environment",
 		"@types/node": "catalog:environment",

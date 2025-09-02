@@ -27,7 +27,7 @@ catalogs:
   environment:
     "@types/express": 5.0.3
     "@types/node": 24.0.15
-    "@types/jest": 29.5.14
+    "@types/jest": 30.0.0
 
   code-quality:
     "eslint": 9.31.0
@@ -73,7 +73,7 @@ catalogs:
     "tsdown": 0.14.2
 
   jest:
-    "jest": 29.7.0
+    "jest": 30.1.2
 
   test-tooling:
     "ts-jest": 29.3.2

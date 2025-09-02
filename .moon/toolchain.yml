@@ -6,7 +6,7 @@ node:
       - '--force'
 
 proto:
-  version: '0.51.3'
+  version: '0.52.2'
 
 typescript:
   includeSharedTypes: true

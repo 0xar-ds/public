@@ -1,6 +1,144 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended",
+		":dependencyDashboard",
+		":separateMultipleMajorReleases",
+		":timezone(America/Argentina/Buenos_Aires)",
+		":semanticCommits",
+		":rebaseStalePrs",
+		":renovatePrefix",
+		":enableVulnerabilityAlerts",
+		":maintainLockFilesWeekly"
+	],
+	"minimumReleaseAge": "3 days",
+	"stabilityDays": 3,
+	"prCreation": "immediate",
+	"vulnerabilityAlerts": {
+		"labels": ["security", "priority-critical"],
+		"enabled": true,
+		"schedule": "at any time",
+		"automerge": true,
+		"extends": [":semanticCommitType(fix)"],
+		"commitMessageSuffix": "[SECURITY]"
+	},
+	"packageRules": [
+		{
+			"description": "Disable package.json > engines update",
+			"matchDepTypes": ["engines"],
+			"enabled": false
+		},
+		{
+			"description": "Ignore node version in package.json",
+			"matchPackageNames": ["node"],
+			"matchManagers": ["npm"],
+			"enabled": false
+		},
+		{
+			"groupName": "semantic-release",
+			"matchPackageNames": [
+				"semantic-release",
+				"semantic-release-monorepo",
+				"@anolilab/semantic-release-pnpm",
+				"@semantic-release/**",
+				"conventional-changelog-conventionalcommits"
+			],
+			"extends": [":semanticCommitType(chore)"]
+		},
+		{
+			"groupName": "ESLint",
+			"matchPackageNames": [
+				"globals",
+				"eslint",
+				"@eslint/**",
+				"typescript-eslint",
+				"@typescript-eslint/**",
+				"eslint-import-resolver-typescript",
+				"eslint-config-**",
+				"eslint-plugin-**"
+			],
+			"extends": [":semanticCommitType(style)"],
+			"automerge": true,
+			"automergeType": "branch",
+			"labels": ["eslint"]
+		},
+		{
+			"groupName": "prettier",
+			"matchPackageNames": ["prettier", "prettier-.*"],
+			"extends": [":semanticCommitType(style)"],
+			"automerge": true,
+			"automergeType": "branch",
+			"labels": ["prettier"]
+		},
+		{
+			"groupName": "github-actions",
+			"matchManagers": ["github-actions"],
+			"extends": [":semanticCommitType(ci)"],
+			"labels": ["github-actions"]
+		},
+		{
+			"groupName": "type dependencies",
+			"groupSlug": "types",
+			"matchPackageNames": ["typescript", "@types/**"],
+			"extends": [":semanticCommitType(ci)"],
+			"automerge": true
+		},
+		{
+			"groupName": "renovate",
+			"automerge": true,
+			"matchPackageNames": ["renovate"],
+			"extends": [":semanticCommitType(chore)"]
+		},
+		{
+			"description": "Automerge non-major updates",
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true,
+			"automergeType": "branch",
+			"extends": [":semanticCommitType(fix)"]
+		}
+	],
+	"npm": {
+		"labels": ["c: dependencies"],
+		"extends": [
+			":noUnscheduledUpdates",
+			":separatePatchReleases",
+			"npm:unpublishSafe",
+			"helpers:disableTypesNodeMajor",
+			":semanticCommitType(chore)"
+		],
+		"rangeStrategy": "bump",
+		"automergeType": "branch",
+		"major": {
+			"automerge": false,
+			"extends": [":semanticCommitType(feat)"],
+			"commitBody": "BREAKING CHANGE: updated dependencies to major versions"
+		},
+		"minor": {
+			"automerge": true,
+			"groupName": "Minor updates",
+			"extends": [":semanticCommitType(feat)"]
+		},
+		"patch": {
+			"automerge": true,
+			"groupName": "Patch updates",
+			"extends": [":semanticCommitType(fix)"]
+		},
+		"lockFileMaintenance": {
+			"enabled": true,
+			"automerge": true,
+			"schedule": ["before 5am on monday"]
+		}
+	},
+	"github-actions": {
+		"extends": [
+			":noUnscheduledUpdates",
+			"helpers:pinGitHubActionDigests",
+			":semanticCommitType(ci)"
+		],
+		"rangeStrategy": "bump",
+		"automergeType": "branch",
+		"automerge": true,
+		"labels": ["github-actions"]
+	},
+	"commitBody": "Signed-off-by: Renovate Bot <bot@renovateapp.com>"
 }

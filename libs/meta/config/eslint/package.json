@@ -10,7 +10,8 @@
 	"homepage": "https://github.com/0xar-ds/public",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/0xar-ds/public"
+		"url": "https://github.com/0xar-ds/public",
+		"directory": "libs/meta/config/eslint"
 	},
 	"bugs": {
 		"url": "https://github.com/0xar-ds/public/issues",
@@ -38,10 +39,10 @@
 			"default": "./src/base.eslint-config.js",
 			"types": "./src/base.eslint-config.d.ts"
 		},
-    "./base": {
-      "default": "./src/base.eslint-config.js",
+		"./base": {
+			"default": "./src/base.eslint-config.js",
 			"types": "./src/base.eslint-config.d.ts"
-    },
+		},
 		"./svelte": {
 			"default": "./src/svelte.eslint-config.js",
 			"types": "./src/svelte.eslint-config.d.ts"

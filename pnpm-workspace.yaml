@@ -14,7 +14,7 @@ catalogs:
     "@nestjs/schematics": 11.0.5
 
   nest-libs:
-    "nest-typed-config": 2.9.4
+    "nest-typed-config": 2.10.1
 
     "@ogma/common": 1.2.0
     "@ogma/nestjs-module": 5.5.0

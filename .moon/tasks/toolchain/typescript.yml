@@ -4,6 +4,8 @@ implicitDeps:
 implicitInputs:
   - '@group(configs)'
   - '@group(sources)'
+  - '/tsconfig.json'
+  - '/tsconfig.options.json'
 
 fileGroups:
   sources:

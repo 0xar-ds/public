@@ -1,2 +1,4 @@
 implicitInputs:
   - 'package.json'
+  - '/package.json'
+  - '/pnpm-workspace.json'

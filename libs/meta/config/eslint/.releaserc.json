@@ -1,6 +1,6 @@
 {
 	"extends": "semantic-release-monorepo",
-	"tagFormat": "libs.eslint-config-v${version}",
+	"tagFormat": "@argentina-community/eslint-config@${version}",
 	"branches": ["master", "next"],
 	"plugins": [
 		["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],

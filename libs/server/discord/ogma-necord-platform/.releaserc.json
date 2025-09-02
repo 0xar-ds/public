@@ -1,6 +1,6 @@
 {
 	"extends": "semantic-release-monorepo",
-	"tagFormat": "libs.ogma-necord-platform-v${version}",
+	"tagFormat": "ogma-necord-platform@${version}",
 	"branches": ["master", "next"],
 	"plugins": [
 		["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],

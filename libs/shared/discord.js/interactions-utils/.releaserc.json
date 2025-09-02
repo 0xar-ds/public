@@ -1,6 +1,6 @@
 {
 	"extends": "semantic-release-monorepo",
-	"tagFormat": "libs.interactions-utils-v${version}",
+	"tagFormat": "@argentina-community/interactions-utils@${version}",
 	"branches": ["master", "next"],
 	"plugins": [
 		["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],

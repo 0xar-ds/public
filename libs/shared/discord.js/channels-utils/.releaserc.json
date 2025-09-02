@@ -1,6 +1,6 @@
 {
 	"extends": "semantic-release-monorepo",
-	"tagFormat": "libs.channels-utils-v${version}",
+	"tagFormat": "@argentina-community/channels-utils@${version}",
 	"branches": ["master", "next"],
 	"plugins": [
 		["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],

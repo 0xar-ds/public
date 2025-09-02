@@ -1,6 +1,6 @@
 {
 	"extends": "semantic-release-monorepo",
-	"tagFormat": "libs.events-descriptions-v${version}",
+	"tagFormat": "@argentina-community/events-descriptions@${version}",
 	"branches": ["master", "next"],
 	"plugins": [
 		["@semantic-release/commit-analyzer", { "preset": "conventionalcommits" }],

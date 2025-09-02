@@ -12,7 +12,6 @@
 		":maintainLockFilesWeekly"
 	],
 	"minimumReleaseAge": "3 days",
-	"stabilityDays": 3,
 	"prCreation": "immediate",
 	"vulnerabilityAlerts": {
 		"labels": ["security", "priority-critical"],

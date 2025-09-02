@@ -13,12 +13,12 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           fetch-depth: 0
 
       - name: Setup Toolchain
-        uses: moonrepo/setup-toolchain@v0
+        uses: moonrepo/setup-toolchain@827700d97fe7dd1c3030018529e43e23c377c308 # v0
         with:
           auto-install: true
 
@@ -26,11 +26,11 @@ jobs:
         run: moon ci --color
 
       - name: Report action outcome to PR
-        uses: moonrepo/run-report-action@v1
+        uses: moonrepo/run-report-action@0e591adc3fbc65a5c9b2f4738368f378c2efaa79 # v1
         if: success() || failure()
         with:
           access-token: ${{ secrets.PR_GITHUB_TOKEN }}
 
       - name: Collect/retrospect on Moon's CI Summaries
-        uses: appthrust/moon-ci-retrospect@v1
+        uses: appthrust/moon-ci-retrospect@10c4aff093e3405433957d8e1d2776c81207d5bb # v1
         if: success() || failure()

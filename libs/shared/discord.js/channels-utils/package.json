@@ -10,7 +10,8 @@
 	"homepage": "https://github.com/0xar-ds/public",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/0xar-ds/public"
+		"url": "https://github.com/0xar-ds/public",
+		"directory": "libs/shared/discord.js/channels-utils"
 	},
 	"bugs": {
 		"url": "https://github.com/0xar-ds/public/issues",

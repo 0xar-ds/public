@@ -1,3 +1,4 @@
+import { Nullable } from '../../../../../../../../../types/utils/utils.js';
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
 
 declare global {

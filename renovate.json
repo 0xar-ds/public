@@ -28,6 +28,11 @@
 			"enabled": false
 		},
 		{
+			"description": "Disable package.json > packageManager update",
+			"matchDepTypes": ["packageManager"],
+			"enabled": false
+		},
+		{
 			"description": "Ignore node version in package.json",
 			"matchPackageNames": ["node"],
 			"matchManagers": ["npm"],

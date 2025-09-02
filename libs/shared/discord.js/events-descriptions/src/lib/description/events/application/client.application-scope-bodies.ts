@@ -56,7 +56,7 @@ declare global {
 }
 
 export const guildAvailable: EventBodyMapper<'guildAvailable'> = (guild) => ({
-	name: guild.name.substring(0, 7),
+	name: guild.name,
 	vanity: guild.vanityURLCode,
 	ownerId: guild.ownerId,
 	locale: guild.preferredLocale,
@@ -70,7 +70,7 @@ export const guildAvailable: EventBodyMapper<'guildAvailable'> = (guild) => ({
 export const guildUnavailable: EventBodyMapper<'guildUnavailable'> = (
 	guild,
 ) => ({
-	name: guild.name.substring(0, 7),
+	name: guild.name,
 	vanity: guild.vanityURLCode,
 	ownerId: guild.ownerId,
 	locale: guild.preferredLocale,
@@ -84,7 +84,7 @@ export const guildUnavailable: EventBodyMapper<'guildUnavailable'> = (
 export const guildMemberAvailable: EventBodyMapper<'guildMemberAvailable'> = (
 	member,
 ) => ({
-	name: member.displayName.substring(0, 7),
+	name: member.displayName,
 	userId: member.user.id,
 	permissions: member.permissions.bitfield,
 	premium: member.premiumSinceTimestamp !== null,

@@ -17,13 +17,13 @@ declare global {
 export const messagePollVoteAdd: EventBodyMapper<'messagePollVoteAdd'> = (
 	answer,
 ) => ({
-	text: answer.text?.substring(0, 7) ?? null,
+	text: answer.text ?? null,
 	multichoice: answer.poll.allowMultiselect,
 });
 
 export const messagePollVoteRemove: EventBodyMapper<'messagePollVoteRemove'> = (
 	answer,
 ) => ({
-	text: answer.text?.substring(0, 7) ?? null,
+	text: answer.text ?? null,
 	multichoice: answer.poll.allowMultiselect,
 });

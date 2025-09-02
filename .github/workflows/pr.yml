@@ -29,4 +29,4 @@ jobs:
       - uses: moonrepo/run-report-action@v1
         if: success() || failure()
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.PR_GITHUB_TOKEN }}

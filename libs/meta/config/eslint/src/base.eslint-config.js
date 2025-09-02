@@ -74,7 +74,7 @@ function makeImportXOrderRuleDefinition() {
 				group: 'external',
 				position: 'after',
 			},
-      {
+			{
 				pattern: '@argentina-community/**',
 				group: 'external',
 				position: 'after',

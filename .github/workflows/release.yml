@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: moon run --no-bail :publish
+        run: moon run --summary --no-bail :publish
 
       - name: Collect/retrospect on Moon's CI Summaries
         uses: appthrust/moon-ci-retrospect@v1

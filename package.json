@@ -33,7 +33,7 @@
 		"typescript": "catalog:build-tooling"
 	},
 	"engines": {
-		"node": "23.0.0"
+		"node": "23.11.1"
 	},
 	"keywords": [
 		"typescript",

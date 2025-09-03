@@ -32,5 +32,5 @@ jobs:
           access-token: ${{ secrets.PR_GITHUB_TOKEN }}
 
       - name: Collect/retrospect on Moon's CI Summaries
-        uses: appthrust/moon-ci-retrospect@10c4aff093e3405433957d8e1d2776c81207d5bb # v1
+        uses: 0xar-ds/moon-ci-retrospect@v1.1 # v1
         if: success() || failure()

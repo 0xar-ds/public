@@ -1,6 +1,8 @@
 node:
   packageManager: 'pnpm'
   syncProjectWorkspaceDependencies: true
+  addEnginesConstraint: true
+  syncPackageManagerField: true
   pnpm:
     installArgs:
       - '--force'

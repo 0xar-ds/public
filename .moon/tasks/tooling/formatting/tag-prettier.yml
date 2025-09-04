@@ -2,9 +2,11 @@ tasks:
   format:
     type: test
     description: 'Runs prettier with the --write flag. Requires argumenting the root location/base url.'
-    command: 'prettier --write'
+    command: 'prettier --write --cache --cache-location ./.prettiercache'
     args: '.'
     inputs:
       - '@group(sources)'
       - '@group(configs)'
       - '@group(tests)'
+    outputs:
+      - '.prettiercache'

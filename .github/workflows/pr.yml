@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Toolchain
-        uses: moonrepo/setup-toolchain@827700d97fe7dd1c3030018529e43e23c377c308 # v0
+        uses: moonrepo/setup-toolchain@3927d571963592235146e8e0b5261206954796a2 # v0
         with:
           auto-install: true
 
@@ -32,5 +32,5 @@ jobs:
           access-token: ${{ secrets.PR_GITHUB_TOKEN }}
 
       - name: Collect/retrospect on Moon's CI Summaries
-        uses: 0xar-ds/moon-ci-retrospect@v1.1 # v1
+        uses: 0xar-ds/moon-ci-retrospect@5094e547420fb36069afd47ce0610ad89cf4d8f2 # v1.1
         if: success() || failure()

@@ -73,7 +73,7 @@ catalogs:
     "tsdown": 0.14.2
 
   jest:
-    "jest": 30.1.2
+    "jest": 30.1.3
 
   test-tooling:
     "ts-jest": 29.4.1

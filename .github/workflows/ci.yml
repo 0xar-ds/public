@@ -28,7 +28,6 @@ jobs:
       - name: CI-check the whole repository targets actions
         run: 'moon ci --color'
 
-      # https://github.com/appthrust/moon-ci-retrospect
       - name: Collect/retrospect on Moon's CI Summaries
-        uses: appthrust/moon-ci-retrospect@10c4aff093e3405433957d8e1d2776c81207d5bb # v1
+        uses: 0xar-ds/moon-ci-retrospect@v1.1
         if: success() || failure()

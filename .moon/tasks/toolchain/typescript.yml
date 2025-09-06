@@ -16,6 +16,7 @@ fileGroups:
     - 'tsconfig.json'
     - 'tsconfig.{build,spec}.json'
     - '*.config.{j,t}s'
+    - '/pnpm-workspace.yaml'
   tests:
     - 'src/**/*.ts'
     - 'src/**/*.spec.ts'

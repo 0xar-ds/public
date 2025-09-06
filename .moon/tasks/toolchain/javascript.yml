@@ -11,6 +11,7 @@ fileGroups:
     - 'src/**/*.d.ts'
   configs:
     - 'package.json'
+    - '/pnpm-workspace.yaml'
   outputs:
     - 'src/**/*'
     - 'dist/**/*'

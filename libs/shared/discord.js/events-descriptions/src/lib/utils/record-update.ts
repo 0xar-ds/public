@@ -1,11 +1,12 @@
+import { Collection } from 'discord.js';
 import { Nullable } from '../../../../../../../types/utils/utils.js';
 
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 export interface ComputeUpdateOpts {
 	excludeDefaults?: boolean;
 }
-// todo: convert collections onto their size as well
-type UpdateValue<T> = T extends readonly unknown[]
+
+type UpdateValue<T> = T extends readonly unknown[] | Collection<any, any>
 	? number
 	: T extends ((...args: unknown[]) => unknown) | object | symbol
 		? never
@@ -83,13 +84,24 @@ export function computeUpdates<
 			return (
 				'function' !== type &&
 				'symbol' !== type &&
-				!(type === 'object' && !Array.isArray(current[value[1]]))
+				!(
+					type === 'object' &&
+					(!(current[value[1]] instanceof Collection) ||
+						!Array.isArray(current[value[1]]))
+				)
 			);
 		})
 		.filter((value) => {
 			if (!previous) return true;
 
 			const field = value[1];
+
+			if (
+				previous[field] instanceof Collection &&
+				current[field] instanceof Collection
+			) {
+				return current[field].size !== previous[field].size;
+			}
 
 			if (Array.isArray(previous[field]) && Array.isArray(current[field])) {
 				return current[field].length !== previous[field].length;
@@ -109,9 +121,15 @@ export function computeUpdates<
 			const index = entry[0],
 				field = entry[1];
 
-			return Array.isArray(current[field])
-				? [index, current[field].length]
-				: [index, current[field]];
+			if (Array.isArray(current[field])) {
+				return [index, current[field].length];
+			}
+
+			if (current[field] instanceof Collection) {
+				return [index, current[field].size];
+			}
+
+			return [index, current[field]];
 		});
 
 	return Object.fromEntries(updates);

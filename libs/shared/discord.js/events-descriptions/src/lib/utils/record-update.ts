@@ -31,7 +31,7 @@ type UnmappedProps<
 	[K in Exclude<UpdateKeys<U & T>, M[keyof M]>]: UpdateValue<(U & T)[K]>;
 };
 
-type ComputeUpdatesReturn<
+export type ComputeUpdatesReturn<
 	T extends object,
 	U extends T,
 	M extends Record<string, keyof T & keyof U>,
@@ -40,7 +40,9 @@ type ComputeUpdatesReturn<
 	? Partial<MappedProps<T, U, M>>
 	: Partial<MappedProps<T, U, M> & UnmappedProps<T, U, M>>;
 
-// TODO: deprecate & export ComputeUpdatesReturn
+/**
+ * @deprecated use ComputedUpdatesReturn
+ */
 export type ComputedUpdate<
 	T extends object,
 	U extends T = T,

@@ -1,5 +1,6 @@
 implicitDeps:
-  - '^:build'
+  - target: '^:build'
+    optional: true
 
 implicitInputs:
   - '@group(configs)'

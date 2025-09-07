@@ -19,6 +19,8 @@
 	],
 	"devDependencies": {
 		"@anolilab/semantic-release-pnpm": "catalog:build-tooling",
+		"@commitlint/cli": "catalog:build-tooling",
+		"@commitlint/config-angular": "catalog:build-tooling",
 		"@semantic-release/changelog": "catalog:build-tooling",
 		"@semantic-release/commit-analyzer": "catalog:build-tooling",
 		"@semantic-release/git": "catalog:build-tooling",
@@ -33,7 +35,7 @@
 		"typescript": "catalog:build-tooling"
 	},
 	"engines": {
-		"node": "23.0.0"
+		"node": "24.7.0"
 	},
 	"keywords": [
 		"typescript",
@@ -41,5 +43,5 @@
 		"moonrepo",
 		"proto"
 	],
-	"packageManager": "pnpm@10.12.1"
+	"packageManager": "pnpm@10.15.1"
 }

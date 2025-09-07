@@ -1,6 +1,6 @@
 fileGroups:
   semantic-release:
-    - '.releaserc.yaml'
+    - '.releaserc.json'
   release:
     - 'CHANGELOG.md'
     - 'package.json'

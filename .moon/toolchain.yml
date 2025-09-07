@@ -3,9 +3,6 @@ node:
   syncProjectWorkspaceDependencies: true
   addEnginesConstraint: true
   syncPackageManagerField: true
-  pnpm:
-    installArgs:
-      - '--force'
 
 proto:
   version: '0.52.2'

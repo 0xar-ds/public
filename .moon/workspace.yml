@@ -9,6 +9,8 @@ projects:
 
 vcs:
   hooks:
+    commit-msg:
+      - 'pnpm commitlint --config .commitlintrc.json --edit $1'
     pre-commit:
       - 'moon run :lint :format --affected --status=staged'
 

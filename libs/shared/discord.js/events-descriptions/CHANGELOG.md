@@ -1,3 +1,9 @@
+## [@argentina-community/events-descriptions-v2.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.0...@argentina-community/events-descriptions@2.1.1) (2025-09-07)
+
+### Bug Fixes
+
+* wrongly capitalized header semver type ([a781477](https://github.com/0xar-ds/public/commit/a781477b36faab8ca285b9bfd474033ba65738e0))
+
 ## [@argentina-community/events-descriptions-v2.1.0](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.0.1...@argentina-community/events-descriptions@2.1.0) (2025-09-06)
 
 ### Features

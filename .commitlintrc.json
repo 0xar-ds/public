@@ -24,12 +24,6 @@
 				"sample"
 			]
 		],
-		"scope-enum": [
-			2,
-			"always",
-			[
-				"all"
-			]
-		]
+		"scope-enum": [2, "always", ["all", "tasks", "deps", "toolchain", "vcs"]]
 	}
 }

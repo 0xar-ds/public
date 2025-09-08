@@ -83,4 +83,4 @@ catalogs:
   discord:
     "necord": "^6.11.1"
     "discord.js": "^14.22.1"
-    "discord-api-types": "^0.38.22"
+    "discord-api-types": "^0.38.23"

@@ -1,3 +1,14 @@
+## [@argentina-community/events-descriptions-v2.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.0...@argentina-community/events-descriptions@2.1.1) (2025-09-08)
+
+### Bug Fixes
+
+* wrongly capitalized header semver type ([a781477](https://github.com/0xar-ds/public/commit/a781477b36faab8ca285b9bfd474033ba65738e0))
+
+### Miscellaneous Chores
+
+* **release:** @argentina-community/events-descriptions@2.1.1 [skip ci]\n\n## [@argentina-community/events-descriptions-v2.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.0...@argentina-community/events-descriptions@2.1.1) (2025-09-07) ([5e9a629](https://github.com/0xar-ds/public/commit/5e9a629c85c4702d10756a5e8347b38c2da5515b))
+* **release:** @argentina-community/events-descriptions@2.1.1 [skip ci]\n\n## [@argentina-community/events-descriptions-v2.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.0...@argentina-community/events-descriptions@2.1.1) (2025-09-07) ([f87bcdd](https://github.com/0xar-ds/public/commit/f87bcddec1c9f2bfb2088a65abf4d8dcd525186f))
+
 ## [@argentina-community/events-descriptions-v2.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.0...@argentina-community/events-descriptions@2.1.1) (2025-09-07)
 
 ### Bug Fixes

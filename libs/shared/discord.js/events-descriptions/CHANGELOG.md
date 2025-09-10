@@ -1,3 +1,24 @@
+## [@argentina-community/events-descriptions-v2.1.0](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.0.1...@argentina-community/events-descriptions@2.1.0) (2025-09-10)
+
+### Features
+
+* have computed updates map collection values to their size for comparison & result ([045f530](https://github.com/0xar-ds/public/commit/045f530b0b956e1fbd46255f474f76c2c89cc658))
+
+### Bug Fixes
+
+* wrongly capitalized header semver type ([a781477](https://github.com/0xar-ds/public/commit/a781477b36faab8ca285b9bfd474033ba65738e0))
+
+### Miscellaneous Chores
+
+* ignore prettier cache artifacts from vcs & prettier itself ([900ff90](https://github.com/0xar-ds/public/commit/900ff90ae53605ea67b5a131b687e412ef4a5de4))
+* mark ComputedUpdate as deprecated ([8ae0fa5](https://github.com/0xar-ds/public/commit/8ae0fa5de858356caf7f67218837998f21d695bd))
+* **release:** @argentina-community/events-descriptions@2.1.0 [skip ci]\n\n## [@argentina-community/events-descriptions-v2.1.0](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.0.1...@argentina-community/events-descriptions@2.1.0) (2025-09-06) ([93b2689](https://github.com/0xar-ds/public/commit/93b2689fcee4508b71a233f3a983c40d32a79cfc))
+* specify directory in repository reference ([4389522](https://github.com/0xar-ds/public/commit/4389522416fb9676c9409cd560a8b70926fa51ff))
+
+### Code Refactoring
+
+* don't substr any string ([f35940a](https://github.com/0xar-ds/public/commit/f35940a501647bf8270db2116c6abdd20c3e4b7b))
+
 ## [@argentina-community/events-descriptions-v2.1.0](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.0.1...@argentina-community/events-descriptions@2.1.0) (2025-09-06)
 
 ### Features

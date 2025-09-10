@@ -29,5 +29,5 @@ jobs:
         run: 'moon ci --color'
 
       - name: Collect/retrospect on Moon's CI Summaries
-        uses: 0xar-ds/moon-ci-retrospect@v1.1
+        uses: 0xar-ds/moon-ci-retrospect@5094e547420fb36069afd47ce0610ad89cf4d8f2 # v1.1
         if: success() || failure()

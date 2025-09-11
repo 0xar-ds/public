@@ -10,7 +10,7 @@ import {
 } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -24,7 +24,7 @@ declare global {
 			permissions: ApplicationCommandPermissionsUpdateData['permissions'];
 		};
 
-		guildUpdate: ComputedUpdate<Guild, Guild>;
+		guildUpdate: ComputeUpdatesReturn<Guild, Guild>;
 
 		autoModerationRuleCreate: {
 			name: string;
@@ -32,9 +32,9 @@ declare global {
 			trigger: AutoModerationRuleTriggerType;
 		};
 
-		autoModerationRuleUpdate: ComputedUpdate<AutoModerationRule> &
-			ComputedUpdate<AutoModerationTriggerMetadata> &
-			ComputedUpdate<{ exemptChannels: number; exemptRoles: number }>;
+		autoModerationRuleUpdate: ComputeUpdatesReturn<AutoModerationRule> &
+			ComputeUpdatesReturn<AutoModerationTriggerMetadata> &
+			ComputeUpdatesReturn<{ exemptChannels: number; exemptRoles: number }>;
 
 		autoModerationRuleDelete: {
 			name: string;

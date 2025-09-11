@@ -1,7 +1,7 @@
 import { StageInstance, StageInstancePrivacyLevel } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -13,7 +13,7 @@ declare global {
 			topic: string;
 			privacy: StageInstancePrivacyLevel;
 		};
-		stageInstanceUpdate: ComputedUpdate<StageInstance>;
+		stageInstanceUpdate: ComputeUpdatesReturn<StageInstance>;
 		stageInstanceDelete: {
 			topic: string;
 			privacy: StageInstancePrivacyLevel;

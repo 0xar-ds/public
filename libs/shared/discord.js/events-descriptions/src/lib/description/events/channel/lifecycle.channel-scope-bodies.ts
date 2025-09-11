@@ -1,7 +1,7 @@
 import { DMChannel, NonThreadGuildBasedChannel } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -13,7 +13,7 @@ declare global {
 			name: string;
 			type: NonThreadGuildBasedChannel['type'];
 		};
-		channelUpdate: ComputedUpdate<DMChannel | NonThreadGuildBasedChannel>;
+		channelUpdate: ComputeUpdatesReturn<DMChannel | NonThreadGuildBasedChannel>;
 		channelDelete:
 			| {
 					name: string;

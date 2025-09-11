@@ -1,7 +1,7 @@
 import { Interaction, Presence, User } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -26,7 +26,7 @@ declare global {
 		shardDisconnect: { shard: number; code: number };
 		shardReconnecting: { shard: number };
 
-		userUpdate: ComputedUpdate<User>;
+		userUpdate: ComputeUpdatesReturn<User>;
 
 		interactionCreate: {
 			type: Interaction['type'];

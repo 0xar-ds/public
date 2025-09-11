@@ -1,7 +1,7 @@
 import { Locale, Snowflake, ThreadMember } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -44,7 +44,7 @@ declare global {
 
 		guildMembersChunk: { size: number; shard: number };
 
-		threadMemberUpdate: ComputedUpdate<ThreadMember>;
+		threadMemberUpdate: ComputeUpdatesReturn<ThreadMember>;
 
 		threadListSync: { size: number; shard: number };
 		soundboardSounds: { size: number; shard: number };

@@ -1,7 +1,7 @@
 import { AnyThreadChannel, Snowflake } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -15,7 +15,7 @@ declare global {
 			ownerId: Snowflake;
 		};
 
-		threadUpdate: ComputedUpdate<AnyThreadChannel>;
+		threadUpdate: ComputeUpdatesReturn<AnyThreadChannel>;
 
 		threadDelete: {
 			name: string;

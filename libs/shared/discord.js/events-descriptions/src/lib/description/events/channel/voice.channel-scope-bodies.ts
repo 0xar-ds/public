@@ -5,7 +5,7 @@ import {
 } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../../lib/utils/record-update.js';
 
@@ -14,7 +14,7 @@ import { Nullable } from '../../../../../../../../../types/utils/utils.js';
 
 declare global {
 	interface EventBodyMap {
-		voiceStateUpdate: ComputedUpdate<VoiceState>;
+		voiceStateUpdate: ComputeUpdatesReturn<VoiceState>;
 
 		voiceChannelEffectSend: {
 			type: Nullable<VoiceChannelEffectSendAnimationType>;

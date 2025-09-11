@@ -8,7 +8,7 @@ import {
 } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -22,20 +22,20 @@ declare global {
 			joinedAt: Nullable<number>;
 		};
 
-		guildMemberUpdate: ComputedUpdate<GuildMember, GuildMember> &
-			ComputedUpdate<
+		guildMemberUpdate: ComputeUpdatesReturn<GuildMember, GuildMember> &
+			ComputeUpdatesReturn<
 				Readonly<PermissionsBitField>,
 				Readonly<PermissionsBitField>,
 				{ permissions: 'bitfield' },
 				{ excludeDefaults: true }
 			> &
-			ComputedUpdate<
+			ComputeUpdatesReturn<
 				Readonly<GuildMemberFlagsBitField>,
 				Readonly<GuildMemberFlagsBitField>,
 				{ flags: 'bitfield' },
 				{ excludeDefaults: true }
 			> &
-			ComputedUpdate<
+			ComputeUpdatesReturn<
 				Collection<string, Role>,
 				Collection<string, Role>,
 				{ roles: 'size' },

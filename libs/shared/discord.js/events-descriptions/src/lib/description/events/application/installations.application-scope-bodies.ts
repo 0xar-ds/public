@@ -8,7 +8,7 @@ import {
 } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -48,7 +48,7 @@ declare global {
 			endsAt: Nullable<number>;
 		};
 
-		entitlementUpdate: ComputedUpdate<Entitlement>;
+		entitlementUpdate: ComputeUpdatesReturn<Entitlement>;
 
 		entitlementDelete: {
 			type: EntitlementType;
@@ -63,7 +63,7 @@ declare global {
 			period: [startsAt: number, endsAt: number];
 		};
 
-		subscriptionUpdate: ComputedUpdate<Subscription>;
+		subscriptionUpdate: ComputeUpdatesReturn<Subscription>;
 
 		subscriptionDelete: {
 			status: SubscriptionStatus;

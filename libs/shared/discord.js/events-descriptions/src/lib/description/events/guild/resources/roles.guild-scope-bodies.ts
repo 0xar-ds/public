@@ -1,7 +1,7 @@
 import { PermissionsBitField, Role } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../../utils/record-update.js';
 
@@ -14,8 +14,8 @@ declare global {
 			createdAt: number;
 		};
 
-		roleUpdate: ComputedUpdate<Role, Role> &
-			ComputedUpdate<
+		roleUpdate: ComputeUpdatesReturn<Role, Role> &
+			ComputeUpdatesReturn<
 				Readonly<PermissionsBitField>,
 				Readonly<PermissionsBitField>,
 				{ permissions: 'bitfield' },

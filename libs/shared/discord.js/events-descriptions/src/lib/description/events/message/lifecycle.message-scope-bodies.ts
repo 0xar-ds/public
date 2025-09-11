@@ -7,7 +7,7 @@ import {
 } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../utils/record-update.js';
 
@@ -22,9 +22,11 @@ declare global {
 			nonce: Nullable<string | number>;
 			userId: Snowflake;
 		};
-		messageUpdate: ComputedUpdate<OmitPartialGroupDMChannel<Message<boolean>>> &
-			ComputedUpdate<MessageMentions> &
-			ComputedUpdate<{
+		messageUpdate: ComputeUpdatesReturn<
+			OmitPartialGroupDMChannel<Message<boolean>>
+		> &
+			ComputeUpdatesReturn<MessageMentions> &
+			ComputeUpdatesReturn<{
 				reactions: number;
 				attachments: number;
 			}>;

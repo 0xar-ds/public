@@ -6,7 +6,7 @@ import {
 } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../../utils/record-update.js';
 
@@ -19,7 +19,7 @@ declare global {
 			name: string;
 			createdAt: number;
 		};
-		guildSoundboardSoundUpdate: ComputedUpdate<
+		guildSoundboardSoundUpdate: ComputeUpdatesReturn<
 			SoundboardSound,
 			SoundboardSound
 		>;
@@ -33,7 +33,7 @@ declare global {
 			emoji: string;
 			createdAt: number;
 		};
-		emojiUpdate: ComputedUpdate<GuildEmoji, GuildEmoji>;
+		emojiUpdate: ComputeUpdatesReturn<GuildEmoji, GuildEmoji>;
 		emojiDelete: {
 			name: Nullable<string>;
 			emoji: string;
@@ -45,7 +45,7 @@ declare global {
 			format: StickerFormatType;
 			createdAt: number;
 		};
-		stickerUpdate: ComputedUpdate<Sticker, Sticker>;
+		stickerUpdate: ComputeUpdatesReturn<Sticker, Sticker>;
 		stickerDelete: {
 			name: string;
 			format: StickerFormatType;

@@ -1,7 +1,7 @@
 import { GuildScheduledEvent, GuildScheduledEventEntityType } from 'discord.js';
 
 import {
-	ComputedUpdate,
+	ComputeUpdatesReturn,
 	computeUpdates,
 } from '../../../../utils/record-update.js';
 
@@ -15,7 +15,7 @@ declare global {
 			name: Nullable<string>;
 			createdAt: number;
 		};
-		guildScheduledEventUpdate: ComputedUpdate<
+		guildScheduledEventUpdate: ComputeUpdatesReturn<
 			GuildScheduledEvent,
 			GuildScheduledEvent
 		>;

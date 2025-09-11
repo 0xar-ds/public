@@ -1,5 +1,5 @@
 import { includeIgnoreFile } from '@eslint/compat';
 
-import { config } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
-export { includeIgnoreFile, config as makeTsConfig };
+export { includeIgnoreFile, defineConfig as makeTsConfig };

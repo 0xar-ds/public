@@ -1,3 +1,3 @@
-declare const config: import('typescript-eslint').ConfigArray;
+declare const config: ReturnType<typeof import('eslint/config').defineConfig>;
 
 export default config;

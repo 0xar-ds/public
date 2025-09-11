@@ -1,6 +1,8 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 
+import { defineConfig } from 'eslint/config'
+
 import svelte from 'eslint-plugin-svelte';
 
 import prettier from 'eslint-config-prettier/flat';
@@ -11,7 +13,7 @@ import globals from 'globals';
 
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
-export default ts.config(
+export default defineConfig(
 	js.configs.recommended,
 	ts.configs.recommended,
 	ts.configs.stylistic,

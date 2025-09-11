@@ -1,7 +1,7 @@
 import { includeIgnoreFile } from '@eslint/compat';
 
-import { config } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
 import type { ConfigArray } from 'typescript-eslint';
 
-export { includeIgnoreFile, config as makeTsConfig, type ConfigArray };
+export { includeIgnoreFile, defineConfig as makeTsConfig, type ConfigArray };

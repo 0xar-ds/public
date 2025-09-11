@@ -1,3 +1,13 @@
+## [@argentina-community/interactions-utils-v1.2.0](https://github.com/0xar-ds/public/compare/@argentina-community/interactions-utils@1.1.1...@argentina-community/interactions-utils@1.2.0) (2025-09-11)
+
+### Features
+
+* add doc comments to functions ([1b88373](https://github.com/0xar-ds/public/commit/1b883736a4bebda44de31cb46acac7342452052f))
+
+### Continuos Integration
+
+* **tasks:** temporarily disable npm releases ([597269b](https://github.com/0xar-ds/public/commit/597269beec91d61f8a93659704978cb6515aac47))
+
 ## [@argentina-community/interactions-utils-v1.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/interactions-utils@1.1.0...@argentina-community/interactions-utils@1.1.1) (2025-09-10)
 
 ### Bug Fixes

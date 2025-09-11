@@ -14,6 +14,10 @@ export function getInteractionTypeKey(
 
 export type ContextTypeKey = keyof typeof InteractionContextType;
 
+/**
+ * @param value Type to get the indexing key from
+ * @returns the indexing key on the type enum
+ */
 export function getContextTypeKey(
 	value: InteractionContextType,
 ): ContextTypeKey {

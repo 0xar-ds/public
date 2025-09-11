@@ -1,3 +1,29 @@
+## [@argentina-community/channels-utils-v2.0.1](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.0...@argentina-community/channels-utils@2.0.1) (2025-09-11)
+
+### Bug Fixes
+
+* wrongly capitalized header semver type ([a781477](https://github.com/0xar-ds/public/commit/a781477b36faab8ca285b9bfd474033ba65738e0))
+
+### Miscellaneous Chores
+
+* ignore prettier cache artifacts from vcs & prettier itself ([900ff90](https://github.com/0xar-ds/public/commit/900ff90ae53605ea67b5a131b687e412ef4a5de4))
+* **release:** @argentina-community/channels-utils@2.0.1 [skip ci]\n\n## [@argentina-community/channels-utils-v2.0.1](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.0...@argentina-community/channels-utils@2.0.1) (2025-09-07) ([4b19b90](https://github.com/0xar-ds/public/commit/4b19b907c5e1ce48a58cd2a149d28e4621ac1958))
+* **release:** @argentina-community/channels-utils@2.0.1 [skip ci]\n\n## [@argentina-community/channels-utils-v2.0.1](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.0...@argentina-community/channels-utils@2.0.1) (2025-09-10) ([179a50a](https://github.com/0xar-ds/public/commit/179a50ad65b51d2b3a9740ec8f7c8c45963a476a))
+* **releaserc:** update tagformat of packages ([92945c2](https://github.com/0xar-ds/public/commit/92945c2c7441b1c091f195c8ebcb01920efc05e8))
+* specify directory in repository reference ([cdb8710](https://github.com/0xar-ds/public/commit/cdb871025580216e41a24627b95b787235547cea))
+
+### Code Refactoring
+
+* remove unnecessary commented prior implementation ([0d236f5](https://github.com/0xar-ds/public/commit/0d236f575d341b0bea2c5aea66aebaf867b18019))
+
+### Build System
+
+* pnpm release before git/github execs ([dbfe0b2](https://github.com/0xar-ds/public/commit/dbfe0b2f2fabedfd975c091c35785faaed884db1))
+
+### Continuos Integration
+
+* **tasks:** temporarily disable npm releases ([597269b](https://github.com/0xar-ds/public/commit/597269beec91d61f8a93659704978cb6515aac47))
+
 ## [@argentina-community/channels-utils-v2.0.1](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.0...@argentina-community/channels-utils@2.0.1) (2025-09-10)
 
 ### Bug Fixes

@@ -33,9 +33,9 @@ type UnmappedProps<
 
 export type ComputeUpdatesReturn<
 	T extends object,
-	U extends T,
-	M extends Record<string, keyof T & keyof U>,
-	O extends ComputeUpdateOpts,
+	U extends T = T,
+	M extends Record<string, keyof T & keyof U> = {},
+	O extends ComputeUpdateOpts = {},
 > = O extends { excludeDefaults: true }
 	? Partial<MappedProps<T, U, M>>
 	: Partial<MappedProps<T, U, M> & UnmappedProps<T, U, M>>;

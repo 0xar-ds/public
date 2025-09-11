@@ -135,7 +135,7 @@ export class NecordParser extends AbstractInterceptorService {
 
 			if (!DISCORDJS_EVENTS.has(event as keyof ClientEvents)) {
 				throw new NecordParserError(
-					'To-parse event was of a Necord or consumer interface, which is not implemented by this library.',
+					'To-parse event was of a Necord or consumer interface, which is not implemented by the "ogma-necord-platform" package.',
 				);
 			}
 
@@ -157,21 +157,33 @@ export class NecordParser extends AbstractInterceptorService {
 	}
 
 	override getCallerIp(context: ExecutionContext): string {
-		const event = this.getEvent(context);
+		try {
+			const event = this.getEvent(context);
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore: destroys ts performance
-		const origin = OriginMap[event.name](...event.payload);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore: destroys ts performance
+			const origin = OriginMap[event.name](...event.payload);
 
-		return origin === null
-			? '?'
-			: `${origin.kind} ${origin.namespace}/${origin.value}`;
+			return origin === null
+				? '?'
+				: `${origin.kind} ${origin.namespace}/${origin.value}`;
+		} catch (e) {
+			console.warn(e);
+
+			return '';
+		}
 	}
 
 	override getMethod(context: ExecutionContext): string {
-		const event = this.getEvent(context);
+		try {
+			const event = this.getEvent(context);
 
-		return event.name;
+			return event.name;
+		} catch (e) {
+			console.warn(e);
+
+			return '';
+		}
 	}
 
 	override getProtocol(_context: ExecutionContext): string {
@@ -179,13 +191,19 @@ export class NecordParser extends AbstractInterceptorService {
 	}
 
 	override getCallPoint(context: ExecutionContext): string {
-		const event = this.getEvent(context);
+		try {
+			const event = this.getEvent(context);
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore: destroys ts performance
-		const callpoint = CallpointMap[event.name](...event.payload);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore: destroys ts performance
+			const callpoint = CallpointMap[event.name](...event.payload);
 
-		return `[::${callpoint.shard}] ${callpoint.location}`;
+			return `[::${callpoint.shard}] ${callpoint.location}`;
+		} catch (e) {
+			console.warn(e);
+
+			return '';
+		}
 	}
 
 	override setRequestId(context: ExecutionContext, requestId: string): void {
@@ -206,12 +224,18 @@ export class NecordParser extends AbstractInterceptorService {
 	}
 
 	override getMeta(context: ExecutionContext, _data: unknown): unknown {
-		const event = this.getEvent(context);
+		try {
+			const event = this.getEvent(context);
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore: destroys ts performance
-		const body = BodyMap[event.name](...event.payload);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore: destroys ts performance
+			const body = BodyMap[event.name](...event.payload);
 
-		return body;
+			return body;
+		} catch (e) {
+			console.warn(e);
+
+			return '';
+		}
 	}
 }

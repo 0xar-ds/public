@@ -1,3 +1,17 @@
+## [@argentina-community/events-descriptions-v2.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.0...@argentina-community/events-descriptions@2.1.1) (2025-09-11)
+
+### Bug Fixes
+
+* drop unnecessary eslint override comment ([3028805](https://github.com/0xar-ds/public/commit/302880561775dbe707017a08921a21abe40a3901))
+
+### Code Refactoring
+
+* drop unused callpoints doc readme file ([5051bdd](https://github.com/0xar-ds/public/commit/5051bddc0bf5ff7b934fcfe8869b2411f0cafac9))
+
+### Continuos Integration
+
+* **tasks:** temporarily disable npm releases ([597269b](https://github.com/0xar-ds/public/commit/597269beec91d61f8a93659704978cb6515aac47))
+
 ## [@argentina-community/events-descriptions-v2.1.0](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.0.1...@argentina-community/events-descriptions@2.1.0) (2025-09-10)
 
 ### Features

@@ -1,3 +1,13 @@
+## [@argentina-community/config-eslint-v1.2.0](https://github.com/0xar-ds/public/compare/@argentina-community/eslint-config@1.1.1...@argentina-community/eslint-config@1.2.0) (2025-09-11)
+
+### Features
+
+* implement deprecation updates of typescript-eslint[#10935](https://github.com/0xar-ds/public/issues/10935) ([81fed83](https://github.com/0xar-ds/public/commit/81fed8310505f995db7d482adcaa494f6282103d))
+
+### Continuos Integration
+
+* **tasks:** temporarily disable npm releases ([597269b](https://github.com/0xar-ds/public/commit/597269beec91d61f8a93659704978cb6515aac47))
+
 ## [@argentina-community/config-eslint-v1.1.1](https://github.com/0xar-ds/public/compare/@argentina-community/eslint-config@1.1.0...@argentina-community/eslint-config@1.1.1) (2025-09-10)
 
 ### Bug Fixes

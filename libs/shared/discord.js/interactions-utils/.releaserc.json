@@ -78,7 +78,6 @@
 			}
 		],
 		"@semantic-release/changelog",
-		"@anolilab/semantic-release-pnpm",
 		[
 			"@semantic-release/git",
 			{

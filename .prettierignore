@@ -10,6 +10,8 @@ dist
 .eslintcache
 .prettiercache
 
+CHANGELOG.md
+
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 pnpm-workspace.yaml

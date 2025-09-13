@@ -22,13 +22,7 @@
 			"path": "libs/server/discord/ogma-necord-platform"
 		},
 		{
-			"path": "libs/shared/discord.js/channels"
-		},
-		{
 			"path": "libs/shared/discord.js/channels-utils"
-		},
-		{
-			"path": "libs/shared/discord.js/events"
 		},
 		{
 			"path": "libs/shared/discord.js/events-descriptions"
@@ -37,13 +31,7 @@
 			"path": "libs/shared/discord.js/events-utils"
 		},
 		{
-			"path": "libs/shared/discord.js/interactions"
-		},
-		{
 			"path": "libs/shared/discord.js/interactions-utils"
-		},
-		{
-			"path": "libs/shared/discord.js/logging"
 		},
 		{
 			"path": "libs/shared/exceptions"
@@ -53,9 +41,6 @@
 		},
 		{
 			"path": "libs/shared/status"
-		},
-		{
-			"path": "packages/discord.js-descriptions"
 		}
 	]
 }

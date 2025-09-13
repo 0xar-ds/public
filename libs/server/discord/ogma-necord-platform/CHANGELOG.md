@@ -1,3 +1,18 @@
+## [ogma-necord-platform-v1.1.2](https://github.com/0xar-ds/public/compare/ogma-necord-platform@1.1.1...ogma-necord-platform@1.1.2) (2025-09-13)
+
+### Bug Fixes
+
+* **code-quality:** add changelog files to prettier ignores ([f78f8d2](https://github.com/0xar-ds/public/commit/f78f8d2ac124d0c69909c4987a4a306bcaacd118))
+
+### Code Refactoring
+
+* catch and expand errors to an empty string ([a4d5caf](https://github.com/0xar-ds/public/commit/a4d5caff43766001ba5c1ec4fd58e70f4b9ec57b))
+
+### Continuos Integration
+
+* **tasks:** re-enable npm releases ([41763fa](https://github.com/0xar-ds/public/commit/41763fa615e01d64531129ffc70fc0adbce89186))
+* **tasks:** temporarily disable npm releases ([597269b](https://github.com/0xar-ds/public/commit/597269beec91d61f8a93659704978cb6515aac47))
+
 ## [ogma-necord-platform-v1.1.1](https://github.com/0xar-ds/public/compare/ogma-necord-platform@1.1.0...ogma-necord-platform@1.1.1) (2025-09-10)
 
 ### Bug Fixes

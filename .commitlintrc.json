@@ -24,6 +24,20 @@
 				"sample"
 			]
 		],
-		"scope-enum": [2, "always", ["all", "tasks", "deps", "toolchain", "vcs", "code-quality"]]
+		"scope-enum": [
+			2,
+			"always",
+			[
+				"all",
+				"common",
+				"tasks",
+				"deps",
+				"packaging",
+				"changelog",
+				"toolchain",
+				"vcs",
+				"devtools"
+			]
+		]
 	}
 }

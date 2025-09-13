@@ -1,12 +1,22 @@
 tasks:
   format:
     type: test
-    description: 'Runs prettier with the --write flag. Requires argumenting the root location/base url.'
-    command: 'prettier --write --cache --cache-location ./.prettiercache'
-    args: '.'
+    description: 'Runs prettier without writing/formatting unstyled input.'
+    command: 'prettier'
+    args:
+      - '--check'
+      - '--cache'
+      - '--cache-location=./.prettiercache'
+      - '--no-error-on-unmatched-pattern'
+      - '.'
     inputs:
       - '@group(sources)'
       - '@group(configs)'
       - '@group(tests)'
     outputs:
       - '.prettiercache'
+  format-write:
+    extends: 'format'
+    args: '--write'
+    options:
+      runInCI: false

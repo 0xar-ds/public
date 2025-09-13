@@ -1,9 +1,16 @@
 tasks:
   lint:
     type: test
-    description: 'Runs eslint with the --fix and --cache flag. Requires argumenting the root location/base url.'
-    command: 'eslint --fix --cache'
+    description: 'Runs eslint without writing/fixing fixable errors/warnings.'
+    command: 'eslint'
     args:
+      - '--cache'
+      - '--cache-location'
+      - './.eslintcache'
+      - '--color'
+      - '--exit-on-fatal-error'
+      - '--no-error-on-unmatched-pattern'
+      - '--report-unused-disable-directives'
       - '@globs(sources)'
       - '@globs(configs)'
       - '@globs(tests)'
@@ -13,3 +20,8 @@ tasks:
       - '@group(tests)'
     outputs:
       - '.eslintcache'
+  lint-fix:
+    extends: 'lint'
+    args: '--fix'
+    options:
+      runInCI: false

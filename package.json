@@ -35,7 +35,7 @@
 		"typescript": "catalog:build-tooling"
 	},
 	"engines": {
-		"node": "24.7.0"
+		"node": "24.8.0"
 	},
 	"keywords": [
 		"typescript",
@@ -43,5 +43,5 @@
 		"moonrepo",
 		"proto"
 	],
-	"packageManager": "pnpm@10.15.1"
+	"packageManager": "pnpm@10.16.0"
 }

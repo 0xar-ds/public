@@ -1,3 +1,13 @@
+## [@argentina-community/channels-utils-v2.0.2](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.1...@argentina-community/channels-utils@2.0.2) (2025-09-13)
+
+### Bug Fixes
+
+* **code-quality:** add changelog files to prettier ignores ([f78f8d2](https://github.com/0xar-ds/public/commit/f78f8d2ac124d0c69909c4987a4a306bcaacd118))
+
+### Continuos Integration
+
+* **tasks:** re-enable npm releases ([41763fa](https://github.com/0xar-ds/public/commit/41763fa615e01d64531129ffc70fc0adbce89186))
+
 ## [@argentina-community/channels-utils-v2.0.1](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.0...@argentina-community/channels-utils@2.0.1) (2025-09-11)
 
 ### Bug Fixes

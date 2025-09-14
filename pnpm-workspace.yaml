@@ -61,7 +61,7 @@ catalogs:
     "typescript": 5.9.2
     "ts-loader": 9.5.4
     "ts-node": 10.9.2
-    "semantic-release": 24.2.7
+    "semantic-release": 24.2.8
     "semantic-release-monorepo": 8.0.2
     "@anolilab/semantic-release-pnpm": 2.0.3
     "@semantic-release/changelog": 6.0.3

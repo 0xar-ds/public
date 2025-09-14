@@ -7,6 +7,18 @@ tasks:
     env: { NODE_ENV: 'development' }
     deps:
       - '^:build'
+  typecheck:
+    type: build
+    command: 'tsc'
+    args:
+      - '--build'
+      - '--pretty'
+      - '--verbose'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'
   build:
     type: build
     description: 'Runs tsc with the build configuration.'

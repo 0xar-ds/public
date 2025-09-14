@@ -1,7 +1,9 @@
 {
 	"extends": "./tsconfig.options.json",
 	"files": [],
-	"include": [],
+	"include": [
+		"types/**/*"
+	],
 	"references": [
 		{
 			"path": "apps/example-application"

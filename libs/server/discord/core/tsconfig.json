@@ -1,15 +1,9 @@
 {
-	"extends": "../../../../tsconfig.options.json",
+	"extends": "./tsconfig.options.json",
 	"compilerOptions": {
 		"outDir": "./dist",
 		"baseUrl": ".",
-		"target": "ESNext",
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
-		"allowJs": false,
-		"checkJs": false,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"emitDeclarationOnly": true
 	},
 	"include": ["../../../../types/**/*"],
 	"references": [

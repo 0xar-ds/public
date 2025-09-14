@@ -6,7 +6,11 @@ import { ContextOf, NecordExecutionContext } from 'necord';
 import {
 	BodyMap,
 	CallpointMap,
+	CallpointObject,
 	OriginMap,
+	OriginNamespace,
+	OriginObject,
+	ProducerKind,
 } from '@argentina-community/events-descriptions';
 
 const DISCORDJS_EVENTS = new Set<keyof ClientEvents>([
@@ -162,7 +166,11 @@ export class NecordParser extends AbstractInterceptorService {
 
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore: destroys ts performance
-			const origin = OriginMap[event.name](...event.payload);
+			const origin = OriginMap[event.name](...event.payload) as OriginObject<
+				ProducerKind,
+				OriginNamespace,
+				string
+			> | null;
 
 			return origin === null
 				? '?'
@@ -196,7 +204,9 @@ export class NecordParser extends AbstractInterceptorService {
 
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore: destroys ts performance
-			const callpoint = CallpointMap[event.name](...event.payload);
+			const callpoint = CallpointMap[event.name](
+				...event.payload,
+			) as CallpointObject<number | '?', string>;
 
 			return `[::${callpoint.shard}] ${callpoint.location}`;
 		} catch (e) {

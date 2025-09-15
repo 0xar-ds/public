@@ -1,3 +1,28 @@
+## [@argentina-community/interactions-utils-v1.2.1](https://github.com/0xar-ds/public/compare/@argentina-community/interactions-utils@1.2.0...@argentina-community/interactions-utils@1.2.1) (2025-09-15)
+
+### Bug Fixes
+
+* **code-quality:** add changelog files to prettier ignores ([f78f8d2](https://github.com/0xar-ds/public/commit/f78f8d2ac124d0c69909c4987a4a306bcaacd118))
+
+### Reverts
+
+* "ci(tasks): temporarily disable npm releases" ([8eb0665](https://github.com/0xar-ds/public/commit/8eb0665fa3eef65471578339b47af137876cb3bd))
+
+### Miscellaneous Chores
+
+* **common:** break compiler options onto its own tsconfig file ([9a4d89b](https://github.com/0xar-ds/public/commit/9a4d89bf820eeb5f4f6bb34118ea0e5f3ba56ce3))
+* **packaging:** enable npm provenance ([e21d0de](https://github.com/0xar-ds/public/commit/e21d0de56a497f1c0d1d333cac4aa35f13e438cc))
+* **release:** @argentina-community/interactions-utils@1.2.1 [skip ci]\n\n## [@argentina-community/interactions-utils-v1.2.1](https://github.com/0xar-ds/public/compare/@argentina-community/interactions-utils@1.2.0...@argentina-community/interactions-utils@1.2.1) (2025-09-13) ([67462dd](https://github.com/0xar-ds/public/commit/67462dd5f21b68c1c27756d2a426537d8f343a55))
+* **release:** @argentina-community/interactions-utils@1.2.1 [skip ci]\n\n## [@argentina-community/interactions-utils-v1.2.1](https://github.com/0xar-ds/public/compare/@argentina-community/interactions-utils@1.2.0...@argentina-community/interactions-utils@1.2.1) (2025-09-13) ([9900648](https://github.com/0xar-ds/public/commit/9900648473d75b98c201bc9aeb15fd35a99d1e56))
+
+### Build System
+
+* **tasks:** github releases are of the tar created by the npm release ([482f559](https://github.com/0xar-ds/public/commit/482f5597f5cf1f3747ae8bc934dcd189b7ca3bf7))
+
+### Continuos Integration
+
+* **tasks:** fix double @semantic-release/changelog consumption/trigger ([d81ea13](https://github.com/0xar-ds/public/commit/d81ea134daafc70a6af51c0721fdad3cdd53a24e))
+
 ## [@argentina-community/interactions-utils-v1.2.1](https://github.com/0xar-ds/public/compare/@argentina-community/interactions-utils@1.2.0...@argentina-community/interactions-utils@1.2.1) (2025-09-13)
 
 ### Bug Fixes

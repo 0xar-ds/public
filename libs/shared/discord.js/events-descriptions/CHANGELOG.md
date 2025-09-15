@@ -1,3 +1,28 @@
+## [@argentina-community/events-descriptions-v2.1.2](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.1...@argentina-community/events-descriptions@2.1.2) (2025-09-15)
+
+### Bug Fixes
+
+* **code-quality:** add changelog files to prettier ignores ([f78f8d2](https://github.com/0xar-ds/public/commit/f78f8d2ac124d0c69909c4987a4a306bcaacd118))
+
+### Reverts
+
+* "ci(tasks): temporarily disable npm releases" ([8eb0665](https://github.com/0xar-ds/public/commit/8eb0665fa3eef65471578339b47af137876cb3bd))
+
+### Miscellaneous Chores
+
+* **common:** break compiler options onto its own tsconfig file ([9a4d89b](https://github.com/0xar-ds/public/commit/9a4d89bf820eeb5f4f6bb34118ea0e5f3ba56ce3))
+* **packaging:** enable npm provenance ([e21d0de](https://github.com/0xar-ds/public/commit/e21d0de56a497f1c0d1d333cac4aa35f13e438cc))
+* **release:** @argentina-community/events-descriptions@2.1.2 [skip ci]\n\n## [@argentina-community/events-descriptions-v2.1.2](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.1...@argentina-community/events-descriptions@2.1.2) (2025-09-13) ([ef3b239](https://github.com/0xar-ds/public/commit/ef3b239ba2bc1e6d5d6ea2c14d29b3082dbdd31d))
+
+### Code Refactoring
+
+* default type params to compute updates return type ([b98d890](https://github.com/0xar-ds/public/commit/b98d8901c70a13062e2a6c72ce637c95351c056b))
+* drop deprecated computed update return type ([8cf7a30](https://github.com/0xar-ds/public/commit/8cf7a309595172b63089f2349cf91e97f797e6fa))
+
+### Build System
+
+* **tasks:** github releases are of the tar created by the npm release ([482f559](https://github.com/0xar-ds/public/commit/482f5597f5cf1f3747ae8bc934dcd189b7ca3bf7))
+
 ## [@argentina-community/events-descriptions-v2.1.2](https://github.com/0xar-ds/public/compare/@argentina-community/events-descriptions@2.1.1...@argentina-community/events-descriptions@2.1.2) (2025-09-13)
 
 ### Bug Fixes

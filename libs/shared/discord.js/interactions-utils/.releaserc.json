@@ -71,16 +71,9 @@
 			}
 		],
 		[
-			"@semantic-release/git",
-			{
-				"message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
-			}
-		],
-		"@semantic-release/changelog",
-		[
 			"@anolilab/semantic-release-pnpm",
 			{
-				"tarballDir": "dist"
+				"tarballDir": "."
 			}
 		],
 		[
@@ -89,6 +82,6 @@
 				"message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
 			}
 		],
-		["@semantic-release/github", { "assets": "dist/*.tgz" }]
+		["@semantic-release/github", { "assets": "./*.tgz" }]
 	]
 }

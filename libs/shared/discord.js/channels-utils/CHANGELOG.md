@@ -1,3 +1,23 @@
+## [@argentina-community/channels-utils-v2.0.2](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.1...@argentina-community/channels-utils@2.0.2) (2025-09-15)
+
+### Bug Fixes
+
+* **code-quality:** add changelog files to prettier ignores ([f78f8d2](https://github.com/0xar-ds/public/commit/f78f8d2ac124d0c69909c4987a4a306bcaacd118))
+
+### Reverts
+
+* "ci(tasks): temporarily disable npm releases" ([8eb0665](https://github.com/0xar-ds/public/commit/8eb0665fa3eef65471578339b47af137876cb3bd))
+
+### Miscellaneous Chores
+
+* **common:** break compiler options onto its own tsconfig file ([9a4d89b](https://github.com/0xar-ds/public/commit/9a4d89bf820eeb5f4f6bb34118ea0e5f3ba56ce3))
+* **packaging:** enable npm provenance ([e21d0de](https://github.com/0xar-ds/public/commit/e21d0de56a497f1c0d1d333cac4aa35f13e438cc))
+* **release:** @argentina-community/channels-utils@2.0.2 [skip ci]\n\n## [@argentina-community/channels-utils-v2.0.2](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.1...@argentina-community/channels-utils@2.0.2) (2025-09-13) ([1b6ac08](https://github.com/0xar-ds/public/commit/1b6ac08c5e5ca0a84b45a6b6784ce7efea072819))
+
+### Build System
+
+* **tasks:** github releases are of the tar created by the npm release ([482f559](https://github.com/0xar-ds/public/commit/482f5597f5cf1f3747ae8bc934dcd189b7ca3bf7))
+
 ## [@argentina-community/channels-utils-v2.0.2](https://github.com/0xar-ds/public/compare/@argentina-community/channels-utils@2.0.1...@argentina-community/channels-utils@2.0.2) (2025-09-13)
 
 ### Bug Fixes

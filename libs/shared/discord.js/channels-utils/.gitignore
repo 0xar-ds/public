@@ -4,6 +4,8 @@
 /lib
 /build
 
+*.tgz
+
 # Logs
 logs
 *.log

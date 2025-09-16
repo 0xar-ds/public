@@ -64,7 +64,7 @@
 			"extends": [":semanticCommitType(style)"],
 			"automerge": true,
 			"automergeType": "branch",
-			"labels": ["eslint"]
+			"labels": ["eslint", "c: dependencies"]
 		},
 		{
 			"groupName": "prettier",
@@ -72,7 +72,7 @@
 			"extends": [":semanticCommitType(style)"],
 			"automerge": true,
 			"automergeType": "branch",
-			"labels": ["prettier"]
+			"labels": ["prettier", "c: dependencies"]
 		},
 		{
 			"groupName": "github-actions",

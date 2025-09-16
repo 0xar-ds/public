@@ -4,8 +4,11 @@ $schema: 'https://moonrepo.dev/schemas/workspace.json'
 telemetry: false
 
 projects:
-  - 'apps/**/moon.yml'
-  - 'libs/**/moon.yml'
+  sources:
+    root: '.'
+  globs:
+    - 'apps/**/moon.yml'
+    - 'libs/**/moon.yml'
 
 vcs:
   hooks:

@@ -1,0 +1,24 @@
+id: 'root'
+
+project:
+  name: 'Moon Monorepo'
+  description: 'Root project of this monorepo'
+
+tasks:
+  version-packages:
+    type: build
+    description: 'Consumes changes and updates entries to the according semver bump'
+    command: 'changeset version'
+    deps:
+      - '#releasable:prepare'
+    options:
+      runInCI: false
+
+  publish-packages:
+    type: run
+    description: 'Publishes the artifact to configured mediums'
+    command: 'changeset publish'
+    deps:
+      - '~:version-packages'
+    options:
+      runInCI: false

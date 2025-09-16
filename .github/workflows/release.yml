@@ -31,13 +31,13 @@ jobs:
         with:
           auto-install: true
 
-      - name: Sync dependencies
+      - name: Install dependencies
         run: pnpm install
 
       - name: Release
         uses: changesets/action@v1
         with:
-          publish: moon run --summary --concurrency=1 --no-bail --affected :publish
+          publish: moon run --summary --concurrency=1 --no-bail root:publish-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,5 +1,11 @@
 # @argentina-community/events-descriptions
 
+## 2.3.0
+
+### Minor Changes
+
+- 45d30b5: restructure code directories
+
 ## 2.2.0
 
 ### Minor Changes

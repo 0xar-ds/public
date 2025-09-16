@@ -18,19 +18,12 @@
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
 	"devDependencies": {
-		"@anolilab/semantic-release-pnpm": "catalog:build-tooling",
+		"@changesets/cli": "catalog:build-tooling",
 		"@commitlint/cli": "catalog:build-tooling",
 		"@commitlint/config-angular": "catalog:build-tooling",
-		"@semantic-release/changelog": "catalog:build-tooling",
-		"@semantic-release/commit-analyzer": "catalog:build-tooling",
-		"@semantic-release/git": "catalog:build-tooling",
-		"@semantic-release/github": "catalog:build-tooling",
-		"@semantic-release/release-notes-generator": "catalog:build-tooling",
 		"conventional-changelog-conventionalcommits": "catalog:build-tooling",
 		"eslint": "catalog:code-quality",
 		"prettier": "catalog:code-quality",
-		"semantic-release": "catalog:build-tooling",
-		"semantic-release-monorepo": "catalog:build-tooling",
 		"tsdown": "catalog:build-tooling",
 		"typescript": "catalog:build-tooling"
 	},

@@ -1,5 +1,16 @@
 # ogma-necord-platform
 
+## 1.4.0
+
+### Minor Changes
+
+- 556bdec: migrate from tsdown to tsc for building releasable artifacts
+
+### Patch Changes
+
+- Updated dependencies [556bdec]
+  - @argentina-community/events-descriptions@2.4.0
+
 ## 1.3.0
 
 ### Minor Changes

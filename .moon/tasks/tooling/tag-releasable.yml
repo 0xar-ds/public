@@ -1,8 +1,7 @@
 fileGroups:
-  semantic-release:
-    - '.releaserc.json'
+  changesets:
+    - '/.changeset/config.json'
   release:
-    - 'CHANGELOG.md'
     - 'package.json'
 
 tasks:
@@ -18,16 +17,29 @@ tasks:
     inputs:
       - '@group(sources)'
       - '@group(configs)'
-      - '@group(semantic-release)'
+      - '@group(changesets)'
 
-  publish:
-    type: run
-    description: 'Publishes the artifact to configured mediums'
-    command: 'semantic-release'
+  version:
+    type: build
+    description: 'Consumes changes and updates entries to the according semver bump'
+    command: 'changeset version'
     deps:
       - '~:prepare'
     options:
       runInCI: false
     inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(changesets)'
+
+  publish:
+    type: run
+    description: 'Publishes the artifact to configured mediums'
+    command: 'changeset publish'
+    deps:
+      - '~:version'
+    options:
+      runInCI: false
+    inputs:
       - '@group(outputs)'
-      - '@group(semantic-release)'
+      - '@group(changesets)'

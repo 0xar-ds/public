@@ -24,7 +24,6 @@
 		"conventional-changelog-conventionalcommits": "catalog:build-tooling",
 		"eslint": "catalog:code-quality",
 		"prettier": "catalog:code-quality",
-		"tsdown": "catalog:build-tooling",
 		"typescript": "catalog:build-tooling"
 	},
 	"engines": {

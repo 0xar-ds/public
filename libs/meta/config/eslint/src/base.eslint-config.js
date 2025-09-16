@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 
-import { defineConfig } from 'eslint/config'
+import { defineConfig } from 'eslint/config';
 
 import tsParser from '@typescript-eslint/parser';
 
@@ -32,6 +32,11 @@ export default defineConfig(
 		},
 		rules: {
 			'no-undef': 'off',
+			'import-x/no-deprecated': 'warn',
+			'import-x/no-empty-named-blocks': 'error',
+			'import-x/no-commonjs': 'error',
+			'import-x/no-useless-path-segments': 'error',
+			'import-x/extensions': ['error', 'ignorePackages', { fix: true }],
 			'import-x/order': ['error', makeImportXOrderRuleDefinition()],
 			'@typescript-eslint/no-unused-vars': [
 				'error',

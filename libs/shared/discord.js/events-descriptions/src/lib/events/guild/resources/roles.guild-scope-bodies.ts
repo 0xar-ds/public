@@ -3,7 +3,7 @@ import { PermissionsBitField, Role } from 'discord.js';
 import {
 	ComputeUpdatesReturn,
 	computeUpdates,
-} from '../../../../utils/record-update.js';
+} from '../../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../../interface/event-body.interface.js';
 

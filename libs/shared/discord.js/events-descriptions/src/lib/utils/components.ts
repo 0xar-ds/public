@@ -1,6 +1,6 @@
 import { Snowflake } from 'discord.js';
 
-import { Maybe, Nullable } from '../../../../../../../../types/utils/utils.js';
+import { Maybe, Nullable } from '../../../../../../../types/utils/utils.js';
 
 export type UserId = Snowflake & {};
 export type MemberId = Snowflake & {};

@@ -3,10 +3,10 @@ import { Interaction, Presence, User } from 'discord.js';
 import {
 	ComputeUpdatesReturn,
 	computeUpdates,
-} from '../../../utils/record-update.js';
+} from '../../utils/record-update.js';
 
 import { EventBodyMapper } from '../../interface/event-body.interface.js';
-import { Nullable } from '../../../../../../../../../types/utils/utils.js';
+import { Nullable } from '../../../../../../../../types/utils/utils.js';
 
 declare global {
 	interface EventBodyMap {

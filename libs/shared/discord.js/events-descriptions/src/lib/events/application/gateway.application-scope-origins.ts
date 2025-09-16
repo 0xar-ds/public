@@ -1,4 +1,4 @@
-import { Nullable } from '../../../../../../../../../types/utils/utils.js';
+import { Nullable } from '../../../../../../../../types/utils/utils.js';
 import {
 	EventOriginMapper,
 	OriginObject,

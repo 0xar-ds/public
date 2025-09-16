@@ -37,6 +37,7 @@ jobs:
       - name: Release
         uses: changesets/action@v1
         with:
+          version: moon run --summary --concurrency=1 --no-bail root:version-packages
           publish: moon run --summary --concurrency=1 --no-bail root:publish-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

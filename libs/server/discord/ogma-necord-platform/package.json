@@ -1,5 +1,5 @@
 {
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"name": "ogma-necord-platform",
 	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
 	"license": "GPL-3.0-only",
@@ -31,7 +31,7 @@
 		"tsconfig-paths": "catalog:utilities"
 	},
 	"dependencies": {
-		"@argentina-community/events-descriptions": "workspace:^2.4.0"
+		"@argentina-community/events-descriptions": "workspace:^2.4.1"
 	},
 	"peerDependencies": {
 		"@nestjs/common": "catalog:nest",

@@ -1,5 +1,11 @@
 # @argentina-community/channels-utils
 
+## 2.2.1
+
+### Patch Changes
+
+- 0778e9a: bump package versions
+
 ## 2.2.0
 
 ### Minor Changes

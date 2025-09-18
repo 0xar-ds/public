@@ -1,5 +1,11 @@
 # @argentina-community/channels-utils
 
+## 3.0.0
+
+### Major Changes
+
+- a9c0b4e: drop deprecated @argentina-community/config-eslint, consume @argentina-community/eslint-config
+
 ## 2.2.1
 
 ### Patch Changes

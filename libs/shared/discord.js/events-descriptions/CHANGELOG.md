@@ -1,5 +1,17 @@
 # @argentina-community/events-descriptions
 
+## 3.0.0
+
+### Major Changes
+
+- a9c0b4e: drop deprecated @argentina-community/config-eslint, consume @argentina-community/eslint-config
+
+### Patch Changes
+
+- Updated dependencies [a9c0b4e]
+  - @argentina-community/channels-utils@3.0.0
+  - @argentina-community/interactions-utils@2.0.0
+
 ## 2.4.1
 
 ### Patch Changes

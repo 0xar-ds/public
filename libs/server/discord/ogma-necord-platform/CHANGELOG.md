@@ -1,5 +1,11 @@
 # ogma-necord-platform
 
+## 1.4.2
+
+### Patch Changes
+
+- 2076586: The Parser will now not print the body if Ogma was configured to have `inlineMeta: false`
+
 ## 1.4.1
 
 ### Patch Changes

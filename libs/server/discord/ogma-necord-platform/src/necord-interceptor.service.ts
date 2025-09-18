@@ -1,5 +1,11 @@
 import { ExecutionContext } from '@nestjs/common';
-import { AbstractInterceptorService, Parser } from '@ogma/nestjs-module';
+
+import {
+	AbstractInterceptorService,
+	OgmaInterceptorServiceOptions,
+	Parser,
+} from '@ogma/nestjs-module';
+
 import { ClientEvents, GatewayVersion } from 'discord.js';
 import { ContextOf, NecordExecutionContext } from 'necord';
 
@@ -233,7 +239,11 @@ export class NecordParser extends AbstractInterceptorService {
 		);
 	}
 
-	override getMeta(context: ExecutionContext, _data: unknown): unknown {
+	override getMeta(
+		context: ExecutionContext,
+		_data: unknown,
+		options: OgmaInterceptorServiceOptions,
+	): unknown {
 		try {
 			const event = this.getEvent(context);
 
@@ -241,11 +251,11 @@ export class NecordParser extends AbstractInterceptorService {
 			// @ts-ignore: destroys ts performance
 			const body = BodyMap[event.name](...event.payload);
 
-			return body;
+			return options.inlineMeta ? body : void undefined;
 		} catch (e) {
 			console.warn(e);
 
-			return '';
+			return void undefined;
 		}
 	}
 }

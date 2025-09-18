@@ -1,4 +1,4 @@
-tasks:
-  lint:
-    deps:
-      - '~:format'
+# tasks:
+#   lint:
+#     deps:
+#       - '~:format'

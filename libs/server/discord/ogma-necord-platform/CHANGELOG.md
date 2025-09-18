@@ -1,5 +1,13 @@
 # ogma-necord-platform
 
+## 1.4.1
+
+### Patch Changes
+
+- 0778e9a: bump package versions
+- Updated dependencies [0778e9a]
+  - @argentina-community/events-descriptions@2.4.1
+
 ## 1.4.0
 
 ### Minor Changes

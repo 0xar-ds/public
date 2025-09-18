@@ -1,5 +1,11 @@
 # @argentina-community/interactions-utils
 
+## 1.4.1
+
+### Patch Changes
+
+- 0778e9a: bump package versions
+
 ## 1.4.0
 
 ### Minor Changes

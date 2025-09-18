@@ -1,7 +1,7 @@
 import { StatusDescription } from '@~server/core-api';
 
-import { GatewayResponseType } from './gateway-response.enum.js';
-import { HooksOf, PayloadOf } from './gateway-response.interface.js';
+import { GatewayResponseType } from './gateway-response.enum.ts';
+import { HooksOf, PayloadOf } from './gateway-response.interface.ts';
 
 export class GatewayResponse {
 	constructor(

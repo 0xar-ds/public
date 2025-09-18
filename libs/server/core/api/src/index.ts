@@ -1,2 +1,2 @@
-export * from './lib/response.js';
-export * from './lib/status-code.js';
+export * from './lib/response.ts';
+export * from './lib/status-code.ts';

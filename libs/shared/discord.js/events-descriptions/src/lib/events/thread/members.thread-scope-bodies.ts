@@ -1,4 +1,4 @@
-import { EventBodyMapper } from '../../interface/event-body.interface.js';
+import { EventBodyMapper } from '../../interface/event-body.interface.ts';
 
 declare global {
 	interface EventBodyMap {

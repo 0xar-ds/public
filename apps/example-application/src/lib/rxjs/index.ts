@@ -1,2 +1,2 @@
-export * from './fetch-or-throw.js';
-export * from './find-or-throw.js';
+export * from './fetch-or-throw.ts';
+export * from './find-or-throw.ts';

@@ -1,1 +1,1 @@
-export * from './necord-interceptor.service.js';
+export * from './necord-interceptor.service.ts';

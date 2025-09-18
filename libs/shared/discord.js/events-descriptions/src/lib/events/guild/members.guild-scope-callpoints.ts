@@ -1,9 +1,9 @@
 import {
 	CallpointObject,
 	EventCallpointMapper,
-} from '../../interface/event-callpoint.interface.js';
+} from '../../interface/event-callpoint.interface.ts';
 
-import { GuildId, ShardId, UserId } from '../../utils/components.js';
+import { GuildId, ShardId, UserId } from '../../utils/components.ts';
 
 declare global {
 	interface EventCallpointMap {

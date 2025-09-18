@@ -22,7 +22,7 @@ import { Status } from '@~server/core-api';
 
 import { UISchema } from '#config/schema/ui.schema.js';
 
-import { MembersGatewayService } from '../services/index.js';
+import { MembersGatewayService } from '../services/index.ts';
 
 @Injectable()
 export class ExampleApplicationController {

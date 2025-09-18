@@ -1,6 +1,6 @@
 import { Channel, ChannelType } from 'discord.js';
 
-import { ChannelTypeMap } from './channel-type.js';
+import { ChannelTypeMap } from './channel-type.ts';
 
 /**
  * @param value Type to get the indexing key from

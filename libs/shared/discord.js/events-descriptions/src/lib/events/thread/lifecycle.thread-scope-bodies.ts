@@ -1,11 +1,11 @@
 import { AnyThreadChannel, Snowflake } from 'discord.js';
 
-import {
-	ComputeUpdatesReturn,
-	computeUpdates,
-} from '../../utils/record-update.js';
+import { EventBodyMapper } from '../../interface/event-body.interface.ts';
 
-import { EventBodyMapper } from '../../interface/event-body.interface.js';
+import {
+	computeUpdates,
+	ComputeUpdatesReturn,
+} from '../../utils/record-update.ts';
 
 declare global {
 	interface EventBodyMap {

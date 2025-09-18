@@ -1,1 +1,1 @@
-export * from './shared-replay.js';
+export * from './shared-replay.ts';

@@ -5,7 +5,7 @@ export {
 	GatewayResponseBuilder,
 	type GatewayResponsePayload,
 	GatewayResponseType,
-} from './lib/response/index.js';
+} from './lib/response/index.ts';
 
 // export {
 // 	type DiscordResponseHandler,

@@ -1,1 +1,1 @@
-export * from './lib/matchers/index.js';
+export * from './lib/matchers/index.ts';

@@ -1,7 +1,7 @@
 import { InviteType } from 'discord.js';
 
-import { EventBodyMapper } from '../../../interface/event-body.interface.js';
-import { Nullable } from '../../../../../../../../../types/utils/utils.js';
+import { Nullable } from '../../../../../../../../../types/utils/utils.ts';
+import { EventBodyMapper } from '../../../interface/event-body.interface.ts';
 
 declare global {
 	interface EventBodyMap {

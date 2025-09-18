@@ -10,7 +10,7 @@ import {
 	soundboardSounds,
 	threadListSync,
 	threadMemberUpdate,
-} from './events/application/client.application-scope-origins.js';
+} from './events/application/client.application-scope-origins.ts';
 
 import {
 	debug,
@@ -25,7 +25,7 @@ import {
 	shardResume,
 	userUpdate,
 	warn,
-} from './events/application/gateway.application-scope-origins.js';
+} from './events/application/gateway.application-scope-origins.ts';
 
 import {
 	entitlementCreate,
@@ -36,35 +36,35 @@ import {
 	subscriptionCreate,
 	subscriptionDelete,
 	subscriptionUpdate,
-} from './events/application/installations.application-scope-origins.js';
+} from './events/application/installations.application-scope-origins.ts';
 
 import {
 	channelPinsUpdate,
 	messageDeleteBulk,
 	typingStart,
-} from './events/channel/actions.channel-scope-origins.js';
+} from './events/channel/actions.channel-scope-origins.ts';
 
 import {
 	channelCreate,
 	channelDelete,
 	channelUpdate,
-} from './events/channel/lifecycle.channel-scope-origins.js';
+} from './events/channel/lifecycle.channel-scope-origins.ts';
 
 import {
 	stageInstanceCreate,
 	stageInstanceDelete,
 	stageInstanceUpdate,
-} from './events/channel/stage.channel-scope-origins.js';
+} from './events/channel/stage.channel-scope-origins.ts';
 
 import {
 	voiceChannelEffectSend,
 	voiceStateUpdate,
-} from './events/channel/voice.channel-scope-origins.js';
+} from './events/channel/voice.channel-scope-origins.ts';
 
 import {
 	webhooksUpdate,
 	webhookUpdate,
-} from './events/channel/webhook.channel-scope-origins.js';
+} from './events/channel/webhook.channel-scope-origins.ts';
 
 import {
 	applicationCommandPermissionsUpdate,
@@ -74,7 +74,7 @@ import {
 	autoModerationRuleUpdate,
 	guildIntegrationsUpdate,
 	guildUpdate,
-} from './events/guild/configuration.guild-scope-origins.js';
+} from './events/guild/configuration.guild-scope-origins.ts';
 
 import {
 	guildBanAdd,
@@ -82,7 +82,7 @@ import {
 	guildMemberAdd,
 	guildMemberRemove,
 	guildMemberUpdate,
-} from './events/guild/members.guild-scope-origins.js';
+} from './events/guild/members.guild-scope-origins.ts';
 
 import {
 	guildScheduledEventCreate,
@@ -90,7 +90,7 @@ import {
 	guildScheduledEventUpdate,
 	guildScheduledEventUserAdd,
 	guildScheduledEventUserRemove,
-} from './events/guild/resources/events.guild-scope-origins.js';
+} from './events/guild/resources/events.guild-scope-origins.ts';
 
 import {
 	emojiCreate,
@@ -102,48 +102,48 @@ import {
 	stickerCreate,
 	stickerDelete,
 	stickerUpdate,
-} from './events/guild/resources/expressions.guild-scope-origins.js';
+} from './events/guild/resources/expressions.guild-scope-origins.ts';
 
 import {
 	inviteCreate,
 	inviteDelete,
-} from './events/guild/resources/invites.guild-scope-origins.js';
+} from './events/guild/resources/invites.guild-scope-origins.ts';
 
-import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-origins.js';
+import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-origins.ts';
 
 import {
 	roleCreate,
 	roleDelete,
 	roleUpdate,
-} from './events/guild/resources/roles.guild-scope-origins.js';
+} from './events/guild/resources/roles.guild-scope-origins.ts';
 
 import {
 	messageCreate,
 	messageDelete,
 	messageUpdate,
-} from './events/message/lifecycle.message-scope-origins.js';
+} from './events/message/lifecycle.message-scope-origins.ts';
 
 import {
 	messagePollVoteAdd,
 	messagePollVoteRemove,
-} from './events/message/polls.message-scope-origins.js';
+} from './events/message/polls.message-scope-origins.ts';
 
 import {
 	messageReactionAdd,
 	messageReactionRemove,
 	messageReactionRemoveAll,
 	messageReactionRemoveEmoji,
-} from './events/message/reactions.message-scope-origins.js';
+} from './events/message/reactions.message-scope-origins.ts';
 
 import {
 	threadCreate,
 	threadDelete,
 	threadUpdate,
-} from './events/thread/lifecycle.thread-scope-origins.js';
+} from './events/thread/lifecycle.thread-scope-origins.ts';
 
-import { threadMembersUpdate } from './events/thread/members.thread-scope-origins.js';
+import { threadMembersUpdate } from './events/thread/members.thread-scope-origins.ts';
 
-export { OriginNamespace, ProducerKind } from './utils/components.js';
+export { OriginNamespace, ProducerKind } from './utils/components.ts';
 export type { OriginObject } from './interface/event-origin.interface.js';
 
 import type * as OriginsApplicationClientScope from './events/application/client.application-scope-origins.js';

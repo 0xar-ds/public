@@ -1,2 +1,2 @@
-export * from './none.gateway-response-handler.js';
-export * from './none.gateway-response-payload.js';
+export * from './none.gateway-response-handler.ts';
+export * from './none.gateway-response-payload.ts';

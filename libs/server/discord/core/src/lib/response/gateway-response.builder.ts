@@ -1,17 +1,17 @@
 import { AppStatus, StatusDescription } from '@~server/core-api';
 import { Exception } from '@~shared/exceptions';
 
-import { GatewayResponseType } from './gateway-response.enum.js';
+import { GatewayResponseType } from './gateway-response.enum.ts';
 
 import {
 	BodyOf,
 	GatewayResponsePayload,
 	HooksOf,
 	PayloadOf,
-} from './gateway-response.interface.js';
+} from './gateway-response.interface.ts';
 
-import { GatewayResponse } from './gateway-response.js';
-import { Maybe, Nullable } from '../../../../../../../types/utils/utils.js';
+import { GatewayResponse } from './gateway-response.ts';
+import { Maybe, Nullable } from '../../../../../../../types/utils/utils.ts';
 
 type OptionsOf<T extends GatewayResponsePayload> = {
 	[K in Exclude<keyof T, 'body' | 'type'>]: T[K];

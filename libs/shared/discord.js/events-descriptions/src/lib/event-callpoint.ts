@@ -10,7 +10,7 @@ import {
 	soundboardSounds,
 	threadListSync,
 	threadMemberUpdate,
-} from './events/application/client.application-scope-callpoints.js';
+} from './events/application/client.application-scope-callpoints.ts';
 
 import {
 	debug,
@@ -25,7 +25,7 @@ import {
 	shardResume,
 	userUpdate,
 	warn,
-} from './events/application/gateway.application-scope-callpoints.js';
+} from './events/application/gateway.application-scope-callpoints.ts';
 
 import {
 	entitlementCreate,
@@ -36,35 +36,35 @@ import {
 	subscriptionCreate,
 	subscriptionDelete,
 	subscriptionUpdate,
-} from './events/application/installations.application-scope-callpoints.js';
+} from './events/application/installations.application-scope-callpoints.ts';
 
 import {
 	channelPinsUpdate,
 	messageDeleteBulk,
 	typingStart,
-} from './events/channel/actions.channel-scope-callpoints.js';
+} from './events/channel/actions.channel-scope-callpoints.ts';
 
 import {
 	channelCreate,
 	channelDelete,
 	channelUpdate,
-} from './events/channel/lifecycle.channel-scope-callpoints.js';
+} from './events/channel/lifecycle.channel-scope-callpoints.ts';
 
 import {
 	stageInstanceCreate,
 	stageInstanceDelete,
 	stageInstanceUpdate,
-} from './events/channel/stage.channel-scope-callpoints.js';
+} from './events/channel/stage.channel-scope-callpoints.ts';
 
 import {
 	voiceChannelEffectSend,
 	voiceStateUpdate,
-} from './events/channel/voice.channel-scope-callpoints.js';
+} from './events/channel/voice.channel-scope-callpoints.ts';
 
 import {
 	webhooksUpdate,
 	webhookUpdate,
-} from './events/channel/webhook.channel-scope-callpoints.js';
+} from './events/channel/webhook.channel-scope-callpoints.ts';
 
 import {
 	applicationCommandPermissionsUpdate,
@@ -74,7 +74,7 @@ import {
 	autoModerationRuleUpdate,
 	guildIntegrationsUpdate,
 	guildUpdate,
-} from './events/guild/configuration.guild-scope-callpoints.js';
+} from './events/guild/configuration.guild-scope-callpoints.ts';
 
 import {
 	guildBanAdd,
@@ -82,7 +82,7 @@ import {
 	guildMemberAdd,
 	guildMemberRemove,
 	guildMemberUpdate,
-} from './events/guild/members.guild-scope-callpoints.js';
+} from './events/guild/members.guild-scope-callpoints.ts';
 
 import {
 	guildScheduledEventCreate,
@@ -90,7 +90,7 @@ import {
 	guildScheduledEventUpdate,
 	guildScheduledEventUserAdd,
 	guildScheduledEventUserRemove,
-} from './events/guild/resources/events.guild-scope-callpoints.js';
+} from './events/guild/resources/events.guild-scope-callpoints.ts';
 
 import {
 	emojiCreate,
@@ -102,46 +102,46 @@ import {
 	stickerCreate,
 	stickerDelete,
 	stickerUpdate,
-} from './events/guild/resources/expressions.guild-scope-callpoints.js';
+} from './events/guild/resources/expressions.guild-scope-callpoints.ts';
 
 import {
 	inviteCreate,
 	inviteDelete,
-} from './events/guild/resources/invites.guild-scope-callpoints.js';
+} from './events/guild/resources/invites.guild-scope-callpoints.ts';
 
-import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-callpoints.js';
+import { guildAuditLogEntryCreate } from './events/guild/resources/logs.guild-scope-callpoints.ts';
 
 import {
 	roleCreate,
 	roleDelete,
 	roleUpdate,
-} from './events/guild/resources/roles.guild-scope-callpoints.js';
+} from './events/guild/resources/roles.guild-scope-callpoints.ts';
 
 import {
 	messageCreate,
 	messageDelete,
 	messageUpdate,
-} from './events/message/lifecycle.message-scope-callpoints.js';
+} from './events/message/lifecycle.message-scope-callpoints.ts';
 
 import {
 	messagePollVoteAdd,
 	messagePollVoteRemove,
-} from './events/message/polls.message-scope-callpoints.js';
+} from './events/message/polls.message-scope-callpoints.ts';
 
 import {
 	messageReactionAdd,
 	messageReactionRemove,
 	messageReactionRemoveAll,
 	messageReactionRemoveEmoji,
-} from './events/message/reactions.message-scope-callpoints.js';
+} from './events/message/reactions.message-scope-callpoints.ts';
 
 import {
 	threadCreate,
 	threadDelete,
 	threadUpdate,
-} from './events/thread/lifecycle.thread-scope-callpoints.js';
+} from './events/thread/lifecycle.thread-scope-callpoints.ts';
 
-import { threadMembersUpdate } from './events/thread/members.thread-scope-callpoints.js';
+import { threadMembersUpdate } from './events/thread/members.thread-scope-callpoints.ts';
 
 export type { CallpointObject } from './interface/event-callpoint.interface.js';
 

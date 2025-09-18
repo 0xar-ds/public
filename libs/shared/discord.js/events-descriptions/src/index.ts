@@ -1,1 +1,1 @@
-export * from './description.js';
+export * from './description.ts';

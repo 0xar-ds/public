@@ -3,7 +3,7 @@ import { DMChannel, PartialDMChannel } from 'discord.js';
 import {
 	EventOriginMapper,
 	OriginObject,
-} from '../../interface/event-origin.interface.js';
+} from '../../interface/event-origin.interface.ts';
 
 import {
 	ChannelId,
@@ -15,7 +15,7 @@ import {
 	ProducerKind,
 	RecipientId,
 	UserId,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventOriginMap {

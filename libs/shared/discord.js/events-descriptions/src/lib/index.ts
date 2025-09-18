@@ -1,5 +1,5 @@
-export * from './event-body.js';
-export * from './event-callpoint.js';
-export * from './event-origin.js';
+export * from './event-body.ts';
+export * from './event-callpoint.ts';
+export * from './event-origin.ts';
 
-export * from './event-description-parser.js';
+export * from './event-description-parser.ts';

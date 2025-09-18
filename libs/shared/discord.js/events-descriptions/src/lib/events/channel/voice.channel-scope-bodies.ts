@@ -4,13 +4,13 @@ import {
 	VoiceState,
 } from 'discord.js';
 
-import {
-	ComputeUpdatesReturn,
-	computeUpdates,
-} from '../../utils/record-update.js';
+import { Nullable } from '../../../../../../../../types/utils/utils.ts';
+import { EventBodyMapper } from '../../interface/event-body.interface.ts';
 
-import { EventBodyMapper } from '../../interface/event-body.interface.js';
-import { Nullable } from '../../../../../../../../types/utils/utils.js';
+import {
+	computeUpdates,
+	ComputeUpdatesReturn,
+} from '../../utils/record-update.ts';
 
 declare global {
 	interface EventBodyMap {

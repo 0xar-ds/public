@@ -1,4 +1,4 @@
-import { ServerApplication } from './app/server-application.js';
+import { ServerApplication } from './app/server-application.ts';
 
 (async (): Promise<void> => {
 	await runApplication();

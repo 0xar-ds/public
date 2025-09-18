@@ -18,10 +18,10 @@ import {
 	throwError,
 } from 'rxjs';
 
-import { GatewayResponseBuilder } from './gateway-response.builder.js';
-import { GatewayResponseType } from './gateway-response.enum.js';
-import { GatewayResponse } from './gateway-response.js';
-import { DiscordResponseHandler } from './interface/gateway-response-handler.interface.js';
+import { GatewayResponseBuilder } from './gateway-response.builder.ts';
+import { GatewayResponseType } from './gateway-response.enum.ts';
+import { GatewayResponse } from './gateway-response.ts';
+import { DiscordResponseHandler } from './interface/gateway-response-handler.interface.ts';
 
 import {
 	ChannelMessageHandler,
@@ -34,7 +34,7 @@ import {
 	InteractionReplyHandler,
 	NoneHandler,
 	UserMessageHandler,
-} from './kind/index.js';
+} from './kind/index.ts';
 
 @Injectable()
 export class DiscordResponseInterceptor implements NestInterceptor {

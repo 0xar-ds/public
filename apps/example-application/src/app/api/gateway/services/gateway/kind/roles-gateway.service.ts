@@ -10,8 +10,8 @@ import { Exception } from '@~shared/exceptions';
 
 import { fetchOrThrow, findInCollectionOrThrow } from '#lib/rxjs/index.js';
 
-import { GatewayService } from '../gateway.service.js';
-import { GuildGatewayService } from './guild-gateway.service.js';
+import { GatewayService } from '../gateway.service.ts';
+import { GuildGatewayService } from './guild-gateway.service.ts';
 
 @Injectable()
 export class RolesGatewayService extends GatewayService {

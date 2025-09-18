@@ -1,1 +1,1 @@
-export * from './defer-interaction.decorator.js';
+export * from './defer-interaction.decorator.ts';

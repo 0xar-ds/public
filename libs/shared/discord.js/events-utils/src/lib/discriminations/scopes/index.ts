@@ -3,14 +3,14 @@ export type {
 	GuildScopeEvents,
 	MembersGuildScopeEvents,
 	ResourcesGuildScopeEvents,
-} from './guild/index.js';
+} from './guild/index.ts';
 
 export type {
 	ApplicationScopeEvents,
 	ClientApplicationScopeEvents,
 	GatewayApplicationScopeEvents,
 	InstallationApplicationScopeEvents,
-} from './application/index.js';
+} from './application/index.ts';
 
 export type {
 	ActionsChannelScopeEvents,
@@ -19,17 +19,17 @@ export type {
 	StageChannelScopeEvents,
 	VoiceChannelScopeEvents,
 	WebhookChannelScopeEvents,
-} from './channel/index.js';
+} from './channel/index.ts';
 
 export type {
 	LifecycleThreadScopeEvents,
 	MembershipThreadScopeEvents,
 	ThreadScopeEvents,
-} from './thread/index.js';
+} from './thread/index.ts';
 
 export type {
 	LifecycleMessageScopeEvents,
 	MessageScopeEvents,
 	PollsMessageScopeEvents,
 	ReactionsMessageScopeEvents,
-} from './message/index.js';
+} from './message/index.ts';

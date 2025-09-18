@@ -1,1 +1,1 @@
-export * from './interactions.utils.js';
+export * from './interactions.utils.ts';

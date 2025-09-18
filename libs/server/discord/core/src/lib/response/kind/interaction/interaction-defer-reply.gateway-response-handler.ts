@@ -10,11 +10,11 @@ import {
 import { Status } from '@~server/core-api';
 import { Exception } from '@~shared/exceptions';
 
-import { InteractionDeferReplyPayload } from './interaction-defer-reply.gateway-response-payload.js';
-import { GatewayResponseType } from '../../gateway-response.enum.js';
-import { ReturnOf } from '../../gateway-response.interface.js';
-import { GatewayResponse } from '../../gateway-response.js';
-import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.js';
+import { InteractionDeferReplyPayload } from './interaction-defer-reply.gateway-response-payload.ts';
+import { GatewayResponseType } from '../../gateway-response.enum.ts';
+import { ReturnOf } from '../../gateway-response.interface.ts';
+import { GatewayResponse } from '../../gateway-response.ts';
+import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.ts';
 
 export class InteractionDeferReplyHandler
 	implements DiscordResponseHandler<GatewayResponseType.InteractionDeferReply>

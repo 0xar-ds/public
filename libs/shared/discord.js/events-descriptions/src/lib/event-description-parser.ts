@@ -1,13 +1,13 @@
 import { ClientEvents } from 'discord.js';
 
-import { BodyMap } from './event-body.js';
-import { CallpointMap } from './event-callpoint.js';
-import { OriginMap } from './event-origin.js';
+import { BodyMap } from './event-body.ts';
+import { CallpointMap } from './event-callpoint.ts';
+import { OriginMap } from './event-origin.ts';
 
 import {
 	DescriptableEvent,
 	EventDescription,
-} from './interface/event-description.interface.js';
+} from './interface/event-description.interface.ts';
 
 export { type DescriptableEvent, type EventDescription };
 

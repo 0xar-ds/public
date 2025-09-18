@@ -1,8 +1,8 @@
 import { ContextOf, NecordBaseDiscovery, NecordEvents } from 'necord';
 
-import { GatewayResponseType } from '../gateway-response.enum.js';
-import { ReturnOf } from '../gateway-response.interface.js';
-import { GatewayResponse } from '../gateway-response.js';
+import { GatewayResponseType } from '../gateway-response.enum.ts';
+import { ReturnOf } from '../gateway-response.interface.ts';
+import { GatewayResponse } from '../gateway-response.ts';
 
 export interface DiscordResponseHandler<T extends GatewayResponseType> {
 	canHandle(

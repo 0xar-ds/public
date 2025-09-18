@@ -1,14 +1,14 @@
 import {
 	EventOriginMapper,
 	OriginObject,
-} from '../../interface/event-origin.interface.js';
+} from '../../interface/event-origin.interface.ts';
 
 import {
 	ChannelId,
 	GuildId,
 	OriginNamespace,
 	ProducerKind,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventOriginMap {

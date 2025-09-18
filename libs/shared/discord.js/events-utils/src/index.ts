@@ -1,3 +1,3 @@
-export * from './matchers.js';
-export * from './filters.js';
-export * from './scopes.js';
+export * from './matchers.ts';
+export * from './filters.ts';
+export * from './scopes.ts';

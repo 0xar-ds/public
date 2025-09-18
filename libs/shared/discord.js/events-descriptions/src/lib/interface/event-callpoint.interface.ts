@@ -1,6 +1,6 @@
 import { ClientEvents } from 'discord.js';
 
-import { Unknown } from '../utils/components.js';
+import { Unknown } from '../utils/components.ts';
 
 export type EventCallpointMapper<
 	T extends keyof ClientEvents & keyof EventCallpointMap,

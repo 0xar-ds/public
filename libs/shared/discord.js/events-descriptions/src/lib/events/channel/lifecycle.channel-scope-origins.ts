@@ -1,7 +1,7 @@
 import {
 	EventOriginMapper,
 	OriginObject,
-} from '../../interface/event-origin.interface.js';
+} from '../../interface/event-origin.interface.ts';
 
 import {
 	ChannelId,
@@ -9,7 +9,7 @@ import {
 	OriginNamespace,
 	ProducerKind,
 	RecipientId,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventOriginMap {

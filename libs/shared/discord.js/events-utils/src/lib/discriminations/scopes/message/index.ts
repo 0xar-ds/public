@@ -1,10 +1,10 @@
-export * from './lifecycle.message-scope-events.js';
-export * from './polls.message-scope-events.js';
-export * from './reactions.message-scope-events.js';
+export * from './lifecycle.message-scope-events.ts';
+export * from './polls.message-scope-events.ts';
+export * from './reactions.message-scope-events.ts';
 
-import { LifecycleMessageScopeEvents } from './lifecycle.message-scope-events.js';
-import { PollsMessageScopeEvents } from './polls.message-scope-events.js';
-import { ReactionsMessageScopeEvents } from './reactions.message-scope-events.js';
+import { LifecycleMessageScopeEvents } from './lifecycle.message-scope-events.ts';
+import { PollsMessageScopeEvents } from './polls.message-scope-events.ts';
+import { ReactionsMessageScopeEvents } from './reactions.message-scope-events.ts';
 
 export type MessageScopeEvents = LifecycleMessageScopeEvents &
 	ReactionsMessageScopeEvents &

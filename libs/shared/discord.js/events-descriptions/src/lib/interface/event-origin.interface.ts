@@ -1,6 +1,6 @@
 import { ClientEvents } from 'discord.js';
 
-import { OriginNamespace, ProducerKind } from '../utils/components.js';
+import { OriginNamespace, ProducerKind } from '../utils/components.ts';
 
 export type EventOriginMapper<
 	T extends keyof ClientEvents & keyof EventOriginMap,

@@ -1,7 +1,7 @@
 import { Snowflake } from 'discord.js';
 
-import { EventMatcher } from './matcher.interface.js';
-import { MessageClientEvents } from '../discriminations/filters/index.js';
+import { EventMatcher } from './matcher.interface.ts';
+import { MessageClientEvents } from '../discriminations/filters/index.ts';
 
 export const matchesMessageId =
 	<K extends keyof MessageClientEvents>(expectedId: string): EventMatcher<K> =>

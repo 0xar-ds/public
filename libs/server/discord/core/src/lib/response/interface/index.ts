@@ -1,3 +1,3 @@
-export * from './gateway-response-hooks.interface.js';
-export * from './gateway-response-handler.interface.js';
-export * from './gateway-response-payload.interface.js';
+export * from './gateway-response-hooks.interface.ts';
+export * from './gateway-response-handler.interface.ts';
+export * from './gateway-response-payload.interface.ts';

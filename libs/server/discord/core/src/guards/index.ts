@@ -1,1 +1,1 @@
-export * from './defer-interaction.guard.js';
+export * from './defer-interaction.guard.ts';

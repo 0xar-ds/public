@@ -1,1 +1,1 @@
-export { DiscordResponseInterceptor } from '../lib/response/index.js';
+export { DiscordResponseInterceptor } from '../lib/response/index.ts';

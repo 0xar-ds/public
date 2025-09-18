@@ -1,14 +1,14 @@
-export * from './events.guild-scope-events.js';
-export * from './expressions.guild-scope-events.js';
-export * from './invites.guild-scope-events.js';
-export * from './logs.guild-scope-events.js';
-export * from './roles.guild-scope-events.js';
+export * from './events.guild-scope-events.ts';
+export * from './expressions.guild-scope-events.ts';
+export * from './invites.guild-scope-events.ts';
+export * from './logs.guild-scope-events.ts';
+export * from './roles.guild-scope-events.ts';
 
-import { EventsGuildScopeEvents } from './events.guild-scope-events.js';
-import { ExpressionsGuildScopeEvents } from './expressions.guild-scope-events.js';
-import { InvitesGuildScopeEvents } from './invites.guild-scope-events.js';
-import { AuditLogsGuildScopeEvents } from './logs.guild-scope-events.js';
-import { RolesGuildScopeEvents } from './roles.guild-scope-events.js';
+import { EventsGuildScopeEvents } from './events.guild-scope-events.ts';
+import { ExpressionsGuildScopeEvents } from './expressions.guild-scope-events.ts';
+import { InvitesGuildScopeEvents } from './invites.guild-scope-events.ts';
+import { AuditLogsGuildScopeEvents } from './logs.guild-scope-events.ts';
+import { RolesGuildScopeEvents } from './roles.guild-scope-events.ts';
 
 export type ResourcesGuildScopeEvents = EventsGuildScopeEvents &
 	ExpressionsGuildScopeEvents &

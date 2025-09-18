@@ -1,6 +1,6 @@
-export * from './gateway-response.js';
+export * from './gateway-response.ts';
 
-export * from './guards/index.js';
-export * from './decorators/index.js';
+export * from './guards/index.ts';
+export * from './decorators/index.ts';
 
-export * from './interceptors/index.js';
+export * from './interceptors/index.ts';

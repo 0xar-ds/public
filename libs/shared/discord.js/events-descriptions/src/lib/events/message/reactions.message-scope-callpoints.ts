@@ -3,7 +3,7 @@ import { GuildBasedChannel } from 'discord.js';
 import {
 	CallpointObject,
 	EventCallpointMapper,
-} from '../../interface/event-callpoint.interface.js';
+} from '../../interface/event-callpoint.interface.ts';
 
 import {
 	ChannelId,
@@ -13,7 +13,7 @@ import {
 	MessageId,
 	ShardId,
 	UserId,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventCallpointMap {

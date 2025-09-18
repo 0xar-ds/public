@@ -1,1 +1,1 @@
-export * from './message-filtered-events.js';
+export * from './message-filtered-events.ts';

@@ -1,14 +1,14 @@
 import {
 	CallpointObject,
 	EventCallpointMapper,
-} from '../../interface/event-callpoint.interface.js';
+} from '../../interface/event-callpoint.interface.ts';
 
 import {
 	ChannelId,
 	maybeUnknown,
 	MaybeUnknown,
 	ShardId,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventCallpointMap {

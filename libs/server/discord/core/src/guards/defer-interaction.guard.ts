@@ -31,7 +31,7 @@ import {
 	DEFER_INTERACTION_METADATA_KEY,
 	DeferInteraction,
 	DeferInteractionOpts,
-} from '../decorators/defer-interaction.decorator.js';
+} from '../decorators/defer-interaction.decorator.ts';
 
 @Injectable()
 export class DeferInteractionGuard implements CanActivate {

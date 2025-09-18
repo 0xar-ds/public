@@ -1,10 +1,11 @@
-import { isChannelOfType } from '@argentina-community/channels-utils';
 import { ChannelType } from 'discord.js';
+
+import { isChannelOfType } from '@argentina-community/channels-utils';
 
 import {
 	EventOriginMapper,
 	OriginObject,
-} from '../../interface/event-origin.interface.js';
+} from '../../interface/event-origin.interface.ts';
 
 import {
 	ChannelId,
@@ -14,7 +15,7 @@ import {
 	ProducerKind,
 	RecipientId,
 	UserId,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventOriginMap {

@@ -1,1 +1,1 @@
-export * from './lib/discriminations/scopes/index.js';
+export * from './lib/discriminations/scopes/index.ts';

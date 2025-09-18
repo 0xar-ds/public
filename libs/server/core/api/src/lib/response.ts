@@ -1,5 +1,5 @@
-import { Nullable } from '../../../../../../types/utils/utils.js';
-import { Status, StatusDescription } from './status-code.js';
+import { Status, StatusDescription } from './status-code.ts';
+import { Nullable } from '../../../../../../types/utils/utils.ts';
 
 export class Response<T> {
 	constructor(

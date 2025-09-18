@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { Collection } from 'discord.js';
-import { Nullable } from '../../../../../../../types/utils/utils.js';
+
+import { Nullable } from '../../../../../../../types/utils/utils.ts';
 
 export interface ComputeUpdateOpts {
 	excludeDefaults?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UpdateValue<T> = T extends readonly unknown[] | Collection<any, any>
 	? number
 	: T extends ((...args: unknown[]) => unknown) | object | symbol

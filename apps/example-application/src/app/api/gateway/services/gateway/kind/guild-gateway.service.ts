@@ -11,7 +11,7 @@ import { Exception } from '@~shared/exceptions';
 import { ServerApplicationSchema } from '#config/schema/server-application.schema.js';
 import { fetchOrThrow } from '#lib/rxjs/index.js';
 
-import { GatewayService } from '../gateway.service.js';
+import { GatewayService } from '../gateway.service.ts';
 
 @Injectable()
 export class GuildGatewayService extends GatewayService {

@@ -1,8 +1,8 @@
-export * from './kind/index.js';
-export * from './interface/index.js';
+export * from './kind/index.ts';
+export * from './interface/index.ts';
 
-export * from './gateway-response.js';
-export * from './gateway-response.enum.js';
-export * from './gateway-response.interface.js';
-export * from './gateway-response.interceptor.js';
-export * from './gateway-response.builder.js';
+export * from './gateway-response.ts';
+export * from './gateway-response.enum.ts';
+export * from './gateway-response.interface.ts';
+export * from './gateway-response.interceptor.ts';
+export * from './gateway-response.builder.ts';

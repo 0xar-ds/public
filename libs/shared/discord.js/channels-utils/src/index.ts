@@ -1,2 +1,2 @@
-export * from './channel-type.js';
-export * from './channel-type.utils.js';
+export * from './channel-type.ts';
+export * from './channel-type.utils.ts';

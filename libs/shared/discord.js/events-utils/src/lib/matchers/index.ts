@@ -1,2 +1,2 @@
-export * from './matcher.interface.js';
-export * from './message.matcher.js';
+export * from './matcher.interface.ts';
+export * from './message.matcher.ts';

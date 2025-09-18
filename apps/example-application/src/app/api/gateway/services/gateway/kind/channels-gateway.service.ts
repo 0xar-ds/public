@@ -12,20 +12,20 @@ import {
 
 import { from, map, Observable, switchMap, tap } from 'rxjs';
 
+import { SharedReplayRefresh } from '@~rxjs/shared-replay';
+import { Status } from '@~server/core-api';
+import { Exception } from '@~shared/exceptions';
+
 import {
 	ChannelTypeMap,
 	getChannelTypeKey,
 	isChannelOfType,
 } from '@argentina-community/channels-utils';
 
-import { SharedReplayRefresh } from '@~rxjs/shared-replay';
-import { Status } from '@~server/core-api';
-import { Exception } from '@~shared/exceptions';
-
 import { fetchOrThrow, findInCollectionOrThrow } from '#lib/rxjs/index.js';
 
-import { GatewayService } from '../gateway.service.js';
-import { GuildGatewayService } from './guild-gateway.service.js';
+import { GatewayService } from '../gateway.service.ts';
+import { GuildGatewayService } from './guild-gateway.service.ts';
 
 @Injectable()
 export class ChannelsGatewayService extends GatewayService {

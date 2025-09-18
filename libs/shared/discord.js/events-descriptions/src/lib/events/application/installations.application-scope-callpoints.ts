@@ -1,7 +1,7 @@
 import {
 	CallpointObject,
 	EventCallpointMapper,
-} from '../../interface/event-callpoint.interface.js';
+} from '../../interface/event-callpoint.interface.ts';
 
 import {
 	ApplicationId,
@@ -12,7 +12,7 @@ import {
 	SubscriptionId,
 	Unknown,
 	UNKNOWN,
-} from '../../utils/components.js';
+} from '../../utils/components.ts';
 
 declare global {
 	interface EventCallpointMap {

@@ -3,8 +3,8 @@ import { ValidateNested } from 'class-validator';
 
 import { ServerContextSchema } from '@~server/config-schemas';
 
-import { ServerApplicationSchema } from './schema/server-application.schema.js';
-import { UISchema } from './schema/ui.schema.js';
+import { ServerApplicationSchema } from './schema/server-application.schema.ts';
+import { UISchema } from './schema/ui.schema.ts';
 
 export class ServerConfigSchema {
 	@ValidateNested()

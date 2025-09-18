@@ -1,5 +1,5 @@
-import { Prettify } from '../../../../../../../types/utils/utils.js';
-import { GatewayResponseType } from './gateway-response.enum.js';
+import { GatewayResponseType } from './gateway-response.enum.ts';
+import { Prettify } from '../../../../../../../types/utils/utils.ts';
 
 export type GatewayResponseContext<
 	T extends keyof GatewayResponseMap = keyof GatewayResponseMap,

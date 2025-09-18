@@ -23,6 +23,7 @@
 		"@commitlint/config-angular": "catalog:build-tooling",
 		"conventional-changelog-conventionalcommits": "catalog:build-tooling",
 		"eslint": "catalog:code-quality",
+		"@argentina-community/eslint-config": "workspace:^",
 		"prettier": "catalog:code-quality",
 		"typescript": "catalog:build-tooling"
 	},

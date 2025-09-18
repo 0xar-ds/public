@@ -2,12 +2,12 @@ import globals from 'globals';
 
 import { fileURLToPath } from 'node:url';
 
-import config from '@argentina-community/config-eslint';
+import config from '@argentina-community/eslint-config';
 
 import {
 	includeIgnoreFile,
 	makeTsConfig,
-} from '@argentina-community/config-eslint/utils';
+} from '@argentina-community/eslint-config/utils';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
@@ -27,7 +27,6 @@ export default makeTsConfig(
 			sourceType: 'module',
 			parserOptions: {
 				projectService: true,
-				tsconfigRootDir: import.meta.dirname,
 			},
 		},
 	},

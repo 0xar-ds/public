@@ -2,12 +2,12 @@ import globals from 'globals';
 
 import { fileURLToPath } from 'node:url';
 
-import config from '@argentina-community/config-eslint';
+import config from '@argentina-community/eslint-config';
 
 import {
 	includeIgnoreFile,
 	makeTsConfig,
-} from '@argentina-community/config-eslint/utils';
+} from '@argentina-community/eslint-config/utils';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
@@ -26,10 +26,7 @@ export default makeTsConfig(
 			ecmaVersion: 'latest',
 			sourceType: 'module',
 			parserOptions: {
-				projectService: {
-					allowDefaultProject: ['tsdown.config.ts'],
-				},
-				tsconfigRootDir: import.meta.dirname,
+				projectService: true,
 			},
 		},
 	},

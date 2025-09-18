@@ -5,8 +5,8 @@ tasks:
     command: 'eslint'
     args:
       - '--cache'
-      - '--cache-location'
-      - './.eslintcache'
+      - '--cache-location=.eslintcache'
+      - '--flag=v10_config_lookup_from_file'
       - '--color'
       - '--exit-on-fatal-error'
       - '--no-error-on-unmatched-pattern'

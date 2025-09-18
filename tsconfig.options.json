@@ -17,6 +17,9 @@
 		"noEmitOnError": true,
 		"removeComments": true,
 
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": true,
+
 		"strict": true,
 		"alwaysStrict": true,
 		"strictNullChecks": true,

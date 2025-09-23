@@ -70,9 +70,9 @@ catalogs:
     "jest": 30.1.3
 
   test-tooling:
-    "ts-jest": 29.4.2
+    "ts-jest": 29.4.4
 
   discord:
     "necord": "^6.11.1"
     "discord.js": "^14.22.1"
-    "discord-api-types": "^0.38.25"
+    "discord-api-types": "^0.38.26"

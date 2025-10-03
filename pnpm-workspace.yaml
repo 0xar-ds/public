@@ -36,8 +36,8 @@ catalogs:
     "@eslint/compat": 1.4.0
     "@eslint/js": 9.36.0
 
-    "typescript-eslint": 8.44.1
-    "@typescript-eslint/parser": 8.44.1
+    "typescript-eslint": 8.45.0
+    "@typescript-eslint/parser": 8.45.0
     "eslint-import-resolver-typescript": 4.4.4
 
     "eslint-config-prettier": 10.1.8

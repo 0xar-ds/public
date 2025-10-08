@@ -11,7 +11,7 @@ catalogs:
     "@nestjs/platform-express": 11.1.6
     
     "@nestjs/cli": 11.0.10
-    "@nestjs/schematics": 11.0.7
+    "@nestjs/schematics": 11.0.8
 
   nest-libs:
     "nest-typed-config": 2.10.1

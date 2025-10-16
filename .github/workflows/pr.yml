@@ -26,7 +26,7 @@ jobs:
         run: moon ci --color
 
       - name: Report action outcome to PR
-        uses: moonrepo/run-report-action@0e591adc3fbc65a5c9b2f4738368f378c2efaa79 # v1
+        uses: moonrepo/run-report-action@bfb317b1a2fd5b879d7c14d6d7af6360178fd879 # v1
         if: success() || failure()
         with:
           access-token: ${{ secrets.PR_GITHUB_TOKEN }}

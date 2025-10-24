@@ -30,14 +30,14 @@ catalogs:
     "@types/jest": 30.0.0
 
   code-quality:
-    "eslint": 9.37.0
+    "eslint": 9.38.0
     "prettier": 3.6.2
 
     "@eslint/compat": 1.4.0
-    "@eslint/js": 9.37.0
+    "@eslint/js": 9.38.0
 
-    "typescript-eslint": 8.45.0
-    "@typescript-eslint/parser": 8.45.0
+    "typescript-eslint": 8.46.2
+    "@typescript-eslint/parser": 8.46.2
     "eslint-import-resolver-typescript": 4.4.4
 
     "eslint-config-prettier": 10.1.8

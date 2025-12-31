@@ -21,8 +21,8 @@ catalogs:
     "@ogma/styler": 1.1.0
 
   swc:
-    "@swc/cli": 0.7.8
-    "@swc/core": 1.13.5
+    "@swc/cli": 0.7.9
+    "@swc/core": 1.13.21
 
   environment:
     "@types/express": 5.0.3

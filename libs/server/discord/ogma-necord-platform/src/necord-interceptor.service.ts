@@ -7,7 +7,12 @@ import {
 } from '@ogma/nestjs-module';
 
 import { ClientEvents, GatewayVersion } from 'discord.js';
-import { ContextOf, NecordExecutionContext } from 'necord';
+
+import {
+	AsyncCustomListenerContext,
+	ContextOf,
+	NecordExecutionContext,
+} from 'necord';
 
 import {
 	BodyMap,
@@ -18,98 +23,6 @@ import {
 	OriginObject,
 	ProducerKind,
 } from '@argentina-community/events-descriptions';
-
-const DISCORDJS_EVENTS = new Set<keyof ClientEvents>([
-	'applicationCommandPermissionsUpdate',
-	'autoModerationActionExecution',
-	'autoModerationRuleCreate',
-	'autoModerationRuleDelete',
-	'autoModerationRuleUpdate',
-	'cacheSweep',
-	'channelCreate',
-	'channelDelete',
-	'channelPinsUpdate',
-	'channelUpdate',
-	'debug',
-	'warn',
-	'emojiCreate',
-	'emojiDelete',
-	'emojiUpdate',
-	'entitlementCreate',
-	'entitlementDelete',
-	'entitlementUpdate',
-	'error',
-	'guildAuditLogEntryCreate',
-	'guildAvailable',
-	'guildBanAdd',
-	'guildBanRemove',
-	'guildCreate',
-	'guildDelete',
-	'guildUnavailable',
-	'guildIntegrationsUpdate',
-	'guildMemberAdd',
-	'guildMemberAvailable',
-	'guildMemberRemove',
-	'guildMembersChunk',
-	'guildMemberUpdate',
-	'guildUpdate',
-	'guildSoundboardSoundCreate',
-	'guildSoundboardSoundDelete',
-	'guildSoundboardSoundUpdate',
-	'inviteCreate',
-	'inviteDelete',
-	'messageCreate',
-	'messageDelete',
-	'messagePollVoteAdd',
-	'messagePollVoteRemove',
-	'messageReactionRemoveAll',
-	'messageReactionRemoveEmoji',
-	'messageDeleteBulk',
-	'messageReactionAdd',
-	'messageReactionRemove',
-	'messageUpdate',
-	'presenceUpdate',
-	'ready',
-	'invalidated',
-	'roleCreate',
-	'roleDelete',
-	'roleUpdate',
-	'threadCreate',
-	'threadDelete',
-	'threadListSync',
-	'threadMemberUpdate',
-	'threadMembersUpdate',
-	'threadUpdate',
-	'typingStart',
-	'userUpdate',
-	'voiceChannelEffectSend',
-	'voiceStateUpdate',
-	'webhookUpdate',
-	'webhooksUpdate',
-	'interactionCreate',
-	'shardDisconnect',
-	'shardError',
-	'shardReady',
-	'shardReconnecting',
-	'shardResume',
-	'stageInstanceCreate',
-	'stageInstanceUpdate',
-	'stageInstanceDelete',
-	'stickerCreate',
-	'stickerDelete',
-	'stickerUpdate',
-	'subscriptionCreate',
-	'subscriptionDelete',
-	'subscriptionUpdate',
-	'guildScheduledEventCreate',
-	'guildScheduledEventUpdate',
-	'guildScheduledEventDelete',
-	'guildScheduledEventUserAdd',
-	'guildScheduledEventUserRemove',
-	'soundboardSounds',
-]);
-
-export class NecordParserError extends Error {}
 
 @Parser('necord')
 export class NecordParser extends AbstractInterceptorService {
@@ -141,16 +54,17 @@ export class NecordParser extends AbstractInterceptorService {
 		const discovery = necord.getDiscovery();
 
 		if (discovery.isListener()) {
-			const event = discovery.getEvent();
+			if (AsyncCustomListenerContext.isAttached()) {
+				const scope = AsyncCustomListenerContext.getCurrentContext();
 
-			if (!DISCORDJS_EVENTS.has(event as keyof ClientEvents)) {
-				throw new NecordParserError(
-					'To-parse event was of a Necord or consumer interface, which is not implemented by the "ogma-necord-platform" package.',
-				);
+				return {
+					name: scope.getRootEvent() as T,
+					payload: scope.getRootArgs() as ContextOf<T>,
+				};
 			}
 
 			return {
-				name: event as T,
+				name: discovery.getEvent() as T,
 				payload: necord.getContext() as ContextOf<T>,
 			};
 		}
@@ -167,37 +81,25 @@ export class NecordParser extends AbstractInterceptorService {
 	}
 
 	override getCallerIp(context: ExecutionContext): string {
-		try {
-			const event = this.getEvent(context);
+		const event = this.getEvent(context);
 
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore: destroys ts performance
-			const origin = OriginMap[event.name](...event.payload) as OriginObject<
-				ProducerKind,
-				OriginNamespace,
-				string
-			> | null;
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore: destroys ts performance
+		const origin = OriginMap[event.name](...event.payload) as OriginObject<
+			ProducerKind,
+			OriginNamespace,
+			string
+		> | null;
 
-			return origin === null
-				? '?'
-				: `${origin.kind} ${origin.namespace}/${origin.value}`;
-		} catch (e) {
-			console.warn(e);
-
-			return '';
-		}
+		return origin === null
+			? '?'
+			: `${origin.kind} ${origin.namespace}/${origin.value}`;
 	}
 
 	override getMethod(context: ExecutionContext): string {
-		try {
-			const event = this.getEvent(context);
+		const event = this.getEvent(context);
 
-			return event.name;
-		} catch (e) {
-			console.warn(e);
-
-			return '';
-		}
+		return event.name;
 	}
 
 	override getProtocol(_context: ExecutionContext): string {
@@ -205,21 +107,15 @@ export class NecordParser extends AbstractInterceptorService {
 	}
 
 	override getCallPoint(context: ExecutionContext): string {
-		try {
-			const event = this.getEvent(context);
+		const event = this.getEvent(context);
 
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore: destroys ts performance
-			const callpoint = CallpointMap[event.name](
-				...event.payload,
-			) as CallpointObject<number | '?', string>;
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore: destroys ts performance
+		const callpoint = CallpointMap[event.name](
+			...event.payload,
+		) as CallpointObject<number | '?', string>;
 
-			return `[::${callpoint.shard}] ${callpoint.location}`;
-		} catch (e) {
-			console.warn(e);
-
-			return '';
-		}
+		return `[::${callpoint.shard}] ${callpoint.location}`;
 	}
 
 	override setRequestId(context: ExecutionContext, requestId: string): void {
@@ -244,18 +140,12 @@ export class NecordParser extends AbstractInterceptorService {
 		_data: unknown,
 		options: OgmaInterceptorServiceOptions,
 	): unknown {
-		try {
-			const event = this.getEvent(context);
+		const event = this.getEvent(context);
 
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore: destroys ts performance
-			const body = BodyMap[event.name](...event.payload);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore: destroys ts performance
+		const body = BodyMap[event.name](...event.payload);
 
-			return options.inlineMeta ? body : void undefined;
-		} catch (e) {
-			console.warn(e);
-
-			return void undefined;
-		}
+		return options.inlineMeta ? body : void undefined;
 	}
 }

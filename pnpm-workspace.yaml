@@ -50,7 +50,7 @@ catalogs:
   libraries:
     "rxjs": 7.8.2
     "class-transformer": 0.5.1
-    "class-validator": 0.14.2
+    "class-validator": 0.14.3
 
   utilities:
     "tsconfig-paths": 4.2.0
@@ -61,7 +61,7 @@ catalogs:
     "typescript": 5.9.3
     "ts-loader": 9.5.4
     "ts-node": 10.9.2
-    "@changesets/cli": 2.29.7
+    "@changesets/cli": 2.29.8
     "conventional-changelog-conventionalcommits": 9.1.0
     "@commitlint/cli": 19.8.1
     "@commitlint/config-angular": 19.8.1
@@ -70,7 +70,7 @@ catalogs:
     "jest": 30.2.0
 
   test-tooling:
-    "ts-jest": 29.4.4
+    "ts-jest": 29.4.6
 
   discord:
     "necord": "^6.11.1"

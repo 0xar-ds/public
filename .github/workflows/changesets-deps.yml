@@ -1,0 +1,33 @@
+name: Add changeset to Renovate updates
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+
+jobs:
+  renovate:
+    name: Update Renovate PR
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Toolchain
+        uses: moonrepo/setup-toolchain@3927d571963592235146e8e0b5261206954796a2 # v0
+        with:
+          auto-install: true
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Update PR
+        uses: mscharley/dependency-changesets-action@v1.2.0
+        with:
+          token: ${{ secrets.PR_GITHUB_TOKEN }}
+          use-conventional-commits: true
+          author-name: github-actions[bot]
+          author-email: github-actions[bot]@users.noreply.github.com

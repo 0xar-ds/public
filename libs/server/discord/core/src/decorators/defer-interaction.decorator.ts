@@ -9,8 +9,7 @@ export const DEFER_INTERACTION_METADATA_KEY =
 	'discord:defer_interactions' as const;
 
 export interface DeferInteractionOpts
-	extends InteractionDeferReplyOptions,
-		InteractionDeferUpdateOptions {
+	extends InteractionDeferReplyOptions, InteractionDeferUpdateOptions {
 	updateMessage: boolean;
 }
 

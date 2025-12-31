@@ -6,9 +6,7 @@ import { ReturnOf } from '../../gateway-response.interface.ts';
 import { GatewayResponse } from '../../gateway-response.ts';
 import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.ts';
 
-export class NoneHandler
-	implements DiscordResponseHandler<GatewayResponseType.None>
-{
+export class NoneHandler implements DiscordResponseHandler<GatewayResponseType.None> {
 	protected readonly logger = new Logger(this.constructor.name);
 
 	canHandle(

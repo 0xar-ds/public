@@ -23,9 +23,7 @@ import { ReturnOf } from '../../gateway-response.interface.ts';
 import { GatewayResponse } from '../../gateway-response.ts';
 import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.ts';
 
-export class InteractionFollowUpHandler
-	implements DiscordResponseHandler<GatewayResponseType.InteractionFollowUp>
-{
+export class InteractionFollowUpHandler implements DiscordResponseHandler<GatewayResponseType.InteractionFollowUp> {
 	protected readonly logger = new Logger(this.constructor.name);
 
 	canHandle(

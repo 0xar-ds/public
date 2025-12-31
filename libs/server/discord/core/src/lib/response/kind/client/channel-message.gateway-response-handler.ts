@@ -10,9 +10,7 @@ import { ReturnOf } from '../../gateway-response.interface.ts';
 import { GatewayResponse } from '../../gateway-response.ts';
 import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.ts';
 
-export class ChannelMessageHandler
-	implements DiscordResponseHandler<GatewayResponseType.ChannelMessage>
-{
+export class ChannelMessageHandler implements DiscordResponseHandler<GatewayResponseType.ChannelMessage> {
 	protected readonly logger = new Logger(this.constructor.name);
 
 	canHandle(

@@ -106,7 +106,7 @@
 		"extends": [
 			":noUnscheduledUpdates",
 			":separatePatchReleases",
-			"npm:unpublishSafe",
+			"security:minimumReleaseAgeNpm",
 			"helpers:disableTypesNodeMajor",
 			":semanticCommitType(chore)"
 		],

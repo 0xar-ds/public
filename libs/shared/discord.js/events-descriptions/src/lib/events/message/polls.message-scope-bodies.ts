@@ -5,11 +5,11 @@ declare global {
 	interface EventBodyMap {
 		messagePollVoteAdd: {
 			text: Nullable<string>;
-			multichoice: boolean;
+			multichoice: Nullable<boolean>;
 		};
 		messagePollVoteRemove: {
 			text: Nullable<string>;
-			multichoice: boolean;
+			multichoice: Nullable<boolean>;
 		};
 	}
 }

@@ -1,5 +1,11 @@
 # @argentina-community/channels-utils
 
+## 3.1.0
+
+### Minor Changes
+
+- f8e7144: chore: deps bump
+
 ## 3.0.0
 
 ### Major Changes

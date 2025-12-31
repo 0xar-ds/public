@@ -4,14 +4,14 @@ packages:
 
 catalogs:
   nest:
-    "@nestjs/common": 11.1.6
-    "@nestjs/core": 11.1.6
-    "@nestjs/testing": 11.1.6
+    "@nestjs/common": 11.1.10
+    "@nestjs/core": 11.1.10
+    "@nestjs/testing": 11.1.10
 
-    "@nestjs/platform-express": 11.1.6
+    "@nestjs/platform-express": 11.1.10
     
-    "@nestjs/cli": 11.0.10
-    "@nestjs/schematics": 11.0.8
+    "@nestjs/cli": 11.0.14
+    "@nestjs/schematics": 11.0.9
 
   nest-libs:
     "nest-typed-config": 2.10.1

@@ -1,5 +1,16 @@
 # ogma-necord-platform
 
+## 2.1.0
+
+### Minor Changes
+
+- f8e7144: feat: support custom listeners
+
+### Patch Changes
+
+- Updated dependencies [f8e7144]
+  - @argentina-community/events-descriptions@3.1.0
+
 ## 2.0.0
 
 ### Major Changes

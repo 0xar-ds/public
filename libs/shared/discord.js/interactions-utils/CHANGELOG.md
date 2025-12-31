@@ -1,5 +1,11 @@
 # @argentina-community/interactions-utils
 
+## 2.1.0
+
+### Minor Changes
+
+- f8e7144: chore: deps bump
+
 ## 2.0.0
 
 ### Major Changes

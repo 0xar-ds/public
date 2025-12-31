@@ -1,5 +1,17 @@
 # @argentina-community/events-descriptions
 
+## 3.1.0
+
+### Minor Changes
+
+- f8e7144: chore: deps bump
+
+### Patch Changes
+
+- Updated dependencies [f8e7144]
+  - @argentina-community/channels-utils@3.1.0
+  - @argentina-community/interactions-utils@2.1.0
+
 ## 3.0.0
 
 ### Major Changes

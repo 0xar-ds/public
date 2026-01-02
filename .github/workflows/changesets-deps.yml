@@ -25,7 +25,7 @@ jobs:
         run: pnpm install
 
       - name: Update PR
-        uses: mscharley/dependency-changesets-action@v1.2.0
+        uses: mscharley/dependency-changesets-action@688113f578e02cc37d62d3f5d11bb705744a802d # v1.2.1
         with:
           token: ${{ secrets.PR_GITHUB_TOKEN }}
           use-conventional-commits: true

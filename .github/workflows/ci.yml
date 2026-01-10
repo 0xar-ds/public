@@ -29,5 +29,5 @@ jobs:
         run: 'moon ci --color'
 
       - name: Collect/retrospect on Moon's CI Summaries
-        uses: appthrust/moon-ci-retrospect@f5f1352f03d40cfbb72993828136418fa2f439d0 # latest release
+        uses: appthrust/moon-ci-retrospect@631a1e667f96e8ca893eab69f03e425f7fbfdc2b # latest release
         if: success() || failure()

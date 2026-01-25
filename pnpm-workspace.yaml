@@ -31,7 +31,7 @@ catalogs:
 
   code-quality:
     "eslint": 9.39.2
-    "prettier": 3.8.0
+    "prettier": 3.8.1
 
     "@eslint/compat": 2.0.1
     "@eslint/js": 9.39.2

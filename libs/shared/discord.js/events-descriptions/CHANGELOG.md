@@ -1,5 +1,17 @@
 # @argentina-community/events-descriptions
 
+## 3.2.0
+
+### Minor Changes
+
+- a03c08b: bump deps
+
+### Patch Changes
+
+- Updated dependencies [a03c08b]
+  - @argentina-community/channels-utils@3.2.0
+  - @argentina-community/interactions-utils@2.2.0
+
 ## 3.1.0
 
 ### Minor Changes

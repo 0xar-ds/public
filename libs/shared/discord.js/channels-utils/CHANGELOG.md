@@ -1,5 +1,11 @@
 # @argentina-community/channels-utils
 
+## 3.2.0
+
+### Minor Changes
+
+- a03c08b: bump deps
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @argentina-community/interactions-utils
 
+## 2.2.0
+
+### Minor Changes
+
+- a03c08b: bump deps
+
 ## 2.1.0
 
 ### Minor Changes

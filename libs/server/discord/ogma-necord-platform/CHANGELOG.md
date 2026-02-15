@@ -1,5 +1,16 @@
 # ogma-necord-platform
 
+## 2.2.0
+
+### Minor Changes
+
+- a03c08b: bump deps
+
+### Patch Changes
+
+- Updated dependencies [a03c08b]
+  - @argentina-community/events-descriptions@3.2.0
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,5 +1,5 @@
 {
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"name": "ogma-necord-platform",
 	"author": "0xar-ds <sadden-rope-sleek@duck.com>",
 	"license": "GPL-3.0-only",
@@ -21,7 +21,7 @@
 		"0xar-ds <sadden-rope-sleek@duck.com>"
 	],
 	"devDependencies": {
-		"@argentina-community/eslint-config": "workspace:^2.1.0",
+		"@argentina-community/eslint-config": "workspace:^2.2.0",
 		"@types/express": "catalog:environment",
 		"@types/node": "catalog:environment",
 		"globals": "catalog:code-quality",
@@ -31,7 +31,7 @@
 		"tsconfig-paths": "catalog:utilities"
 	},
 	"dependencies": {
-		"@argentina-community/events-descriptions": "workspace:^3.1.0"
+		"@argentina-community/events-descriptions": "workspace:^3.2.0"
 	},
 	"peerDependencies": {
 		"@nestjs/common": "catalog:nest",

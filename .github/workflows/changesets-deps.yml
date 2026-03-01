@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
 
       - name: Setup Toolchain
-        uses: moonrepo/setup-toolchain@3927d571963592235146e8e0b5261206954796a2 # v0
+        uses: moonrepo/setup-toolchain@8794f0318b9df4a43a5ddc23cefd16f595b423dd # v0
         with:
           auto-install: true
 
@@ -25,7 +25,7 @@ jobs:
         run: pnpm install
 
       - name: Update PR
-        uses: mscharley/dependency-changesets-action@e704c89dbc4e284d055aa520308291690f645a4f # v1.2.2
+        uses: mscharley/dependency-changesets-action@f456a98d34595a68d4b9412368a57533be0584ad # v1.2.3
         with:
           token: ${{ secrets.PR_GITHUB_TOKEN }}
           use-conventional-commits: true

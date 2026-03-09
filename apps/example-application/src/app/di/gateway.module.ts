@@ -13,7 +13,7 @@ import {
 	GuildGatewayService,
 	MembersGatewayService,
 	RolesGatewayService,
-} from '#services/index.js';
+} from '#root/app/api/gateway/services/index.js';
 
 const GATEWAY = [
 	GuildGatewayService,

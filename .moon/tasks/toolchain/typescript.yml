@@ -1,30 +1,33 @@
-implicitDeps:
-  - target: '^:build'
-    optional: true
+inheritedBy:
+  toolchain: typescript
 
+implicitDeps:
+  - target: ^:build
+    optional: true
+    
 implicitInputs:
   - '@group(configs)'
   - '@group(sources)'
-  - '/tsconfig.json'
-  - '/tsconfig.options.json'
+  - /tsconfig.json
+  - /tsconfig.options.json
 
 fileGroups:
   sources:
-    - 'src/**/*.ts'
+    - src/**/*.ts
     - '!src/**/*.spec.ts'
   configs:
-    - 'package.json'
-    - 'tsconfig.json'
-    - 'tsconfig.options.json'
-    - 'tsconfig.{build,spec}.json'
+    - package.json
+    - tsconfig.json
+    - tsconfig.options.json
+    - tsconfig.{build,spec}.json
     - '*.config.{j,t}s'
-    - '/pnpm-workspace.yaml'
+    - /pnpm-workspace.yaml
   tests:
-    - 'src/**/*.ts'
-    - 'src/**/*.spec.ts'
-    - 'tests/**/*.ts'
+    - src/**/*.ts
+    - src/**/*.spec.ts
+    - tests/**/*.ts
   outputs:
-    - 'dist/**/*'
-    - 'mts/**/*'
-    - 'cjs/**/*'
+    - dist/**/*
+    - mts/**/*
+    - cjs/**/*
     - '*.tsbuildinfo'

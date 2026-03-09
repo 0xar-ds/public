@@ -1,14 +1,15 @@
-id: 'discord.js-events-descriptions'
-type: library
+id: discord.js-events-descriptions
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'releasable'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - releasable
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Discord.js Client/Gateway events descriptions'
-  description: 'Definitions & implementation for building descriptions of discord.js events'
+  title: Discord.js Client/Gateway events descriptions
+  description: Definitions & implementation for building descriptions of discord.js events

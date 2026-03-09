@@ -1,4 +1,8 @@
+inheritedBy:
+  toolchain: node
+
+
 implicitInputs:
-  - 'package.json'
-  - '/package.json'
-  - '/pnpm-workspace.yaml'
+  - package.json
+  - /package.json
+  - /pnpm-workspace.yaml

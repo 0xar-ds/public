@@ -1,14 +1,15 @@
-id: 'discord.js-interactions-utils'
-type: library
+id: discord.js-interactions-utils
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'releasable'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - releasable
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Utilities for Discord.js interactions classes'
-  description: 'Utilities around Discord.js structs of interactions'
+  title: Utilities for Discord.js interactions classes
+  description: Utilities around Discord.js structs of interactions

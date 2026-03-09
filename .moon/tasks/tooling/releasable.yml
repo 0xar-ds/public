@@ -1,0 +1,25 @@
+inheritedBy:
+  tag: releasable
+
+fileGroups:
+  changesets:
+    - /.changeset/config.json
+    - /.changeset/*.md
+  release:
+    - package.json
+    - CHANGELOG.MD
+
+tasks:
+  prepare:
+    type: build
+    description: Pulls the project to build an artifact
+    deps:
+      - target: ~:build
+        optional: true
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(changesets)'
+    options:
+      runInCI: false
+      internal: true

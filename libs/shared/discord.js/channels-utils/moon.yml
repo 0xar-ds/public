@@ -1,14 +1,15 @@
-id: 'discord.js-channels-utils'
-type: library
+id: discord.js-channels-utils
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'releasable'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - releasable
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Utilities for Discord.js channels classes'
-  description: 'Utilities around Discord.js structs of channels'
+  title: Utilities for Discord.js channels classes
+  description: Utilities around Discord.js structs of channels

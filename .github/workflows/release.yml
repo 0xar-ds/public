@@ -27,8 +27,9 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Toolchain
-        uses: moonrepo/setup-toolchain@3927d571963592235146e8e0b5261206954796a2 # v0
+        uses: moonrepo/setup-toolchain@v0.6.3 # v0.6.3
         with:
+          auto-setup: true
           auto-install: true
 
       - name: Install dependencies
@@ -37,8 +38,8 @@ jobs:
       - name: Release
         uses: changesets/action@v1
         with:
-          version: moon run --summary --concurrency=1 --no-bail root:version-packages
-          publish: moon run --summary --concurrency=1 --no-bail root:publish-packages
+          version: moon exec --ignore-ci-checks --summary --concurrency=1 root:version-packages
+          publish: moon exec --ignore-ci-checks --summary --concurrency=1 root:publish-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

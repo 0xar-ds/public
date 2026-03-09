@@ -1,13 +1,14 @@
-id: 'shared.status'
-type: library
+id: shared.status
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Domain-state representation'
-  description: 'Status enumeration for consumption in application-or-library outcome representation.'
+  title: Domain-state representation
+  description: Status enumeration for consumption in application-or-library outcome representation.

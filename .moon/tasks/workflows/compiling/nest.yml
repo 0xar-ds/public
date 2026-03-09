@@ -1,0 +1,34 @@
+inheritedBy:
+  tag: nest
+
+tasks:
+  dev:
+    type: run
+    description: Runs nest build with the --watch flag.
+    command: nest start --watch --path ./tsconfig.build.json
+    deps:
+      - ^:build
+    env:
+      NODE_ENV: development
+  build:
+    type: build
+    description: Runs nest build
+    command: nest build --path ./tsconfig.build.json
+    deps:
+      - ^:build
+    env:
+      NODE_ENV: production
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'
+  run:
+    type: run
+    preset: server
+    description: Runs production
+    command: node dist/src/main
+    deps:
+      - ~:build
+    env:
+      NODE_ENV: production

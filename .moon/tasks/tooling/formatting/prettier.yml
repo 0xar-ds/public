@@ -9,7 +9,7 @@ tasks:
     args:
       - --check
       - --cache
-      - --cache-location=./.prettiercache
+      - --cache-location=.prettiercache
       - --no-error-on-unmatched-pattern
       - .
     inputs:
@@ -19,7 +19,20 @@ tasks:
     outputs:
       - .prettiercache
   format-write:
+    preset: utility
     extends: format
-    args: --write
+    args:
+      - --write
+      - --cache
+      - --cache-location=.prettiercache
+      - --no-error-on-unmatched-pattern
+      - .
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(tests)'
+    outputs:
+      - .prettiercache
     options:
       runInCI: false
+      mergeArgs: replace

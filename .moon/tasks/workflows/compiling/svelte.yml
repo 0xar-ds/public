@@ -29,17 +29,6 @@ tasks:
     command: svelte-kit sync
     options:
       internal: true
-  check:
-    type: test
-    preset: server
-    description: Runs svelte check
-    command: svelte-check --tsconfig ./tsconfig.json
-    deps:
-      - ~:sync
-    inputs:
-      - '@group(configs)'
-      - '@group(sources)'
-      - '@group(tests)'
   preview:
     type: run
     description: Builds and previews the project

@@ -1,7 +1,10 @@
-inheritedBy: 
+inheritedBy:
   tag: code-quality
 
 tasks:
   lint:
     deps:
       - '~:format'
+  lint-fix:
+    deps:
+      - '~:format-write'

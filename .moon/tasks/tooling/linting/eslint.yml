@@ -23,7 +23,14 @@ tasks:
     outputs:
       - .eslintcache
   lint-fix:
+    preset: utility
     extends: lint
     args: --fix
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '@group(tests)'
+    outputs:
+      - .eslintcache
     options:
       runInCI: false

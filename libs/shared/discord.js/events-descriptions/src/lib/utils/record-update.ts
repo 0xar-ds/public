@@ -80,16 +80,19 @@ export function computeUpdates<
 	const iterator = Iterator.from(Object.entries(source));
 
 	const updates = iterator
-		.filter((value) => {
-			const type = typeof current[value[1]];
+		.filter((entry) => {
+			const field = entry[1];
+			const value = current[field];
+			const type = typeof value;
 
 			return (
-				'function' !== type &&
-				'symbol' !== type &&
+				type !== 'function' &&
+				type !== 'symbol' &&
 				!(
+					value !== null &&
 					type === 'object' &&
-					(!(current[value[1]] instanceof Collection) ||
-						!Array.isArray(current[value[1]]))
+					!(value instanceof Collection) &&
+					!Array.isArray(value)
 				)
 			);
 		})

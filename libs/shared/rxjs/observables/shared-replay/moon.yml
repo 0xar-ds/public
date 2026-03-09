@@ -1,13 +1,14 @@
-id: 'shared.rxjs-shared-replay'
-type: library
+id: shared.rxjs-shared-replay
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Shared Replay Observable'
-  description: 'Utility to manage an Rxjs Observable that buffers in a shared replay operator.'
+  title: Shared Replay Observable
+  description: Utility to manage an Rxjs Observable that buffers in a shared replay operator.

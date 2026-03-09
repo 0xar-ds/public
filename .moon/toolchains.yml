@@ -1,0 +1,17 @@
+proto:
+  version: 0.55.2
+
+node: 
+  versionFromPrototools: true
+
+javascript:
+  packageManager: pnpm
+  syncProjectWorkspaceDependencies: true
+  syncPackageManagerField: true
+
+typescript:
+  includeSharedTypes: true
+  syncProjectReferences: true
+
+pnpm:
+  versionFromPrototools: true

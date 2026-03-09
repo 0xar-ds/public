@@ -1,11 +1,11 @@
-id: 'meta-config-eslint'
-type: configuration
+id: meta-config-eslint
 language: javascript
+layer: configuration
 stack: systems
 
 tags:
-  - 'releasable'
+  - releasable
 
 project:
-  name: 'Meta Eslint config'
-  description: 'Hosts eslint configuration for generic projects.'
+  title: Meta Eslint config
+  description: Hosts eslint configuration for generic projects.

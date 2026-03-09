@@ -1,0 +1,7 @@
+inheritedBy: 
+  tag: code-quality
+
+tasks:
+  lint:
+    deps:
+      - '~:format'

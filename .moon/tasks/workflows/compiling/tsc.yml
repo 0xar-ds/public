@@ -1,0 +1,37 @@
+inheritedBy:
+  tag: tsc
+
+tasks:
+  dev:
+    type: run
+    description: Runs tsc with build configuration on watch mode.
+    command: tsc --project ./tsconfig.build.json --watch
+    deps:
+      - ^:build
+    env:
+      NODE_ENV: development
+  typecheck:
+    type: build
+    command: tsc
+    args:
+      - --build
+      - --pretty
+      - --verbose
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'
+  build:
+    type: build
+    description: Runs tsc with the build configuration.
+    command: tsc --project ./tsconfig.build.json
+    deps:
+      - ^:build
+    env:
+      NODE_ENV: production
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'

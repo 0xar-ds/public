@@ -1,13 +1,14 @@
-id: 'shared.exceptions'
-type: library
+id: shared.exceptions
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Domain-exception representation'
-  description: 'Shared exceptions structs through kind of systems.'
+  title: Domain-exception representation
+  description: Shared exceptions structs through kind of systems.

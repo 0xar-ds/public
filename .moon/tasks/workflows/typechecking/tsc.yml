@@ -1,0 +1,16 @@
+inheritedBy:
+  tag: tsc
+
+tasks:
+  typecheck:
+    type: build
+    command: tsc
+    args:
+      - --build
+      - --pretty
+      - --verbose
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+    outputs:
+      - '@group(outputs)'

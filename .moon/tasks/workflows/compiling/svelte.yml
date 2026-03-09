@@ -1,0 +1,48 @@
+inheritedBy:
+  tag: svelte
+
+tasks:
+  dev:
+    type: run
+    description: Runs vite dev
+    command: vite dev
+    deps:
+      - ^:build
+    env:
+      NODE_ENV: development
+  build:
+    type: build
+    description: Runs vite build
+    command: vite build
+    deps:
+      - ^:build
+    env:
+      NODE_ENV: production
+    inputs:
+      - '@group(configs)'
+      - '@group(sources)'
+    outputs:
+      - '@group(outputs)'
+  sync:
+    type: test
+    description: Runs svelte-kit sync
+    command: svelte-kit sync
+    options:
+      internal: true
+  check:
+    type: test
+    preset: server
+    description: Runs svelte check
+    command: svelte-check --tsconfig ./tsconfig.json
+    deps:
+      - ~:sync
+    inputs:
+      - '@group(configs)'
+      - '@group(sources)'
+      - '@group(tests)'
+  preview:
+    type: run
+    description: Builds and previews the project
+    command: vite preview
+    deps:
+      - ~:build

@@ -36,5 +36,5 @@
 		"moonrepo",
 		"proto"
 	],
-	"packageManager": "pnpm@10.16.1"
+	"packageManager": "pnpm@10.31.0"
 }

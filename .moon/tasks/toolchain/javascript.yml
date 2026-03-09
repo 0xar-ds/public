@@ -1,5 +1,8 @@
+inheritedBy:
+  toolchain: javascript
+
 implicitDeps:
-  - target: '^:build'
+  - target: ^:build
     optional: true
 
 implicitInputs:
@@ -8,41 +11,14 @@ implicitInputs:
 
 fileGroups:
   sources:
-    - 'src/**/*.js'
-    - 'src/**/*.d.ts'
+    - src/**/*.js
+    - src/**/*.d.ts
   configs:
-    - 'package.json'
-    - '/package.json'
-    - '/pnpm-workspace.yaml'
+    - package.json
+    - /package.json
+    - /pnpm-workspace.yaml
   outputs:
-    - 'src/**/*'
-    - 'dist/**/*'
-    - 'mts/**/*'
-    - 'cjs/**/*'
-# tasks:
-# typecheck:
-# command:
-#   - 'tsc'
-#   # Use incremental builds with project references
-#   - '--build'
-#   # Always use pretty output
-#   - '--pretty'
-#   # Use verbose logging to see affected projects
-#   - '--verbose'
-#   - '--noEmit'
-# inputs:
-#   # Source and test files
-#   - 'src/**/*'
-#   - 'tests/**/*'
-#   # Type declarations
-#   - 'types/**/*'
-#   # Project configs
-#   - 'tsconfig.json'
-#   - 'tsconfig.*.json'
-#   # Root configs (extended from only)
-#   - '/tsconfig.options.json'
-# # outputs:
-# #   # Matches `compilerOptions.outDir`
-# #   - 'lib'
-# deps:
-# - '^:build'
+    - src/**/*
+    - dist/**/*
+    - mts/**/*
+    - cjs/**/*

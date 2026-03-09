@@ -1,13 +1,14 @@
-id: 'server.core-api'
-type: library
+id: server.core-api
 language: typescript
+layer: library
 stack: unknown
+
 tags:
-  - 'tsc'
-  - 'eslint'
-  - 'prettier'
-  - 'code-quality'
+  - tsc
+  - eslint
+  - prettier
+  - code-quality
 
 project:
-  name: 'Server Core'
-  description: 'Core API functionalities and types.'
+  title: Server Core
+  description: Core API functionalities and types.

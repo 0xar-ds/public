@@ -1,36 +1,35 @@
-# https://moonrepo.dev/docs/config/workspace
-$schema: 'https://moonrepo.dev/schemas/workspace.json'
+$schema: https://moonrepo.dev/schemas/workspace.json
 
 telemetry: false
 
+notifier:
+  terminalNotifications: always
+
 projects:
   sources:
-    root: '.'
+    root: .
   globs:
-    - 'apps/**/moon.yml'
-    - 'libs/**/moon.yml'
-
-vcs:
-  hooks:
-    commit-msg:
-      - 'pnpm commitlint --config .commitlintrc.json --edit $1'
-    pre-commit:
-      - 'moon run :lint :format --affected --status=staged'
+    - apps/**/moon.yml
+    - libs/**/moon.yml
 
 pipeline:
   logRunningCommand: true
 
 constraints:
-  enforceProjectTypeRelationships: true
+  enforceLayerRelationships: true
+
+vcs:
+  hooks:
+    commit-msg:
+    - pnpm commitlint --config .commitlintrc.json --edit $1
+    pre-commit:
+    - moon run :lint :format --affected --status=staged
 
 docker:
   scaffold:
-    include:
-      - './types/**/*'
+    configsPhaseGlobs:
+    - ./types/**/*
 
 generator:
   templates:
-    - 'templates/**'
-
-notifier:
-  terminalNotifications: 'always'
+  - templates/**

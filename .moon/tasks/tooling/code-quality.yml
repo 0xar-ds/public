@@ -2,9 +2,17 @@ inheritedBy:
   tag: code-quality
 
 tasks:
+  # Tooling related
   lint:
     deps:
       - '~:format'
   lint-fix:
     deps:
       - '~:format-write'
+  # Workflow related
+  dev:
+    deps: 
+      - ~:lint-fix
+  build:
+    deps:
+      - ~:lint

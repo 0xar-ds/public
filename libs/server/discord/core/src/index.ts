@@ -1,3 +1,5 @@
+export * from './discord-core.module.ts';
+
 export * from './gateway-response.ts';
 
 export * from './guards/index.ts';

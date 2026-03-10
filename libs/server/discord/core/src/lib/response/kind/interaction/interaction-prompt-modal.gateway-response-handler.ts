@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 import {
 	ButtonContext,
@@ -22,6 +22,7 @@ import { ReturnOf } from '../../gateway-response.interface.ts';
 import { GatewayResponse } from '../../gateway-response.ts';
 import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.ts';
 
+@Injectable()
 export class InteractionPromptModalHandler implements DiscordResponseHandler<GatewayResponseType.InteractionPromptModal> {
 	protected readonly logger = new Logger(this.constructor.name);
 

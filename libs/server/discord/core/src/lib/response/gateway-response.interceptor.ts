@@ -40,51 +40,47 @@ import {
 export class DiscordResponseInterceptor implements NestInterceptor {
 	private readonly logger = new Logger(this.constructor.name);
 
-	private readonly handlers = new Map<
+	private readonly handlers: Map<
 		GatewayResponseType,
 		DiscordResponseHandler<GatewayResponseType>
-	>();
+	>;
 
-	constructor() {
-		this.handlers.set(GatewayResponseType.None, new NoneHandler());
-
-		this.handlers.set(
-			GatewayResponseType.ChannelMessage,
-			new ChannelMessageHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.UserMessage,
-			new UserMessageHandler(),
-		);
-
-		this.handlers.set(
-			GatewayResponseType.InteractionDeferReply,
-			new InteractionDeferReplyHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.InteractionDeferUpdate,
-			new InteractionDeferUpdateHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.InteractionReply,
-			new InteractionReplyHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.InteractionEditReply,
-			new InteractionEditReplyHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.InteractionFollowUp,
-			new InteractionFollowUpHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.InteractionPromptModal,
-			new InteractionPromptModalHandler(),
-		);
-		this.handlers.set(
-			GatewayResponseType.InteractionEditMessage,
-			new InteractionEditMessageHandler(),
-		);
+	constructor(
+		noneHandler: NoneHandler,
+		channelMessageHandler: ChannelMessageHandler,
+		userMessageHandler: UserMessageHandler,
+		interactionDeferReplyHandler: InteractionDeferReplyHandler,
+		interactionDeferUpdateHandler: InteractionDeferUpdateHandler,
+		interactionReplyHandler: InteractionReplyHandler,
+		interactionEditReplyHandler: InteractionEditReplyHandler,
+		interactionFollowUpHandler: InteractionFollowUpHandler,
+		interactionPromptModalHandler: InteractionPromptModalHandler,
+		interactionEditMessageHandler: InteractionEditMessageHandler,
+	) {
+		this.handlers = new Map<
+			GatewayResponseType,
+			DiscordResponseHandler<GatewayResponseType>
+		>([
+			[GatewayResponseType.None, noneHandler],
+			[GatewayResponseType.ChannelMessage, channelMessageHandler],
+			[GatewayResponseType.UserMessage, userMessageHandler],
+			[GatewayResponseType.InteractionDeferReply, interactionDeferReplyHandler],
+			[
+				GatewayResponseType.InteractionDeferUpdate,
+				interactionDeferUpdateHandler,
+			],
+			[GatewayResponseType.InteractionReply, interactionReplyHandler],
+			[GatewayResponseType.InteractionEditReply, interactionEditReplyHandler],
+			[GatewayResponseType.InteractionFollowUp, interactionFollowUpHandler],
+			[
+				GatewayResponseType.InteractionPromptModal,
+				interactionPromptModalHandler,
+			],
+			[
+				GatewayResponseType.InteractionEditMessage,
+				interactionEditMessageHandler,
+			],
+		]);
 	}
 
 	intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
@@ -121,8 +117,9 @@ export class DiscordResponseInterceptor implements NestInterceptor {
 				if (handler.canHandle(response, controller, event)) {
 					return from(handler.handle(response, controller, event)).pipe(
 						catchError((...args) => {
-							if (response.hooks.onError)
+							if (response.hooks.onError) {
 								return response.hooks.onError(...args);
+							}
 
 							return of(undefined);
 						}),

@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ContextOf, NecordBaseDiscovery, NecordEvents } from 'necord';
 
 import { GatewayResponseType } from '../../gateway-response.enum.ts';
@@ -6,6 +6,7 @@ import { ReturnOf } from '../../gateway-response.interface.ts';
 import { GatewayResponse } from '../../gateway-response.ts';
 import { DiscordResponseHandler } from '../../interface/gateway-response-handler.interface.ts';
 
+@Injectable()
 export class NoneHandler implements DiscordResponseHandler<GatewayResponseType.None> {
 	protected readonly logger = new Logger(this.constructor.name);
 

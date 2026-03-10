@@ -3,13 +3,8 @@ export {
 	type DiscordResponseHandler,
 	GatewayResponse,
 	GatewayResponseBuilder,
+	type GatewayResponseLike,
 	type GatewayResponsePayload,
 	GatewayResponseType,
+	isGatewayResponseLike,
 } from './lib/response/index.ts';
-
-// export {
-// 	type DiscordResponseHandler,
-// 	GatewayResponse,
-// 	type DiscordResponsePayload as GatewayResponsePayload,
-// 	GatewayResponseType,
-// } from './lib/response/index.js';

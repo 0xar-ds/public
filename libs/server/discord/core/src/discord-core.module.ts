@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 
-import { DeferInteractionGuard } from './guards/defer-interaction.guard.ts';
+import { NecordExceptionFilter } from './exception-filters/index.ts';
+import { DeferInteractionGuard } from './guards/index.ts';
 import { DiscordResponseInterceptor } from './interceptors/index.ts';
 
 import {
 	ChannelMessageHandler,
+	GatewayResponseDispatcher,
 	InteractionDeferReplyHandler,
 	InteractionDeferUpdateHandler,
 	InteractionEditMessageHandler,
@@ -30,8 +32,10 @@ const RESPONSE_HANDLERS = [
 ] as const;
 
 const ENHANCEMENTS = [
+	GatewayResponseDispatcher,
 	DiscordResponseInterceptor,
 	DeferInteractionGuard,
+	NecordExceptionFilter,
 ] as const;
 
 @Module({

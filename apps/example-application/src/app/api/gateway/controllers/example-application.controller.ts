@@ -115,7 +115,8 @@ export class ExampleApplicationController {
 							})
 							.build(),
 					),
-				).pipe(delay(150)),
+					EMPTY.pipe(delay(150)),
+				),
 			),
 		);
 	}

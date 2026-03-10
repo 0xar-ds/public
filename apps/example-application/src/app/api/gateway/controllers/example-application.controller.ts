@@ -1,20 +1,29 @@
-import { Inject, Injectable, UseInterceptors } from '@nestjs/common';
+import {
+	Inject,
+	Injectable,
+	UseFilters,
+	UseInterceptors,
+} from '@nestjs/common';
 
 import {
 	ChatInputCommandInteraction,
+	Client,
 	ContainerBuilder,
 	MessageFlags,
 	subtext,
 	unorderedList,
 } from 'discord.js';
 
-import { Context, On, SlashCommand } from 'necord';
-import { concat, concatMap, delay, EMPTY, of, timeout } from 'rxjs';
+import { Context, SlashCommand } from 'necord';
+import { concat, concatMap, delay, EMPTY, Observable, of, timeout } from 'rxjs';
 
 import {
 	DiscordResponseInterceptor,
+	ForbiddenException,
 	GatewayResponseBuilder,
+	type GatewayResponseLike,
 	GatewayResponseType,
+	NecordExceptionFilter,
 	UseDeferInteraction,
 } from '@~discord/core';
 
@@ -25,17 +34,60 @@ import { UISchema } from '#config/schema/ui.schema.js';
 import { MembersGatewayService } from '../services/index.ts';
 
 @Injectable()
+@UseFilters(NecordExceptionFilter)
+@UseInterceptors(DiscordResponseInterceptor)
 export class ExampleApplicationController {
 	constructor(
 		@Inject(MembersGatewayService)
 		private readonly members: MembersGatewayService,
 
+		@Inject(Client)
+		private readonly client: Client,
+
 		@Inject(UISchema) private readonly config: UISchema,
 	) {}
 
-	@On('channelDelete')
-	public channel() {
-		return true;
+	@SlashCommand({
+		name: 'ping',
+		description: '🏓 Pong!',
+	})
+	public ping(): GatewayResponseLike {
+		// Simple object return
+		return {
+			type: GatewayResponseType.InteractionReply,
+			status: Status.SUCCESS,
+			payload: {
+				body: [{ content: 'Pong!', flags: [MessageFlags.Ephemeral] }],
+			},
+		};
+	}
+
+	@SlashCommand({
+		name: 'admin_only',
+		description: '🔒 Only admins can use this.',
+	})
+	public adminOnly(
+		@Context() [interaction]: [ChatInputCommandInteraction],
+	): GatewayResponseLike {
+		// Never true, always throws
+		if (interaction.member?.user.username !== this.client.user?.username) {
+			throw new ForbiddenException(GatewayResponseType.InteractionReply, {
+				body: [
+					{
+						content: 'Your user is not allowed.',
+						flags: [MessageFlags.Ephemeral],
+					},
+				],
+			});
+		}
+
+		return {
+			type: GatewayResponseType.InteractionReply,
+			status: Status.SUCCESS,
+			payload: {
+				body: [{ content: 'Welcome, admin.' }],
+			},
+		};
 	}
 
 	@SlashCommand({
@@ -44,7 +96,9 @@ export class ExampleApplicationController {
 	})
 	@UseDeferInteraction(true)
 	@UseInterceptors(DiscordResponseInterceptor)
-	public listMembers(@Context() [_interaction]: [ChatInputCommandInteraction]) {
+	public listMembers(
+		@Context() [_interaction]: [ChatInputCommandInteraction],
+	): Observable<GatewayResponseLike> {
 		const fetching$ = of(
 			new GatewayResponseBuilder(GatewayResponseType.InteractionEditReply)
 				.status(Status.SUCCESS)

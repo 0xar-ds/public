@@ -1,5 +1,4 @@
 import { Inject, Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
 import { OgmaModule } from '@ogma/nestjs-module';
 import { IntentsBitField } from 'discord.js';
 import { NecordModule, NecordModuleOptions } from 'necord';
@@ -8,7 +7,6 @@ import { DiscordCoreModule } from '@~discord/core';
 
 import { ServerConfigSchema } from '#config/server-config.schema.js';
 import { ExampleApplicationController } from '#controllers/example-application.controller.js';
-import { DiscordExceptionFilter } from '#exception-filters/necord.exception-filter.js';
 
 import {
 	ChannelsGatewayService,
@@ -36,10 +34,7 @@ const PROVIDERS = [...GATEWAY, ...EXAMPLE];
 		}),
 		DiscordCoreModule,
 	],
-	providers: [
-		{ provide: APP_FILTER, useClass: DiscordExceptionFilter },
-		...PROVIDERS,
-	],
+	providers: [...PROVIDERS],
 })
 export class GatewayModule {
 	constructor(

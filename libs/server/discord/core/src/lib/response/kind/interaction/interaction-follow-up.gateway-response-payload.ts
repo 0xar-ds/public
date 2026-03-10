@@ -5,14 +5,24 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.InteractionFollowUp]: {
-			body: Parameters<InteractionFollowUpExecutor>;
-			payload: InteractionFollowUpPayload;
-			hooks: DiscordResponseHooks;
-			executor: InteractionFollowUpExecutor;
-			return: ReturnType<InteractionFollowUpExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.InteractionFollowUp]: Parameters<InteractionFollowUpExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.InteractionFollowUp]: InteractionFollowUpPayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.InteractionFollowUp]: InteractionFollowUpExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.InteractionFollowUp]: ReturnType<InteractionFollowUpExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.InteractionFollowUp]: DiscordResponseHooks;
 	}
 }
 
@@ -20,6 +30,4 @@ export type InteractionFollowUpExecutor = RepliableInteraction['followUp'];
 
 export type InteractionFollowUpPayload = DiscordResponsePayload<
 	Parameters<InteractionFollowUpExecutor>
-> & {
-	type: GatewayResponseType.InteractionFollowUp;
-};
+>;

@@ -3,19 +3,27 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.None]: {
-			body: Parameters<NoneExecutor>;
-			payload: NonePayload;
-			hooks: DiscordResponseHooks;
-			executor: NoneExecutor;
-			return: ReturnType<NoneExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.None]: Parameters<NoneExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.None]: NonePayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.None]: NoneExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.None]: ReturnType<NoneExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.None]: DiscordResponseHooks;
 	}
 }
 
 export type NoneExecutor = () => Promise<null>;
 
-export type NonePayload = DiscordResponsePayload<Parameters<NoneExecutor>> & {
-	type: GatewayResponseType.None;
-};
+export type NonePayload = DiscordResponsePayload<Parameters<NoneExecutor>>;

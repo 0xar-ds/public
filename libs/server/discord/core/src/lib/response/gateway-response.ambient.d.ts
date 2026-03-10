@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+
 declare global {
-	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-	interface GatewayResponseMap {}
+	interface GatewayResponseBodyMap {}
+	interface GatewayResponsePayloadMap {}
+	interface GatewayResponseExecutorMap {}
+	interface GatewayResponseReturnMap {}
+	interface GatewayResponseHooksMap {}
 }
 
 export {};

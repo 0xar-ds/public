@@ -5,14 +5,24 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.InteractionPromptModal]: {
-			body: Parameters<InteractionPromptModalExecutor>;
-			payload: InteractionPromptModalPayload;
-			hooks: DiscordResponseHooks;
-			executor: InteractionPromptModalExecutor;
-			return: ReturnType<InteractionPromptModalExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.InteractionPromptModal]: Parameters<InteractionPromptModalExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.InteractionPromptModal]: InteractionPromptModalPayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.InteractionPromptModal]: InteractionPromptModalExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.InteractionPromptModal]: ReturnType<InteractionPromptModalExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.InteractionPromptModal]: DiscordResponseHooks;
 	}
 }
 
@@ -21,6 +31,4 @@ export type InteractionPromptModalExecutor =
 
 export type InteractionPromptModalPayload = DiscordResponsePayload<
 	Parameters<InteractionPromptModalExecutor>
-> & {
-	type: GatewayResponseType.InteractionPromptModal;
-};
+>;

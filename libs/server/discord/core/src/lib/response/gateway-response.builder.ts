@@ -11,12 +11,10 @@ import {
 } from './gateway-response.interface.ts';
 
 import { GatewayResponse } from './gateway-response.ts';
-import { Maybe, Nullable } from '../../../../../../../types/utils/utils.ts';
+import { Nullable } from '../../../../../../../types/utils/utils.ts';
 
 type OptionsOf<T extends GatewayResponsePayload> = {
-	[K in Exclude<keyof T, 'body' | 'type'>]: T[K];
-} & {
-	type?: T['type'];
+	[K in Exclude<keyof T, 'body'>]: T[K];
 };
 
 export class GatewayResponseBuilder<
@@ -27,103 +25,72 @@ export class GatewayResponseBuilder<
 	private _options: Nullable<OptionsOf<U>> = null;
 	private _body: Nullable<BodyOf<T>> = null;
 	private _payload: Nullable<PayloadOf<T>> = null;
-	private _hooks: Nullable<HooksOf<T>> = null;
-	private _onError: Maybe<HooksOf<T>['onError']> = undefined;
+	private _hooks: Partial<HooksOf<T>> = {};
 	private _timestamp: number = Date.now();
 
-	constructor(private _type: T) {}
-
-	public type(type: T): this {
-		this._type = type;
-
-		return this;
-	}
+	constructor(private readonly _type: T) {}
 
 	public status(status: StatusDescription): this {
 		this._status = status;
-
 		return this;
 	}
 
 	public options(options: OptionsOf<U>): this {
 		this._options = options;
-
 		return this;
 	}
 
 	public body(...body: BodyOf<T>): this {
 		this._body = body;
-
 		return this;
 	}
 
 	public payload(payload: PayloadOf<T>): this {
 		this._payload = payload;
-
 		return this;
 	}
 
-	public hooks(hooks: HooksOf<T>): this {
+	public hooks(hooks: Partial<HooksOf<T>>): this {
 		this._hooks = hooks;
-
 		return this;
 	}
 
 	public catch(onError: HooksOf<T>['onError']): this {
-		this._onError = onError;
-
+		this._hooks = { ...this._hooks, onError };
 		return this;
 	}
 
 	public timestamp(timestamp: number): this {
 		this._timestamp = timestamp;
-
 		return this;
 	}
 
 	build(): GatewayResponse {
-		if (!this._status)
+		if (!this._status) {
 			throw new Exception({
 				code: AppStatus.PRECONDITION_REQUIRED,
 				message:
 					'The status field of this builder must be set prior to building it.',
 			});
-
-		if (this._body && this._options) {
-			this.payload({
-				...this._options,
-				type: this._type,
-				body: this._body,
-			} as U);
 		}
 
-		if (!this._payload)
+		const payload: Nullable<PayloadOf<T>> =
+			this._payload ??
+			(this._body && this._options
+				? ({ ...this._options, body: this._body } as U)
+				: null);
+
+		if (!payload) {
 			throw new Exception({
 				code: AppStatus.PRECONDITION_REQUIRED,
 				message:
 					'The payload field (or its body and options) of this builder must be set prior to building it.',
 			});
-
-		this.hooks({ onError: this._onError } as HooksOf<T>);
-
-		if (!this._hooks)
-			throw new Exception({
-				code: AppStatus.PRECONDITION_REQUIRED,
-				message:
-					'The hooks field of this builder must be set prior to building it.',
-			});
-
-		if (!this._timestamp)
-			throw new Exception({
-				code: AppStatus.PRECONDITION_REQUIRED,
-				message:
-					'The timestamp field of this builder must be set prior to building it.',
-			});
-
+		}
 		return new GatewayResponse(
 			this._type,
 			this._status,
-			this._payload,
+			payload,
 			this._hooks,
 			this._timestamp,
 		);

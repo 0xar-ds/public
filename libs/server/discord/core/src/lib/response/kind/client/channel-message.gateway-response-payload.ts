@@ -5,14 +5,24 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.ChannelMessage]: {
-			body: Parameters<ChannelMessageExecutor>;
-			payload: ChannelMessagePayload;
-			hooks: DiscordResponseHooks;
-			executor: ChannelMessageExecutor;
-			return: ReturnType<ChannelMessageExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.ChannelMessage]: Parameters<ChannelMessageExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.ChannelMessage]: ChannelMessagePayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.ChannelMessage]: ChannelMessageExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.ChannelMessage]: ReturnType<ChannelMessageExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.ChannelMessage]: DiscordResponseHooks;
 	}
 }
 
@@ -22,5 +32,4 @@ export type ChannelMessagePayload = DiscordResponsePayload<
 	Parameters<ChannelMessageExecutor>
 > & {
 	channel: SendableChannels;
-	type: GatewayResponseType.ChannelMessage;
 };

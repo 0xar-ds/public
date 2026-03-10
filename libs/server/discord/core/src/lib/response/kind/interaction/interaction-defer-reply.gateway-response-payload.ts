@@ -5,14 +5,24 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.InteractionDeferReply]: {
-			body: Parameters<InteractionDeferReplyExecutor>;
-			payload: InteractionDeferReplyPayload;
-			hooks: DiscordResponseHooks;
-			executor: InteractionDeferReplyExecutor;
-			return: ReturnType<InteractionDeferReplyExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.InteractionDeferReply]: Parameters<InteractionDeferReplyExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.InteractionDeferReply]: InteractionDeferReplyPayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.InteractionDeferReply]: InteractionDeferReplyExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.InteractionDeferReply]: ReturnType<InteractionDeferReplyExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.InteractionDeferReply]: DiscordResponseHooks;
 	}
 }
 
@@ -20,6 +30,4 @@ export type InteractionDeferReplyExecutor = CommandInteraction['deferReply'];
 
 export type InteractionDeferReplyPayload = DiscordResponsePayload<
 	Parameters<InteractionDeferReplyExecutor>
-> & {
-	type: GatewayResponseType.InteractionDeferReply;
-};
+>;

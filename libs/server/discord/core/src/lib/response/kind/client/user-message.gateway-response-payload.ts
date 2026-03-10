@@ -5,14 +5,24 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.UserMessage]: {
-			body: Parameters<UserMessageExecutor>;
-			payload: UserMessagePayload;
-			hooks: DiscordResponseHooks;
-			executor: UserMessageExecutor;
-			return: ReturnType<UserMessageExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.UserMessage]: Parameters<UserMessageExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.UserMessage]: UserMessagePayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.UserMessage]: UserMessageExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.UserMessage]: ReturnType<UserMessageExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.UserMessage]: DiscordResponseHooks;
 	}
 }
 
@@ -22,5 +32,4 @@ export type UserMessagePayload = DiscordResponsePayload<
 	Parameters<UserMessageExecutor>
 > & {
 	user: User;
-	type: GatewayResponseType.UserMessage;
 };

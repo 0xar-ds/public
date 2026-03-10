@@ -1,35 +1,28 @@
 import { GatewayResponseType } from './gateway-response.enum.ts';
-import { Prettify } from '../../../../../../../types/utils/utils.ts';
 
-export type GatewayResponseContext<
-	T extends keyof GatewayResponseMap = keyof GatewayResponseMap,
-> = {
-	[K in keyof GatewayResponseMap]: Prettify<
-		{
-			type: K;
-		} & GatewayResponseMap[K]
-	>;
-}[T];
+export type BodyOf<T extends keyof GatewayResponseBodyMap> =
+	GatewayResponseBodyMap[T];
+export type PayloadOf<T extends keyof GatewayResponsePayloadMap> =
+	GatewayResponsePayloadMap[T];
+export type ExecutorOf<T extends keyof GatewayResponseExecutorMap> =
+	GatewayResponseExecutorMap[T];
+export type ReturnOf<T extends keyof GatewayResponseReturnMap> =
+	GatewayResponseReturnMap[T];
+export type HooksOf<T extends keyof GatewayResponseHooksMap> =
+	GatewayResponseHooksMap[T];
 
-export type BodyOf<T extends GatewayResponseType> =
-	GatewayResponseContext<T>['body'];
+export type GatewayResponseReturn<
+	T extends GatewayResponseType = GatewayResponseType,
+> = ReturnOf<T>;
 
-export type PayloadOf<T extends GatewayResponseType> =
-	GatewayResponseContext<T>['payload'];
+export type GatewayResponseExecutor<
+	T extends GatewayResponseType = GatewayResponseType,
+> = ExecutorOf<T>;
 
-export type ExecutorOf<T extends GatewayResponseType> =
-	GatewayResponseContext<T>['executor'];
+export type GatewayResponseHooks<
+	T extends GatewayResponseType = GatewayResponseType,
+> = HooksOf<T>;
 
-export type ReturnOf<T extends GatewayResponseType> =
-	GatewayResponseContext<T>['return'];
-
-export type HooksOf<T extends GatewayResponseType> =
-	GatewayResponseContext<T>['hooks'];
-
-export type GatewayResponseReturn = ReturnOf<GatewayResponseType>;
-
-export type GatewayResponseExecutor = ExecutorOf<GatewayResponseType>;
-
-export type GatewayResponseHooks = HooksOf<GatewayResponseType>;
-
-export type GatewayResponsePayload = PayloadOf<GatewayResponseType>;
+export type GatewayResponsePayload<
+	T extends GatewayResponseType = GatewayResponseType,
+> = PayloadOf<T>;

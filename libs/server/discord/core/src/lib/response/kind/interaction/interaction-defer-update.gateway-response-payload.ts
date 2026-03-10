@@ -5,14 +5,24 @@ import { DiscordResponseHooks } from '../../interface/gateway-response-hooks.int
 import { DiscordResponsePayload } from '../../interface/gateway-response-payload.interface.ts';
 
 declare global {
-	interface GatewayResponseMap {
-		[GatewayResponseType.InteractionDeferUpdate]: {
-			body: Parameters<InteractionDeferUpdateExecutor>;
-			payload: InteractionDeferUpdatePayload;
-			hooks: DiscordResponseHooks;
-			executor: InteractionDeferUpdateExecutor;
-			return: ReturnType<InteractionDeferUpdateExecutor>;
-		};
+	interface GatewayResponseBodyMap {
+		[GatewayResponseType.InteractionDeferUpdate]: Parameters<InteractionDeferUpdateExecutor>;
+	}
+
+	interface GatewayResponsePayloadMap {
+		[GatewayResponseType.InteractionDeferUpdate]: InteractionDeferUpdatePayload;
+	}
+
+	interface GatewayResponseExecutorMap {
+		[GatewayResponseType.InteractionDeferUpdate]: InteractionDeferUpdateExecutor;
+	}
+
+	interface GatewayResponseReturnMap {
+		[GatewayResponseType.InteractionDeferUpdate]: ReturnType<InteractionDeferUpdateExecutor>;
+	}
+
+	interface GatewayResponseHooksMap {
+		[GatewayResponseType.InteractionDeferUpdate]: DiscordResponseHooks;
 	}
 }
 
@@ -21,6 +31,4 @@ export type InteractionDeferUpdateExecutor =
 
 export type InteractionDeferUpdatePayload = DiscordResponsePayload<
 	Parameters<InteractionDeferUpdateExecutor>
-> & {
-	type: GatewayResponseType.InteractionDeferUpdate;
-};
+>;

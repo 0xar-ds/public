@@ -19,7 +19,7 @@ export class UserMessageHandler implements DiscordResponseHandler<GatewayRespons
 		_controller: NecordBaseDiscovery,
 		_context: ContextOf<keyof NecordEvents>,
 	): boolean {
-		return response.payload.type === GatewayResponseType.UserMessage;
+		return response.type === GatewayResponseType.UserMessage;
 	}
 
 	async handle(

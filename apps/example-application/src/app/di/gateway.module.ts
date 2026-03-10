@@ -4,6 +4,8 @@ import { OgmaModule } from '@ogma/nestjs-module';
 import { IntentsBitField } from 'discord.js';
 import { NecordModule, NecordModuleOptions } from 'necord';
 
+import { DiscordCoreModule } from '@~discord/core';
+
 import { ServerConfigSchema } from '#config/server-config.schema.js';
 import { ExampleApplicationController } from '#controllers/example-application.controller.js';
 import { DiscordExceptionFilter } from '#exception-filters/necord.exception-filter.js';
@@ -32,6 +34,7 @@ const PROVIDERS = [...GATEWAY, ...EXAMPLE];
 		NecordModule.forRootAsync({
 			useClass: GatewayModule,
 		}),
+		DiscordCoreModule,
 	],
 	providers: [
 		{ provide: APP_FILTER, useClass: DiscordExceptionFilter },

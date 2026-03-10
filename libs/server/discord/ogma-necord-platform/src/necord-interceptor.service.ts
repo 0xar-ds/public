@@ -6,6 +6,7 @@ import {
 	Parser,
 } from '@ogma/nestjs-module';
 
+import { MetaLogObject } from '@ogma/nestjs-module/src/interceptor/interfaces/log.interface.js';
 import { ClientEvents, GatewayVersion } from 'discord.js';
 
 import {
@@ -24,12 +25,33 @@ import {
 	ProducerKind,
 } from '@argentina-community/events-descriptions';
 
+type LogValue =
+	| string
+	| number
+	| boolean
+	| null
+	| undefined
+	| { [key: string]: LogValue };
+type LogObject = Record<string, LogValue>;
+
 @Parser('necord')
 export class NecordParser extends AbstractInterceptorService {
 	private readonly store = new WeakMap<
 		ExecutionContext,
 		NecordExecutionContext
 	>();
+
+	override getSuccessContext(
+		data: unknown,
+		context: ExecutionContext,
+		startTime: number,
+		options: OgmaInterceptorServiceOptions,
+	): MetaLogObject {
+		return {
+			...super.getSuccessContext(undefined, context, startTime, options),
+			meta: this.getMeta(context, data, options),
+		};
+	}
 
 	private getContext(context: ExecutionContext): NecordExecutionContext {
 		const stored = this.store.get(context);
@@ -142,10 +164,42 @@ export class NecordParser extends AbstractInterceptorService {
 	): unknown {
 		const event = this.getEvent(context);
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore: destroys ts performance
+		// @ts-expect-error: destroys ts performance
 		const body = BodyMap[event.name](...event.payload);
 
-		return options.inlineMeta ? body : void undefined;
+		if (options.json) return body;
+
+		const quoteIfNeeded = (value: string): string =>
+			/[\s="'`\\]/.test(value)
+				? `"${value.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`
+				: value;
+
+		const serializeValue = (value: LogValue): string => {
+			if (value === null) return 'null';
+			if (value === undefined) return '';
+			if (typeof value === 'string') return quoteIfNeeded(value);
+			if (typeof value === 'number' || typeof value === 'boolean')
+				return String(value);
+			return quoteIfNeeded(JSON.stringify(value)); // arrays & nested objects
+		};
+
+		const toLogFormat = (obj: LogObject, prefix = ''): string =>
+			Object.entries(obj)
+				.flatMap(([key, value]): string[] => {
+					const fullKey = prefix ? `${prefix}.${key}` : key;
+
+					if (
+						value !== null &&
+						typeof value === 'object' &&
+						!Array.isArray(value)
+					) {
+						return toLogFormat(value as LogObject, fullKey).split(' ');
+					}
+
+					return [`${fullKey}=${serializeValue(value)}`];
+				})
+				.join(' ');
+
+		return toLogFormat(body);
 	}
 }

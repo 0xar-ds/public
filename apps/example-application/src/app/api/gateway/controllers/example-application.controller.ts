@@ -95,7 +95,6 @@ export class ExampleApplicationController {
 		description: '📺 slowly display every member of your server ',
 	})
 	@UseDeferInteraction(true)
-	@UseInterceptors(DiscordResponseInterceptor)
 	public listMembers(
 		@Context() [_interaction]: [ChatInputCommandInteraction],
 	): Observable<GatewayResponseLike> {

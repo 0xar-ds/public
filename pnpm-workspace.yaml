@@ -17,7 +17,7 @@ catalogs:
     "nest-typed-config": 2.10.1
 
     "@ogma/common": 1.2.0
-    "@ogma/nestjs-module": 5.5.1
+    "@ogma/nestjs-module": 5.5.2
     "@ogma/styler": 1.1.0
 
   swc:

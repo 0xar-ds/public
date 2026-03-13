@@ -62,7 +62,7 @@ catalogs:
     "ts-loader": 9.5.4
     "ts-node": 10.9.2
     "@changesets/cli": 2.30.0
-    "conventional-changelog-conventionalcommits": 9.2.0
+    "conventional-changelog-conventionalcommits": 9.3.0
     "@commitlint/cli": 20.4.3
     "@commitlint/config-angular": 20.4.3
 

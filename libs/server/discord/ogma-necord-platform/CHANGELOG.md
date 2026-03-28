@@ -1,5 +1,16 @@
 # ogma-necord-platform
 
+## 2.3.0
+
+### Minor Changes
+
+- d2e674f: Fix an internal bug with record updates computation logic
+
+### Patch Changes
+
+- Updated dependencies [d2e674f]
+  - @argentina-community/events-descriptions@3.3.0
+
 ## 2.2.0
 
 ### Minor Changes

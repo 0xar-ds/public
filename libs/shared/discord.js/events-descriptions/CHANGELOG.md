@@ -1,5 +1,11 @@
 # @argentina-community/events-descriptions
 
+## 3.3.0
+
+### Minor Changes
+
+- d2e674f: Fix an internal bug with record updates computation logic
+
 ## 3.2.0
 
 ### Minor Changes

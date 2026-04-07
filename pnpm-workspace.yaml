@@ -59,7 +59,7 @@ catalogs:
 
   build-tooling:
     "typescript": 6.0.2
-    "ts-loader": 9.5.4
+    "ts-loader": 9.5.7
     "ts-node": 10.9.2
     "@changesets/cli": 2.30.0
     "conventional-changelog-conventionalcommits": 9.3.1
@@ -70,7 +70,7 @@ catalogs:
     "jest": 30.3.0
 
   test-tooling:
-    "ts-jest": 29.4.6
+    "ts-jest": 29.4.9
 
   discord:
     "necord": "^6.12.4"

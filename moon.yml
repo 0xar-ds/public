@@ -8,7 +8,7 @@ tasks:
   version-packages:
     type: build
     description: Consumes changes and updates entries to the according semver bump
-    command: changeset version
+    script: 'changeset version && (git diff --quiet || pnpm install --no-frozen-lockfile)'
     deps:
       - '#releasable:prepare'
     options:

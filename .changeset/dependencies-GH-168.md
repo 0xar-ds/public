@@ -3,7 +3,6 @@
 "@~server/config-schemas": patch
 "@~server/core-api": patch
 "@~discord/core": patch
-"ogma-necord-platform": patch
 ---
 
 fix(deps): update nest monorepo to v11.1.18

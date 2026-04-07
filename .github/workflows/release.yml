@@ -38,7 +38,7 @@ jobs:
       - name: Release
         uses: changesets/action@v1
         with:
-          version: moon exec --ignore-ci-checks --summary --concurrency=1 root:version-packages
+          version: moon exec --ignore-ci-checks --summary --concurrency=1 root:version-packages && pnpm install --no-frozen-lockfile
           publish: moon exec --ignore-ci-checks --summary --concurrency=1 root:publish-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -38,6 +38,14 @@
 			"matchManagers": ["npm"],
 			"enabled": false
 		},
+    {
+    "description": "Keep private @~ scoped packages in their own group, separate from publishable packages",
+    "matchPackagePatterns": ["^@~/"],
+    "groupName": "private internal packages",
+    "addLabels": ["internal"],
+    "automerge": true,
+    "automergeType": "branch"
+    },
 		{
 			"groupName": "semantic-release",
 			"matchPackageNames": [

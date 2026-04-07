@@ -2,7 +2,6 @@
 	"extends": "{{ workspace_root }}/tsconfig.options.json",
 	"compilerOptions": {
 		"outDir": "./dist",
-		"baseUrl": ".",
 		"target": "ESNext",
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",

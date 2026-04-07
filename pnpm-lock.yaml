@@ -63,7 +63,7 @@ catalogs:
       version: 8.57.2
   discord:
     discord.js:
-      specifier: ^14.26.0
+      specifier: ^14.26.2
       version: 14.26.2
     necord:
       specifier: ^6.12.4

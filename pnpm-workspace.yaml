@@ -33,7 +33,7 @@ catalogs:
     "eslint": 10.2.0
     "prettier": 3.8.1
 
-    "@eslint/compat": 2.0.3
+    "@eslint/compat": 2.0.4
     "@eslint/js": 10.0.1
 
     "typescript-eslint": 8.58.0

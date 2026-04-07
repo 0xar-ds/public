@@ -1,5 +1,31 @@
 # @argentina-community/events-descriptions
 
+## 3.3.0
+
+### Minor Changes
+
+- d2e674f: Fix an internal bug with record updates computation logic
+
+### Patch Changes
+
+- 05255f4: fix(deps): update dependency @types/node to v24.12.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 05255f4: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 05255f4: fix(deps): update patch updates
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- Updated dependencies [05255f4]
+- Updated dependencies [05255f4]
+- Updated dependencies [05255f4]
+  - @argentina-community/channels-utils@3.2.1
+  - @argentina-community/interactions-utils@2.2.1
+
 ## 3.2.0
 
 ### Minor Changes

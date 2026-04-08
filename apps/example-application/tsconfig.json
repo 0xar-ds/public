@@ -15,7 +15,7 @@
 			"path": "../../libs/server/core/api"
 		},
 		{
-			"path": "../../libs/server/discord/core"
+			"path": "../../libs/server/discord/necord-enhancements"
 		},
 		{
 			"path": "../../libs/server/discord/ogma-necord-platform"

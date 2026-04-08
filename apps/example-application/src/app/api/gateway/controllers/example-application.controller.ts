@@ -18,14 +18,14 @@ import { Context, SlashCommand } from 'necord';
 import { concat, concatMap, delay, EMPTY, Observable, of, timeout } from 'rxjs';
 
 import {
-	DiscordResponseInterceptor,
 	ForbiddenException,
 	GatewayResponseBuilder,
 	type GatewayResponseLike,
 	GatewayResponseType,
 	NecordExceptionFilter,
+	NecordResponseInterceptor,
 	UseDeferInteraction,
-} from '@~discord/core';
+} from '@~necord/enhancements';
 
 import { Status } from '@~server/core-api';
 
@@ -35,7 +35,7 @@ import { MembersGatewayService } from '../services/index.ts';
 
 @Injectable()
 @UseFilters(NecordExceptionFilter)
-@UseInterceptors(DiscordResponseInterceptor)
+@UseInterceptors(NecordResponseInterceptor)
 export class ExampleApplicationController {
 	constructor(
 		@Inject(MembersGatewayService)

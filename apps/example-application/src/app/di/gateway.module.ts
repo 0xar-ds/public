@@ -3,7 +3,7 @@ import { OgmaModule } from '@ogma/nestjs-module';
 import { IntentsBitField } from 'discord.js';
 import { NecordModule, NecordModuleOptions } from 'necord';
 
-import { DiscordCoreModule } from '@~discord/core';
+import { NecordEnhancementsModule } from '@~necord/enhancements';
 
 import { ServerConfigSchema } from '#config/server-config.schema.js';
 import { ExampleApplicationController } from '#controllers/example-application.controller.js';
@@ -32,7 +32,7 @@ const PROVIDERS = [...GATEWAY, ...EXAMPLE];
 		NecordModule.forRootAsync({
 			useClass: GatewayModule,
 		}),
-		DiscordCoreModule,
+		NecordEnhancementsModule,
 	],
 	providers: [...PROVIDERS],
 })

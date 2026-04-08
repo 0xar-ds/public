@@ -1,5 +1,13 @@
 # @argentina-community/config-eslint
 
+## 2.2.2
+
+### Patch Changes
+
+- 5d95a21: fix(deps): update eslint
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 2.2.1
 
 ### Patch Changes

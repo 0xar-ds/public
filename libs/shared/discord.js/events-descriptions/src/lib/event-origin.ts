@@ -140,31 +140,31 @@ import {
 } from './events/thread/lifecycle.thread-scope-origins.ts';
 
 export { OriginNamespace, ProducerKind } from './utils/components.ts';
-export type { OriginObject } from './interface/event-origin.interface.js';
+export type { OriginObject } from './interface/event-origin.interface.ts';
 
 import { threadMembersUpdate } from './events/thread/members.thread-scope-origins.ts';
 import { EventOriginMapper } from './interface/event-origin.interface.ts';
 
-import type * as OriginsApplicationClientScope from './events/application/client.application-scope-origins.js';
-import type * as OriginsApplicationGatewayScope from './events/application/gateway.application-scope-origins.js';
-import type * as OriginsApplicationInstallationsScope from './events/application/installations.application-scope-origins.js';
-import type * as OriginsChannelActionsScope from './events/channel/actions.channel-scope-origins.js';
-import type * as OriginsChannelLifecycleScope from './events/channel/lifecycle.channel-scope-origins.js';
-import type * as OriginsChannelStageScope from './events/channel/stage.channel-scope-origins.js';
-import type * as OriginsChannelVoiceScope from './events/channel/voice.channel-scope-origins.js';
-import type * as OriginsChannelWebhookScope from './events/channel/webhook.channel-scope-origins.js';
-import type * as OriginsGuildConfigurationScope from './events/guild/configuration.guild-scope-origins.js';
-import type * as OriginsGuildMembersScope from './events/guild/members.guild-scope-origins.js';
-import type * as OriginsGuildEventsScope from './events/guild/resources/events.guild-scope-origins.js';
-import type * as OriginsGuildExpressionsScope from './events/guild/resources/expressions.guild-scope-origins.js';
-import type * as OriginsGuildInvitesScope from './events/guild/resources/invites.guild-scope-origins.js';
-import type * as OriginsGuildLogsScope from './events/guild/resources/logs.guild-scope-origins.js';
-import type * as OriginsGuildRolesScope from './events/guild/resources/roles.guild-scope-origins.js';
-import type * as OriginsMessageLifecycleScope from './events/message/lifecycle.message-scope-origins.js';
-import type * as OriginsMessagePollsScope from './events/message/polls.message-scope-origins.js';
-import type * as OriginsMessageReactionsScope from './events/message/reactions.message-scope-origins.js';
-import type * as OriginsThreadLifecycleScope from './events/thread/lifecycle.thread-scope-origins.js';
-import type * as OriginsThreadMembersScope from './events/thread/members.thread-scope-origins.js';
+import type * as OriginsApplicationClientScope from './events/application/client.application-scope-origins.ts';
+import type * as OriginsApplicationGatewayScope from './events/application/gateway.application-scope-origins.ts';
+import type * as OriginsApplicationInstallationsScope from './events/application/installations.application-scope-origins.ts';
+import type * as OriginsChannelActionsScope from './events/channel/actions.channel-scope-origins.ts';
+import type * as OriginsChannelLifecycleScope from './events/channel/lifecycle.channel-scope-origins.ts';
+import type * as OriginsChannelStageScope from './events/channel/stage.channel-scope-origins.ts';
+import type * as OriginsChannelVoiceScope from './events/channel/voice.channel-scope-origins.ts';
+import type * as OriginsChannelWebhookScope from './events/channel/webhook.channel-scope-origins.ts';
+import type * as OriginsGuildConfigurationScope from './events/guild/configuration.guild-scope-origins.ts';
+import type * as OriginsGuildMembersScope from './events/guild/members.guild-scope-origins.ts';
+import type * as OriginsGuildEventsScope from './events/guild/resources/events.guild-scope-origins.ts';
+import type * as OriginsGuildExpressionsScope from './events/guild/resources/expressions.guild-scope-origins.ts';
+import type * as OriginsGuildInvitesScope from './events/guild/resources/invites.guild-scope-origins.ts';
+import type * as OriginsGuildLogsScope from './events/guild/resources/logs.guild-scope-origins.ts';
+import type * as OriginsGuildRolesScope from './events/guild/resources/roles.guild-scope-origins.ts';
+import type * as OriginsMessageLifecycleScope from './events/message/lifecycle.message-scope-origins.ts';
+import type * as OriginsMessagePollsScope from './events/message/polls.message-scope-origins.ts';
+import type * as OriginsMessageReactionsScope from './events/message/reactions.message-scope-origins.ts';
+import type * as OriginsThreadLifecycleScope from './events/thread/lifecycle.thread-scope-origins.ts';
+import type * as OriginsThreadMembersScope from './events/thread/members.thread-scope-origins.ts';
 
 export const OriginMap: {
 	[Event in keyof EventOriginMap]: EventOriginMapper<Event>;

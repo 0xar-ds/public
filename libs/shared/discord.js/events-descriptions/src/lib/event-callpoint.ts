@@ -139,31 +139,31 @@ import {
 	threadUpdate,
 } from './events/thread/lifecycle.thread-scope-callpoints.ts';
 
-export type { CallpointObject } from './interface/event-callpoint.interface.js';
+export type { CallpointObject } from './interface/event-callpoint.interface.ts';
 
 import { threadMembersUpdate } from './events/thread/members.thread-scope-callpoints.ts';
 import { EventCallpointMapper } from './interface/event-callpoint.interface.ts';
 
-import type * as CallpointsApplicationClientScope from './events/application/client.application-scope-callpoints.js';
-import type * as CallpointsApplicationGatewayScope from './events/application/gateway.application-scope-callpoints.js';
-import type * as CallpointsApplicationInstallationsScope from './events/application/installations.application-scope-callpoints.js';
-import type * as CallpointsChannelActionsScope from './events/channel/actions.channel-scope-callpoints.js';
-import type * as CallpointsChannelLifecycleScope from './events/channel/lifecycle.channel-scope-callpoints.js';
-import type * as CallpointsChannelStageScope from './events/channel/stage.channel-scope-callpoints.js';
-import type * as CallpointsChannelVoiceScope from './events/channel/voice.channel-scope-callpoints.js';
-import type * as CallpointsChannelWebhookScope from './events/channel/webhook.channel-scope-callpoints.js';
-import type * as CallpointsGuildConfigurationScope from './events/guild/configuration.guild-scope-callpoints.js';
-import type * as CallpointsGuildMembersScope from './events/guild/members.guild-scope-callpoints.js';
-import type * as CallpointsGuildEventsScope from './events/guild/resources/events.guild-scope-callpoints.js';
-import type * as CallpointsGuildExpressionsScope from './events/guild/resources/expressions.guild-scope-callpoints.js';
-import type * as CallpointsGuildInvitesScope from './events/guild/resources/invites.guild-scope-callpoints.js';
-import type * as CallpointsGuildLogsScope from './events/guild/resources/logs.guild-scope-callpoints.js';
-import type * as CallpointsGuildRolesScope from './events/guild/resources/roles.guild-scope-callpoints.js';
-import type * as CallpointsMessageLifecycleScope from './events/message/lifecycle.message-scope-callpoints.js';
-import type * as CallpointsMessagePollsScope from './events/message/polls.message-scope-callpoints.js';
-import type * as CallpointsMessageReactionsScope from './events/message/reactions.message-scope-callpoints.js';
-import type * as CallpointsThreadLifecycleScope from './events/thread/lifecycle.thread-scope-callpoints.js';
-import type * as CallpointsThreadMembersScope from './events/thread/members.thread-scope-callpoints.js';
+import type * as CallpointsApplicationClientScope from './events/application/client.application-scope-callpoints.ts';
+import type * as CallpointsApplicationGatewayScope from './events/application/gateway.application-scope-callpoints.ts';
+import type * as CallpointsApplicationInstallationsScope from './events/application/installations.application-scope-callpoints.ts';
+import type * as CallpointsChannelActionsScope from './events/channel/actions.channel-scope-callpoints.ts';
+import type * as CallpointsChannelLifecycleScope from './events/channel/lifecycle.channel-scope-callpoints.ts';
+import type * as CallpointsChannelStageScope from './events/channel/stage.channel-scope-callpoints.ts';
+import type * as CallpointsChannelVoiceScope from './events/channel/voice.channel-scope-callpoints.ts';
+import type * as CallpointsChannelWebhookScope from './events/channel/webhook.channel-scope-callpoints.ts';
+import type * as CallpointsGuildConfigurationScope from './events/guild/configuration.guild-scope-callpoints.ts';
+import type * as CallpointsGuildMembersScope from './events/guild/members.guild-scope-callpoints.ts';
+import type * as CallpointsGuildEventsScope from './events/guild/resources/events.guild-scope-callpoints.ts';
+import type * as CallpointsGuildExpressionsScope from './events/guild/resources/expressions.guild-scope-callpoints.ts';
+import type * as CallpointsGuildInvitesScope from './events/guild/resources/invites.guild-scope-callpoints.ts';
+import type * as CallpointsGuildLogsScope from './events/guild/resources/logs.guild-scope-callpoints.ts';
+import type * as CallpointsGuildRolesScope from './events/guild/resources/roles.guild-scope-callpoints.ts';
+import type * as CallpointsMessageLifecycleScope from './events/message/lifecycle.message-scope-callpoints.ts';
+import type * as CallpointsMessagePollsScope from './events/message/polls.message-scope-callpoints.ts';
+import type * as CallpointsMessageReactionsScope from './events/message/reactions.message-scope-callpoints.ts';
+import type * as CallpointsThreadLifecycleScope from './events/thread/lifecycle.thread-scope-callpoints.ts';
+import type * as CallpointsThreadMembersScope from './events/thread/members.thread-scope-callpoints.ts';
 
 export const CallpointMap: {
 	[Event in keyof EventCallpointMap]: EventCallpointMapper<Event>;

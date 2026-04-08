@@ -142,26 +142,26 @@ import {
 import { threadMembersUpdate } from './events/thread/members.thread-scope-bodies.ts';
 import { EventBodyMapper } from './interface/event-body.interface.ts';
 
-import type * as BodiesApplicationClientScope from './events/application/client.application-scope-bodies.js';
-import type * as BodiesApplicationGatewayScope from './events/application/gateway.application-scope-bodies.js';
-import type * as BodiesApplicationInstallationsScope from './events/application/installations.application-scope-bodies.js';
-import type * as BodiesChannelActionsScope from './events/channel/actions.channel-scope-bodies.js';
-import type * as BodiesChannelLifecycleScope from './events/channel/lifecycle.channel-scope-bodies.js';
-import type * as BodiesChannelStageScope from './events/channel/stage.channel-scope-bodies.js';
-import type * as BodiesChannelVoiceScope from './events/channel/voice.channel-scope-bodies.js';
-import type * as BodiesChannelWebhookScope from './events/channel/webhook.channel-scope-bodies.js';
-import type * as BodiesGuildConfigurationScope from './events/guild/configuration.guild-scope-bodies.js';
-import type * as BodiesGuildMembersScope from './events/guild/members.guild-scope-bodies.js';
-import type * as BodiesGuildEventsScope from './events/guild/resources/events.guild-scope-bodies.js';
-import type * as BodiesGuildExpressionsScope from './events/guild/resources/expressions.guild-scope-bodies.js';
-import type * as BodiesGuildInvitesScope from './events/guild/resources/invites.guild-scope-bodies.js';
-import type * as BodiesGuildLogsScope from './events/guild/resources/logs.guild-scope-bodies.js';
-import type * as BodiesGuildRolesScope from './events/guild/resources/roles.guild-scope-bodies.js';
-import type * as BodiesMessageLifecycleScope from './events/message/lifecycle.message-scope-bodies.js';
-import type * as BodiesMessagePollsScope from './events/message/polls.message-scope-bodies.js';
-import type * as BodiesMessageReactionsScope from './events/message/reactions.message-scope-bodies.js';
-import type * as BodiesThreadLifecycleScope from './events/thread/lifecycle.thread-scope-bodies.js';
-import type * as BodiesThreadMembersScope from './events/thread/members.thread-scope-bodies.js';
+import type * as BodiesApplicationClientScope from './events/application/client.application-scope-bodies.ts';
+import type * as BodiesApplicationGatewayScope from './events/application/gateway.application-scope-bodies.ts';
+import type * as BodiesApplicationInstallationsScope from './events/application/installations.application-scope-bodies.ts';
+import type * as BodiesChannelActionsScope from './events/channel/actions.channel-scope-bodies.ts';
+import type * as BodiesChannelLifecycleScope from './events/channel/lifecycle.channel-scope-bodies.ts';
+import type * as BodiesChannelStageScope from './events/channel/stage.channel-scope-bodies.ts';
+import type * as BodiesChannelVoiceScope from './events/channel/voice.channel-scope-bodies.ts';
+import type * as BodiesChannelWebhookScope from './events/channel/webhook.channel-scope-bodies.ts';
+import type * as BodiesGuildConfigurationScope from './events/guild/configuration.guild-scope-bodies.ts';
+import type * as BodiesGuildMembersScope from './events/guild/members.guild-scope-bodies.ts';
+import type * as BodiesGuildEventsScope from './events/guild/resources/events.guild-scope-bodies.ts';
+import type * as BodiesGuildExpressionsScope from './events/guild/resources/expressions.guild-scope-bodies.ts';
+import type * as BodiesGuildInvitesScope from './events/guild/resources/invites.guild-scope-bodies.ts';
+import type * as BodiesGuildLogsScope from './events/guild/resources/logs.guild-scope-bodies.ts';
+import type * as BodiesGuildRolesScope from './events/guild/resources/roles.guild-scope-bodies.ts';
+import type * as BodiesMessageLifecycleScope from './events/message/lifecycle.message-scope-bodies.ts';
+import type * as BodiesMessagePollsScope from './events/message/polls.message-scope-bodies.ts';
+import type * as BodiesMessageReactionsScope from './events/message/reactions.message-scope-bodies.ts';
+import type * as BodiesThreadLifecycleScope from './events/thread/lifecycle.thread-scope-bodies.ts';
+import type * as BodiesThreadMembersScope from './events/thread/members.thread-scope-bodies.ts';
 
 export const BodyMap: {
 	[Event in keyof EventBodyMap]: EventBodyMapper<Event>;

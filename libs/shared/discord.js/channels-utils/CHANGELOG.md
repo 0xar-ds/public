@@ -1,5 +1,21 @@
 # @argentina-community/channels-utils
 
+## 3.2.1
+
+### Patch Changes
+
+- 94dbf77: fix(deps): update dependency @types/node to v24.12.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 94dbf77: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 94dbf77: fix(deps): update patch updates
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 3.2.0
 
 ### Minor Changes

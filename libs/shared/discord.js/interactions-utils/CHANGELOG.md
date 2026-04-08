@@ -1,5 +1,21 @@
 # @argentina-community/interactions-utils
 
+## 2.2.1
+
+### Patch Changes
+
+- 563806a: fix(deps): update dependency @types/node to v24.12.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 563806a: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 563806a: fix(deps): update patch updates
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,5 +1,3 @@
-import { ClientEvents } from 'discord.js';
-
 import {
 	cacheSweep,
 	guildAvailable,
@@ -141,9 +139,10 @@ import {
 	threadUpdate,
 } from './events/thread/lifecycle.thread-scope-callpoints.ts';
 
-import { threadMembersUpdate } from './events/thread/members.thread-scope-callpoints.ts';
-
 export type { CallpointObject } from './interface/event-callpoint.interface.js';
+
+import { threadMembersUpdate } from './events/thread/members.thread-scope-callpoints.ts';
+import { EventCallpointMapper } from './interface/event-callpoint.interface.ts';
 
 import type * as CallpointsApplicationClientScope from './events/application/client.application-scope-callpoints.js';
 import type * as CallpointsApplicationGatewayScope from './events/application/gateway.application-scope-callpoints.js';
@@ -167,9 +166,7 @@ import type * as CallpointsThreadLifecycleScope from './events/thread/lifecycle.
 import type * as CallpointsThreadMembersScope from './events/thread/members.thread-scope-callpoints.js';
 
 export const CallpointMap: {
-	[Event in keyof EventCallpointMap]: (
-		...args: ClientEvents[Event]
-	) => EventCallpointMap[Event];
+	[Event in keyof EventCallpointMap]: EventCallpointMapper<Event>;
 } = {
 	cacheSweep,
 	debug,

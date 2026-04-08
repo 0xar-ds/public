@@ -1,5 +1,3 @@
-import { ClientEvents } from 'discord.js';
-
 import {
 	cacheSweep,
 	guildAvailable,
@@ -141,10 +139,11 @@ import {
 	threadUpdate,
 } from './events/thread/lifecycle.thread-scope-origins.ts';
 
-import { threadMembersUpdate } from './events/thread/members.thread-scope-origins.ts';
-
 export { OriginNamespace, ProducerKind } from './utils/components.ts';
 export type { OriginObject } from './interface/event-origin.interface.js';
+
+import { threadMembersUpdate } from './events/thread/members.thread-scope-origins.ts';
+import { EventOriginMapper } from './interface/event-origin.interface.ts';
 
 import type * as OriginsApplicationClientScope from './events/application/client.application-scope-origins.js';
 import type * as OriginsApplicationGatewayScope from './events/application/gateway.application-scope-origins.js';
@@ -168,9 +167,7 @@ import type * as OriginsThreadLifecycleScope from './events/thread/lifecycle.thr
 import type * as OriginsThreadMembersScope from './events/thread/members.thread-scope-origins.js';
 
 export const OriginMap: {
-	[Event in keyof EventOriginMap]: (
-		...args: ClientEvents[Event]
-	) => EventOriginMap[Event];
+	[Event in keyof EventOriginMap]: EventOriginMapper<Event>;
 } = {
 	cacheSweep,
 	debug,

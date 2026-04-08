@@ -1,5 +1,3 @@
-import { ClientEvents } from 'discord.js';
-
 import {
 	cacheSweep,
 	guildAvailable,
@@ -142,6 +140,7 @@ import {
 } from './events/thread/lifecycle.thread-scope-bodies.ts';
 
 import { threadMembersUpdate } from './events/thread/members.thread-scope-bodies.ts';
+import { EventBodyMapper } from './interface/event-body.interface.ts';
 
 import type * as BodiesApplicationClientScope from './events/application/client.application-scope-bodies.js';
 import type * as BodiesApplicationGatewayScope from './events/application/gateway.application-scope-bodies.js';
@@ -165,9 +164,7 @@ import type * as BodiesThreadLifecycleScope from './events/thread/lifecycle.thre
 import type * as BodiesThreadMembersScope from './events/thread/members.thread-scope-bodies.js';
 
 export const BodyMap: {
-	[Event in keyof EventBodyMap]: (
-		...args: ClientEvents[Event]
-	) => EventBodyMap[Event];
+	[Event in keyof EventBodyMap]: EventBodyMapper<Event>;
 } = {
 	cacheSweep,
 	debug,

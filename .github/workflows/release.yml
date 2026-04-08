@@ -9,17 +9,20 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: read # for checkout
+  contents: read
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    outputs:
+      hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -33,9 +36,10 @@ jobs:
           auto-install: true
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Release
+        id: changesets
         uses: changesets/action@v1
         with:
           version: moon exec --ignore-ci-checks --summary --concurrency=1 root:version-packages
@@ -47,3 +51,34 @@ jobs:
       - name: Collect/retrospect on Moon's CI Summaries
         uses: appthrust/moon-ci-retrospect@631a1e667f96e8ca893eab69f03e425f7fbfdc2b # latest release
         if: success() || failure()
+
+  update-lock:
+    name: Update pnpm lockfile
+    needs: release
+    if: needs.release.outputs.hasChangesets == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout changeset-release branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: changeset-release/master
+          token: ${{ secrets.LOCKFILE_PAT }}
+          fetch-depth: 0
+
+      - name: Setup Toolchain
+        uses: moonrepo/setup-toolchain@261c62cb5b0f580c7be7c8cd0f023a2e96756095 # v0.6.4
+        with:
+          auto-setup: true
+          auto-install: true
+
+      - name: Update lockfile
+        run: pnpm install --lockfile-only
+
+      - name: Commit lockfile
+        uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d
+        with:
+          commit_message: "chore(packaging): update pnpm lockfile"
+          branch: changeset-release/master

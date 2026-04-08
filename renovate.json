@@ -11,6 +11,7 @@
 		":enableVulnerabilityAlerts",
 		":maintainLockFilesWeekly"
 	],
+  "gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],
 	"minimumReleaseAge": "3 days",
 	"prCreation": "immediate",
 	"vulnerabilityAlerts": {

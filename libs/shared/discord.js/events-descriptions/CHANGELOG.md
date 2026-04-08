@@ -1,5 +1,11 @@
 # @argentina-community/events-descriptions
 
+## 3.4.0
+
+### Minor Changes
+
+- 476d1d3: Stylistic correctness
+
 ## 3.3.0
 
 ### Minor Changes

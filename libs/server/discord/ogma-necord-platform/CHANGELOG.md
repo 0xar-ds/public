@@ -1,5 +1,35 @@
 # ogma-necord-platform
 
+## 2.3.0
+
+### Minor Changes
+
+- d2e674f: Fix an internal bug with record updates computation logic
+
+### Patch Changes
+
+- 563806a: fix(deps): update dependency @types/node to v24.12.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 563806a: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 563806a: fix(deps): update nest monorepo to v11.1.18
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 563806a: fix(deps): update patch updates
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- Updated dependencies [563806a]
+- Updated dependencies [563806a]
+- Updated dependencies [563806a]
+- Updated dependencies [d2e674f]
+  - @argentina-community/events-descriptions@3.3.0
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # ogma-necord-platform
 
+## 2.4.0
+
+### Minor Changes
+
+- 77ead8a: Only return meta/body if inlineMeta is set to true
+
 ## 2.3.0
 
 ### Minor Changes

@@ -18,6 +18,8 @@ import {
 	UserMessageHandler,
 } from './lib/response/index.ts';
 
+import { ConfigurableModuleClass } from './necord-enhancements.module-definition.ts';
+
 const RESPONSE_HANDLERS = [
 	NoneHandler,
 	ChannelMessageHandler,
@@ -40,6 +42,9 @@ const ENHANCEMENTS = [
 
 @Module({
 	providers: [...RESPONSE_HANDLERS, ...ENHANCEMENTS],
-	exports: [...RESPONSE_HANDLERS, ...ENHANCEMENTS],
+	exports: [
+		...RESPONSE_HANDLERS,
+		...ENHANCEMENTS /* NecordBaseExceptionFilter is abstract, not provided */,
+	],
 })
-export class NecordEnhancementsModule {}
+export class NecordEnhancementsModule extends ConfigurableModuleClass {}

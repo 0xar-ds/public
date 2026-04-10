@@ -2,6 +2,7 @@
 export {
 	GatewayResponse,
 	GatewayResponseBuilder,
+	GatewayResponseDispatcher,
 	type GatewayResponseLike,
 	type GatewayResponsePayload,
 	GatewayResponseType,

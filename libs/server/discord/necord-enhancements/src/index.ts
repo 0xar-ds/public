@@ -1,4 +1,9 @@
 export * from './necord-enhancements.module.ts';
+export {
+	ASYNC_OPTIONS_TYPE,
+	MODULE_OPTIONS_TOKEN,
+	OPTIONS_TYPE,
+} from './necord-enhancements.module-definition.ts';
 
 export * from './exceptions.ts';
 export * from './gateway-response.ts';

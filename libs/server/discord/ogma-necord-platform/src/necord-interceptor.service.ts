@@ -162,6 +162,8 @@ export class NecordParser extends AbstractInterceptorService {
 		_data: unknown,
 		options: OgmaInterceptorServiceOptions,
 	): unknown {
+		if (!options.inlineMeta) return;
+
 		const event = this.getEvent(context);
 
 		// @ts-expect-error: destroys ts performance

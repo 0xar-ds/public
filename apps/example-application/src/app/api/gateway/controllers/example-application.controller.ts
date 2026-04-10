@@ -30,6 +30,7 @@ import {
 import { Status } from '@~server/core-api';
 
 import { UISchema } from '#config/schema/ui.schema.js';
+import { NecordForbiddenFilter } from '#exception-filters/necord-forbidden.exception-filter.js';
 
 import { MembersGatewayService } from '../services/index.ts';
 
@@ -66,19 +67,17 @@ export class ExampleApplicationController {
 		name: 'admin_only',
 		description: '🔒 Only admins can use this.',
 	})
+	@UseFilters(NecordForbiddenFilter)
 	public adminOnly(
 		@Context() [interaction]: [ChatInputCommandInteraction],
 	): GatewayResponseLike {
 		// Never true, always throws
 		if (interaction.member?.user.username !== this.client.user?.username) {
-			throw new ForbiddenException(GatewayResponseType.InteractionReply, {
-				body: [
-					{
-						content: 'Your user is not allowed.',
-						flags: [MessageFlags.Ephemeral],
-					},
-				],
-			});
+			throw new ForbiddenException(
+				GatewayResponseType.InteractionReply,
+				null,
+				'You are not an admin.',
+			);
 		}
 
 		return {

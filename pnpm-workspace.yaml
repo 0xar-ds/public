@@ -75,4 +75,4 @@ catalogs:
   discord:
     "necord": "^6.12.4"
     "discord.js": "^14.26.2"
-    "discord-api-types": "^0.38.44"
+    "discord-api-types": "^0.38.45"

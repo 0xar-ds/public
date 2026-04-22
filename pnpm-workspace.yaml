@@ -61,7 +61,7 @@ catalogs:
     "typescript": 6.0.3
     "ts-loader": 9.5.7
     "ts-node": 10.9.2
-    "@changesets/cli": 2.30.0
+    "@changesets/cli": 2.31.0
     "conventional-changelog-conventionalcommits": 9.3.1
     "@commitlint/cli": 20.5.0
     "@commitlint/config-angular": 20.5.0

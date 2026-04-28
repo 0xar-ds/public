@@ -63,7 +63,7 @@ catalogs:
     "ts-node": 10.9.2
     "@changesets/cli": 2.31.0
     "conventional-changelog-conventionalcommits": 9.3.1
-    "@commitlint/cli": 20.5.0
+    "@commitlint/cli": 20.5.2
     "@commitlint/config-angular": 20.5.0
 
   jest:

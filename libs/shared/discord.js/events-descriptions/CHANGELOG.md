@@ -1,5 +1,22 @@
 # @argentina-community/events-descriptions
 
+## 3.4.1
+
+### Patch Changes
+
+- b52f3dc: fix(deps): update dependency globals to v17.5.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- be8cda1: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- Updated dependencies [b52f3dc]
+- Updated dependencies [be8cda1]
+  - @argentina-community/channels-utils@3.2.2
+  - @argentina-community/interactions-utils@2.2.2
+
 ## 3.4.0
 
 ### Minor Changes

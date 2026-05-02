@@ -1,5 +1,29 @@
 # @argentina-community/config-eslint
 
+## 2.2.3
+
+### Patch Changes
+
+- b52f3dc: fix(deps): update dependency globals to v17.5.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 2ca18c2: fix(deps): update eslint to v8.58.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- ccab91d: fix(deps): update dependency eslint to v10.2.1
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 57f66cb: fix(deps): update eslint to v8.59.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- fd5564f: fix(deps): update dependency eslint-plugin-svelte to v3.17.1
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 2.2.2
 
 ### Patch Changes

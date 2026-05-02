@@ -22,7 +22,7 @@ catalogs:
 
   swc:
     "@swc/cli": 0.8.1
-    "@swc/core": 1.15.30
+    "@swc/core": 1.15.32
 
   environment:
     "@types/express": 5.0.6

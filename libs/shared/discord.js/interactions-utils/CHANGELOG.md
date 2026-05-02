@@ -1,5 +1,17 @@
 # @argentina-community/interactions-utils
 
+## 2.2.2
+
+### Patch Changes
+
+- b52f3dc: fix(deps): update dependency globals to v17.5.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- be8cda1: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 2.2.1
 
 ### Patch Changes

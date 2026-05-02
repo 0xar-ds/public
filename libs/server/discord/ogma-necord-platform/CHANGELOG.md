@@ -1,5 +1,29 @@
 # ogma-necord-platform
 
+## 2.4.1
+
+### Patch Changes
+
+- b52f3dc: fix(deps): update dependency globals to v17.5.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 5cbb433: fix(deps): update nest monorepo
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- be8cda1: fix(deps): update discord
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 6b5383c: fix(deps): update dependency necord to ^6.13.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- Updated dependencies [b52f3dc]
+- Updated dependencies [be8cda1]
+  - @argentina-community/events-descriptions@3.4.1
+
 ## 2.4.0
 
 ### Minor Changes

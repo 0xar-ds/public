@@ -2,9 +2,22 @@
 	"extends": "./tsconfig.options.json",
 	"files": [],
 	"include": [
+		"./types/**/*",
 		"types/**/*"
 	],
 	"references": [
+		{
+			"path": "./libs/server/discord/ogma-necord-platform"
+		},
+		{
+			"path": "./libs/shared/discord.js/channels-utils"
+		},
+		{
+			"path": "./libs/shared/discord.js/events-descriptions"
+		},
+		{
+			"path": "./libs/shared/discord.js/interactions-utils"
+		},
 		{
 			"path": "apps/example-application"
 		},
@@ -18,22 +31,7 @@
 			"path": "libs/server/discord/necord-enhancements"
 		},
 		{
-			"path": "libs/server/discord/ogma-necord-platform"
-		},
-		{
-			"path": "libs/server/discord/ogma-necord-platform"
-		},
-		{
-			"path": "libs/shared/discord.js/channels-utils"
-		},
-		{
-			"path": "libs/shared/discord.js/events-descriptions"
-		},
-		{
 			"path": "libs/shared/discord.js/events-utils"
-		},
-		{
-			"path": "libs/shared/discord.js/interactions-utils"
 		},
 		{
 			"path": "libs/shared/exceptions"

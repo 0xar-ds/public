@@ -1,5 +1,21 @@
 # ogma-necord-platform
 
+## 2.4.2
+
+### Patch Changes
+
+- 98f825d: fix(deps): update dependency @types/node to v24.12.3
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 009f11a: fix(deps): update dependency @types/node to v24.12.4
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- Updated dependencies [98f825d]
+- Updated dependencies [009f11a]
+  - @argentina-community/events-descriptions@3.4.2
+
 ## 2.4.1
 
 ### Patch Changes

@@ -73,6 +73,6 @@ catalogs:
     "ts-jest": 29.4.9
 
   discord:
-    "necord": "^6.13.0"
+    "necord": "^6.14.0"
     "discord.js": "^14.26.4"
     "discord-api-types": "^0.38.47"

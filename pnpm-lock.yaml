@@ -66,8 +66,8 @@ catalogs:
       specifier: ^14.26.4
       version: 14.26.4
     necord:
-      specifier: ^6.13.0
-      version: 6.13.0
+      specifier: ^6.14.0
+      version: 6.14.0
   environment:
     '@types/express':
       specifier: 5.0.6
@@ -213,7 +213,7 @@ importers:
         version: 17.6.0
       necord:
         specifier: catalog:discord
-        version: 6.13.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 6.14.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       ogma-necord-platform:
         specifier: workspace:^
         version: link:../../libs/server/discord/ogma-necord-platform
@@ -420,7 +420,7 @@ importers:
         version: 14.26.4
       necord:
         specifier: catalog:discord
-        version: 6.13.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 6.14.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata:
         specifier: catalog:utilities
         version: 0.2.2
@@ -469,7 +469,7 @@ importers:
         version: 14.26.4
       necord:
         specifier: catalog:discord
-        version: 6.13.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 6.14.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata:
         specifier: catalog:utilities
         version: 0.2.2
@@ -3214,8 +3214,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  necord@6.13.0:
-    resolution: {integrity: sha512-8xO3mpeZP8FASiEvyRzwihrTqHkzjKywi/+TgGx7763t+7yBW9e/JGsyogiLPpoBg/As56UgQxR/0WeJ58oUlQ==}
+  necord@6.14.0:
+    resolution: {integrity: sha512-rkjEUKrAWeRZAItinTFvIAgLu8WCDOA1CAm/+37n0jgPvAZF89XCSFikvrPFJbEmYlGQRF/OShp8cgx7RQOjNg==}
     engines: {node: '>=18', npm: '>=8.6.0'}
     peerDependencies:
       '@nestjs/common': ^10.2.0 || ^11.0.0
@@ -6641,7 +6641,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  necord@6.13.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2):
+  necord@6.14.0(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.19)(discord-api-types@0.38.44)(discord.js@14.26.4)(reflect-metadata@0.2.2)(rxjs@7.8.2):
     dependencies:
       '@nestjs/common': 11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core': 11.1.19(@nestjs/common@11.1.19(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.19)(reflect-metadata@0.2.2)(rxjs@7.8.2)

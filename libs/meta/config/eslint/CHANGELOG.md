@@ -1,5 +1,21 @@
 # @argentina-community/config-eslint
 
+## 2.2.4
+
+### Patch Changes
+
+- 7a2d17e: fix(deps): update eslint to v8.59.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 34daa0f: fix(deps): update dependency @eslint/compat to v2.1.0
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 58c6ba2: fix(deps): update eslint to v8.59.3
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 2.2.3
 
 ### Patch Changes

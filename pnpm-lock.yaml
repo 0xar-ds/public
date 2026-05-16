@@ -456,7 +456,7 @@ importers:
   libs/server/discord/ogma-necord-platform:
     dependencies:
       '@argentina-community/events-descriptions':
-        specifier: workspace:^3.4.1
+        specifier: workspace:^3.4.2
         version: link:../../../shared/discord.js/events-descriptions
       '@nestjs/common':
         specifier: catalog:nest
@@ -475,7 +475,7 @@ importers:
         version: 0.2.2
     devDependencies:
       '@argentina-community/eslint-config':
-        specifier: workspace:^2.2.3
+        specifier: workspace:^2.2.4
         version: link:../../../meta/config/eslint
       '@types/express':
         specifier: catalog:environment

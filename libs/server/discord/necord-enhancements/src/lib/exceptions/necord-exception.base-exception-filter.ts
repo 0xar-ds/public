@@ -34,7 +34,13 @@ export abstract class NecordBaseExceptionFilter<
 					necord.getDiscovery(),
 					necord.getContext(),
 				)
-				.subscribe();
+				.subscribe({
+					error: (err) =>
+						this.logger.error(
+							'Async dispatch error inside exception filter.',
+							err,
+						),
+				});
 			return true;
 		} catch (err) {
 			this.logger.error('Dispatch failed inside exception filter.', err);

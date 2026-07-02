@@ -8,15 +8,7 @@ import {
 
 import { NecordExecutionContext } from 'necord';
 
-import {
-	catchError,
-	concatMap,
-	isObservable,
-	map,
-	Observable,
-	of,
-	throwError,
-} from 'rxjs';
+import { concatMap, isObservable, map, Observable, of } from 'rxjs';
 
 import { GatewayResponseBuilder } from './gateway-response.builder.ts';
 import { GatewayResponseDispatcher } from './gateway-response.dispatcher.ts';
@@ -39,46 +31,35 @@ export class NecordResponseInterceptor implements NestInterceptor {
 		const controller = necord.getDiscovery();
 
 		return next.handle().pipe(
+			concatMap((value) => (isObservable(value) ? value : of(value))),
 			concatMap((value) => {
-				// unwrap Observable-returning controllers
-				const source$: Observable<unknown> = isObservable(value)
-					? value
-					: of(value);
+				let like: GatewayResponseLike;
 
-				return source$.pipe(
-					concatMap((value) => {
-						let like: GatewayResponseLike;
+				if (value instanceof GatewayResponseBuilder) {
+					like = value.build();
+				} else if (
+					value instanceof GatewayResponse ||
+					isGatewayResponseLike(value)
+				) {
+					like = value;
+				} else {
+					this.logger.warn(
+						'Controller returned a non-interceptor-mappable value.',
+					);
+					return of(undefined);
+				}
 
-						if (value instanceof GatewayResponseBuilder) {
-							like = value.build();
-						} else if (
-							value instanceof GatewayResponse ||
-							isGatewayResponseLike(value)
-						) {
-							like = value;
-						} else {
-							this.logger.warn(
-								'Controller returned a non-interceptor-mappable value.',
-							);
-							return of(undefined);
-						}
-
-						return this.dispatcher.dispatch(
-							this.dispatcher.normalize(like),
-							controller,
-							event,
-						);
-					}),
+				return this.dispatcher.dispatch(
+					this.dispatcher.normalize(like),
+					controller,
+					event,
 				);
 			}),
-
 			map((result) =>
 				result instanceof GatewayResponse || isGatewayResponseLike(result)
 					? result.status
 					: undefined,
 			),
-
-			catchError((err) => throwError(() => err)),
 		);
 	}
 }

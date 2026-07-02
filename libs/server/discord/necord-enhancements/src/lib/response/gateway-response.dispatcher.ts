@@ -95,8 +95,11 @@ export class GatewayResponseDispatcher {
 
 		if (handler.canHandle(response, controller, event)) {
 			return from(handler.handle(response, controller, event)).pipe(
-				catchError((...args) => {
-					if (response.hooks.onError) return response.hooks.onError(...args);
+				catchError((err, caught) => {
+					if (response.hooks.onError) {
+						return response.hooks.onError(err, caught);
+					}
+
 					return of(undefined);
 				}),
 			);

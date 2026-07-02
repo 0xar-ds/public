@@ -11,31 +11,37 @@ import {
 @Catch(ForbiddenException)
 @Injectable()
 export class NecordForbiddenFilter extends NecordBaseExceptionFilter<
-	ForbiddenException<GatewayResponseType.InteractionReply>
+	ForbiddenException<GatewayResponseType>
 > {
 	constructor(dispatcher: GatewayResponseDispatcher) {
 		super(dispatcher);
 	}
 
 	catch(
-		exception: ForbiddenException<GatewayResponseType.InteractionReply>,
+		exception: ForbiddenException<GatewayResponseType>,
 		host: ArgumentsHost,
 	): boolean {
 		const partial = exception.toResponse();
 
-		return this.dispatch(
-			{
-				...partial,
-				payload: {
-					body: [
-						{
-							content: `${partial.status.code}: ${partial.status.message}`,
-							flags: [MessageFlags.Ephemeral],
+		switch (partial.type) {
+			case GatewayResponseType.InteractionReply:
+				return this.dispatch(
+					{
+						...partial,
+						payload: {
+							body: [
+								{
+									content: `${partial.status.code}: ${partial.status.message}`,
+									flags: [MessageFlags.Ephemeral],
+								},
+							],
 						},
-					],
-				},
-			},
-			host,
-		);
+					},
+					host,
+				);
+
+			default:
+				return false;
+		}
 	}
 }

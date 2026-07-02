@@ -2,6 +2,12 @@ packages:
   - 'apps/**'
   - 'libs/**'
 
+allowBuilds:
+  '@nestjs/core': true
+  '@swc/core': true
+  necord: true
+  unrs-resolver: true
+
 catalogs:
   nest:
     "@nestjs/common": 11.1.19
@@ -9,7 +15,7 @@ catalogs:
     "@nestjs/testing": 11.1.19
 
     "@nestjs/platform-express": 11.1.19
-    
+
     "@nestjs/cli": 11.0.21
     "@nestjs/schematics": 11.1.0
 
@@ -41,10 +47,10 @@ catalogs:
     "eslint-import-resolver-typescript": 4.4.4
 
     "eslint-config-prettier": 10.1.8
-    
+
     "eslint-plugin-import-x": 4.16.2
     "eslint-plugin-svelte": 3.17.1
-    
+
     "globals": 17.6.0
 
   libraries:

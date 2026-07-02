@@ -11,7 +11,7 @@
 		":enableVulnerabilityAlerts",
 		":maintainLockFilesWeekly"
 	],
-  "gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],
+	"gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],
 	"minimumReleaseAge": "3 days",
 	"prCreation": "immediate",
 	"vulnerabilityAlerts": {
@@ -39,14 +39,14 @@
 			"matchManagers": ["npm"],
 			"enabled": false
 		},
-    {
-    "description": "Keep private @~ scoped packages in their own group, separate from publishable packages",
-    "matchPackagePatterns": ["^@~/"],
-    "groupName": "private internal packages",
-    "addLabels": ["internal"],
-    "automerge": true,
-    "automergeType": "branch"
-    },
+		{
+			"description": "Keep private @~ scoped packages in their own group, separate from publishable packages",
+			"groupName": "private internal packages",
+			"addLabels": ["internal"],
+			"automerge": true,
+			"automergeType": "branch",
+			"matchPackageNames": ["/^@~//"]
+		},
 		{
 			"groupName": "semantic-release",
 			"matchPackageNames": [

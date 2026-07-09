@@ -1,5 +1,5 @@
 node = "24.18.0"
-pnpm = "11.9.0"
+pnpm = "11.10.0"
 moon = "2.3.5"
 
 [settings]

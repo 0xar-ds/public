@@ -1,5 +1,37 @@
 # @argentina-community/channels-utils
 
+## 3.2.3
+
+### Patch Changes
+
+- 98f825d: fix(deps): update dependency @types/node to v24.12.3
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 009f11a: fix(deps): update dependency @types/node to v24.12.4
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 479e303: fix(deps): update eslint
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- ba48b35: fix(deps): update dependency @types/node to v24.13.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- f9d2380: fix(deps): update dependency ts-loader to v9.6.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 8cf4388: fix(deps): update dependency @types/node to v24.13.3
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 38b6824: fix(deps): update dependency discord.js to ^14.26.5
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
 ## 3.2.2
 
 ### Patch Changes

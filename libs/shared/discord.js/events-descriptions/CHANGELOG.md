@@ -1,5 +1,47 @@
 # @argentina-community/events-descriptions
 
+## 3.4.2
+
+### Patch Changes
+
+- 98f825d: fix(deps): update dependency @types/node to v24.12.3
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 009f11a: fix(deps): update dependency @types/node to v24.12.4
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 479e303: fix(deps): update eslint
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- ba48b35: fix(deps): update dependency @types/node to v24.13.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- f9d2380: fix(deps): update dependency ts-loader to v9.6.2
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 8cf4388: fix(deps): update dependency @types/node to v24.13.3
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- 38b6824: fix(deps): update dependency discord.js to ^14.26.5
+
+  Signed-off-by: Renovate Bot <bot@renovateapp.com>
+
+- Updated dependencies [98f825d]
+- Updated dependencies [009f11a]
+- Updated dependencies [479e303]
+- Updated dependencies [ba48b35]
+- Updated dependencies [f9d2380]
+- Updated dependencies [8cf4388]
+- Updated dependencies [38b6824]
+  - @argentina-community/channels-utils@3.2.3
+  - @argentina-community/interactions-utils@2.2.3
+
 ## 3.4.1
 
 ### Patch Changes

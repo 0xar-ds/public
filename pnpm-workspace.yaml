@@ -76,7 +76,7 @@ catalogs:
     "jest": 30.4.2
 
   test-tooling:
-    "ts-jest": 29.4.11
+    "ts-jest": 29.4.12
 
   discord:
     "necord": "^6.14.0"

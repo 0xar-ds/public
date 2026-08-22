@@ -25,7 +25,7 @@ jobs:
       hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
     steps:
       - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
 
@@ -40,7 +40,7 @@ jobs:
 
       - name: Release
         id: changesets
-        uses: changesets/action@198f833dd7d863100ea6e28967bc9a9fdefadb0a # v2.1.0
+        uses: changesets/action@8488615a623b1b9c987934bb89eae8af6a946ac1 # v2.1.1
         with:
           version: moon exec --ignore-ci-checks --summary --concurrency=1 root:version-packages
           publish: moon exec --ignore-ci-checks --summary --concurrency=1 root:publish-packages
@@ -62,7 +62,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout changeset-release branch
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: changeset-release/master
           token: ${{ secrets.LOCKFILE_PAT }}

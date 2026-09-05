@@ -73,7 +73,7 @@ catalogs:
     "@commitlint/config-angular": 21.2.2
 
   jest:
-    "jest": 30.4.2
+    "jest": 30.5.1
 
   test-tooling:
     "ts-jest": 29.4.12

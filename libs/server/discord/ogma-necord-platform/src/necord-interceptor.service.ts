@@ -26,12 +26,7 @@ import {
 } from '@argentina-community/events-descriptions';
 
 type LogValue =
-	| string
-	| number
-	| boolean
-	| null
-	| undefined
-	| { [key: string]: LogValue };
+	string | number | boolean | null | undefined | { [key: string]: LogValue };
 type LogObject = Record<string, LogValue>;
 
 @Parser('necord')

@@ -82,9 +82,7 @@ export class DeferInteractionGuard implements CanActivate {
 	private isDeferableController(
 		controller: NecordBaseDiscovery,
 	): controller is
-		| SlashCommandDiscovery
-		| MessageComponentDiscovery
-		| ListenerDiscovery {
+		SlashCommandDiscovery | MessageComponentDiscovery | ListenerDiscovery {
 		return (
 			controller.isSlashCommand() ||
 			controller.isMessageComponent() ||

@@ -174,8 +174,8 @@ catalogs:
       specifier: 21.2.3
       version: 21.2.3
     conventional-changelog-conventionalcommits:
-      specifier: 10.3.0
-      version: 10.3.0
+      specifier: 10.4.0
+      version: 10.4.0
     ts-loader:
       specifier: 9.6.2
       version: 9.6.2
@@ -311,7 +311,7 @@ importers:
         version: 21.2.3
       conventional-changelog-conventionalcommits:
         specifier: catalog:build-tooling
-        version: 10.3.0
+        version: 10.4.0
       eslint:
         specifier: catalog:code-quality
         version: 10.7.0(jiti@2.6.1)(supports-color@8.1.1)
@@ -2453,8 +2453,8 @@ packages:
     resolution: {integrity: sha512-HdxRxuS8bBXVIuo4V82gvSwAXT0vYQUizrjs/izmPg5JdDstr8v8I5hduGL3iQbG+o310dUDxC4+LetuS5hu9w==}
     engines: {node: '>=22'}
 
-  conventional-changelog-conventionalcommits@10.3.0:
-    resolution: {integrity: sha512-qag0zFD867Qq1DK0jAWicyWlEMS1FFC/BLVLISaoeI7Y6Em6aWchk7BCkhOTsecRpMsV6qX41XmlNnghiiTmSw==}
+  conventional-changelog-conventionalcommits@10.4.0:
+    resolution: {integrity: sha512-Rriac6ZrAlVm6cy9Bz4NSp+WMHpwNXoPIYex+HjCgduAVUSbnew29DQjQw0C4g9u3HtSYzGiGY+pdBXAZo+4aA==}
     engines: {node: '>=22'}
 
   conventional-commits-parser@7.1.2:
@@ -4550,7 +4550,7 @@ snapshots:
   '@commitlint/config-conventional@21.2.3':
     dependencies:
       '@commitlint/types': 21.2.3
-      conventional-changelog-conventionalcommits: 10.3.0
+      conventional-changelog-conventionalcommits: 10.4.0
 
   '@commitlint/config-validator@21.2.3':
     dependencies:
@@ -6049,7 +6049,7 @@ snapshots:
     dependencies:
       '@conventional-changelog/template': 1.4.0
 
-  conventional-changelog-conventionalcommits@10.3.0:
+  conventional-changelog-conventionalcommits@10.4.0:
     dependencies:
       '@conventional-changelog/template': 1.4.0
 

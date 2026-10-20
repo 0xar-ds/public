@@ -221,7 +221,7 @@ catalogs:
       version: 8.64.0
   discord:
     discord.js:
-      specifier: ^14.26.5
+      specifier: ^14.27.0
       version: 14.27.0
     necord:
       specifier: ^6.14.0

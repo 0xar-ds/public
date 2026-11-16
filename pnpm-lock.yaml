@@ -221,8 +221,8 @@ catalogs:
       version: 8.64.0
   discord:
     discord.js:
-      specifier: ^14.26.5
-      version: 14.27.0
+      specifier: ^14.28.1
+      version: 14.28.1
     necord:
       specifier: ^6.14.0
       version: 6.14.0
@@ -365,13 +365,13 @@ importers:
         version: 0.15.1
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
       globals:
         specifier: catalog:code-quality
         version: 17.7.0
       necord:
         specifier: catalog:discord
-        version: 6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.27.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.28.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       ogma-necord-platform:
         specifier: workspace:^
         version: link:../../libs/server/discord/ogma-necord-platform
@@ -575,10 +575,10 @@ importers:
         version: link:../../../shared/status
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
       necord:
         specifier: catalog:discord
-        version: 6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.27.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.28.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata:
         specifier: catalog:utilities
         version: 0.2.2
@@ -624,10 +624,10 @@ importers:
         version: 5.5.2(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
       necord:
         specifier: catalog:discord
-        version: 6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.27.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.28.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata:
         specifier: catalog:utilities
         version: 0.2.2
@@ -661,7 +661,7 @@ importers:
     dependencies:
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
     devDependencies:
       '@argentina-community/eslint-config':
         specifier: workspace:^
@@ -698,7 +698,7 @@ importers:
         version: link:../interactions-utils
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
     devDependencies:
       '@argentina-community/eslint-config':
         specifier: workspace:^
@@ -735,7 +735,7 @@ importers:
         version: link:../interactions-utils
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
       reflect-metadata:
         specifier: catalog:utilities
         version: 0.2.2
@@ -769,7 +769,7 @@ importers:
     dependencies:
       discord.js:
         specifier: catalog:discord
-        version: 14.27.0
+        version: 14.28.1
     devDependencies:
       '@argentina-community/eslint-config':
         specifier: workspace:^
@@ -1108,8 +1108,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@discordjs/builders@1.14.1':
-    resolution: {integrity: sha512-gSKkhXLqs96TCzk66VZuHHl8z2bQMJFGwrXC0f33ngK+FLNau4hU1PYny3DNJfNdSH+gVMzE85/d5FQ2BpcNwQ==}
+  '@discordjs/builders@1.15.0':
+    resolution: {integrity: sha512-AifaDWTw6WUDhKBn8E6mwwoyjDAcfsYq+ZE0nKSu1dMH1NLR22D3hGkNx+ctEv8NqHEHdAZnP5REteHDmn1lkA==}
     engines: {node: '>=16.11.0'}
 
   '@discordjs/collection@1.5.3':
@@ -2670,8 +2670,8 @@ packages:
   discord-api-types@0.38.55:
     resolution: {integrity: sha512-ytuaRTzdnHUCXJ6KjL9MrItQX0xKncBKEeYI1Bst4+ud47eejH3cG6gaesYakjpPcUhh68XYS2YwGq3mmujFsA==}
 
-  discord.js@14.27.0:
-    resolution: {integrity: sha512-qHbFlFG2N7y3LjPySYsL6A1+BnX6bkTVgo842EX0CqVPk/KTMwZkojPHEXKsQUpWZNyz5BISNHK1cPpQw0+m4A==}
+  discord.js@14.28.1:
+    resolution: {integrity: sha512-Je5OcqgurnIUQK4vR+gQnmzOf/lNQsD6d/UkV8ZOj+bFa5zJXPyiGXlbywp2EagwshVT18y7YNQNSRd3FjYkDw==}
     engines: {node: '>=18'}
 
   dotenv-expand@1000.0.0:
@@ -3545,6 +3545,7 @@ packages:
 
   node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
+    deprecated: This package is no longer needed on supported Node.js versions. Node.js 16+ includes AbortController and AbortSignal as built-in globals. All Node.js versions requiring this polyfill are end-of-life. Use the built-in globals instead.
 
   node-emoji@1.11.0:
     resolution: {integrity: sha512-wo2DpQkQp7Sjm2A0cq+sN7EHKO6Sl0ctXeBdFZrL9T9+UywORbufTcTZxom8YqpLQt/FqNMUkOpkZrJVYSKD3A==}
@@ -4741,7 +4742,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@discordjs/builders@1.14.1':
+  '@discordjs/builders@1.15.0':
     dependencies:
       '@discordjs/formatters': 0.6.2
       '@discordjs/util': 1.2.0
@@ -6356,9 +6357,9 @@ snapshots:
 
   discord-api-types@0.38.55: {}
 
-  discord.js@14.27.0:
+  discord.js@14.28.1:
     dependencies:
-      '@discordjs/builders': 1.14.1
+      '@discordjs/builders': 1.15.0
       '@discordjs/collection': 1.5.3
       '@discordjs/formatters': 0.6.2
       '@discordjs/rest': 2.6.3
@@ -7234,13 +7235,13 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  necord@6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.27.0)(reflect-metadata@0.2.2)(rxjs@7.8.2):
+  necord@6.14.0(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@11.1.28)(discord-api-types@0.37.120)(discord.js@14.28.1)(reflect-metadata@0.2.2)(rxjs@7.8.2):
     dependencies:
       '@nestjs/common': 11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1)
       '@nestjs/core': 11.1.28(@nestjs/common@11.1.28(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/platform-express@11.1.28)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nuxt/opencollective': 0.4.1
       discord-api-types: 0.37.120
-      discord.js: 14.27.0
+      discord.js: 14.28.1
       path-to-regexp: 8.4.2
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
